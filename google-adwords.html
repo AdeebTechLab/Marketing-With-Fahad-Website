@@ -62,6 +62,21 @@
  <link rel="preload" href="/assets/fonts/RedHatDisplay-Medium.woff2" as="font" crossorigin />
  <link rel="preload" href="/assets/fonts/RedHatDisplay-Bold.woff2" as="font" crossorigin />
  </head>
+ <script>
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const header = await fetch("header.html");
+        document.getElementById("header-placeholder").innerHTML =
+            await header.text();
+
+        const footer = await fetch("footer.html");
+        document.getElementById("footer-placeholder").innerHTML =
+            await footer.text();
+    } catch (err) {
+        console.error("Error loading header/footer:", err);
+    }
+});
+</script>
  <body class=" seo-page
  ">
  <style>
@@ -74,123 +89,7 @@
  </style>
  <!-- begin wrapper -->
  <div class="l-wrapper">
- <!-- begin header -->
- <header class="l-header header">
- <div class="header__container">
- <a class="header__logo" href="/">
- <img src="assets/logo.png" alt="Marketing with Fahad" title="Marketing with Fahad">
- </a>
- <div class="header__main-menu">
- <nav class="main-menu js-menu-smart js-menu-mobile">
- <button data-menu-mobile--switcher-btn><span>menu</span></button>
- <ul class="main-menu__root is-root">
- <li>
- <a href="seo_course.html">SEO Courses</a>
- </li>
- <li class="-has-dropdown">
- <a href="about.html">About</a>
- <div>
- <ul>
- <li>
- <a href="history.html">History</a>
- </li>
- <li>
- <a href="our-team.html">Our Team</a>
- </li>
- <li>
- <a href="news.html">News</a>
- </li>
- <li>
- <a href="gallery.html">Gallery</a>
- </li>
- <li>
- <a href="vacancy.html">Vacancy</a>
- </li>
- <li>
- <a href="blog.html">Blog</a>
- </li>
- <li>
- <a href="testimonials.html">Testimonials</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="is-active -has-dropdown">
- <a href="services.html">Services</a>
- <div>
- <ul>
- <li>
- <a href="seo.html">Search Engine Optimization</a>
- </li>
- <li>
- <a href="web-design.html">Web Design</a>
- </li>
- <li>
- <a href="social-media-marketing.html">Social Media Marketing</a>
- </li>
- <li class="is-active">
- <a href="/services/">Google AdWords Management</a>
- </li>
- <li>
- <a href="website-audits.html">Website Audit</a>
- </li>
- <li>
- <a href="content-writing.html">Content Writing</a>
- </li>
- <li>
- <a href="logo-design.html">Logo Designing</a>
- </li>
- <li>
- <a href="profile-design.html">Profile Design</a>
- </li>
- <li>
- <a href="digital-marketing.html">Digital Marketing</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="pricing.html">Pricing</a>
- <div>
- <ul>
- <li>
- <a href="seo-payment-after-rank.html">SEO - Payment After Rank</a>
- </li>
- <li>
- <a href="seo-monthly-payment-strategy.html">SEO - Monthly Payment Strategy</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="portfolio.html">Portfolio</a>
- <div>
- <ul>
- <li>
- <a href="our-website.html">Our Websites</a>
- </li>
- <li>
- <a href="our-seo-ranks.html">Our SEO Ranks</a>
- </li>
- </ul>
- </div>
- </li>
- <li>
- <a href="contact.html">Contact</a>
- </li>
- </ul>
- </nav>
- </div>
- <a class="header__report" href="https://reports.Marketing with Fahad.ae/login" rel="nofollow" target="_blank">My Report <span>Login</span></a>
- <a class="header__call" href="tel:+97145547316">
- Customer Service <span>971526086977</span>
- </a>
- <a class="header__lang" href="https://ru.Marketing with Fahad.ae/" target="_blank">
- <img src="assets/lang-ru.svg" alt="Русский" title=" Русский">
- </a>
- </div>
-</header>
- <!-- end header -->
+ <div id="header-placeholder"></div>
  <!-- begin main -->
  <main class="l-main">
  <!-- begin slider -->
@@ -537,198 +436,39 @@
  </main>
  </div>
  <!-- end wrapper -->
- <!-- begin footer -->
-<footer class="l-footer footer">
- <div class="footer__top">
- <div class="footer__menu">
- <div class="menu-footer js-footer-menu">
- <nav class="menu-footer__container">
- <ul>
- <li class="is-active -has-dropdown">
- <a href="services.html">Services</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="seo.html">Search Engine Optimization</a>
- </li>
- <li>
- <a href="web-design.html">Web Design</a>
- </li>
- <li>
- <a href="social-media-marketing.html">Social Media Marketing</a>
- </li>
- <li class="is-active">
- <a href="/services/">Google AdWords Management</a>
- </li>
- <li>
- <a href="website-audits.html">Website Audit</a>
- </li>
- <li>
- <a href="content-writing.html">Content Writing</a>
- </li>
- <li>
- <a href="logo-design.html">Logo Designing</a>
- </li>
- <li>
- <a href="profile-design.html">Profile Design</a>
- </li>
- <li>
- <a href="digital-marketing.html">Digital Marketing</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="about.html">About</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="news.html">News</a>
- </li>
- <li>
- <a href="history.html">History</a>
- </li>
- <li>
- <a href="our-team.html">Our Team</a>
- </li>
- <li>
- <a href="gallery.html">Gallery</a>
- </li>
- <li>
- <a href="blog.html">Blog</a>
- </li>
- <li>
- <a href="contact.html">Contact</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="portfolio.html">Portfolio</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="our-website.html">Our Websites</a>
- </li>
- <li>
- <a href="our-seo-ranks.html">Our SEO Ranks</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="/discounts/">Discounts</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="/discounts/discounts-up-to-20-on-seo/">Discounts up to 20% on SEO</a>
- </li>
- </ul>
- </div>
- </li>
- </ul>
- </nav>
- </div>
- </div>
- <div class="footer__map">
- <div class="footer-google">
- <img src="assets/footer-google.png" alt="google" title="google">
- </div>
- <a href="/contact/" class="footer-map">
- <img src="assets/footer-map.png" alt="contacts" title="contacts">
- </a>
- </div>
- <div class="footer__search">
- <div class="footer-search">
- <form action="/search">
- <input name="q"
- type="text"
- class="footer-search__field"
- autocomplete="off"
- minlength="3"
- placeholder="Search"
- required="required"
- />
- <button type="submit" class="footer-search__btn">Search</button>
-</form>
- </div>
- </div>
- <div class="footer__social">
- <div class="footer-social">
- <a rel="noreferrer noopener nofollow"
- class="icon-instagram"
- href="https://www.instagram.com/Marketing with Fahaddubai/"
- target="_blank">
- https://www.instagram.com/Marketing with Fahaddubai/
- </a>
- <a rel="noreferrer noopener nofollow"
- class="icon-facebook"
- href="https://www.facebook.com/Marketing with Fahaddubai"
- target="_blank">
- https://www.facebook.com/Marketing with Fahaddubai
- </a>
- <a rel="noreferrer noopener nofollow"
- class="icon-twitter"
- href="https://twitter.com/Marketing with Fahaddubai"
- target="_blank">
- https://twitter.com/Marketing with Fahaddubai
- </a>
- <a rel="noreferrer noopener nofollow"
- class="icon-linkedin"
- href="https://www.linkedin.com/company/be-on-top/"
- target="_blank">
- https://www.linkedin.com/company/be-on-top/
- </a>
- </div>
- </div>
- </div>
- <div class="footer__middle">
- <div class="footer__middle-container">
- <div class="footer__contacts">
- <div class="footer-contacts">
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--time.svg"
- alt="time">
- <span class="footer-contacts__item-note -green">We&#039;re open</span>
- <span class="footer-contacts__item-note">Closes at 6:00 PM</span>
- </div>
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--phone.svg"
- alt="phone">
- <span class="footer-contacts__item-note">Customer Care</span>
- <a href="tel:+97145547316"
- class="footer-contacts__item-value">971526086977</a>
- </div>
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--support.svg"
- alt="support">
- <span class="footer-contacts__item-note">Support & Sales Department</span>
- <a href="mailto:Contact@marketingwithfahad.com" class="footer-contacts__item-value"><span class="__cf_email__" data-cfemail="b5c6c0c5c5dac7c1f5d7d0dadbc1dac59bd4d0">Contact@marketingwithfahad.com</span></a>
- </div>
- </div>
- </div>
- <div class="footer__info">
- <div class="footer-info">
- <a class="footer-info__link"
- href="/contact-to-the-ceo/">Contact the CEO</a>
- <a class="footer-info__google-partner" href="/google-partner/">
- <img src="assets/footer-google-parner.jpg" alt="Marketing with Fahad"
- title="Marketing with Fahad">
- </a>
- </div>
- </div>
- </div>
- </div>
- <div class="footer__bottom">
- <div class="footer__bottom-container">
- <span>© Marketing with Fahad 2008-2026. All rights reserved.</span>
- <span class="-location">Tamani arts building, Tamani Arts Building - Al Asayel St - Business Bay - Dubai - United Arab Emirates</span>
- </div>
- </div>
-</footer>
+  <section style="padding:80px 20px;background:#f8f6f1;">
+    <div style="max-width:1300px;margin:auto;display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap;">
+        <div style="flex:1;min-width:300px;">
+            <span style="background:#c8a64d;color:#fff;padding:8px 20px;border-radius:30px;font-size:14px;font-weight:600;">FAQs</span>
+            <h2 style="font-size:60px;line-height:1.1;color:#111;margin:25px 0;">Frequently<br><span style="color:#c8a64d;">Asked Questions</span></h2>
+            <p style="font-size:18px;color:#555;line-height:1.8;margin-bottom:30px;">Answers to the most common questions about Google Ads management, budgets, bidding, and getting the best ROI from paid search.</p>
+            <a href="contact.html" style="display:inline-block;background:#c8a64d;color:#fff;text-decoration:none;padding:16px 35px;border-radius:50px;font-weight:600;">Get Free Ads Audit</a>
+        </div>
+        <div style="flex:1.5;min-width:400px;">
+            <div class="faq-item"><button class="faq-btn">What is Google Ads management?<span>+</span></button><div class="faq-content">Google Ads management covers creating, optimizing, and monitoring your paid search campaigns — including keyword research, ad copy writing, bid strategy, audience targeting, and conversion tracking.</div></div>
+            <div class="faq-item"><button class="faq-btn">How much should I budget for Google Ads?<span>+</span></button><div class="faq-content">We recommend a minimum monthly ad spend of AED 3,000 for meaningful results in the UAE market. Our management fee is charged separately and scales with your campaign size.</div></div>
+            <div class="faq-item"><button class="faq-btn">How quickly can Google Ads generate leads?<span>+</span></button><div class="faq-content">Google Ads can start generating leads within 24–48 hours of campaign launch. Unlike SEO, paid ads deliver immediate visibility while long-term organic rankings are being built.</div></div>
+            <div class="faq-item"><button class="faq-btn">What types of Google Ads do you manage?<span>+</span></button><div class="faq-content">We manage Search Ads, Display Ads, Shopping Ads, Remarketing Campaigns, and YouTube Ads — selecting the right mix based on your business goals and target audience.</div></div>
+            <div class="faq-item"><button class="faq-btn">How do you measure Google Ads success?<span>+</span></button><div class="faq-content">We track clicks, impressions, cost per click, conversion rate, cost per lead, and return on ad spend (ROAS). Monthly reports show exactly where your budget is being spent and what results it is generating.</div></div>
+            <div class="faq-item"><button class="faq-btn">Can you take over an existing Google Ads account?<span>+</span></button><div class="faq-content">Yes. We audit your existing campaigns, identify waste and missed opportunities, restructure targeting and bidding, and optimize ad copy to improve performance and reduce cost per acquisition.</div></div>
+            <div class="faq-item"><button class="faq-btn">Should I run Google Ads or focus on SEO?<span>+</span></button><div class="faq-content">Ideally both. Google Ads delivers immediate leads while SEO builds long-term organic rankings. Combined, they maximize your visibility across paid and organic search results simultaneously.</div></div>
+            <div class="faq-item"><button class="faq-btn">Is there a minimum contract for Google Ads management?<span>+</span></button><div class="faq-content">We recommend a minimum 3-month engagement to properly test, learn, and optimize your campaigns. Month-to-month arrangements are available for businesses that prefer more flexibility.</div></div>
+        </div>
+    </div>
+</section>
+
+<style>
+.faq-item{margin-bottom:15px;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08);}
+.faq-btn{width:100%;border:none;background:#ffffff;color:#111;padding:25px;font-size:20px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left;}
+.faq-btn span{width:40px;height:40px;border-radius:50%;background:#c8a64d;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.faq-content{display:none;padding:0 25px 25px;color:#555;font-size:16px;line-height:1.8;}
+@media(max-width:768px){.faq-btn{font-size:17px;padding:20px;}h2{font-size:42px !important;}}
+</style>
+
+<script>
+document.querySelectorAll(".faq-btn").forEach(btn=>{btn.addEventListener("click",()=>{const content=btn.nextElementSibling;const icon=btn.querySelector("span");document.querySelectorAll(".faq-content").forEach(item=>{if(item!==content)item.style.display="none";});document.querySelectorAll(".faq-btn span").forEach(i=>{i.innerHTML="+";});if(content.style.display==="block"){content.style.display="none";icon.innerHTML="+";}else{content.style.display="block";icon.innerHTML="−";}});});
+</script>
+<div id="footer-placeholder"></div>
  <a class="whatsapp-fixed-btn" href="https://api.whatsapp.com/send?phone=971564166421" target="_blank">
  <img src="assets/whatsapp.svg" alt="whatsapp" title="whatsapp">
  </a>

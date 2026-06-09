@@ -64,6 +64,21 @@
  <link rel="preload" href="/assets/images/seo-services-1-position-guaranted.webp" as="image" media="(max-width: 600px)">
  <!-- <link rel="stylesheet" href="homepage.css"> -->
  </head>
+ <script>
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const header = await fetch("header.html");
+        document.getElementById("header-placeholder").innerHTML =
+            await header.text();
+
+        const footer = await fetch("footer.html");
+        document.getElementById("footer-placeholder").innerHTML =
+            await footer.text();
+    } catch (err) {
+        console.error("Error loading header/footer:", err);
+    }
+});
+</script>
  <body class="home-page">
     <style>
     @charset "UTF-8";
@@ -72,123 +87,7 @@
     </style>
  <!-- begin wrapper -->
  <div class="l-wrapper">
- <!-- begin header -->
- <header class="l-header header">
- <div class="header__container">
- <a class="header__logo" href="index.html">
- <img src="assets/logo.png" alt="Marketing with Fahad" title="Marketing with Fahad">
- </a>
- <div class="header__main-menu">
- <nav class="main-menu js-menu-smart js-menu-mobile">
- <button data-menu-mobile--switcher-btn><span>menu</span></button>
- <ul class="main-menu__root is-root">
- <li>
- <a href="seo_course.html">SEO Courses</a>
- </li>
- <li class="-has-dropdown">
- <a href="about.html">About</a>
- <div>
- <ul>
- <li>
- <a href="history.html">History</a>
- </li>
- <li>
- <a href="our-team.html">Our Team</a>
- </li>
- <li>
- <a href="news.html">News</a>
- </li>
- <li>
- <a href="gallery.html">Gallery</a>
- </li>
- <li>
- <a href="vacancy.html">Vacancy</a>
- </li>
- <li>
- <a href="blog.html">Blog</a>
- </li>
- <li>
- <a href="testimonials.html">Testimonials</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="services.html">Services</a>
- <div>
- <ul>
- <li>
- <a href="seo.html">Search Engine Optimization</a>
- </li>
- <li>
- <a href="web-design.html">Web Design</a>
- </li>
- <li>
- <a href="social-media-marketing.html">Social Media Marketing</a>
- </li>
- <li>
- <a href="google-adwords.html">Google AdWords Management</a>
- </li>
- <li>
- <a href="website-audits.html">Website Audit</a>
- </li>
- <li>
- <a href="content-writing.html">Content Writing</a>
- </li>
- <li>
- <a href="logo-design.html">Logo Designing</a>
- </li>
- <li>
- <a href="profile-design.html">Profile Design</a>
- </li>
- <li>
- <a href="digital-marketing.html">Digital Marketing</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="pricing.html">Pricing</a>
- <div>
- <ul>
- <li>
- <a href="seo-payment-after-rank.html">SEO - Payment After Rank</a>
- </li>
- <li>
- <a href="seo-monthly-payment-strategy.html">SEO - Monthly Payment Strategy</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="portfolio.html">Portfolio</a>
- <div>
- <ul>
- <li>
- <a href="#">Our Websites</a>
- </li>
- <li>
- <a href="our-seo-ranks.html">Our SEO Ranks</a>
- </li>
- </ul>
- </div>
- </li>
- <li>
- <a href="contact.html">Contact</a>
- </li>
- </ul>
- </nav>
- </div>
- <a class="header__report" href="https://reports.Marketing with Fahad.ae/login" rel="nofollow" target="_blank">My Report <span>Login</span></a>
- <a class="header__call" href="tel:+97145547316">
- Customer Service <span>971526086977</span>
- </a>
- <a class="header__lang" href="https://ru.Marketing with Fahad.ae/" target="_blank">
- <img src="assets/lang-ru.svg" alt="Русский" title=" Русский">
- </a>
- </div>
-</header>
- <!-- end header -->
+ <div id="header-placeholder"></div>
  <!-- begin main -->
  <main class="l-main">
  <div class="slider-header-mobile">
@@ -196,48 +95,13 @@
  <img src="assets/slider-payment-after-rank-mobile-1.png"  alt="Marketing with Fahad" title="Marketing with Fahad">
  </picture>
  <div class="slider-header-mobile__form">
-<form name="darvin_payment_after_result_order" method="post" action="/order/payment_after_result/submit" class="js-ajax" data-goal-name="Email slider" data-goal-category="Email">
- <div class="form-slider js-form-slider">
- <div class="form-slider__container">
- <p class="form-slider__title">SEO Services <br>#1 Position Guaranteed</p>
- <div data-step="1">
- <div class="form-item -site">
- <div class="form-item__field">
- <input type="text" id="darvin_payment_after_result_order_site" name="darvin_payment_after_result_order[site]" required="required" placeholder="domain.com" autocomplete="off" inputmode="url" />
- </div>
-</div>
- <div class="form-btns-container -step-1">
- <button class="form-slider__btn-submit" data-next type="submit">
- Send Me a Unique Package
- </button>
- </div>
- </div>
- <div data-step="2">
- <div class="form-item -name">
- <div class="form-item__field">
- <input type="text" id="darvin_payment_after_result_order_name" name="darvin_payment_after_result_order[name]" required="required" placeholder="Name*" autocomplete="off" />
- </div>
-</div>
- <div class="form-item -phone">
- <div class="form-item__field">
- <input type="text" id="darvin_payment_after_result_order_phone" name="darvin_payment_after_result_order[phone]" required="required" maxlength="30" placeholder="Phone*" value="+971" autocomplete="off" />
- </div>
-</div>
- <div class="form-item -email">
- <div class="form-item__field">
- <input type="email" id="darvin_payment_after_result_order_email" name="darvin_payment_after_result_order[email]" maxlength="50" placeholder="Email" autocomplete="off" />
- </div>
-</div>
- <div class="form-btns-container">
- <button class="form-slider__btn-submit" type="submit">
- Send Me a Unique Package
- </button>
- </div>
- </div>
- <p class="form-slider__terms"><a href="#" target="_blank">Terms and Conditions Apply</a></p>
- </div>
- </div>
-<input type="text" id="darvin_payment_after_result_order_title" name="darvin_payment_after_result_order[title]" class="title_field" autocomplete="off" /><input type="hidden" id="darvin_payment_after_result_order__token" name="darvin_payment_after_result_order[_token]" value="BPFIf2R377XQTG-0y5mXXl3JVCFR0mC3cmr6ddm0nvw" /></form>
+   <p style="display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;border-radius:20px;text-transform:uppercase;margin:0 0 7px 0;">Dubai's #1 SEO Agency · Pay After Results</p>
+   <h2 style="font-size:20px;font-weight:800;color:#ffffff;line-height:1.22;margin:0 0 5px 0;text-shadow:0 2px 8px rgba(0,0,0,0.2);">We rank your website.<br><span style="color:#FFD600;">You pay after you rank.</span></h2>
+   <p style="font-size:11.5px;color:rgba(255,255,255,0.80);margin:0 0 12px 0;font-weight:500;">750+ websites on Google Page 1 · UAE since 2008</p>
+   <div style="display:flex;flex-wrap:wrap;gap:8px;">
+     <a href="contact.html" style="background:#FFD600;color:#1a0050;font-weight:800;font-size:12px;padding:9px 16px;border-radius:5px;text-decoration:none;box-shadow:0 3px 12px rgba(255,214,0,0.35);">Get Free SEO Audit</a>
+     <a href="our-seo-ranks.html" style="background:transparent;color:#fff;font-weight:700;font-size:12px;padding:9px 16px;border-radius:5px;text-decoration:none;border:2px solid rgba(255,255,255,0.5);">See Our Results &rarr;</a>
+   </div>
  </div>
  </div>
  <!-- begin slider -->
@@ -253,48 +117,14 @@
  title="SEO Services &lt;br&gt;#1 Position Guaranteed">
  </picture>
  <div class="slider-header__form">
-<form name="darvin_payment_after_result_order" method="post" action="/order/payment_after_result/submit" class="js-ajax" data-goal-name="Email slider" data-goal-category="Email">
- <div class="form-slider js-form-slider">
- <div class="form-slider__container">
- <p class="form-slider__title">SEO Services <br>#1 Position Guaranteed</p>
- <div data-step="1">
- <div class="form-item -site">
- <div class="form-item__field">
- <input type="text" id="darvin_payment_after_result_order_site" name="darvin_payment_after_result_order[site]" required="required" placeholder="domain.com" autocomplete="off" inputmode="url" />
- </div>
-</div>
- <div class="form-btns-container -step-1">
- <button class="form-slider__btn-submit" data-next type="submit">
- Send Me a Unique Package
- </button>
- </div>
- </div>
- <div data-step="2">
- <div class="form-item -name">
- <div class="form-item__field">
- <input type="text" id="darvin_payment_after_result_order_name" name="darvin_payment_after_result_order[name]" required="required" placeholder="Name*" autocomplete="off" />
- </div>
-</div>
- <div class="form-item -phone">
- <div class="form-item__field">
- <input type="text" id="darvin_payment_after_result_order_phone" name="darvin_payment_after_result_order[phone]" required="required" maxlength="30" placeholder="Phone*" value="+971" autocomplete="off" />
- </div>
-</div>
- <div class="form-item -email">
- <div class="form-item__field">
- <input type="email" id="darvin_payment_after_result_order_email" name="darvin_payment_after_result_order[email]" maxlength="50" placeholder="Email" autocomplete="off" />
- </div>
-</div>
- <div class="form-btns-container">
- <button class="form-slider__btn-submit" type="submit">
- Send Me a Unique Package
- </button>
- </div>
- </div>
- <p class="form-slider__terms"><a href="#" target="_blank">Terms and Conditions Apply</a></p>
- </div>
- </div>
-<input type="text" id="darvin_payment_after_result_order_title" name="darvin_payment_after_result_order[title]" class="title_field" autocomplete="off" /><input type="hidden" id="darvin_payment_after_result_order__token" name="darvin_payment_after_result_order[_token]" value="BPFIf2R377XQTG-0y5mXXl3JVCFR0mC3cmr6ddm0nvw" /></form>
+   <!-- Hero CTA Block -->
+   <p style="display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:4px 12px;border-radius:20px;text-transform:uppercase;margin:0 0 8px 0;white-space:nowrap;">Dubai's #1 SEO Agency &nbsp;·&nbsp; Pay After Results</p>
+   <h2 style="font-size:26px;font-weight:800;color:#ffffff;line-height:1.22;margin:0 0 6px 0;letter-spacing:-0.3px;text-shadow:0 2px 10px rgba(0,0,0,0.2);">We rank your website.<br><span style="color:#FFD600;">You pay after you rank.</span></h2>
+   <p style="font-size:12.5px;color:rgba(255,255,255,0.80);margin:0 0 14px 0;font-weight:500;letter-spacing:0.01em;">750+ websites on Google Page 1 &nbsp;·&nbsp; UAE since 2008</p>
+   <div style="display:flex;flex-wrap:wrap;gap:10px;">
+     <a href="contact.html" style="background:#FFD600;color:#1a0050;font-weight:800;font-size:13px;padding:10px 20px;border-radius:5px;text-decoration:none;letter-spacing:0.01em;box-shadow:0 3px 14px rgba(255,214,0,0.35);white-space:nowrap;transition:background 0.2s;">Get Free SEO Audit</a>
+     <a href="our-seo-ranks.html" style="background:transparent;color:#fff;font-weight:700;font-size:13px;padding:10px 20px;border-radius:5px;text-decoration:none;border:2px solid rgba(255,255,255,0.5);white-space:nowrap;transition:border-color 0.2s;">See Our Results &rarr;</a>
+   </div>
  </div>
  </div>
  <div class="darvin-slider__item slider-header__item">
@@ -717,56 +547,33 @@ of Quicklease</h2>
 </div>
  <!-- end .homepage-advantages-->
  <!-- .homepage-numbers -->
- <div class="numbers_content_banner_list"> <div class="homepage-numbers">
- <div class="homepage-numbers__container">
- <div class="homepage-numbers__list">
- <div class="homepage-numbers__item">
- <img class="homepage-numbers__item-img"
- src="assets/homepage-numbers-1.png"
- data-src="assets/homepage-numbers-1.png"
- alt="18328"
- title="18328">
- <div class="homepage-numbers__item-text">
- <p class="homepage-numbers__item-title">18328</p>
- <p>1st-page results of all client keywords</p>
- </div>
- </div>
- <div class="homepage-numbers__item">
- <img class="homepage-numbers__item-img"
- src="assets/homepage-numbers-21.png"
- data-src="assets/homepage-numbers-21.png"
- alt="786"
- title="786">
- <div class="homepage-numbers__item-text">
- <p class="homepage-numbers__item-title">786</p>
- <p>Our happy customers</p>
- </div>
- </div>
- <div class="homepage-numbers__item">
- <img class="homepage-numbers__item-img"
- src="assets/homepage-numbers-3.png"
- data-src="assets/homepage-numbers-3.png"
- alt="74350"
- title="74350">
- <div class="homepage-numbers__item-text">
- <p class="homepage-numbers__item-title">74350</p>
- <p>The number of all visitors to the client on the day</p>
- </div>
- </div>
- <div class="homepage-numbers__item">
- <img class="homepage-numbers__item-img"
- src="assets/calendar.png"
- data-src="assets/calendar.png"
- alt="11"
- title="11">
- <div class="homepage-numbers__item-text">
- <p class="homepage-numbers__item-title">11</p>
- <p>Years of experience</p>
- </div>
- </div>
- </div>
- </div>
- </div>
+<div class="numbers_content_banner_list">
+  <div style="background:#f8f9fc;padding:48px 24px;border-top:1px solid #e8eaf0;border-bottom:1px solid #e8eaf0;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:24px;">
+
+      <!-- Stat 1 -->
+      <div style="background:#fff;border:1.5px solid #e2e6f0;border-radius:12px;padding:32px 36px;min-width:240px;flex:1;max-width:300px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.05);">
+        <p style="font-size:44px;font-weight:900;color:#3b1fa3;margin:0 0 6px 0;line-height:1;">750+</p>
+        <p style="font-size:15px;font-weight:700;color:#1a1a2e;margin:0 0 4px 0;">Websites Ranked on Google Page 1</p>
+        <p style="font-size:12.5px;color:#7a7f99;margin:0;font-weight:500;">Across UAE, UK &amp; Russia</p>
+      </div>
+
+      <!-- Stat 2 -->
+      <div style="background:#fff;border:1.5px solid #e2e6f0;border-radius:12px;padding:32px 36px;min-width:240px;flex:1;max-width:300px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.05);">
+        <p style="font-size:44px;font-weight:900;color:#3b1fa3;margin:0 0 6px 0;line-height:1;">786</p>
+        <p style="font-size:15px;font-weight:700;color:#1a1a2e;margin:0 0 4px 0;">Active Clients Trust Us</p>
+        <p style="font-size:12.5px;color:#7a7f99;margin:0;font-weight:500;">Since 2008</p>
+      </div>
+
+      <!-- Stat 3 -->
+      <div style="background:#fff;border:1.5px solid #e2e6f0;border-radius:12px;padding:32px 36px;min-width:240px;flex:1;max-width:300px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.05);">
+        <p style="font-size:44px;font-weight:900;color:#3b1fa3;margin:0 0 6px 0;line-height:1;">17</p>
+        <p style="font-size:15px;font-weight:700;color:#1a1a2e;margin:0 0 4px 0;">Years of SEO Expertise in Dubai</p>
+        <p style="font-size:12.5px;color:#7a7f99;margin:0;font-weight:500;">Founded 2008</p>
+      </div>
+
+    </div>
+  </div>
 </div>
  <!-- end .homepage-numbers-->
  <!-- .homepage-services -->
@@ -908,201 +715,259 @@ of Quicklease</h2>
  </div>
  <!-- end .blog-widget-->
  </div>
+
+<!-- Testimonials Section -->
+<section class="mwf-reviews" style="background:#F8FAFC; padding: 80px 22px;">
+  <div class="mwf-reviews__inner" style="max-width: 1270px; margin: 0 auto;">
+    <h2 style="font-size: 34px; font-weight: 700; color: #0F172A; text-align: center; margin-bottom: 10px;">What Our Clients <span>Are Saying</span></h2>
+    <p class="sub" style="text-align: center; color: #64748B; margin-bottom: 48px;">17 years of trust, built one ranking at a time.</p>
+    
+    <div class="mwf-reviews__grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+      
+      <div class="mwf-review__card mwf-anim" style="background: #fff; padding: 30px; border-radius: 12px;">
+        <div class="mwf-review__top" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <span class="mwf-review__stars" style="color: #FFC107;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span style="font-size:22px;color:rgba(201,169,110,.3)">&#10077;</span>
+        </div>
+        <p class="mwf-review__text" style="color: #48525f; line-height: 1.7; margin-bottom: 20px;">Our website jumped from page 4 to position 2 in just 3 months. We only paid after we saw the results — exactly as promised. Highly recommended.</p>
+        <div class="mwf-review__author" style="border-top: 1px solid #E2E8F0; padding-top: 15px;">
+            <strong style="display: block; color: #0F172A;">Ahmed Al Khouri</strong>
+            <span style="font-size: 13px; color: #64748B;">Real Estate Agency, Dubai</span>
+        </div>
+      </div>
+      
+      <!-- Repeat card style for other testimonials -->
+      <div class="mwf-review__card mwf-anim" style="background: #fff; padding: 30px; border-radius: 12px;">
+        <div class="mwf-review__top" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <span class="mwf-review__stars" style="color: #FFC107;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span style="font-size:22px;color:rgba(201,169,110,.3)">&#10077;</span>
+        </div>
+        <p class="mwf-review__text" style="color: #48525f; line-height: 1.7; margin-bottom: 20px;">Finally an SEO company that puts their money where their mouth is. Transparent reporting, real results, and a team that explains what they are doing.</p>
+        <div class="mwf-review__author" style="border-top: 1px solid #E2E8F0; padding-top: 15px;">
+            <strong style="display: block; color: #0F172A;">Sara Rahman</strong>
+            <span style="font-size: 13px; color: #64748B;">E-commerce Store, Abu Dhabi</span>
+        </div>
+      </div>
+
+      <div class="mwf-review__card mwf-anim" style="background: #fff; padding: 30px; border-radius: 12px;">
+        <div class="mwf-review__top" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <span class="mwf-review__stars" style="color: #FFC107;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span style="font-size:22px;color:rgba(201,169,110,.3)">&#10077;</span>
+        </div>
+        <p class="mwf-review__text" style="color: #48525f; line-height: 1.7; margin-bottom: 20px;">Marketing with Fahad is the only agency that delivered consistent first-page rankings and kept them for over 2 years.</p>
+        <div class="mwf-review__author" style="border-top: 1px solid #E2E8F0; padding-top: 15px;">
+            <strong style="display: block; color: #0F172A;">Mohammed Jassim</strong>
+            <span style="font-size: 13px; color: #64748B;">Automotive, Sharjah</span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
  </main>
  </div>
+ <section style="padding:80px 20px;background:#f8f6f1;">
+    <div style="max-width:1300px;margin:auto;display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap;">
+
+        <!-- Left Side -->
+        <div style="flex:1;min-width:300px;">
+            <span style="background:#c8a64d;color:#fff;padding:8px 20px;border-radius:30px;font-size:14px;font-weight:600;">
+                FAQs
+            </span>
+
+            <h2 style="font-size:60px;line-height:1.1;color:#111;margin:25px 0;">
+                Frequently<br>
+                <span style="color:#c8a64d;">Asked Questions</span>
+            </h2>
+
+            <p style="font-size:18px;color:#555;line-height:1.8;margin-bottom:30px;">
+                Discover answers to the most common questions about our digital marketing, SEO, web design, and online growth services.
+            </p>
+
+            <a href="contact.html"
+               style="display:inline-block;background:#c8a64d;color:#fff;text-decoration:none;padding:16px 35px;border-radius:50px;font-weight:600;">
+                Get Free Consultation
+            </a>
+        </div>
+
+        <!-- Right Side -->
+        <div style="flex:1.5;min-width:400px;">
+
+            <div class="faq-item">
+                <button class="faq-btn">
+                    What services does Marketing With Fahad offer?
+                    <span>+</span>
+                </button>
+                <div class="faq-content">
+                    We provide SEO, web design, Google Ads management, social media marketing, content writing, logo design, profile design, website audits, and complete digital marketing solutions.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn">
+                    Why should I choose Marketing With Fahad?
+                    <span>+</span>
+                </button>
+                <div class="faq-content">
+                    We focus on transparent communication, measurable results, customized strategies, and long-term business growth rather than short-term marketing tactics.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn">
+                    How long does SEO take to show results?
+                    <span>+</span>
+                </button>
+                <div class="faq-content">
+                    SEO results typically start appearing within 3 to 6 months, depending on competition, website condition, and industry. Long-term SEO usually delivers the strongest return on investment.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn">
+                    Do you provide free website audits?
+                    <span>+</span>
+                </button>
+                <div class="faq-content">
+                    Yes. We can analyze your website's SEO performance, speed, technical issues, content quality, and user experience to identify opportunities for improvement.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn">
+                    Can you redesign my existing website?
+                    <span>+</span>
+                </button>
+                <div class="faq-content">
+                    Absolutely. We can redesign outdated websites to improve appearance, mobile responsiveness, user experience, loading speed, and search engine performance.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn">
+                    Do you work with small businesses and startups?
+                    <span>+</span>
+                </button>
+                <div class="faq-content">
+                    Yes. We work with startups, small businesses, and established companies by creating marketing strategies tailored to their goals and budgets.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn">
+                    How do you measure marketing success?
+                    <span>+</span>
+                </button>
+                <div class="faq-content">
+                    We track key performance indicators such as website traffic, keyword rankings, leads, conversions, sales growth, engagement metrics, and return on investment.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn">
+                    Do you provide monthly progress reports?
+                    <span>+</span>
+                </button>
+                <div class="faq-content">
+                    Yes. Clients receive detailed reports showing campaign performance, keyword improvements, traffic growth, completed tasks, and future recommendations.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+.faq-item{
+    margin-bottom:15px;
+    background:#ffffff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.faq-btn{
+    width:100%;
+    border:none;
+    background:#ffffff;
+    color:#111;
+    padding:25px;
+    font-size:20px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    text-align:left;
+}
+
+.faq-btn span{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#c8a64d;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    flex-shrink:0;
+}
+
+.faq-content{
+    display:none;
+    padding:0 25px 25px;
+    color:#555;
+    font-size:16px;
+    line-height:1.8;
+}
+
+@media(max-width:768px){
+    .faq-btn{
+        font-size:17px;
+        padding:20px;
+    }
+
+    h2{
+        font-size:42px !important;
+    }
+}
+</style>
+
+<script>
+document.querySelectorAll(".faq-btn").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector("span");
+
+        document.querySelectorAll(".faq-content").forEach(item => {
+            if(item !== content){
+                item.style.display = "none";
+            }
+        });
+
+        document.querySelectorAll(".faq-btn span").forEach(i=>{
+            i.innerHTML = "+";
+        });
+
+        if(content.style.display === "block"){
+            content.style.display = "none";
+            icon.innerHTML = "+";
+        }else{
+            content.style.display = "block";
+            icon.innerHTML = "−";
+        }
+
+    });
+
+});
+</script>
+ <div id="footer-placeholder"></div>
  <!-- end wrapper -->
- <!-- begin footer -->
-<footer class="l-footer footer">
- <div class="footer__top">
- <div class="footer__menu">
- <div class="menu-footer js-footer-menu">
- <nav class="menu-footer__container">
- <ul>
- <li class="-has-dropdown">
- <a href="services.html">Services</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="seo.html">Search Engine Optimization</a>
- </li>
- <li>
- <a href="web-design.html">Web Design</a>
- </li>
- <li>
- <a href="social-media-marketing.html">Social Media Marketing</a>
- </li>
- <li>
- <a href="google-adwords.html">Google AdWords Management</a>
- </li>
- <li>
- <a href="website-audits.html">Website Audit</a>
- </li>
- <li>
- <a href="content-writing.html">Content Writing</a>
- </li>
- <li>
- <a href="logo-design.html">Logo Designing</a>
- </li>
- <li>
- <a href="profile-design.html">Profile Design</a>
- </li>
- <li>
- <a href="digital-marketing.html">Digital Marketing</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="about.html">About</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="news.html">News</a>
- </li>
- <li>
- <a href="history.html">History</a>
- </li>
- <li>
- <a href="our-team.html">Our Team</a>
- </li>
- <li>
- <a href="gallery.html">Gallery</a>
- </li>
- <li>
- <a href="blog.html">Blog</a>
- </li>
- <li>
- <a href="contact.html">Contact</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="portfolio.html">Portfolio</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="#">Our Websites</a>
- </li>
- <li>
- <a href="our-seo-ranks.html">Our SEO Ranks</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="#">Discounts</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="#">Discounts up to 20% on SEO</a>
- </li>
- </ul>
- </div>
- </li>
- </ul>
- </nav>
- </div>
- </div>
- <div class="footer__map">
- <div class="footer-google">
- <img src="assets/logo.png" alt="google" title="google">
- </div>
- <a href="#" class="footer-map">
- <img src="assets/footer-map.png" alt="contacts" title="contacts">
- </a>
- </div>
- <div class="footer__search">
- <div class="footer-search">
- <form action="/search">
- <input name="q"
- type="text"
- class="footer-search__field"
- autocomplete="off"
- minlength="3"
- placeholder="Search"
- required="required"
- />
- <button type="submit" class="footer-search__btn">Search</button>
-</form>
- </div>
- </div>
- <div class="footer__social">
- <div class="footer-social">
- <a rel="noreferrer noopener"
- class="icon-instagram"
- href="https://www.instagram.com/Marketing with Fahaddubai/"
- target="_blank">
- https://www.instagram.com/Marketing with Fahaddubai/
- </a>
- <a rel="noreferrer noopener"
- class="icon-facebook"
- href="https://www.facebook.com/Marketing with Fahaddubai"
- target="_blank">
- https://www.facebook.com/Marketing with Fahaddubai
- </a>
- <a rel="noreferrer noopener"
- class="icon-twitter"
- href="https://twitter.com/Marketing with Fahaddubai"
- target="_blank">
- https://twitter.com/Marketing with Fahaddubai
- </a>
- <a rel="noreferrer noopener"
- class="icon-linkedin"
- href="https://www.linkedin.com/company/be-on-top/"
- target="_blank">
- https://www.linkedin.com/company/be-on-top/
- </a>
- </div>
- </div>
- </div>
- <div class="footer__middle">
- <div class="footer__middle-container">
- <div class="footer__contacts">
- <div class="footer-contacts">
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--time.svg"
- alt="time">
- <span class="footer-contacts__item-note -green">We&#039;re open</span>
- <span class="footer-contacts__item-note">Closes at 6:00 PM</span>
- </div>
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--phone.svg"
- alt="phone">
- <span class="footer-contacts__item-note">Customer Care</span>
- <a href="#"
- class="footer-contacts__item-value">971526086977</a>
- </div>
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--support.svg"
- alt="support">
- <span class="footer-contacts__item-note">Support & Sales Department</span>
- <a href="mailto:Contact@marketingwithfahad.com" class="footer-contacts__item-value"><span class="__cf_email__" data-cfemail="10636560607f62645072757f7e647f603e7175">Contact@marketingwithfahad.com</span></a>
- </div>
- </div>
- </div>
- <div class="footer__info">
- <div class="footer-info">
- <a class="footer-info__link"
- href="/contact-to-the-ceo/">Contact the CEO</a>
- <a class="footer-info__google-partner" href="/google-partner/">
- <img src="assets/footer-google-parner.jpg" alt="Marketing with Fahad"
- title="Marketing with Fahad">
- </a>
- </div>
- </div>
- </div>
- </div>
- <div class="footer__bottom">
- <div class="footer__bottom-container">
- <span>© Marketing with Fahad 2008-2026. All rights reserved.</span>
- <span class="-location">Tamani arts building, Tamani Arts Building - Al Asayel St - Business Bay - Dubai - United Arab Emirates</span>
- </div>
- </div>
-</footer>
  <a class="whatsapp-fixed-btn" href="https://api.whatsapp.com/send?phone=971564166421" target="_blank">
  <img src="assets/whatsapp.svg" alt="whatsapp" title="whatsapp">
  </a>

@@ -63,6 +63,21 @@
  <link rel="preload" href="/assets/fonts/RedHatDisplay-Bold.woff2" as="font" crossorigin />
  <!-- <link rel="stylesheet" href="services.css"> -->
  </head>
+ <script>
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const header = await fetch("header.html");
+        document.getElementById("header-placeholder").innerHTML =
+            await header.text();
+
+        const footer = await fetch("footer.html");
+        document.getElementById("footer-placeholder").innerHTML =
+            await footer.text();
+    } catch (err) {
+        console.error("Error loading header/footer:", err);
+    }
+});
+</script>
  <body class=" inner-page">
   <style>
     /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
@@ -18272,445 +18287,471 @@ body {
   transform: translateY(0);
 }
   </style>
- <!-- begin wrapper -->
- <div class="l-wrapper">
- <!-- begin header -->
- <header class="l-header header">
- <div class="header__container">
- <a class="header__logo" href="/">
- <img src="assets/logo.png" alt="Marketing with Fahad" title="Marketing with Fahad">
- </a>
- <div class="header__main-menu">
- <nav class="main-menu js-menu-smart js-menu-mobile">
- <button data-menu-mobile--switcher-btn><span>menu</span></button>
- <ul class="main-menu__root is-root">
- <li>
- <a href="seo_course.html">SEO Courses</a>
- </li>
- <li class="-has-dropdown">
- <a href="about.html">About</a>
- <div>
- <ul>
- <li>
- <a href="history.html">History</a>
- </li>
- <li>
- <a href="our-team.html">Our Team</a>
- </li>
- <li>
- <a href="news.html">News</a>
- </li>
- <li>
- <a href="gallery.html">Gallery</a>
- </li>
- <li>
- <a href="vacancy.html">Vacancy</a>
- </li>
- <li>
- <a href="blog.html">Blog</a>
- </li>
- <li>
- <a href="testimonials.html">Testimonials</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="is-active -has-dropdown">
- <a href="services.html">Services</a>
- <div>
- <ul>
- <li>
- <a href="seo.html">Search Engine Optimization</a>
- </li>
- <li>
- <a href="web-design.html">Web Design</a>
- </li>
- <li>
- <a href="social-media-marketing.html">Social Media Marketing</a>
- </li>
- <li>
- <a href="google-adwords.html">Google AdWords Management</a>
- </li>
- <li>
- <a href="website-audits.html">Website Audit</a>
- </li>
- <li>
- <a href="content-writing.html">Content Writing</a>
- </li>
- <li>
- <a href="logo-design.html">Logo Designing</a>
- </li>
- <li>
- <a href="profile-design.html">Profile Design</a>
- </li>
- <li>
- <a href="digital-marketing.html">Digital Marketing</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="pricing.html">Pricing</a>
- <div>
- <ul>
- <li>
- <a href="seo-payment-after-rank.html">SEO - Payment After Rank</a>
- </li>
- <li>
- <a href="seo-monthly-payment-strategy.html">SEO - Monthly Payment Strategy</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="portfolio.html">Portfolio</a>
- <div>
- <ul>
- <li>
- <a href="#">Our Websites</a>
- </li>
- <li>
- <a href="our-seo-ranks.html">Our SEO Ranks</a>
- </li>
- </ul>
- </div>
- </li>
- <li>
- <a href="contact.html">Contact</a>
- </li>
- </ul>
- </nav>
- </div>
- <a class="header__report" href="https://reports.Marketing with Fahad.ae/login" rel="nofollow" target="_blank">My Report <span>Login</span></a>
- <a class="header__call" href="tel:+97145547316">
- Customer Service <span>971526086977</span>
- </a>
- <a class="header__lang" href="https://ru.Marketing with Fahad.ae/" target="_blank">
- <img src="assets/lang-ru.svg" alt="Русский" title=" Русский">
- </a>
- </div>
-</header>
- <!-- end header -->
- <!-- begin main -->
- <main class="l-main">
- <div class="hero">
-<img src="assets/header-2.jpeg" alt="">
-</div>
- <div class="hero -mobile-only">
-<img src="assets/414x180-services.png" alt="">
- </div>
- <div class="l-container">
-<div class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
- <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="https://www.Marketing with Fahad.ae/">
- <meta itemprop="position" content="1">
- <meta itemprop="name" content="Home">
- <meta itemprop="item" content="https://www.Marketing with Fahad.ae/">
- Home</a>
- <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
- <meta itemprop="position" content="2">
- <meta itemprop="name" content="Services">
- Services</span>
-</div>
- <h1>Services</h1>
- <div class="subsections">
- <div class="subsections__item">
- <a class="subsections__img" #/search-engine-optimization/">
- <img src="assets/subsection-seo-1.png"
- alt="Search Engine Optimization" title="Search Engine Optimization">
- </a>
- <a class="subsections__title" #/search-engine-optimization/">
- Search Engine Optimization
- </a>
- <div class="subsections__text" #/search-engine-optimization/"><p>If your site is on the first page with targeted keywords, this will bring more customers to you. Search Engine Optimization can help you in this.</p></div>
- </div>
- <div class="subsections__item">
- <a class="subsections__img" #/web-design/">
- <img src="assets/subsection-web-design-1.png"
- alt="Web Design" title="Web Design">
- </a>
- <a class="subsections__title" #/web-design/">
- Web Design
- </a>
- <div class="subsections__text" #/web-design/"><p>The website is a face of the company. A site can determine a reliable company or not. We are creating only professional and unique websites in own Content Management System.</p></div>
- </div>
- <div class="subsections__item">
- <a class="subsections__img" #/social-media-marketing/">
- <img src="assets/subsection-smm-1.png"
- alt="Social Media Marketing" title="Social Media Marketing">
- </a>
- <a class="subsections__title" #/social-media-marketing/">
- Social Media Marketing
- </a>
- <div class="subsections__text" #/social-media-marketing/"><p>If you have popular pages or accounts on Facebook and Instagram, this will increase recognition at times.</p></div>
- </div>
- <div class="subsections__item">
- <a class="subsections__img" #/google-adwords-management/">
- <img src="assets/subsection-sem-1.png"
- alt="Google AdWords Management" title="Google AdWords Management">
- </a>
- <a class="subsections__title" #/google-adwords-management/">
- Google AdWords Management
- </a>
- <div class="subsections__text" #/google-adwords-management/"><p>Our company is successfully managing many campaigns in Google Adwords, Facebook and Instagram. We know how to get targeted customers for less money.</p></div>
- </div>
- <div class="subsections__item">
- <a class="subsections__img" #/website-audit/">
- <img src="assets/subsection-website-audit-1.png"
- alt="Website Audit" title="Website Audit">
- </a>
- <a class="subsections__title" #/website-audit/">
- Website Audit
- </a>
- <div class="subsections__text" #/website-audit/"><p>We offer a quality service audit site. We will check your website for set of parameters by our soft programs and show the mistakes and give best advice.</p></div>
- </div>
- <div class="subsections__item">
- <a class="subsections__img" #/content-writing/">
- <img src="assets/subsection-content-writing-1.png"
- alt="Content Writing" title="Content Writing">
- </a>
- <a class="subsections__title" #/content-writing/">
- Content Writing
- </a>
- <div class="subsections__text" #/content-writing/"><p>The website is a face of the company. A site can determine a reliable company or not. We are creating only professional and unique websites in own Content Management System.</p></div>
- </div>
- <div class="subsections__item">
- <a class="subsections__img" #/logo-designing/">
- <img src="assets/subsection-logo-designing-1.png"
- alt="Logo Designing" title="Logo Designing">
- </a>
- <a class="subsections__title" #/logo-designing/">
- Logo Designing
- </a>
- <div class="subsections__text" #/logo-designing/"><p>Company logo sometimes says everything about you. It has to be simple, yet it should catch the attention of everyone who looks at it.</p></div>
- </div>
- <div class="subsections__item">
- <a class="subsections__img" #/profile-design/">
- <img src="assets/subsection-profile-design-1.png"
- alt="Profile Design" title="Profile Design">
- </a>
- <a class="subsections__title" #/profile-design/">
- Profile Design
- </a>
- <div class="subsections__text" #/profile-design/"><p>The website is a face of the company. A site can determine a reliable company or not. We are creating only professional and unique websites in own Content Management System.</p></div>
- </div>
- <div class="subsections__item">
- <a class="subsections__img" #/digital-marketing/">
- <img src="assets/placeholder.svg" alt="Digital Marketing"
- title="Digital Marketing">
- </a>
- <a class="subsections__title" #/digital-marketing/">
- Digital Marketing
- </a>
- <div class="subsections__text" #/digital-marketing/"></div>
- </div>
- </div>
+  <style>
+     .services-hero { background: var(--color-primary); color:#fff; padding:56px 0; }
+.services-grid__item { border-radius:12px; transition: box-shadow .2s, transform .2s; }
+.services-grid__item:hover { box-shadow: 0 8px 24px rgba(59,130,246,.15); transform:translateY(-2px); }
+.services-subsections__item img { border-radius:8px; }
 
-<div class="text">
-<p>We propose you a wide range of services and among them is&nbsp;website creation and support from scratch. With our help, your website will work better and also increase your income. Here you can order: web design and development, Search Engine Optimization and SMM&nbsp;services and so on..</p>
-<p>Our main goal is &nbsp;to increase your income, using Online Marketing. To do this we use:</p>
-<ul class="with_marker">
- <li style="text-align: justify;"><span style="line-height: 20.7999992370605px; text-align: justify;">Search Engine Optimization</span></li>
- <li style="text-align: justify;">Pay Per Click services</li>
- <li style="text-align: justify;">Social Media Marketing</li>
-</ul>
-<p>We can offer a unique set of services for every client, based on his company activity. The main indicator of success is the increased number of your products or services sold. In addition to the services presented below, we will be glad to complete all the related work. For more information on this topic, you can contact our managers.</p>
-</div>
- </div>
- </main>
- </div>
+  </style>
+ <script>(function(){
+  var header=document.querySelector('.l-header');
+  if(header) window.addEventListener('scroll',function(){
+    header.classList.toggle('scrolled',window.scrollY>60);
+  },{passive:true});
+  document.querySelectorAll('img').forEach(function(img,i){
+    if(i>2&&!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+  });
+})();
+</script>
+<div id="header-placeholder"></div>
+<!-- ============================================================
+     HERO SECTION START
+     ============================================================ -->
+<section style="background:#fff;padding:80px 0;position:relative;border-bottom:1px solid #f0ebe0;">
+  <div style="max-width:1270px;margin:0 auto;padding:0 22px;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center;">
+
+    <div>
+      <span style="display:inline-block;background:rgba(201,169,110,.12);color:#B8860B;border:1px solid rgba(201,169,110,.5);border-radius:20px;font-size:12px;font-weight:700;padding:4px 14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;">#1 SEO Agency UAE</span>
+      <h1 style="font-size:46px;font-weight:800;color:#0F172A;line-height:1.1;margin:0 0 18px;">Digital Marketing Services<br>That Deliver <span style="color:#C9A96E;">Real Results</span></h1>
+      <p style="font-size:16px;color:#64748B;max-width:500px;margin:0 0 26px;line-height:1.8;">We help UAE businesses grow through SEO, Google Ads, web design, social media marketing, and content strategy — under one roof.</p>
+      <ul style="list-style:none;margin:0 0 32px;padding:0;display:flex;flex-direction:column;gap:10px;">
+        <li style="display:flex;align-items:center;gap:10px;color:#374151;font-size:15px;"><span style="color:#C9A96E;font-size:17px;font-weight:700;">✓</span> Strategy built around your business goals</li>
+        <li style="display:flex;align-items:center;gap:10px;color:#374151;font-size:15px;"><span style="color:#C9A96E;font-size:17px;font-weight:700;">✓</span> Technical + content SEO under one roof</li>
+        <li style="display:flex;align-items:center;gap:10px;color:#374151;font-size:15px;"><span style="color:#C9A96E;font-size:17px;font-weight:700;">✓</span> Transparent reporting with real business metrics</li>
+      </ul>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="../../pages/contact/contact.html" style="font-size:15px;height:52px;padding:0 28px;border-radius:8px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;background:#C9A96E;color:#fff;transition:background .25s;" onmouseover="this.style.background='#B8860B'" onmouseout="this.style.background='#C9A96E'">Get a Custom Proposal</a>
+        <a href="../../pages/contact/contact.html" style="height:52px;padding:0 24px;border-radius:8px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;border:1.5px solid #C9A96E;color:#C9A96E;transition:all .25s;" onmouseover="this.style.background='rgba(201,169,110,.08)'" onmouseout="this.style.background='transparent'">Get Free SEO Audit</a>
+      </div>
+    </div>
+
+    <div style="background:#0F172A;border:1px solid #1E293B;border-radius:16px;padding:30px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+        <div style="background:rgba(201,169,110,.15);color:#C9A96E;font-size:22px;width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;">📅</div>
+        <div>
+          <strong style="color:#fff;font-size:16px;display:block;">Request Free SEO Audit</strong>
+          <span style="color:rgba(255,255,255,.45);font-size:13px;">Discover what's holding your site back</span>
+        </div>
+      </div>
+      <form action="https://formspree.io/f/xwkgpznk" method="POST" style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <label style="display:block;font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em;">Full Name</label>
+          <input type="text" name="fullname" required placeholder="Your full name" style="width:100%;background:#1E293B;border:1px solid #334155;border-radius:8px;padding:11px 14px;font-size:14px;color:#fff;box-sizing:border-box;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#C9A96E'" onblur="this.style.borderColor='#334155'">
+        </div>
+        <div>
+          <label style="display:block;font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em;">Email Address</label>
+          <input type="email" name="email" required placeholder="john@company.com" style="width:100%;background:#1E293B;border:1px solid #334155;border-radius:8px;padding:11px 14px;font-size:14px;color:#fff;box-sizing:border-box;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#C9A96E'" onblur="this.style.borderColor='#334155'">
+        </div>
+        <div>
+          <label style="display:block;font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em;">Website URL</label>
+          <input type="url" name="website" placeholder="https://yourwebsite.com" style="width:100%;background:#1E293B;border:1px solid #334155;border-radius:8px;padding:11px 14px;font-size:14px;color:#fff;box-sizing:border-box;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#C9A96E'" onblur="this.style.borderColor='#334155'">
+        </div>
+        <div>
+          <label style="display:block;font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em;">Service Needed</label>
+          <select name="service" style="width:100%;background:#1E293B;border:1px solid #334155;border-radius:8px;padding:11px 14px;font-size:14px;color:#fff;box-sizing:border-box;outline:none;-webkit-appearance:none;">
+            <option value="">Select a service...</option>
+            <option>SEO Dubai</option>
+            <option>Google Ads Management</option>
+            <option>Web Design</option>
+            <option>Social Media Marketing</option>
+            <option>Website Audit</option>
+            <option>Content Writing</option>
+          </select>
+        </div>
+        <button type="submit" style="width:100%;background:#C9A96E;color:#fff;border:none;border-radius:8px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;transition:background .25s;" onmouseover="this.style.background='#B8860B'" onmouseout="this.style.background='#C9A96E'">Get Free Audit →</button>
+        <p style="text-align:center;font-size:12px;color:rgba(255,255,255,.3);margin:0;">100% Free · No credit card required · Response within 2 hours</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+<!-- ============================================================
+     HERO SECTION END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     PROCESS SECTION START
+     ============================================================ -->
+<section style="background:#fff;padding:90px 22px;">
+  <div style="max-width:1270px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:10px;">
+      <span style="display:inline-block;background:rgba(201,169,110,.12);color:#B8860B;border:1px solid rgba(201,169,110,.4);border-radius:20px;font-size:11px;font-weight:700;padding:4px 14px;letter-spacing:.08em;text-transform:uppercase;">Process</span>
+    </div>
+    <h2 style="font-size:34px;font-weight:800;color:#0F172A;text-align:center;margin:10px 0 10px;">Our <span style="color:#C9A96E;">SEO Process</span></h2>
+    <p style="text-align:center;color:#64748B;margin:0 auto 56px;max-width:560px;font-size:16px;line-height:1.7;">A clear, step-by-step approach to improving your rankings and growing your business.</p>
+
+    <div class="process-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px;">
+
+      <div class="process-card" style="text-align:center;padding:32px 24px;border-radius:14px;background:#FAFAF8;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;">
+        <div style="display:flex;align-items:center;justify-content:center;width:68px;height:68px;background:#fff;border:1px solid #EDE8DE;border-radius:50%;margin:0 auto 20px;box-shadow:0 4px 12px rgba(201,169,110,.15);font-size:26px;">🔍</div>
+        <h3 style="font-size:16px;font-weight:700;color:#0F172A;margin:0 0 10px;">Audit & Discovery</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.65;margin:0;">We analyse your website, rankings, competition, and technical health.</p>
+      </div>
+
+      <div class="process-card" style="text-align:center;padding:32px 24px;border-radius:14px;background:#FAFAF8;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;">
+        <div style="display:flex;align-items:center;justify-content:center;width:68px;height:68px;background:#fff;border:1px solid #EDE8DE;border-radius:50%;margin:0 auto 20px;box-shadow:0 4px 12px rgba(201,169,110,.15);font-size:26px;">📊</div>
+        <h3 style="font-size:16px;font-weight:700;color:#0F172A;margin:0 0 10px;">Research & Planning</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.65;margin:0;">Deep keyword research and competitive analysis to find opportunities.</p>
+      </div>
+
+      <div class="process-card" style="text-align:center;padding:32px 24px;border-radius:14px;background:#FAFAF8;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;">
+        <div style="display:flex;align-items:center;justify-content:center;width:68px;height:68px;background:#fff;border:1px solid #EDE8DE;border-radius:50%;margin:0 auto 20px;box-shadow:0 4px 12px rgba(201,169,110,.15);font-size:26px;">🗺️</div>
+        <h3 style="font-size:16px;font-weight:700;color:#0F172A;margin:0 0 10px;">SEO Roadmap</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.65;margin:0;">Clear roadmap with prioritised actions and timeline for execution.</p>
+      </div>
+
+      <div class="process-card" style="text-align:center;padding:32px 24px;border-radius:14px;background:#FAFAF8;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;">
+        <div style="display:flex;align-items:center;justify-content:center;width:68px;height:68px;background:#fff;border:1px solid #EDE8DE;border-radius:50%;margin:0 auto 20px;box-shadow:0 4px 12px rgba(201,169,110,.15);font-size:26px;">🚀</div>
+        <h3 style="font-size:16px;font-weight:700;color:#0F172A;margin:0 0 10px;">Fixes & Optimisation</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.65;margin:0;">We execute technical fixes, on-page optimisation, and content improvements.</p>
+      </div>
+
+      <div class="process-card" style="text-align:center;padding:32px 24px;border-radius:14px;background:#FAFAF8;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;">
+        <div style="display:flex;align-items:center;justify-content:center;width:68px;height:68px;background:#fff;border:1px solid #EDE8DE;border-radius:50%;margin:0 auto 20px;box-shadow:0 4px 12px rgba(201,169,110,.15);font-size:26px;">📈</div>
+        <h3 style="font-size:16px;font-weight:700;color:#0F172A;margin:0 0 10px;">Reporting & Growth</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.65;margin:0;">Monthly reporting with insights, results, and ongoing optimisation.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     PROCESS SECTION END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     WHY US SECTION START
+     ============================================================ -->
+<section style="background:#FAFAF8;padding:90px 22px;border-top:1px solid #F0EBE0;">
+  <div style="max-width:1270px;margin:0 auto;">
+
+    <h2 style="font-size:34px;font-weight:800;color:#0F172A;text-align:center;margin:0 0 10px;">Why <span style="color:#C9A96E;">Marketing with Fahad?</span></h2>
+    <p style="text-align:center;color:#64748B;margin:0 auto 56px;max-width:560px;font-size:16px;line-height:1.7;">We are not just another SEO agency. Here is what makes us different.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+
+      <div class="why-card" style="background:#fff;padding:38px 32px;border-radius:14px;border:1px solid #EDE8DE;text-align:center;transition:transform .3s,box-shadow .3s;">
+        <div style="width:68px;height:68px;background:#FBF7EF;border:1px solid #EDE8DE;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:26px;">🎯</div>
+        <h3 style="font-size:17px;font-weight:700;color:#0F172A;margin:0 0 12px;">Results-Driven Work</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.7;margin:0;">We focus on metrics that matter: qualified traffic, leads, and revenue growth — not vanity numbers.</p>
+      </div>
+
+      <div class="why-card" style="background:#fff;padding:38px 32px;border-radius:14px;border:1px solid #EDE8DE;text-align:center;transition:transform .3s,box-shadow .3s;">
+        <div style="width:68px;height:68px;background:#FBF7EF;border:1px solid #EDE8DE;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:26px;">📋</div>
+        <h3 style="font-size:17px;font-weight:700;color:#0F172A;margin:0 0 12px;">Transparent Reporting</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.7;margin:0;">Clear monthly reports showing exactly what we did and what results we achieved.</p>
+      </div>
+
+      <div class="why-card" style="background:#fff;padding:38px 32px;border-radius:14px;border:1px solid #EDE8DE;text-align:center;transition:transform .3s,box-shadow .3s;">
+        <div style="width:68px;height:68px;background:#FBF7EF;border:1px solid #EDE8DE;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:26px;">⚙️</div>
+        <h3 style="font-size:17px;font-weight:700;color:#0F172A;margin:0 0 12px;">Technical + Content</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.7;margin:0;">We handle both technical SEO and content strategy under one roof for maximum impact.</p>
+      </div>
+
+      <div class="why-card" style="background:#fff;padding:38px 32px;border-radius:14px;border:1px solid #EDE8DE;text-align:center;transition:transform .3s,box-shadow .3s;">
+        <div style="width:68px;height:68px;background:#FBF7EF;border:1px solid #EDE8DE;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:26px;">📈</div>
+        <h3 style="font-size:17px;font-weight:700;color:#0F172A;margin:0 0 12px;">Built for Growth</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.7;margin:0;">SEO focused on business growth and conversions, not just rankings or impressions.</p>
+      </div>
+
+      <div class="why-card" style="background:#fff;padding:38px 32px;border-radius:14px;border:1px solid #EDE8DE;text-align:center;transition:transform .3s,box-shadow .3s;">
+        <div style="width:68px;height:68px;background:#FBF7EF;border:1px solid #EDE8DE;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:26px;">🇦🇪</div>
+        <h3 style="font-size:17px;font-weight:700;color:#0F172A;margin:0 0 12px;">UAE Market Expertise</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.7;margin:0;">Deep understanding of UAE search behaviour, intent, and the competitive landscape.</p>
+      </div>
+
+      <div class="why-card" style="background:#fff;padding:38px 32px;border-radius:14px;border:1px solid #EDE8DE;text-align:center;transition:transform .3s,box-shadow .3s;">
+        <div style="width:68px;height:68px;background:#FBF7EF;border:1px solid #EDE8DE;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:26px;">🏆</div>
+        <h3 style="font-size:17px;font-weight:700;color:#0F172A;margin:0 0 12px;">17 Years Experience</h3>
+        <p style="color:#64748B;font-size:14px;line-height:1.7;margin:0;">Founded in 2008. 750+ websites ranked on Google Page 1 across UAE, UK and Russia.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     WHY US SECTION END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     RESULTS SECTION START
+     ============================================================ -->
+<section style="background:#fff;padding:90px 22px;border-top:1px solid #F0EBE0;">
+  <div style="max-width:1270px;margin:0 auto;">
+
+    <h2 style="font-size:34px;font-weight:800;color:#0F172A;text-align:center;margin:0 0 12px;">Real Results for <span style="color:#C9A96E;">Real Businesses</span></h2>
+    <p style="text-align:center;color:#64748B;margin:0 auto 56px;max-width:560px;font-size:16px;line-height:1.7;">Here is what we have helped UAE businesses achieve through strategic digital marketing.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;">
+
+      <div class="result-card" style="background:#FAFAF8;padding:38px;border-radius:16px;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;cursor:default;">
+        <span style="display:inline-block;background:rgba(201,169,110,.12);color:#B8860B;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:18px;text-transform:uppercase;letter-spacing:.06em;">Automotive Dealership</span>
+        <p style="color:#475569;font-size:15px;line-height:1.65;margin-bottom:28px;">Low online visibility and inconsistent lead flow from organic search.</p>
+        <div style="display:flex;gap:36px;border-top:1px solid #EDE8DE;padding-top:24px;">
+          <div>
+            <strong style="display:block;font-size:34px;font-weight:800;color:#C9A96E;line-height:1.1;margin-bottom:4px;">+185%</strong>
+            <span style="font-size:11px;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:.06em;">Organic Traffic</span>
+          </div>
+          <div>
+            <strong style="display:block;font-size:34px;font-weight:800;color:#C9A96E;line-height:1.1;margin-bottom:4px;">+285%</strong>
+            <span style="font-size:11px;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:.06em;">Qualified Leads</span>
+          </div>
+        </div>
+        <p style="margin-top:22px;font-size:14px;color:#64748B;margin-bottom:0;">Timeframe: <strong style="color:#0F172A;">6 months</strong></p>
+      </div>
+
+      <div class="result-card" style="background:#FAFAF8;padding:38px;border-radius:16px;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;cursor:default;">
+        <span style="display:inline-block;background:rgba(201,169,110,.12);color:#B8860B;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:18px;text-transform:uppercase;letter-spacing:.06em;">E-commerce Brand</span>
+        <p style="color:#475569;font-size:15px;line-height:1.65;margin-bottom:28px;">Stagnant rankings and declining organic revenue from main keywords.</p>
+        <div style="display:flex;gap:36px;border-top:1px solid #EDE8DE;padding-top:24px;">
+          <div>
+            <strong style="display:block;font-size:34px;font-weight:800;color:#C9A96E;line-height:1.1;margin-bottom:4px;">+312%</strong>
+            <span style="font-size:11px;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:.06em;">Organic Revenue</span>
+          </div>
+          <div>
+            <strong style="display:block;font-size:34px;font-weight:800;color:#C9A96E;line-height:1.1;margin-bottom:4px;">+156%</strong>
+            <span style="font-size:11px;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:.06em;">Organic Traffic</span>
+          </div>
+        </div>
+        <p style="margin-top:22px;font-size:14px;color:#64748B;margin-bottom:0;">Timeframe: <strong style="color:#0F172A;">6 months</strong></p>
+      </div>
+
+      <div class="result-card" style="background:#FAFAF8;padding:38px;border-radius:16px;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;cursor:default;">
+        <span style="display:inline-block;background:rgba(201,169,110,.12);color:#B8860B;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:18px;text-transform:uppercase;letter-spacing:.06em;">Real Estate Agency</span>
+        <p style="color:#475569;font-size:15px;line-height:1.65;margin-bottom:28px;">New website with zero search presence and no local Dubai rankings.</p>
+        <div style="display:flex;gap:36px;border-top:1px solid #EDE8DE;padding-top:24px;">
+          <div>
+            <strong style="display:block;font-size:34px;font-weight:800;color:#C9A96E;line-height:1.1;margin-bottom:4px;">Page 1</strong>
+            <span style="font-size:11px;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:.06em;">40+ Keywords</span>
+          </div>
+          <div>
+            <strong style="display:block;font-size:34px;font-weight:800;color:#C9A96E;line-height:1.1;margin-bottom:4px;">+420%</strong>
+            <span style="font-size:11px;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:.06em;">Monthly Leads</span>
+          </div>
+        </div>
+        <p style="margin-top:22px;font-size:14px;color:#64748B;margin-bottom:0;">Timeframe: <strong style="color:#0F172A;">9 months</strong></p>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:48px;">
+      <a href="../../pages/our-seo-ranks/our-seo-ranks.html" style="height:52px;padding:0 32px;display:inline-flex;align-items:center;font-size:15px;font-weight:700;border-radius:8px;text-decoration:none;background:#C9A96E;color:#fff;transition:background .25s;" onmouseover="this.style.background='#B8860B'" onmouseout="this.style.background='#C9A96E'">See More Results →</a>
+    </div>
+
+  </div>
+</section>
+<!-- ============================================================
+     RESULTS SECTION END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     REVIEWS SECTION START
+     ============================================================ -->
+<section style="background:#FAFAF8;padding:90px 22px;border-top:1px solid #F0EBE0;">
+  <div style="max-width:1270px;margin:0 auto;">
+
+    <h2 style="font-size:34px;font-weight:800;color:#0F172A;text-align:center;margin:0 0 10px;">What Our Clients <span style="color:#C9A96E;">Are Saying</span></h2>
+    <p style="text-align:center;color:#64748B;margin:0 auto 52px;font-size:16px;">17 years of trust, built one ranking at a time.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:28px;">
+
+      <div class="review-card" style="background:#fff;padding:32px;border-radius:14px;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:18px;">
+          <span style="color:#C9A96E;font-size:20px;">★★★★★</span>
+          <span style="font-size:28px;color:rgba(201,169,110,.25);line-height:1;">"</span>
+        </div>
+        <p style="color:#475569;line-height:1.75;margin-bottom:20px;font-size:15px;">Our website jumped from page 4 to position 2 in just 3 months. We only paid after we saw the results — exactly as promised. Highly recommended.</p>
+        <div style="border-top:1px solid #F0EBE0;padding-top:16px;">
+          <strong style="display:block;color:#0F172A;font-size:15px;">Ahmed Al Khouri</strong>
+          <span style="font-size:13px;color:#C9A96E;font-weight:600;">Real Estate Agency, Dubai</span>
+        </div>
+      </div>
+
+      <div class="review-card" style="background:#fff;padding:32px;border-radius:14px;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:18px;">
+          <span style="color:#C9A96E;font-size:20px;">★★★★★</span>
+          <span style="font-size:28px;color:rgba(201,169,110,.25);line-height:1;">"</span>
+        </div>
+        <p style="color:#475569;line-height:1.75;margin-bottom:20px;font-size:15px;">Finally an SEO company that puts their money where their mouth is. Transparent reporting, real results, and a team that explains what they are doing.</p>
+        <div style="border-top:1px solid #F0EBE0;padding-top:16px;">
+          <strong style="display:block;color:#0F172A;font-size:15px;">Sara Rahman</strong>
+          <span style="font-size:13px;color:#C9A96E;font-weight:600;">E-commerce Store, Abu Dhabi</span>
+        </div>
+      </div>
+
+      <div class="review-card" style="background:#fff;padding:32px;border-radius:14px;border:1px solid #EDE8DE;transition:transform .3s,box-shadow .3s;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:18px;">
+          <span style="color:#C9A96E;font-size:20px;">★★★★★</span>
+          <span style="font-size:28px;color:rgba(201,169,110,.25);line-height:1;">"</span>
+        </div>
+        <p style="color:#475569;line-height:1.75;margin-bottom:20px;font-size:15px;">Marketing with Fahad is the only agency that delivered consistent first-page rankings and kept them for over 2 years.</p>
+        <div style="border-top:1px solid #F0EBE0;padding-top:16px;">
+          <strong style="display:block;color:#0F172A;font-size:15px;">Mohammed Jassim</strong>
+          <span style="font-size:13px;color:#C9A96E;font-weight:600;">Automotive, Sharjah</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     REVIEWS SECTION END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     FAQ SECTION START
+     ============================================================ -->
+<section style="padding:90px 22px;background:#fff;border-top:1px solid #F0EBE0;">
+  <div style="max-width:1300px;margin:auto;display:flex;gap:64px;align-items:flex-start;flex-wrap:wrap;">
+
+    <div style="flex:1;min-width:280px;">
+      <span style="display:inline-block;background:rgba(201,169,110,.12);color:#B8860B;border:1px solid rgba(201,169,110,.4);padding:7px 20px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.05em;">FAQs</span>
+      <h2 style="font-size:52px;line-height:1.1;color:#0F172A;margin:22px 0 18px;font-weight:800;">Frequently<br><span style="color:#C9A96E;">Asked Questions</span></h2>
+      <p style="font-size:16px;color:#64748B;line-height:1.8;margin-bottom:30px;">Everything you need to know about our digital marketing and SEO services for UAE businesses.</p>
+      <a href="contact.html" style="display:inline-block;background:#C9A96E;color:#fff;text-decoration:none;padding:15px 34px;border-radius:50px;font-weight:700;font-size:15px;transition:background .25s;" onmouseover="this.style.background='#B8860B'" onmouseout="this.style.background='#C9A96E'">Get Free Consultation</a>
+    </div>
+
+    <div style="flex:1.5;min-width:360px;">
+
+      <div class="faq-item" style="border-bottom:1px solid #F0EBE0;">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;font-size:15px;font-weight:700;color:#0F172A;">
+          What digital marketing services do you offer?
+          <span style="font-size:22px;color:#C9A96E;font-weight:400;transition:transform .3s;flex-shrink:0;margin-left:12px;">+</span>
+        </button>
+        <div style="display:none;padding-bottom:18px;color:#64748B;font-size:15px;line-height:1.75;">We offer SEO, Google Ads management, social media marketing, web design, content writing, website audits, logo design, and profile design — available individually or as a bundled package.</div>
+      </div>
+
+      <div class="faq-item" style="border-bottom:1px solid #F0EBE0;">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;font-size:15px;font-weight:700;color:#0F172A;">
+          Can I combine multiple services into one package?
+          <span style="font-size:22px;color:#C9A96E;font-weight:400;transition:transform .3s;flex-shrink:0;margin-left:12px;">+</span>
+        </button>
+        <div style="display:none;padding-bottom:18px;color:#64748B;font-size:15px;line-height:1.75;">Yes. Bundling services like SEO + Google Ads + Social Media delivers better results and comes with discounted rates. Ask us about our Growth Bundle for maximum impact.</div>
+      </div>
+
+      <div class="faq-item" style="border-bottom:1px solid #F0EBE0;">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;font-size:15px;font-weight:700;color:#0F172A;">
+          Do you offer pay-after-results SEO?
+          <span style="font-size:22px;color:#C9A96E;font-weight:400;transition:transform .3s;flex-shrink:0;margin-left:12px;">+</span>
+        </button>
+        <div style="display:none;padding-bottom:18px;color:#64748B;font-size:15px;line-height:1.75;">Yes. Our Pay After Rank model means you only pay once your target keywords reach Page 1 of Google. We take on all the risk — you invest only after seeing real results.</div>
+      </div>
+
+      <div class="faq-item" style="border-bottom:1px solid #F0EBE0;">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;font-size:15px;font-weight:700;color:#0F172A;">
+          How long does it take to see results?
+          <span style="font-size:22px;color:#C9A96E;font-weight:400;transition:transform .3s;flex-shrink:0;margin-left:12px;">+</span>
+        </button>
+        <div style="display:none;padding-bottom:18px;color:#64748B;font-size:15px;line-height:1.75;">SEO typically shows results in 3–6 months. Google Ads can deliver leads within days of launch. Social media growth is gradual but consistent with the right content strategy.</div>
+      </div>
+
+      <div class="faq-item" style="border-bottom:1px solid #F0EBE0;">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;font-size:15px;font-weight:700;color:#0F172A;">
+          Do you work with businesses outside Dubai?
+          <span style="font-size:22px;color:#C9A96E;font-weight:400;transition:transform .3s;flex-shrink:0;margin-left:12px;">+</span>
+        </button>
+        <div style="display:none;padding-bottom:18px;color:#64748B;font-size:15px;line-height:1.75;">Yes. We serve clients across all UAE emirates, the UK, Russia, and internationally. All services are delivered remotely with the same quality and reporting standards.</div>
+      </div>
+
+      <div class="faq-item" style="border-bottom:1px solid #F0EBE0;">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;font-size:15px;font-weight:700;color:#0F172A;">
+          What industries do you specialize in?
+          <span style="font-size:22px;color:#C9A96E;font-weight:400;transition:transform .3s;flex-shrink:0;margin-left:12px;">+</span>
+        </button>
+        <div style="display:none;padding-bottom:18px;color:#64748B;font-size:15px;line-height:1.75;">We have worked with real estate, automotive, e-commerce, legal, medical, hospitality, retail, and professional services sectors — adapting our strategy to each industry's specific audience and competition.</div>
+      </div>
+
+      <div class="faq-item" style="border-bottom:1px solid #F0EBE0;">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;font-size:15px;font-weight:700;color:#0F172A;">
+          Will I receive reports on campaign performance?
+          <span style="font-size:22px;color:#C9A96E;font-weight:400;transition:transform .3s;flex-shrink:0;margin-left:12px;">+</span>
+        </button>
+        <div style="display:none;padding-bottom:18px;color:#64748B;font-size:15px;line-height:1.75;">Yes. Every client receives detailed monthly reports covering keyword rankings, traffic growth, leads generated, work completed, and strategic recommendations for the next period.</div>
+      </div>
+
+      <div class="faq-item" style="border-bottom:1px solid #F0EBE0;">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;font-size:15px;font-weight:700;color:#0F172A;">
+          Is there a minimum contract period?
+          <span style="font-size:22px;color:#C9A96E;font-weight:400;transition:transform .3s;flex-shrink:0;margin-left:12px;">+</span>
+        </button>
+        <div style="display:none;padding-bottom:18px;color:#64748B;font-size:15px;line-height:1.75;">We recommend a minimum 6-month commitment for SEO to deliver meaningful results. Google Ads and social media campaigns can start on a monthly basis with no long-term lock-in.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     FAQ SECTION END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     CTA SECTION START
+     ============================================================ -->
+<section style="padding:90px 22px;text-align:center;background:#FAFAF8;border-top:1px solid #F0EBE0;">
+  <div style="max-width:760px;margin:0 auto;">
+    <h2 style="font-size:36px;font-weight:800;color:#0F172A;margin-bottom:14px;">Ready to Work With <span style="color:#C9A96E;">UAE's Most Trusted SEO Agency?</span></h2>
+    <p style="color:#64748B;margin-bottom:32px;font-size:16px;line-height:1.7;">Get a free, no-obligation SEO audit and discover exactly how to grow your organic traffic and revenue.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="../../pages/contact/contact.html" style="height:52px;padding:0 28px;display:inline-flex;align-items:center;font-size:15px;font-weight:700;border-radius:8px;text-decoration:none;background:#C9A96E;color:#fff;transition:background .25s;" onmouseover="this.style.background='#B8860B'" onmouseout="this.style.background='#C9A96E'">Get Your Free SEO Audit</a>
+      <a href="../../pages/our-team/our-team.html" style="height:52px;padding:0 28px;display:inline-flex;align-items:center;font-size:15px;font-weight:700;border-radius:8px;text-decoration:none;border:1.5px solid #0F172A;color:#0F172A;transition:all .25s;" onmouseover="this.style.background='#0F172A';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0F172A'">Meet the Full Team</a>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     CTA SECTION END
+     ============================================================ -->
+
+
+<style>
+  .process-card:hover,.why-card:hover,.result-card:hover,.review-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 32px rgba(201,169,110,.15);
+  }
+  .fade-in{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+  .fade-in.visible{opacity:1;transform:none;}
+</style>
+
+<script>
+  function toggleFaq(btn){
+    var content=btn.nextElementSibling;
+    var icon=btn.querySelector('span');
+    var isOpen=content.style.display==='block';
+    document.querySelectorAll('.faq-item div').forEach(function(d){d.style.display='none';});
+    document.querySelectorAll('.faq-item button span').forEach(function(s){s.style.transform='rotate(0deg)';s.textContent='+';});
+    if(!isOpen){content.style.display='block';icon.style.transform='rotate(45deg)';icon.textContent='×';}
+  }
+
+  var observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:.12});
+
+  document.querySelectorAll('.process-card,.why-card,.result-card,.review-card').forEach(function(el){
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+</script>
+
+<style>
+.faq-item{margin-bottom:15px;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08);}
+.faq-btn{width:100%;border:none;background:#ffffff;color:#111;padding:25px;font-size:20px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left;}
+.faq-btn span{width:40px;height:40px;border-radius:50%;background:#c8a64d;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.faq-content{display:none;padding:0 25px 25px;color:#555;font-size:16px;line-height:1.8;}
+@media(max-width:768px){.faq-btn{font-size:17px;padding:20px;}h2{font-size:42px !important;}}
+</style>
+
+<script>
+document.querySelectorAll(".faq-btn").forEach(btn=>{btn.addEventListener("click",()=>{const content=btn.nextElementSibling;const icon=btn.querySelector("span");document.querySelectorAll(".faq-content").forEach(item=>{if(item!==content)item.style.display="none";});document.querySelectorAll(".faq-btn span").forEach(i=>{i.innerHTML="+";});if(content.style.display==="block"){content.style.display="none";icon.innerHTML="+";}else{content.style.display="block";icon.innerHTML="−";}});});
+</script>
  <!-- end wrapper -->
- <!-- begin footer -->
-<footer class="l-footer footer">
- <div class="footer__top">
- <div class="footer__menu">
- <div class="menu-footer js-footer-menu">
- <nav class="menu-footer__container">
- <ul>
- <li class="is-active -has-dropdown">
- <a #/">Services</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a #/search-engine-optimization/">Search Engine Optimization</a>
- </li>
- <li>
- <a #/web-design/">Web Design</a>
- </li>
- <li>
- <a #/social-media-marketing/">Social Media Marketing</a>
- </li>
- <li>
- <a #/google-adwords-management/">Google AdWords Management</a>
- </li>
- <li>
- <a #/website-audit/">Website Audit</a>
- </li>
- <li>
- <a #/content-writing/">Content Writing</a>
- </li>
- <li>
- <a #/logo-designing/">Logo Designing</a>
- </li>
- <li>
- <a #/profile-design/">Profile Design</a>
- </li>
- <li>
- <a #/digital-marketing/">Digital Marketing</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="about.html">About</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="news.html">News</a>
- </li>
- <li>
- <a href="history.html">History</a>
- </li>
- <li>
- <a href="our-team.html">Our Team</a>
- </li>
- <li>
- <a href="gallery.html">Gallery</a>
- </li>
- <li>
- <a href="blog.html">Blog</a>
- </li>
- <li>
- <a href="contact.html">Contact</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="portfolio.html">Portfolio</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="our-website.html">Our Websites</a>
- </li>
- <li>
- <a href="our-seo-ranks.html">Our SEO Ranks</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="/discounts/">Discounts</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="/discounts/discounts-up-to-20-on-seo/">Discounts up to 20% on SEO</a>
- </li>
- </ul>
- </div>
- </li>
- </ul>
- </nav>
- </div>
- </div>
- <div class="footer__map">
- <div class="footer-google">
- <img src="assets/footer-google.png" alt="google" title="google">
- </div>
- <a href="/contact/" class="footer-map">
- <img src="assets/footer-map.png" alt="contacts" title="contacts">
- </a>
- </div>
- <div class="footer__search">
- <div class="footer-search">
- <form action="/search">
- <input name="q"
- type="text"
- class="footer-search__field"
- autocomplete="off"
- minlength="3"
- placeholder="Search"
- required="required"
- />
- <button type="submit" class="footer-search__btn">Search</button>
-</form>
- </div>
- </div>
- <div class="footer__social">
- <div class="footer-social">
- <a rel="noreferrer noopener nofollow"
- class="icon-instagram"
- href="https://www.instagram.com/Marketing with Fahaddubai/"
- target="_blank">
- https://www.instagram.com/Marketing with Fahaddubai/
- </a>
- <a rel="noreferrer noopener nofollow"
- class="icon-facebook"
- href="https://www.facebook.com/Marketing with Fahaddubai"
- target="_blank">
- https://www.facebook.com/Marketing with Fahaddubai
- </a>
- <a rel="noreferrer noopener nofollow"
- class="icon-twitter"
- href="https://twitter.com/Marketing with Fahaddubai"
- target="_blank">
- https://twitter.com/Marketing with Fahaddubai
- </a>
- <a rel="noreferrer noopener nofollow"
- class="icon-linkedin"
- href="https://www.linkedin.com/company/be-on-top/"
- target="_blank">
- https://www.linkedin.com/company/be-on-top/
- </a>
- </div>
- </div>
- </div>
- <div class="footer__middle">
- <div class="footer__middle-container">
- <div class="footer__contacts">
- <div class="footer-contacts">
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--time.svg"
- alt="time">
- <span class="footer-contacts__item-note -green">We&#039;re open</span>
- <span class="footer-contacts__item-note">Closes at 6:00 PM</span>
- </div>
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--phone.svg"
- alt="phone">
- <span class="footer-contacts__item-note">Customer Care</span>
- <a href="tel:+97145547316"
- class="footer-contacts__item-value">971526086977</a>
- </div>
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--support.svg"
- alt="support">
- <span class="footer-contacts__item-note">Support & Sales Department</span>
- <a href="mailto:Contact@marketingwithfahad.com" class="footer-contacts__item-value"><span class="__cf_email__" data-cfemail="d1a2a4a1a1bea3a591b3b4bebfa5bea1ffb0b4">Contact@marketingwithfahad.com</span></a>
- </div>
- </div>
- </div>
- <div class="footer__info">
- <div class="footer-info">
- <a class="footer-info__link"
- href="/contact-to-the-ceo/">Contact the CEO</a>
- <a class="footer-info__google-partner" href="/google-partner/">
- <img src="assets/footer-google-parner.jpg" alt="Marketing with Fahad"
- title="Marketing with Fahad">
- </a>
- </div>
- </div>
- </div>
- </div>
- <div class="footer__bottom">
- <div class="footer__bottom-container">
- <span>© Marketing with Fahad 2008-2026. All rights reserved.</span>
- <span class="-location">Tamani arts building, Tamani Arts Building - Al Asayel St - Business Bay - Dubai - United Arab Emirates</span>
- </div>
- </div>
-</footer>
+<div id="footer-placeholder"></div>
  <a class="whatsapp-fixed-btn" href="https://api.whatsapp.com/send?phone=971564166421" target="_blank">
  <img src="assets/whatsapp.svg" alt="whatsapp" title="whatsapp">
  </a>

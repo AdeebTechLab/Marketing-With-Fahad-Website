@@ -61,7 +61,25 @@
  <link rel="preload" href="/assets/fonts/RedHatDisplay-Medium.woff2" as="font" crossorigin />
  <link rel="preload" href="/assets/fonts/RedHatDisplay-Bold.woff2" as="font" crossorigin />
  <!-- <link rel="stylesheet" href="contact.css"> -->
+  <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
  </head>
+ <script>
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const header = await fetch("header.html");
+        document.getElementById("header-placeholder").innerHTML =
+            await header.text();
+
+        const footer = await fetch("footer.html");
+        document.getElementById("footer-placeholder").innerHTML =
+            await footer.text();
+    } catch (err) {
+        console.error("Error loading header/footer:", err);
+    }
+});
+</script>
  <body class=" inner-page">
     
 <style>
@@ -73,415 +91,537 @@
 </style>
  <!-- begin wrapper -->
  <div class="l-wrapper">
- <!-- begin header -->
- <header class="l-header header">
- <div class="header__container">
- <a class="header__logo" href="/">
- <img src="assets/logo.png" alt="Marketing with Fahad" title="Marketing with Fahad">
- </a>
- <div class="header__main-menu">
- <nav class="main-menu js-menu-smart js-menu-mobile">
- <button data-menu-mobile--switcher-btn><span>menu</span></button>
- <ul class="main-menu__root is-root">
- <li>
- <a href="seo_course.html">SEO Courses</a>
- </li>
- <li class="-has-dropdown">
- <a href="about.html">About</a>
- <div>
- <ul>
- <li>
- <a href="history.html">History</a>
- </li>
- <li>
- <a href="our-team.html">Our Team</a>
- </li>
- <li>
- <a href="news.html">News</a>
- </li>
- <li>
- <a href="gallery.html">Gallery</a>
- </li>
- <li>
- <a href="vacancy.html">Vacancy</a>
- </li>
- <li>
- <a href="blog.html">Blog</a>
- </li>
- <li>
- <a href="testimonials.html">Testimonials</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="services.html">Services</a>
- <div>
- <ul>
- <li>
- <a #/search-engine-optimization/">Search Engine Optimization</a>
- </li>
- <li>
- <a #/web-design/">Web Design</a>
- </li>
- <li>
- <a #/social-media-marketing/">Social Media Marketing</a>
- </li>
- <li>
- <a #/google-adwords-management/">Google AdWords Management</a>
- </li>
- <li>
- <a #/website-audit/">Website Audit</a>
- </li>
- <li>
- <a #/content-writing/">Content Writing</a>
- </li>
- <li>
- <a #/logo-designing/">Logo Designing</a>
- </li>
- <li>
- <a #/profile-design/">Profile Design</a>
- </li>
- <li>
- <a #/digital-marketing/">Digital Marketing</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="pricing.html">Pricing</a>
- <div>
- <ul>
- <li>
- <a href="seo-payment-after-rank.html">SEO - Payment After Rank</a>
- </li>
- <li>
- <a href="seo-monthly-payment-strategy.html">SEO - Monthly Payment Strategy</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="portfolio.html">Portfolio</a>
- <div>
- <ul>
- <li>
- <a href="our-website.html">Our Websites</a>
- </li>
- <li>
- <a href="our-seo-ranks.html">Our SEO Ranks</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="is-active">
- <a href="contact.html">Contact</a>
- </li>
- </ul>
- </nav>
- </div>
- <a class="header__report" href="https://reports.Marketing with Fahad.ae/login" rel="nofollow" target="_blank">My Report <span>Login</span></a>
- <a class="header__call" href="tel:+97145547316">
- Customer Service <span>971526086977</span>
- </a>
- <a class="header__lang" href="https://ru.Marketing with Fahad.ae/" target="_blank">
- <img src="assets/lang-ru.svg" alt="Русский" title=" Русский">
- </a>
- </div>
-</header>
- <!-- end header -->
+ <div id="header-placeholder"></div>
+ 
  <!-- begin main -->
  <main class="l-main">
- <!-- <div class="hero">
- <img src="assets/header-10.jpeg"
- alt="Contact" title="Contact">
- </div>
- <div class="hero -mobile-only">
- <img src="assets/414x180-contacts.png"
- alt="Contact" title="Contact">
- </div> -->
- <div class="l-container">
-<div class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
- <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="index.html/">
- <meta itemprop="position" content="1">
- <meta itemprop="name" content="Home">
- <meta itemprop="item" content="https://www.Marketing with Fahad.ae/">
- Home</a>
- <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
- <meta itemprop="position" content="2">
- <meta itemprop="name" content="Contact">
- Contact</span>
-</div>
- <h1>Contact Us</h1>
- <div class="contacts-page">
- <a class="contacts-page__btn-print js-print" href="">Print Page</a>
- <div class="contacts-page__map">
- <div class="contacts-map">
- <img src="assets/map.png" alt="Google Map">
-</div>
-<a href="https://maps.app.goo.gl/zc5RvfMSoR88w5mN8" target="_blank"><button class="form-feedback-alternative__btn-submit">Get Direction</button></a>
- </div>
- <div class="contacts-page__address">
- <div class="contacts-address">
- <p class="contacts-address__title">Marketing with Fahad DMCC</p>
-<p>Tamani arts building, Tamani Arts Building - Al Asayel St - Business Bay - Dubai - United Arab Emirates</p>
- </div>
- </div>
- <div class="contacts-page__phone">
- <div class="contacts-phone">
- <p class="contacts-phone__title">Contact Us</p>
- <div class="contacts-phone__item -phone">
- <a href="tel:+97145547316">
- 971526086977
- </a>
- <span>Customer Care</span>
- </div>
- <div class="contacts-phone__item -email">
- <a href="/cdn-cgi/l/email-protection#355c5b535a7557505a5b415a451b5450"><span class="__cf_email__" data-cfemail="bbd2d5ddd4fbd9ded4d5cfd4cb95dade">Contact@marketingwithfahad.com</span></a>
- <span>Sales Department</span>
- </div>
- <div class="contacts-phone__item -email">
- <a href="/cdn-cgi/l/email-protection#1f6c6a6f6f706d6b5f7d7a70716b706f317e7a"><span class="__cf_email__" data-cfemail="10636560607f62645072757f7e647f603e7175">Contact@marketingwithfahad.com</span></a>
- <span>Support</span>
- </div>
- </div>
- </div>
- <div class="contacts-page__form ">
- <div class="contacts-form">
-<form name="darvin_feedback_order" method="post" action="/order/feedback/submit" class="js-ajax" data-goal-name="Email Feedback" data-goal-category="Email">
- <div class="form-feedback-alternative">
- <div class="form-heading">Get in Touch</div>
- <div class="form-item -name">
- <div class="form-item__field">
- <input type="text" id="darvin_feedback_order_name" name="darvin_feedback_order[name]" required="required" placeholder="Name*" autocomplete="off" />
- </div>
-</div>
- <div class="form-item -phone">
- <div class="form-item__field">
- <input type="text" id="darvin_feedback_order_phone" name="darvin_feedback_order[phone]" required="required" maxlength="30" placeholder="Phone*" value="+971" autocomplete="off" />
- </div>
-</div>
- <div class="form-item -email">
- <div class="form-item__field">
- <input type="email" id="darvin_feedback_order_email" name="darvin_feedback_order[email]" maxlength="50" placeholder="Email" autocomplete="off" />
- </div>
-</div>
- <div class="form-item -text">
- <div class="form-item__field">
- <textarea id="darvin_feedback_order_text" name="darvin_feedback_order[text]" placeholder="Messages" autocomplete="off"></textarea>
- </div>
-</div>
- <div class="form-btns-container">
- <button class="form-feedback-alternative__btn-submit" type="submit">Submit</button>
- </div>
- </div>
-<input type="hidden" id="darvin_feedback_order_recaptcha" name="darvin_feedback_order[recaptcha]" autocomplete="off" /><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
- var recaptchaCallback_darvin_feedback_order_recaptcha = function() {
- grecaptcha.execute('6Lc_c-gUAAAAAIL8B2XIxG5sTuPgSrtDBlGDfdW6', {action: 'app'}).then(function(token) {
- document.getElementById('darvin_feedback_order_recaptcha').value = token;
- });
- };
- </script>
- <script src="https://www.google.com/recaptcha/api.js?render=6Lc_c-gUAAAAAIL8B2XIxG5sTuPgSrtDBlGDfdW6&onload=recaptchaCallback_darvin_feedback_order_recaptcha" async defer></script><input type="text" id="darvin_feedback_order_title" name="darvin_feedback_order[title]" class="title_field" autocomplete="off" /><input type="hidden" id="darvin_feedback_order__token" name="darvin_feedback_order[_token]" value="IOg3st1q6EFQBMo0xnK7VlTVXbTmfyAwB--eXMkGo7M" /></form>
- </div>
- </div>
-</div>
- </div>
+<style>
+  .mwf-section { background: #f8f6f1; padding: 72px 0; position: relative; overflow: hidden; }
+  .mwf-inner { max-width: 1270px; margin: 0 auto; padding: 0 22px; display: grid; grid-template-columns: 1fr 460px; gap: 48px; align-items: center; }
+  .mwf-badge { display: inline-block; background: rgba(200,166,77,.15); color: #a07c1e; border: 1px solid #c8a64d; border-radius: 20px; font-size: 12px; font-weight: 800; padding: 4px 14px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 20px; }
+  .mwf-h1 {
+  font-size: 54px;
+  font-weight: 900;
+  color: #111;
+  line-height: 1.15;
+  margin: 0 0 20px;
+  font-style: normal;
+}
+
+.mwf-h1 span {
+  color: #c8a64d;
+  font-style: italic;
+  display: block;
+}
+  .mwf-h1 span { color: #c8a64d; }
+  .mwf-p { font-size: 18px; color: #555; max-width: 500px; margin: 0 0 28px; line-height: 1.8; }
+  .mwf-list { list-style: none; margin: 0 0 32px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .mwf-list li { display: flex; align-items: center; gap: 10px; color: #444; font-size: 17px; font-weight: 500; }
+  .mwf-list li .check { color: #c8a64d; font-size: 20px; font-weight: 900; }
+  .mwf-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .mwf-btn-primary { height: 52px; padding: 0 30px; display: inline-flex; align-items: center; font-weight: 800; border-radius: 50px; text-decoration: none; background: #111; color: #c8a64d; font-size: 16px; border: 2px solid #111; transition: background .2s, color .2s, border-color .2s; }
+  .mwf-btn-primary:hover { background: #c8a64d; color: #fff; border-color: #c8a64d; }
+  .mwf-btn-outline { height: 52px; padding: 0 26px; display: inline-flex; align-items: center; font-weight: 700; border-radius: 50px; text-decoration: none; background: transparent; color: #c8a64d; font-size: 16px; border: 2px solid #c8a64d; transition: background .2s, color .2s; }
+  .mwf-btn-outline:hover { background: #c8a64d; color: #fff; }
+  .mwf-card { background: #fff; border-radius: 16px; padding: 36px; box-shadow: 0 4px 24px rgba(0,0,0,.07); border: 1px solid rgba(200,166,77,.15); }
+  .mwf-card-badge { display: flex; align-items: center; gap: 8px; background: rgba(200,166,77,.1); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; }
+  .mwf-card-badge .dot { width: 10px; height: 10px; border-radius: 50%; background: #c8a64d; flex-shrink: 0; }
+  .mwf-card-badge span { font-size: 15px; color: #a07c1e; font-weight: 700; }
+  .mwf-card-title { font-size: 24px; font-weight: 800; color: #111; margin: 0 0 6px; }
+  .mwf-card-sub { font-size: 15px; color: #777; margin: 0 0 4px; }
+  .mwf-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mwf-stat { background: #f8f6f1; border-radius: 10px; padding: 14px 16px; text-align: center; }
+  .mwf-stat .num { font-size: 30px; font-weight: 900; color: #c8a64d; line-height: 1; }
+  .mwf-stat .lbl { font-size: 14px; color: #777; margin-top: 4px; font-weight: 500; }
+  .mwf-divider { border: none; border-top: 1px solid rgba(200,166,77,.2); margin: 20px 0; }
+  .mwf-trust { display: flex; align-items: center; gap: 8px; }
+  .mwf-trust .stars { color: #c8a64d; font-size: 18px; letter-spacing: 1px; }
+  .mwf-trust span { font-size: 14px; color: #777; font-weight: 500; }
+  @media (max-width: 900px) {
+    .mwf-inner { grid-template-columns: 1fr; }
+    .mwf-h1 { font-size: 36px; }
+  }
+</style>
+
+<section class="mwf-section">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(200,166,77,.06),transparent 65%);pointer-events:none"></div>
+  <div class="mwf-inner">
+    <div>
+      <span class="mwf-badge">#1 SEO Agency UAE</span>
+      <h1
+  style="
+    font-size:clamp(26px,3.5vw,38px) !important;
+    font-weight:700 !important;
+    line-height:1.2 !important;
+    color:#0F172A !important;
+    margin:0 0 16px !important;
+    letter-spacing:-0.5px !important;
+    font-family:inherit !important;
+  ">
+  Let's Talk About
+  <span style="color:#C9A96E !important;">Your Business</span>
+</h1>
+      <p class="mwf-p">Tell us about your website and goals. We'll review it and get back to you with clear next steps.</p>
+      <ul class="mwf-list">
+        <li><span class="check">✓</span> Proven strategies that deliver measurable business growth</li>
+        <li><span class="check">✓</span> Complete transparency with detailed monthly reporting</li>
+        <li><span class="check">✓</span> UAE-focused SEO expertise since 2008</li>
+      </ul>
+      <div class="mwf-btns">
+        <a href="#contact-form" class="mwf-btn-primary">Get Your Free SEO Audit</a>
+        <a href="../../pages/portfolio/portfolio.html" class="mwf-btn-outline">View Our Work</a>
+      </div>
+    </div>
+    <div class="mwf-card">
+      <div class="mwf-card-badge">
+        <div class="dot"></div>
+        <span>We respond within 2 business hours</span>
+      </div>
+      <p class="mwf-card-title">Free SEO Audit Included</p>
+      <p class="mwf-card-sub">No credit card. No obligation. Just results.</p>
+      <hr class="mwf-divider">
+      <div class="mwf-stats">
+        <div class="mwf-stat"><div class="num">97%</div><div class="lbl">Client Retention</div></div>
+        <div class="mwf-stat"><div class="num">15+</div><div class="lbl">Years in UAE</div></div>
+        <div class="mwf-stat"><div class="num">300+</div><div class="lbl">Projects Done</div></div>
+        <div class="mwf-stat"><div class="num">4x</div><div class="lbl">Avg Traffic Lift</div></div>
+      </div>
+      <hr class="mwf-divider">
+      <div class="mwf-trust">
+        <span class="stars">★★★★★</span>
+        <span>Trusted by 300+ UAE businesses</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#ffffff;padding:80px 22px;">
+  <div style="max-width:1270px;margin:0 auto;">
+
+    <h2 style="font-size:clamp(26px,3.5vw,38px);font-weight:700;line-height:1.2;color:#0F172A;text-align:center;margin-bottom:10px;">
+      Prefer Another <span style="color:#C9A96E;">Way to Connect?</span>
+    </h2>
+
+    <p style="text-align:center;color:#64748B;margin-bottom:50px;font-size:16px;line-height:1.7;">
+      We are available across multiple channels — reach out however works best for you.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;">
+
+      <!-- Email -->
+      <div
+        onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)'"
+        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)'"
+        style="background:#F8FAFC;padding:30px 20px;border-radius:12px;border:1px solid #E2E8F0;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.02);transition:all 0.3s ease;cursor:pointer;">
+
+        <div style="width:60px;height:60px;background:#ffffff;border:1px solid #E2E8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 10px rgba(0,0,0,0.04);">
+          <i class="fa-solid fa-envelope" style="font-size:24px;color:#C9A96E;"></i>
+        </div>
+
+        <h3 style="font-size:clamp(17px,2vw,20px);font-weight:700;color:#0F172A;margin-bottom:10px;">
+          Email Us
+        </h3>
+
+        <a href="mailto:info@marketingwithfahad.ae"
+          onmouseover="this.style.color='#C9A96E'"
+          onmouseout="this.style.color='#0F172A'"
+          style="color:#0F172A;font-size:15px;text-decoration:none;font-weight:500;transition:color .2s;">
+          info@marketingwithfahad.ae
+        </a>
+      </div>
+
+      <!-- Phone -->
+      <div
+        onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)'"
+        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)'"
+        style="background:#F8FAFC;padding:30px 20px;border-radius:12px;border:1px solid #E2E8F0;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.02);transition:all 0.3s ease;cursor:pointer;">
+
+        <div style="width:60px;height:60px;background:#ffffff;border:1px solid #E2E8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 10px rgba(0,0,0,0.04);">
+          <i class="fa-solid fa-phone" style="font-size:24px;color:#C9A96E;"></i>
+        </div>
+
+        <h3 style="font-size:clamp(17px,2vw,20px);font-weight:700;color:#0F172A;margin-bottom:10px;">
+          Call Us
+        </h3>
+
+        <a href="tel:+97145547316"
+          onmouseover="this.style.color='#C9A96E'"
+          onmouseout="this.style.color='#0F172A'"
+          style="color:#0F172A;font-size:15px;text-decoration:none;font-weight:500;transition:color .2s;">
+          +971 4 554 7316
+        </a>
+      </div>
+
+      <!-- WhatsApp -->
+      <div
+        onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)'"
+        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)'"
+        style="background:#F8FAFC;padding:30px 20px;border-radius:12px;border:1px solid #E2E8F0;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.02);transition:all 0.3s ease;cursor:pointer;">
+
+        <div style="width:60px;height:60px;background:#ffffff;border:1px solid #E2E8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 10px rgba(0,0,0,0.04);">
+          <i class="fa-brands fa-whatsapp" style="font-size:28px;color:#25D366;"></i>
+        </div>
+
+        <h3 style="font-size:clamp(17px,2vw,20px);font-weight:700;color:#0F172A;margin-bottom:10px;">
+          WhatsApp
+        </h3>
+
+        <a href="https://wa.me/971564166421"
+          target="_blank"
+          onmouseover="this.style.color='#C9A96E'"
+          onmouseout="this.style.color='#0F172A'"
+          style="color:#0F172A;font-size:15px;text-decoration:none;font-weight:500;transition:color .2s;">
+          Chat on WhatsApp →
+        </a>
+      </div>
+
+      <!-- Schedule -->
+      <div
+        onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)'"
+        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)'"
+        style="background:#F8FAFC;padding:30px 20px;border-radius:12px;border:1px solid #E2E8F0;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.02);transition:all 0.3s ease;cursor:pointer;">
+
+        <div style="width:60px;height:60px;background:#ffffff;border:1px solid #E2E8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 10px rgba(0,0,0,0.04);">
+          <i class="fa-solid fa-calendar-days" style="font-size:24px;color:#C9A96E;"></i>
+        </div>
+
+        <h3 style="font-size:clamp(17px,2vw,20px);font-weight:700;color:#0F172A;margin-bottom:10px;">
+          Schedule a Call
+        </h3>
+
+        <a href="https://calendly.com/marketingwithfahad"
+          target="_blank"
+          onmouseover="this.style.color='#C9A96E'"
+          onmouseout="this.style.color='#0F172A'"
+          style="color:#0F172A;font-size:15px;text-decoration:none;font-weight:500;transition:color .2s;">
+          Book a Time →
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Google Map -->
+    <div style="margin-top:50px;border-radius:12px;overflow:hidden;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);">
+      <iframe
+        src="https://maps.google.com/maps?q=JLT+Cluster+T+Fortune+Executive+Tower+Dubai&output=embed"
+        width="100%"
+        height="320"
+        style="border:0;display:block;"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+<section class="mwf-why" style="background: #F8FAFC; padding: 80px 22px;">
+  <div class="mwf-why__inner" style="max-width: 1270px; margin: 0 auto;">
+    
+    <div style="text-align: center; margin-bottom: 10px;">
+      <span style="display:inline-block; background:rgba(201,169,110,.15); color:#C9A96E; border:1px solid #C9A96E; border-radius:20px; font-size:11px; font-weight:700; padding:4px 14px; letter-spacing:.06em; text-transform:uppercase;">
+        WHY CHOOSE US
+      </span>
+    </div>
+    
+    <h2 style="font-size: 34px; font-weight: 700; color: #0F172A; text-align: center; margin-bottom: 15px;">
+      Why Work <span style="color: #C9A96E;">With Us?</span>
+    </h2>
+    <p class="sub" style="text-align: center; color: #64748B; margin-bottom: 60px; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
+      We’ve helped businesses across diverse industries achieve their SEO goals.
+    </p>
+    
+    <div class="mwf-why__grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px;">
+      
+      <div class="mwf-why__card mwf-anim" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #E2E8F0; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: pointer;">
+        <div class="icon-box" style="width: 70px; height: 70px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); font-size: 24px; color: #C9A96E;">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 15px;">No Spam</h3>
+        <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin: 0;">Your information is safe with us. We never share or sell your data.</p>
+      </div>
+
+      <div class="mwf-why__card mwf-anim" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #E2E8F0; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: pointer;">
+        <div class="icon-box" style="width: 70px; height: 70px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); font-size: 24px; color: #C9A96E;">
+          <i class="fa-regular fa-comment"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 15px;">Clear Communication</h3>
+        <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin: 0;">Transparent and honest conversations. You always know what’s happening.</p>
+      </div>
+
+      <div class="mwf-why__card mwf-anim" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #E2E8F0; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: pointer;">
+        <div class="icon-box" style="width: 70px; height: 70px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); font-size: 24px; color: #C9A96E;">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 15px;">No Pressure Sales</h3>
+        <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin: 0;">We focus on your needs, not ours. No pushy upsells or hidden fees.</p>
+      </div>
+
+      <div class="mwf-why__card mwf-anim" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #E2E8F0; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: pointer;">
+        <div class="icon-box" style="width: 70px; height: 70px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); font-size: 24px; color: #C9A96E;">
+          <i class="fa-solid fa-arrow-trend-up"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 15px;">Real Recommendations</h3>
+        <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin: 0;">Actionable insights tailored specifically to your business and market.</p>
+      </div>
+
+    </div>
+    
+    <div style="text-align: center; margin-top: 50px;">
+      <a href="#contact-form" class="mwf-btn-primary" 
+         onmouseover="this.style.backgroundColor='#B8985E'" 
+         onmouseout="this.style.backgroundColor='#C9A96E'"
+         style="height: 52px; padding: 0 32px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 700; border-radius: 8px; text-decoration: none; background: #C9A96E; color: #0F172A; transition: background 0.3s;">
+         Start With a Free Audit
+      </a>
+    </div>
+    
+  </div>
+</section> 
  </main>
  </div>
+<section class="mwf-process" style="background: #ffffff; padding: 80px 22px;">
+  <div class="mwf-process__inner" style="max-width: 1270px; margin: 0 auto;">
+    
+    <div style="text-align: center; margin-bottom: 10px;">
+      <span style="display:inline-block; background:rgba(201,169,110,.15); color:#C9A96E; border:1px solid #C9A96E; border-radius:20px; font-size:11px; font-weight:700; padding:4px 14px; letter-spacing:.06em; text-transform:uppercase;">
+        PROCESS
+      </span>
+    </div>
+    
+    <h2 style="font-size: 34px; font-weight: 700; color: #0F172A; text-align: center; margin-bottom: 15px;">
+      A 5-Step Process That Removes the <span style="color: #C9A96E;">Guesswork From SEO</span>
+    </h2>
+    <p class="sub" style="text-align: center; color: #64748B; margin-bottom: 60px; font-size: 16px; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+      Every campaign follows the same disciplined process. You always know what stage we are in, what is being done, and why.
+    </p>
+    
+    <div class="mwf-process__steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+      
+      <div class="mwf-process__step" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="text-align: center; padding: 30px 20px; border-radius: 12px; background: #F8FAFC; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: default;">
+        <div class="mwf-process__num" style="display: flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: #ffffff; border: 1px solid #E2E8F0; border-radius: 50%; margin: 0 auto 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); font-size: 24px; color: #0F172A;">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Audit</h3>
+        <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin: 0;">We analyse your website and competitors in depth to identify every issue and opportunity.</p>
+      </div>
+
+      <div class="mwf-process__step" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="text-align: center; padding: 30px 20px; border-radius: 12px; background: #F8FAFC; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: default;">
+        <div class="mwf-process__num" style="display: flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: #ffffff; border: 1px solid #E2E8F0; border-radius: 50%; margin: 0 auto 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); font-size: 24px; color: #0F172A;">
+          <i class="fa-solid fa-chart-bar"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Research</h3>
+        <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin: 0;">Deep keyword research and market analysis specific to your industry and location.</p>
+      </div>
+
+      <div class="mwf-process__step" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="text-align: center; padding: 30px 20px; border-radius: 12px; background: #F8FAFC; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: default;">
+        <div class="mwf-process__num" style="display: flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: #ffffff; border: 1px solid #E2E8F0; border-radius: 50%; margin: 0 auto 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); font-size: 24px; color: #0F172A;">
+          <i class="fa-solid fa-arrows-left-right"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Strategy</h3>
+        <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin: 0;">We create a customised SEO roadmap tailored to your business goals, budget, and landscape.</p>
+      </div>
+
+      <div class="mwf-process__step" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="text-align: center; padding: 30px 20px; border-radius: 12px; background: #F8FAFC; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: default;">
+        <div class="mwf-process__num" style="display: flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: #ffffff; border: 1px solid #E2E8F0; border-radius: 50%; margin: 0 auto 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); font-size: 24px; color: #0F172A;">
+          <i class="fa-solid fa-rocket"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Execution</h3>
+        <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin: 0;">We implement on-page improvements, technical fixes, content creation, and link building.</p>
+      </div>
+
+      <div class="mwf-process__step" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="text-align: center; padding: 30px 20px; border-radius: 12px; background: #F8FAFC; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: default;">
+        <div class="mwf-process__num" style="display: flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: #ffffff; border: 1px solid #E2E8F0; border-radius: 50%; margin: 0 auto 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); font-size: 24px; color: #0F172A;">
+          <i class="fa-solid fa-list-check"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Reporting & Growth</h3>
+        <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin: 0;">Monthly reports track every result. As rankings grow we identify new opportunities.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
  <!-- end wrapper -->
- <!-- begin footer -->
-<footer class="l-footer footer">
- <div class="footer__top">
- <div class="footer__menu">
- <div class="menu-footer js-footer-menu">
- <nav class="menu-footer__container">
- <ul>
- <li class="-has-dropdown">
- <a #/">Services</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a #/search-engine-optimization/">Search Engine Optimization</a>
- </li>
- <li>
- <a #/web-design/">Web Design</a>
- </li>
- <li>
- <a #/social-media-marketing/">Social Media Marketing</a>
- </li>
- <li>
- <a #/google-adwords-management/">Google AdWords Management</a>
- </li>
- <li>
- <a #/website-audit/">Website Audit</a>
- </li>
- <li>
- <a #/content-writing/">Content Writing</a>
- </li>
- <li>
- <a #/logo-designing/">Logo Designing</a>
- </li>
- <li>
- <a #/profile-design/">Profile Design</a>
- </li>
- <li>
- <a #/digital-marketing/">Digital Marketing</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="is-active -has-dropdown">
- <a href="about.html">About</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="news.html">News</a>
- </li>
- <li>
- <a href="history.html">History</a>
- </li>
- <li>
- <a href="our-team.html">Our Team</a>
- </li>
- <li>
- <a href="gallery.html">Gallery</a>
- </li>
- <li>
- <a href="blog.html">Blog</a>
- </li>
- <li class="is-active">
- <a href="contact.html">Contact</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="portfolio.html">Portfolio</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="our-website.html">Our Websites</a>
- </li>
- <li>
- <a href="our-seo-ranks.html">Our SEO Ranks</a>
- </li>
- </ul>
- </div>
- </li>
- <li class="-has-dropdown">
- <a href="/discounts/">Discounts</a>
- <div class="menu-footer__dropdown">
- <ul>
- <li>
- <a href="/discounts/discounts-up-to-20-on-seo/">Discounts up to 20% on SEO</a>
- </li>
- </ul>
- </div>
- </li>
- </ul>
- </nav>
- </div>
- </div>
- <div class="footer__map">
- <div class="footer-google">
- <img src="assets/footer-google.png" alt="google" title="google">
- </div>
- <a href="/contact/" class="footer-map">
- <img src="assets/footer-map.png" alt="contacts" title="contacts">
- </a>
- </div>
- <div class="footer__search">
- <div class="footer-search">
- <form action="/search">
- <input name="q"
- type="text"
- class="footer-search__field"
- autocomplete="off"
- minlength="3"
- placeholder="Search"
- required="required"
- />
- <button type="submit" class="footer-search__btn">Search</button>
-</form>
- </div>
- </div>
- <div class="footer__social">
- <div class="footer-social">
- <a rel="noreferrer noopener nofollow"
- class="icon-instagram"
- href="https://www.instagram.com/Marketing with Fahaddubai/"
- target="_blank">
- https://www.instagram.com/Marketing with Fahaddubai/
- </a>
- <a rel="noreferrer noopener nofollow"
- class="icon-facebook"
- href="https://www.facebook.com/Marketing with Fahaddubai"
- target="_blank">
- https://www.facebook.com/Marketing with Fahaddubai
- </a>
- <a rel="noreferrer noopener nofollow"
- class="icon-twitter"
- href="https://twitter.com/Marketing with Fahaddubai"
- target="_blank">
- https://twitter.com/Marketing with Fahaddubai
- </a>
- <a rel="noreferrer noopener nofollow"
- class="icon-linkedin"
- href="https://www.linkedin.com/company/be-on-top/"
- target="_blank">
- https://www.linkedin.com/company/be-on-top/
- </a>
- </div>
- </div>
- </div>
- <div class="footer__middle">
- <div class="footer__middle-container">
- <div class="footer__contacts">
- <div class="footer-contacts">
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--time.svg"
- alt="time">
- <span class="footer-contacts__item-note -green">We&#039;re open</span>
- <span class="footer-contacts__item-note">Closes at 6:00 PM</span>
- </div>
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--phone.svg"
- alt="phone">
- <span class="footer-contacts__item-note">Customer Care</span>
- <a href="tel:+97145547316"
- class="footer-contacts__item-value">971526086977</a>
- </div>
- <div class="footer-contacts__item">
- <img class="footer-contacts__item-icon"
- src="assets/footer-contacts--support.svg"
- alt="support">
- <span class="footer-contacts__item-note">Support & Sales Department</span>
- <a href="mailto:Contact@marketingwithfahad.com" class="footer-contacts__item-value"><span class="__cf_email__" data-cfemail="e794929797889593a785828889938897c98682">Contact@marketingwithfahad.com</span></a>
- </div>
- </div>
- </div>
- <div class="footer__info">
- <div class="footer-info">
- <a class="footer-info__link"
- href="/contact-to-the-ceo/">Contact the CEO</a>
- <a class="footer-info__google-partner" href="/google-partner/">
- <img src="assets/footer-google-parner.jpg" alt="Marketing with Fahad"
- title="Marketing with Fahad">
- </a>
- </div>
- </div>
- </div>
- </div>
- <div class="footer__bottom">
- <div class="footer__bottom-container">
- <span>© Marketing with Fahad 2008-2026. All rights reserved.</span>
- <span class="-location">Tamani arts building, Tamani Arts Building - Al Asayel St - Business Bay - Dubai - United Arab Emirates</span>
- </div>
- </div>
-</footer>
+  <section class="mwf-reviews" style="background: #F8FAFC; padding: 80px 22px;">
+  <div class="mwf-reviews__inner" style="max-width: 1270px; margin: 0 auto;">
+    
+    <div style="text-align: center; margin-bottom: 10px;">
+      <span style="display:inline-block; background:rgba(201,169,110,.15); color:#C9A96E; border:1px solid #C9A96E; border-radius:20px; font-size:11px; font-weight:700; padding:4px 14px; letter-spacing:.06em; text-transform:uppercase;">
+        REVIEWS
+      </span>
+    </div>
+    
+    <h2 style="font-size: 34px; font-weight: 700; color: #0F172A; text-align: center; margin-bottom: 15px;">
+      What Happens When SEO <span style="color: #C9A96E;">Is Done the Right Way</span>
+    </h2>
+    <p class="sub" style="text-align: center; color: #64748B; margin-bottom: 60px; font-size: 16px; max-width: 650px; margin-left: auto; margin-right: auto;">
+      We let the results speak first. Here is what business owners say after working with us.
+    </p>
+    
+    <div class="mwf-reviews__grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+      
+      <div class="mwf-review__card mwf-anim" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: default;">
+        <div class="mwf-review__top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <span class="mwf-review__stars" style="color: #FFC107; font-size: 18px; letter-spacing: 2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span style="font-size: 28px; color: rgba(201,169,110,.3); line-height: 1;">&#10077;</span>
+        </div>
+        <p class="mwf-review__text" style="color: #48525f; font-size: 15px; line-height: 1.7; margin-bottom: 25px;">
+          Before signing with Marketing with Fahad, we tried 3 other agencies. None delivered. The pay-after-rank model gave us the confidence to commit, and they delivered Page 1 results in 4 months.
+        </p>
+        <div class="mwf-review__author" style="border-top: 1px solid #E2E8F0; padding-top: 20px;">
+          <strong style="display: block; color: #0F172A; font-weight: 700; font-size: 16px; margin-bottom: 4px;">Ahmed Al Khouri</strong>
+          <span style="font-size: 13px; color: #64748B;">Real Estate Agency, Dubai</span>
+        </div>
+      </div>
+
+      <div class="mwf-review__card mwf-anim" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: default;">
+        <div class="mwf-review__top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <span class="mwf-review__stars" style="color: #FFC107; font-size: 18px; letter-spacing: 2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span style="font-size: 28px; color: rgba(201,169,110,.3); line-height: 1;">&#10077;</span>
+        </div>
+        <p class="mwf-review__text" style="color: #48525f; font-size: 15px; line-height: 1.7; margin-bottom: 25px;">
+          The reporting alone is worth it. Every month I know exactly what changed, what they did, and what happens next. My main keyword went from position 28 to position 3. The phone started ringing differently.
+        </p>
+        <div class="mwf-review__author" style="border-top: 1px solid #E2E8F0; padding-top: 20px;">
+          <strong style="display: block; color: #0F172A; font-weight: 700; font-size: 16px; margin-bottom: 4px;">Marcus Al Farsi</strong>
+          <span style="font-size: 13px; color: #64748B;">Legal Services, Abu Dhabi</span>
+        </div>
+      </div>
+
+      <div class="mwf-review__card mwf-anim" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: default;">
+        <div class="mwf-review__top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <span class="mwf-review__stars" style="color: #FFC107; font-size: 18px; letter-spacing: 2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span style="font-size: 28px; color: rgba(201,169,110,.3); line-height: 1;">&#10077;</span>
+        </div>
+        <p class="mwf-review__text" style="color: #48525f; font-size: 15px; line-height: 1.7; margin-bottom: 25px;">
+          Organic search went from almost zero to our number one revenue channel within a year. They understood our products and built a strategy around it. We have never worked with a vendor who took ownership like they do.
+        </p>
+        <div class="mwf-review__author" style="border-top: 1px solid #E2E8F0; padding-top: 20px;">
+          <strong style="display: block; color: #0F172A; font-weight: 700; font-size: 16px; margin-bottom: 4px;">Tom Patel</strong>
+          <span style="font-size: 13px; color: #64748B;">E-commerce, Sharjah</span>
+        </div>
+      </div>
+
+      <div class="mwf-review__card mwf-anim" 
+           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" 
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';"
+           style="background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.3s ease; cursor: default;">
+        <div class="mwf-review__top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <span class="mwf-review__stars" style="color: #FFC107; font-size: 18px; letter-spacing: 2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span style="font-size: 28px; color: rgba(201,169,110,.3); line-height: 1;">&#10077;</span>
+        </div>
+        <p class="mwf-review__text" style="color: #48525f; font-size: 15px; line-height: 1.7; margin-bottom: 25px;">
+          I was skeptical because I had been burned before by agencies that promised rankings and delivered reports. The free audit was more detailed than any paid strategy document I had received. We signed on and have not looked back.
+        </p>
+        <div class="mwf-review__author" style="border-top: 1px solid #E2E8F0; padding-top: 20px;">
+          <strong style="display: block; color: #0F172A; font-weight: 700; font-size: 16px; margin-bottom: 4px;">David Clarke</strong>
+          <span style="font-size: 13px; color: #64748B;">Medical Centre, Dubai</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+  <section style="padding:80px 20px;background:#f8f6f1;">
+    <div style="max-width:1300px;margin:auto;display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap;">
+        <div style="flex:1;min-width:300px;">
+            <span style="background:#c8a64d;color:#fff;padding:8px 20px;border-radius:30px;font-size:14px;font-weight:600;">FAQs</span>
+            <h2 style="font-size:60px;line-height:1.1;color:#111;margin:25px 0;">Frequently<br><span style="color:#c8a64d;">Asked Questions</span></h2>
+            <p style="font-size:18px;color:#555;line-height:1.8;margin-bottom:30px;">Everything you need to know before reaching out to our team — response times, audit process, and more.</p>
+            <a href="contact.html" style="display:inline-block;background:#c8a64d;color:#fff;text-decoration:none;padding:16px 35px;border-radius:50px;font-weight:600;">Send Us a Message</a>
+        </div>
+        <div style="flex:1.5;min-width:400px;">
+            <div class="faq-item"><button class="faq-btn">How quickly do you respond to enquiries?<span>+</span></button><div class="faq-content">We respond to all enquiries within 2 business hours during UAE working hours (Sunday–Thursday, 9am–6pm). WhatsApp messages are typically answered even faster.</div></div>
+            <div class="faq-item"><button class="faq-btn">Is the free SEO audit really free?<span>+</span></button><div class="faq-content">Yes, completely free — no credit card required and no obligation to proceed. You receive a full technical report with actionable recommendations regardless of whether you become a client.</div></div>
+            <div class="faq-item"><button class="faq-btn">What happens after I submit the contact form?<span>+</span></button><div class="faq-content">Our team reviews your website and goals, prepares a customized audit and strategy outline, then schedules a consultation call to walk you through the findings at your convenience.</div></div>
+            <div class="faq-item"><button class="faq-btn">Can I contact you via WhatsApp?<span>+</span></button><div class="faq-content">Yes. WhatsApp is our fastest communication channel. You can reach us directly at +971 56 416 6421 for quick questions, audit requests, or project discussions.</div></div>
+            <div class="faq-item"><button class="faq-btn">Do you work with international clients?<span>+</span></button><div class="faq-content">Yes. We serve clients across the UAE, UK, Russia, and internationally. All services are delivered remotely with the same high standards of communication and reporting.</div></div>
+            <div class="faq-item"><button class="faq-btn">Can I visit your Dubai office?<span>+</span></button><div class="faq-content">Yes. We are located at Fortune Executive Tower, Office 701, JLT Cluster T, Dubai. Please book an appointment in advance so we can prepare for your visit properly.</div></div>
+            <div class="faq-item"><button class="faq-btn">What information should I include in my message?<span>+</span></button><div class="faq-content">Ideally include your website URL, the service you are interested in, your target market, and your main business goals. The more context you provide, the more specific our proposal will be.</div></div>
+            <div class="faq-item"><button class="faq-btn">Do you offer consultations before committing to a package?<span>+</span></button><div class="faq-content">Yes. We offer a free strategy consultation where we review your website, discuss your goals, and recommend the most suitable approach — with no pressure to sign up.</div></div>
+        </div>
+    </div>
+</section>
+<section class="mwf-cta-bottom" style="background: #0F172A; padding: 100px 22px; text-align: center; border-radius: 20px; margin: 40px 0;">
+  <div class="mwf-cta-bottom__inner" style="max-width: 800px; margin: 0 auto;">
+    
+    <h2 style="font-size: 40px; font-weight: 700; color: #ffffff; margin-bottom: 20px; line-height: 1.2;">
+      Ready to Find Out What’s Holding <span style="color:#C9A96E; display: block;">Your Rankings Back?</span>
+    </h2>
+    
+    <p style="color: rgba(255, 255, 255, 0.7); font-size: 17px; line-height: 1.7; margin-bottom: 40px;">
+      Get a free, no-obligation SEO audit and discover exactly how to grow your organic traffic and revenue.
+    </p>
+    
+    <div class="btns" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+      <a href="#contact-form" 
+         onmouseover="this.style.backgroundColor='#B8985E'" 
+         onmouseout="this.style.backgroundColor='#C9A96E'"
+         style="height: 52px; padding: 0 32px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 700; border-radius: 8px; text-decoration: none; background: #C9A96E; color: #0F172A; transition: background 0.3s ease;">
+         Get Your Free SEO Audit
+      </a>
+      
+      <a href="../../pages/portfolio/portfolio.html" 
+         onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)'" 
+         onmouseout="this.style.backgroundColor='transparent'"
+         style="height: 52px; padding: 0 32px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 700; border-radius: 8px; text-decoration: none; border: 2px solid rgba(255,255,255,0.2); color: #ffffff; transition: background 0.3s ease;">
+         Request Proposal
+      </a>
+    </div>
+    
+    <p style="font-size: 13px; color: rgba(255, 255, 255, 0.35); margin-top: 24px; letter-spacing: 0.02em;">
+      Join hundreds of businesses that trust Marketing with Fahad for their SEO success.
+    </p>
+    
+  </div>
+</section>
+<style>
+.faq-item{margin-bottom:15px;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08);}
+.faq-btn{width:100%;border:none;background:#ffffff;color:#111;padding:25px;font-size:20px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left;}
+.faq-btn span{width:40px;height:40px;border-radius:50%;background:#c8a64d;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.faq-content{display:none;padding:0 25px 25px;color:#555;font-size:16px;line-height:1.8;}
+@media(max-width:768px){.faq-btn{font-size:17px;padding:20px;}h2{font-size:42px !important;}}
+</style>
+
+<script>
+document.querySelectorAll(".faq-btn").forEach(btn=>{btn.addEventListener("click",()=>{const content=btn.nextElementSibling;const icon=btn.querySelector("span");document.querySelectorAll(".faq-content").forEach(item=>{if(item!==content)item.style.display="none";});document.querySelectorAll(".faq-btn span").forEach(i=>{i.innerHTML="+";});if(content.style.display==="block"){content.style.display="none";icon.innerHTML="+";}else{content.style.display="block";icon.innerHTML="−";}});});
+</script>
+ <div id="footer-placeholder"></div>
  <a class="whatsapp-fixed-btn" href="https://api.whatsapp.com/send?phone=971564166421" target="_blank">
  <img src="assets/whatsapp.svg" alt="whatsapp" title="whatsapp">
  </a>

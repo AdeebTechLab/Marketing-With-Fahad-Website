@@ -1,0 +1,147 @@
+<!-- header.html — Marketing with Fahad -->
+<!-- Sits at ROOT of project. CSS + JS are in the same folder. -->
+
+<link rel="stylesheet" href="header-footer.css">
+
+<div class="l-header">
+  <header class="header">
+    <div class="header__container">
+
+      <!-- Logo -->
+      <a class="header__logo" href="index.html">
+        <img src="assets/logo.png" alt="Marketing with Fahad" title="Marketing with Fahad">
+      </a>
+
+      <!-- Desktop navigation -->
+      <div class="header__main-menu">
+        <nav class="main-menu">
+          <button data-menu-mobile--switcher-btn aria-label="Open menu"><span>menu</span></button>
+          <ul class="main-menu__root is-root">
+            <li><a href="seo_course.html">SEO Courses</a></li>
+            <li class="-has-dropdown">
+              <a href="about.html">About</a>
+              <div><ul>
+                <li><a href="our-team.html">Our Team</a></li>
+                <li><a href="history.html">History</a></li>
+              </ul></div>
+            </li>
+            <li class="-has-dropdown">
+              <a href="services.html">Services</a>
+              <div><ul>
+                <li><a href="seo.html">Search Engine Optimization</a></li>
+                <li><a href="web-design.html">Web Design</a></li>
+                <li><a href="social-media-marketing.html">Social Media Marketing</a></li>
+                <li><a href="google-adwords.html">Google AdWords Management</a></li>
+                <li><a href="website-audits.html">Website Audit</a></li>
+                <li><a href="content-writing.html">Content Writing</a></li>
+                <li><a href="logo-design.html">Logo Designing</a></li>
+                <li><a href="profile-design.html">Profile Design</a></li>
+                <li><a href="digital-marketing.html">Digital Marketing</a></li>
+              </ul></div>
+            </li>
+            <li class="-has-dropdown">
+              <a href="pricing.html">Pricing</a>
+              <div><ul>
+                <li><a href="seo-payment-after-rank.html">SEO - Payment After Rank</a></li>
+                <li><a href="seo-monthly-payment-strategy.html">SEO - Monthly Payment Strategy</a></li>
+              </ul></div>
+            </li>
+            <li class="-has-dropdown">
+              <a href="portfolio.html">Portfolio</a>
+              <div><ul>
+                <li><a href="our-website.html">Our Websites</a></li>
+                <li><a href="our-seo-ranks.html">Our SEO Ranks</a></li>
+              </ul></div>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Report login -->
+      <a class="header__report" href="https://reports.marketingwithfahad.ae/login" rel="nofollow" target="_blank">
+        My Report <span>Login</span>
+      </a>
+
+      <!-- Phone -->
+      <a class="header__call" href="tel:+971526086977">
+        Customer Service <span>971526086977</span>
+      </a>
+
+      <!-- Language -->
+      <a class="header__lang" href="https://ru.marketingwithfahad.ae/" target="_blank">
+        <img src="assets/lang-ru.svg" alt="Русский" title="Русский">
+      </a>
+
+    </div>
+  </header>
+</div>
+
+<!-- Mobile full-screen menu -->
+<nav class="menu-mobile is-closed" id="mobileMenu" aria-label="Mobile navigation">
+  <div class="menu-mobile__header">
+    <div class="menu-mobile__title">
+      <button class="menu-mobile__title-btn" data-node="0">Menu</button>
+    </div>
+    <button class="menu-mobile__close-btn" id="mobileMenuClose" aria-label="Close menu">
+      <span></span>
+    </button>
+  </div>
+  <ul class="menu-mobile__list">
+    <li class="menu-mobile__item">
+      <a class="menu-mobile__item-name" href="seo_course.html">SEO Courses</a>
+    </li>
+    <li class="menu-mobile__item">
+      <a class="menu-mobile__item-name" href="about.html">About</a>
+      <button class="menu-mobile__toggle" aria-label="Toggle submenu">
+        <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/><style>path{stroke:#fff;stroke-width:1.5;fill:none}</style></svg>
+      </button>
+      <ul class="menu-mobile__sub">
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="history.html">History</a></li>
+      </ul>
+    </li>
+    <li class="menu-mobile__item">
+      <a class="menu-mobile__item-name" href="services.html">Services</a>
+      <button class="menu-mobile__toggle" aria-label="Toggle submenu">
+        <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/><style>path{stroke:#fff;stroke-width:1.5;fill:none}</style></svg>
+      </button>
+      <ul class="menu-mobile__sub">
+        <li><a href="seo.html">Search Engine Optimization</a></li>
+        <li><a href="web-design.html">Web Design</a></li>
+        <li><a href="social-media-marketing.html">Social Media Marketing</a></li>
+        <li><a href="google-adwords.html">Google AdWords Management</a></li>
+        <li><a href="website-audits.html">Website Audit</a></li>
+        <li><a href="content-writing.html">Content Writing</a></li>
+        <li><a href="logo-design.html">Logo Designing</a></li>
+        <li><a href="profile-design.html">Profile Design</a></li>
+        <li><a href="digital-marketing.html">Digital Marketing</a></li>
+      </ul>
+    </li>
+    <li class="menu-mobile__item">
+      <a class="menu-mobile__item-name" href="pricing.html">Pricing</a>
+      <button class="menu-mobile__toggle" aria-label="Toggle submenu">
+        <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/><style>path{stroke:#fff;stroke-width:1.5;fill:none}</style></svg>
+      </button>
+      <ul class="menu-mobile__sub">
+        <li><a href="seo-payment-after-rank.html">SEO - Payment After Rank</a></li>
+        <li><a href="seo-monthly-payment-strategy.html">SEO - Monthly Payment Strategy</a></li>
+      </ul>
+    </li>
+    <li class="menu-mobile__item">
+      <a class="menu-mobile__item-name" href="portfolio.html">Portfolio</a>
+      <button class="menu-mobile__toggle" aria-label="Toggle submenu">
+        <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/><style>path{stroke:#fff;stroke-width:1.5;fill:none}</style></svg>
+      </button>
+      <ul class="menu-mobile__sub">
+        <li><a href="our-website.html">Our Websites</a></li>
+        <li><a href="our-seo-ranks.html">Our SEO Ranks</a></li>
+      </ul>
+    </li>
+    <li class="menu-mobile__item">
+      <a class="menu-mobile__item-name" href="contact.html">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<script src="header-footer.js"></script>
