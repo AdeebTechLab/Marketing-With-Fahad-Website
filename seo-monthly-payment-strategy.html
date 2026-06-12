@@ -233,12 +233,31 @@ p:last-child { margin-bottom: 0; }
    ============================================================ */
 .cta-block {
   background: linear-gradient(135deg, var(--dark) 0%, #2d2750 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: var(--radius);
   padding: 40px 36px;
   text-align: center;
   margin: 32px 0;
+  position: relative;
+  overflow: hidden;
 }
-.cta-block p { color: #fff; font-size: 1.1rem; font-weight: 500; margin-bottom: 20px; }
+.cta-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 26, 46, .55);
+  z-index: 0;
+}
+.cta-block p {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
 .cta-btn {
   display: inline-block;
   background: var(--gold);
@@ -255,8 +274,12 @@ p:last-child { margin-bottom: 0; }
   position: relative;
   z-index: 1;
 }
-.cta-btn:hover { background: var(--gold-dark); box-shadow: 0 6px 28px var(--gold-shadow); transform: translateY(-2px); color: #fff; }
-
+.cta-btn:hover {
+  background: var(--gold-dark);
+  box-shadow: 0 6px 28px var(--gold-shadow);
+  transform: translateY(-2px);
+  color: #fff;
+}
 /* ============================================================
    SPOILER / INLINE FAQ
    ============================================================ */
