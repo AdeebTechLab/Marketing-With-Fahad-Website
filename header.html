@@ -1,13 +1,437 @@
-<!-- header.html — Marketing with Fahad -->
-<!-- Sits at ROOT of project. CSS + JS are in the same folder. -->
-
 <link rel="stylesheet" href="header-footer.css">
 
+<style>
+  :root {
+    --navy: #0F172A;
+    --gold: #C9A96E;
+    --gold-light: #e2c48a;
+    --gold-dim: rgba(201,169,110,0.15);
+    --gold-border: rgba(201,169,110,0.3);
+  }
+
+  /* ===== HEADER SHELL ===== */
+  .l-header {
+    background: var(--navy);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--gold-border);
+  }
+
+  .header__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 68px;
+  }
+
+  /* ===== LOGO ===== */
+  .header__logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  /* ===== DESKTOP NAV ===== */
+  .header__main-menu { flex: 1; }
+
+  .main-menu { position: relative; }
+
+  .main-menu__root {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .main-menu__root > li { position: relative; }
+
+  .main-menu__root > li > a {
+    display: block;
+    padding: 8px 14px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .main-menu__root > li > a:hover {
+    background: var(--gold-dim);
+    color: var(--gold-light);
+  }
+
+  /* ===== DESKTOP DROPDOWN ===== */
+  /* FIX: top:100% (no gap) + padding-top replaces old calc(100% + 8px) gap */
+  .main-menu__root > li.-has-dropdown > div {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--navy);
+    border: 1px solid var(--gold-border);
+    border-radius: 8px;
+    padding: 8px 0;
+    padding-top: 16px;
+    min-width: 220px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    animation: fadeDown 0.18s ease;
+  }
+
+  /* FIX: invisible bridge over the gap so hover doesn't break */
+  .main-menu__root > li.-has-dropdown > div::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+  }
+
+  .main-menu__root > li.-has-dropdown:hover > div { display: block; }
+
+  .main-menu__root > li.-has-dropdown > div ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-menu__root > li.-has-dropdown > div ul li a {
+    display: block;
+    padding: 9px 18px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+
+  .main-menu__root > li.-has-dropdown > div ul li a:hover {
+    background: var(--gold-dim);
+    color: var(--gold-light);
+  }
+
+  /* ===== HEADER BUTTONS ===== */
+  .header__report {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--gold-light);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 8px 16px;
+    border: 1px solid var(--gold-border);
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .header__report:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+  }
+
+  .header__call {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    line-height: 1.3;
+    padding: 6px 14px;
+    border: 1px solid var(--gold-border);
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .header__call:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+  }
+
+  .header__call span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  /* ===== HAMBURGER BUTTON (hidden on desktop) ===== */
+  .menu-mobile__open-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--gold-border);
+    color: var(--gold);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    gap: 6px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  .menu-mobile__open-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ===== MOBILE SLIDE-IN MENU ===== */
+  .menu-mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    z-index: 2000;
+    background: var(--navy);
+    flex-direction: column;
+    border-right: 1px solid var(--gold-border);
+    overflow-y: auto;
+  }
+
+  .menu-mobile.is-open {
+    display: flex;
+    animation: slideIn 0.3s ease;
+  }
+
+  /* Overlay behind mobile menu */
+  .menu-mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1999;
+    background: rgba(0,0,0,0.5);
+  }
+
+  .menu-mobile-overlay.is-open { display: block; }
+
+  .menu-mobile__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--gold-border);
+    flex-shrink: 0;
+  }
+
+  .menu-mobile__title {
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .menu-mobile__close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .menu-mobile__close-btn::before,
+  .menu-mobile__close-btn::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  .menu-mobile__close-btn::before { transform: translate(-50%, -50%) rotate(45deg); }
+  .menu-mobile__close-btn::after  { transform: translate(-50%, -50%) rotate(-45deg); }
+
+  .menu-mobile__list {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    flex: 1;
+  }
+
+  .menu-mobile__item {
+    position: relative;
+    border-bottom: 1px solid var(--gold-border);
+  }
+
+  .menu-mobile__item:last-child { border-bottom: none; }
+
+  .menu-mobile__item-row {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .menu-mobile__item-name {
+    flex: 1;
+    display: block;
+    padding: 14px 24px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+
+  .menu-mobile__item-name:hover { background: var(--gold-dim); }
+
+  .menu-mobile__toggle {
+    background: none;
+    border: none;
+    border-left: 1px solid var(--gold-border);
+    cursor: pointer;
+    padding: 0 16px;
+    color: var(--gold);
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+
+  .menu-mobile__toggle:hover { background: var(--gold-dim); }
+
+  .menu-mobile__toggle svg {
+    width: 14px;
+    height: 14px;
+    display: block;
+    transition: transform 0.2s;
+  }
+
+  .menu-mobile__toggle.is-open svg { transform: rotate(180deg); }
+
+  .menu-mobile__sub {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: rgba(201,169,110,0.04);
+    display: none;
+    border-top: 1px solid var(--gold-border);
+  }
+
+  .menu-mobile__sub.is-open {
+    display: block;
+    animation: fadeDown 0.18s ease;
+  }
+
+  .menu-mobile__sub li a {
+    display: block;
+    padding: 11px 24px 11px 40px;
+    color: rgba(201,169,110,0.8);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.15s, background 0.15s;
+    border-bottom: 1px solid rgba(201,169,110,0.08);
+  }
+
+  .menu-mobile__sub li:last-child a { border-bottom: none; }
+
+  .menu-mobile__sub li a:hover {
+    color: var(--gold-light);
+    background: var(--gold-dim);
+  }
+
+  /* Mobile bottom links (report + call) */
+  .menu-mobile__footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--gold-border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .menu-mobile__footer a {
+    display: block;
+    padding: 10px 16px;
+    border: 1px solid var(--gold-border);
+    border-radius: 6px;
+    color: var(--gold-light);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .menu-mobile__footer a:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+  }
+
+  .menu-mobile__footer a small {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 2px;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(0); }
+  }
+
+  /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+  /* Tablet: hide call button text, keep icon */
+  @media (max-width: 1100px) {
+    .header__call { display: none; }
+  }
+
+  /* Mobile/Tablet ≤ 900px: switch to hamburger */
+  @media (max-width: 900px) {
+    /* Hide desktop nav */
+    .header__main-menu { display: none; }
+
+    /* Show hamburger button */
+    .menu-mobile__open-btn { display: flex; }
+
+    /* Show report button compactly */
+    .header__report {
+      font-size: 12px;
+      padding: 7px 10px;
+    }
+  }
+
+  /* Small mobile ≤ 480px: hide report button from header (it's in mobile menu footer) */
+  @media (max-width: 480px) {
+    .header__report { display: none; }
+
+    .header__container { gap: 12px; padding: 0 16px; }
+  }
+</style>
+
+<!-- ===== HEADER ===== -->
 <div class="l-header">
   <header class="header">
     <div class="header__container">
 
-      <!-- Logo -->
       <a class="header__logo" href="index.html">
         <img src="assets/logo.png" alt="Marketing with Fahad" title="Marketing with Fahad">
       </a>
@@ -15,9 +439,7 @@
       <!-- Desktop navigation -->
       <div class="header__main-menu">
         <nav class="main-menu">
-          <button data-menu-mobile--switcher-btn aria-label="Open menu"><span>menu</span></button>
-          <ul class="main-menu__root is-root">
-            <li><a href="seo_course.html">SEO Courses</a></li>
+          <ul class="main-menu__root">
             <li class="-has-dropdown">
               <a href="about.html">About</a>
               <div><ul>
@@ -42,8 +464,8 @@
             <li class="-has-dropdown">
               <a href="pricing.html">Pricing</a>
               <div><ul>
-                <li><a href="seo-payment-after-rank.html">SEO - Payment After Rank</a></li>
-                <li><a href="seo-monthly-payment-strategy.html">SEO - Monthly Payment Strategy</a></li>
+                <li><a href="seo-payment-after-rank.html">SEO – Payment After Rank</a></li>
+                <li><a href="seo-monthly-payment-strategy.html">SEO – Monthly Payment Strategy</a></li>
               </ul></div>
             </li>
             <li class="-has-dropdown">
@@ -54,58 +476,70 @@
               </ul></div>
             </li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="seo_course.html">SEO Courses</a></li>
           </ul>
         </nav>
       </div>
 
-      <!-- Report login -->
+      <!-- Report login button (visible on tablet+) -->
       <a class="header__report" href="https://reports.marketingwithfahad.ae/login" rel="nofollow" target="_blank">
-        My Report <span>Login</span>
+        My Report Login
       </a>
 
-      <!-- Phone -->
+      <!-- Call button (visible on desktop only) -->
       <a class="header__call" href="tel:+971526086977">
-        Customer Service <span>971526086977</span>
+        Customer Service <span>+971 52 608 6977</span>
       </a>
 
-      <!-- Language -->
-      <a class="header__lang" href="https://ru.marketingwithfahad.ae/" target="_blank">
-        <img src="assets/lang-ru.svg" alt="Русский" title="Русский">
-      </a>
+      <!-- Hamburger button (visible on mobile/tablet only) -->
+      <button class="menu-mobile__open-btn" id="mobileMenuOpen" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6"  x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <span>Menu</span>
+      </button>
 
     </div>
   </header>
 </div>
 
-<!-- Mobile full-screen menu -->
-<nav class="menu-mobile is-closed" id="mobileMenu" aria-label="Mobile navigation">
+<!-- Overlay behind mobile menu -->
+<div class="menu-mobile-overlay" id="mobileMenuOverlay"></div>
+
+<!-- ===== MOBILE MENU ===== -->
+<nav class="menu-mobile" id="mobileMenu" aria-label="Mobile navigation" aria-hidden="true">
+
   <div class="menu-mobile__header">
-    <div class="menu-mobile__title">
-      <button class="menu-mobile__title-btn" data-node="0">Menu</button>
-    </div>
-    <button class="menu-mobile__close-btn" id="mobileMenuClose" aria-label="Close menu">
-      <span></span>
-    </button>
+    <div class="menu-mobile__title">Menu</div>
+    <button class="menu-mobile__close-btn" id="mobileMenuClose" aria-label="Close menu"></button>
   </div>
+
   <ul class="menu-mobile__list">
+
+    <!-- About -->
     <li class="menu-mobile__item">
-      <a class="menu-mobile__item-name" href="seo_course.html">SEO Courses</a>
-    </li>
-    <li class="menu-mobile__item">
-      <a class="menu-mobile__item-name" href="about.html">About</a>
-      <button class="menu-mobile__toggle" aria-label="Toggle submenu">
-        <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/><style>path{stroke:#fff;stroke-width:1.5;fill:none}</style></svg>
-      </button>
+      <div class="menu-mobile__item-row">
+        <a class="menu-mobile__item-name" href="about.html">About</a>
+        <button class="menu-mobile__toggle" aria-label="Toggle About submenu" aria-expanded="false">
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
       <ul class="menu-mobile__sub">
         <li><a href="our-team.html">Our Team</a></li>
         <li><a href="history.html">History</a></li>
       </ul>
     </li>
+
+    <!-- Services -->
     <li class="menu-mobile__item">
-      <a class="menu-mobile__item-name" href="services.html">Services</a>
-      <button class="menu-mobile__toggle" aria-label="Toggle submenu">
-        <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/><style>path{stroke:#fff;stroke-width:1.5;fill:none}</style></svg>
-      </button>
+      <div class="menu-mobile__item-row">
+        <a class="menu-mobile__item-name" href="services.html">Services</a>
+        <button class="menu-mobile__toggle" aria-label="Toggle Services submenu" aria-expanded="false">
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
       <ul class="menu-mobile__sub">
         <li><a href="seo.html">Search Engine Optimization</a></li>
         <li><a href="web-design.html">Web Design</a></li>
@@ -118,30 +552,121 @@
         <li><a href="digital-marketing.html">Digital Marketing</a></li>
       </ul>
     </li>
+
+    <!-- Pricing -->
     <li class="menu-mobile__item">
-      <a class="menu-mobile__item-name" href="pricing.html">Pricing</a>
-      <button class="menu-mobile__toggle" aria-label="Toggle submenu">
-        <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/><style>path{stroke:#fff;stroke-width:1.5;fill:none}</style></svg>
-      </button>
+      <div class="menu-mobile__item-row">
+        <a class="menu-mobile__item-name" href="pricing.html">Pricing</a>
+        <button class="menu-mobile__toggle" aria-label="Toggle Pricing submenu" aria-expanded="false">
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
       <ul class="menu-mobile__sub">
-        <li><a href="seo-payment-after-rank.html">SEO - Payment After Rank</a></li>
-        <li><a href="seo-monthly-payment-strategy.html">SEO - Monthly Payment Strategy</a></li>
+        <li><a href="seo-payment-after-rank.html">SEO – Payment After Rank</a></li>
+        <li><a href="seo-monthly-payment-strategy.html">SEO – Monthly Payment Strategy</a></li>
       </ul>
     </li>
+
+    <!-- Portfolio -->
     <li class="menu-mobile__item">
-      <a class="menu-mobile__item-name" href="portfolio.html">Portfolio</a>
-      <button class="menu-mobile__toggle" aria-label="Toggle submenu">
-        <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/><style>path{stroke:#fff;stroke-width:1.5;fill:none}</style></svg>
-      </button>
+      <div class="menu-mobile__item-row">
+        <a class="menu-mobile__item-name" href="portfolio.html">Portfolio</a>
+        <button class="menu-mobile__toggle" aria-label="Toggle Portfolio submenu" aria-expanded="false">
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
       <ul class="menu-mobile__sub">
         <li><a href="our-website.html">Our Websites</a></li>
         <li><a href="our-seo-ranks.html">Our SEO Ranks</a></li>
       </ul>
     </li>
+
+    <!-- Contact (no submenu) -->
     <li class="menu-mobile__item">
-      <a class="menu-mobile__item-name" href="contact.html">Contact</a>
+      <div class="menu-mobile__item-row">
+        <a class="menu-mobile__item-name" href="contact.html">Contact</a>
+      </div>
     </li>
+
+    <!-- SEO Courses (no submenu) -->
+    <li class="menu-mobile__item">
+      <div class="menu-mobile__item-row">
+        <a class="menu-mobile__item-name" href="seo_course.html">SEO Courses</a>
+      </div>
+    </li>
+
   </ul>
+
+  <!-- Footer links inside mobile menu -->
+  <div class="menu-mobile__footer">
+    <a href="https://reports.marketingwithfahad.ae/login" rel="nofollow" target="_blank">
+      My Report Login
+    </a>
+    <a href="tel:+971526086977">
+      <small>Customer Service</small>
+      +971 52 608 6977
+    </a>
+  </div>
+
 </nav>
 
-<script src="header-footer.js"></script>
+<script>
+  (function () {
+    var openBtn    = document.getElementById('mobileMenuOpen');
+    var closeBtn   = document.getElementById('mobileMenuClose');
+    var menu       = document.getElementById('mobileMenu');
+    var overlay    = document.getElementById('mobileMenuOverlay');
+
+    function openMenu() {
+      menu.classList.add('is-open');
+      overlay.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      openBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menu.classList.remove('is-open');
+      overlay.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Submenu toggles
+    menu.querySelectorAll('.menu-mobile__toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var row = btn.closest('.menu-mobile__item-row');
+        var sub = row.nextElementSibling;
+        if (!sub || !sub.classList.contains('menu-mobile__sub')) return;
+
+        var isOpen = sub.classList.contains('is-open');
+
+        // Close all open submenus
+        menu.querySelectorAll('.menu-mobile__sub.is-open').forEach(function (s) {
+          s.classList.remove('is-open');
+        });
+        menu.querySelectorAll('.menu-mobile__toggle.is-open').forEach(function (t) {
+          t.classList.remove('is-open');
+          t.setAttribute('aria-expanded', 'false');
+        });
+
+        // Open this one if it was closed
+        if (!isOpen) {
+          sub.classList.add('is-open');
+          btn.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+</script>
