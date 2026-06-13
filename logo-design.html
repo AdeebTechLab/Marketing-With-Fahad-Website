@@ -21,18 +21,6 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon-180x180.png">
 <meta name="msapplication-TileColor" content="#fff">
 <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
-
-<!-- Header/Footer loader -->
-<script>
-document.addEventListener("DOMContentLoaded",async()=>{
-  try{
-    const [h,f]=await Promise.all([fetch("header.html"),fetch("footer.html")]);
-    document.getElementById("header-placeholder").innerHTML=await h.text();
-    document.getElementById("footer-placeholder").innerHTML=await f.text();
-  }catch(e){console.error("Error loading header/footer:",e);}
-});
-</script>
-
 <style>
 /* ===== VARIABLES ===== */
 :root{
@@ -450,6 +438,40 @@ document.querySelectorAll('[data-src]').forEach(function(el){
 document.getElementById('lightboxClose').addEventListener('click',closeLb);
 overlay.addEventListener('click',function(e){if(e.target===overlay)closeLb();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('active'))closeLb();});
+
+function runScripts(container){
+  container.querySelectorAll('script').forEach(function(oldScript){
+    var newScript=document.createElement('script');
+    if(oldScript.src){
+      newScript.src=oldScript.src;
+    }else{
+      newScript.textContent=oldScript.textContent;
+    }
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        var el=document.getElementById("header-placeholder");
+        el.innerHTML = data;
+        runScripts(el);
+    });
+
+
+    fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+        var el=document.getElementById("footer-placeholder");
+        el.innerHTML = data;
+        runScripts(el);
+    });
+
+});
 
 /* FAQ Accordion */
 document.querySelectorAll('.faq-item').forEach(function(item){
