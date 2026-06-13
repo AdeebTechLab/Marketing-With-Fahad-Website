@@ -725,11 +725,26 @@ a { text-decoration: none; color: inherit; }
 // ── Header / Footer ──
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const hRes = await fetch('header.html');
+    const [hRes, fRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
     document.getElementById('header-placeholder').innerHTML = await hRes.text();
-    const fRes = await fetch('footer.html');
     document.getElementById('footer-placeholder').innerHTML = await fRes.text();
-  } catch(e) { console.warn('Header/footer load failed:', e); }
+
+    // Re-execute scripts inside injected header/footer
+    ['header-placeholder', 'footer-placeholder'].forEach(id => {
+      const container = document.getElementById(id);
+      if (!container) return;
+      container.querySelectorAll('script').forEach(oldScript => {
+        const newScript = document.createElement('script');
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        document.body.appendChild(newScript);
+        oldScript.remove();
+      });
+    });
+  } catch (e) { console.warn('header/footer load error', e); }
 });
 
 // ── Scroll Reveal ──
