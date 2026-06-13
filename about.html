@@ -249,29 +249,6 @@ img{max-width:100%;display:block}
 .btn-border{border:2px solid var(--dark);color:var(--dark);height:52px;padding:0 28px;display:inline-flex;align-items:center;font-size:15px;font-weight:700;border-radius:10px;transition:background .2s,color .2s,transform .2s}
 .btn-border:hover{background:var(--dark);color:#fff;transform:translateY(-2px)}
 
-/* ── WHATSAPP (mobile only) ── */
-.wa{
-  position:fixed;bottom:22px;right:18px;width:52px;height:52px;
-  background:#25d366;border-radius:50%;display:none;align-items:center;justify-content:center;
-  z-index:999;box-shadow:0 4px 16px rgba(37,211,102,.4);
-  animation:waPop .8s ease both;transition:transform .3s;
-}
-.wa:hover{transform:scale(1.1)}
-.wa svg{width:26px;height:26px;fill:#fff}
-@keyframes waPop{0%{opacity:0;transform:scale(0)}80%{transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
-
-/* ── SCROLL-TO-TOP (desktop only) ── */
-#scroll-top{
-  position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:10px;
-  background:var(--gold);color:var(--dark);border:none;cursor:pointer;
-  display:none;align-items:center;justify-content:center;
-  font-size:20px;font-weight:700;z-index:998;
-  box-shadow:0 4px 16px var(--gold-shadow);
-  transition:background .2s,transform .2s;opacity:0;pointer-events:none;
-}
-#scroll-top.visible{opacity:1;pointer-events:all}
-#scroll-top:hover{background:var(--gold-dark);transform:translateY(-2px)}
-
 /* ── RESPONSIVE ── */
 @media(max-width:960px){
   .mission-inner{grid-template-columns:1fr;gap:38px}
