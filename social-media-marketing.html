@@ -1307,14 +1307,30 @@ p:last-child { margin-bottom: 0; }
 </div>
 
 <script>
+function runScripts(container) {
+  container.querySelectorAll('script').forEach(oldScript => {
+    const newScript = document.createElement('script');
+    if (oldScript.src) {
+      newScript.src = oldScript.src;
+    } else {
+      newScript.textContent = oldScript.textContent;
+    }
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const [h, f] = await Promise.all([fetch("header.html"), fetch("footer.html")]);
-    document.getElementById("header-placeholder").innerHTML = await h.text();
-    document.getElementById("footer-placeholder").innerHTML = await f.text();
+    const headerEl = document.getElementById("header-placeholder");
+    const footerEl = document.getElementById("footer-placeholder");
+    headerEl.innerHTML = await h.text();
+    runScripts(headerEl);
+    footerEl.innerHTML = await f.text();
+    runScripts(footerEl);
   } catch(e) {}
 });
-
 (function(){
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => {
