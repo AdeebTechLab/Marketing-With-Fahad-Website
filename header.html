@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <link rel="stylesheet" href="header-footer.css">
 
 <style>
@@ -70,7 +71,6 @@
   }
 
   /* ===== DESKTOP DROPDOWN ===== */
-  /* FIX: top:100% (no gap) + padding-top replaces old calc(100% + 8px) gap */
   .main-menu__root > li.-has-dropdown > div {
     display: none;
     position: absolute;
@@ -86,7 +86,6 @@
     animation: fadeDown 0.18s ease;
   }
 
-  /* FIX: invisible bridge over the gap so hover doesn't break */
   .main-menu__root > li.-has-dropdown > div::before {
     content: '';
     display: block;
@@ -142,16 +141,21 @@
     border-color: var(--gold);
   }
 
+  .header__report i {
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
   .header__call {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
     align-items: center;
+    gap: 8px;
     text-decoration: none;
     color: var(--gold);
     font-size: 11px;
     letter-spacing: 0.4px;
     line-height: 1.3;
-    padding: 6px 14px;
+    padding: 8px 14px;
     border: 1px solid var(--gold-border);
     border-radius: 6px;
     white-space: nowrap;
@@ -163,7 +167,17 @@
     border-color: var(--gold);
   }
 
-  .header__call span {
+  .header__call i {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .header__call-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__call-text span {
     font-size: 13px;
     font-weight: 600;
     color: var(--gold-light);
@@ -361,7 +375,10 @@
   }
 
   .menu-mobile__footer a {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     padding: 10px 16px;
     border: 1px solid var(--gold-border);
     border-radius: 6px;
@@ -376,6 +393,11 @@
   .menu-mobile__footer a:hover {
     background: var(--gold-dim);
     border-color: var(--gold);
+  }
+
+  .menu-mobile__footer a i {
+    font-size: 16px;
+    flex-shrink: 0;
   }
 
   .menu-mobile__footer a small {
@@ -399,15 +421,24 @@
 
   /* ===== RESPONSIVE BREAKPOINTS ===== */
 
-  /* Tablet: hide call button text, keep icon */
+  /* Tablet: hide call button text, keep icon only */
   @media (max-width: 1100px) {
-    .header__call { display: none; }
+    .header__call-text { display: none; }
+    .header__call {
+      padding: 8px 10px;
+    }
+    .header__call i {
+      font-size: 20px;
+    }
   }
 
   /* Mobile/Tablet ≤ 900px: switch to hamburger */
   @media (max-width: 900px) {
     /* Hide desktop nav */
     .header__main-menu { display: none; }
+
+    /* Hide desktop call button entirely (moved to mobile menu footer) */
+    .header__call { display: none; }
 
     /* Show hamburger button */
     .menu-mobile__open-btn { display: flex; }
@@ -483,12 +514,16 @@
 
       <!-- Report login button (visible on tablet+) -->
       <a class="header__report" href="https://reports.marketingwithfahad.ae/login" rel="nofollow" target="_blank">
+        <i class="ti ti-file-analytics"></i>
         My Report Login
       </a>
 
-      <!-- Call button (visible on desktop only) -->
+      <!-- Call button (visible on desktop+, icon-only on tablet) -->
       <a class="header__call" href="tel:+971526086977">
-        Customer Service <span>+971 52 608 6977</span>
+        <i class="ti ti-phone"></i>
+        <span class="header__call-text">
+          Customer Service <span>+971 52 608 6977</span>
+        </span>
       </a>
 
       <!-- Hamburger button (visible on mobile/tablet only) -->
@@ -600,11 +635,15 @@
   <!-- Footer links inside mobile menu -->
   <div class="menu-mobile__footer">
     <a href="https://reports.marketingwithfahad.ae/login" rel="nofollow" target="_blank">
+      <i class="ti ti-file-analytics"></i>
       My Report Login
     </a>
     <a href="tel:+971526086977">
-      <small>Customer Service</small>
-      +971 52 608 6977
+      <i class="ti ti-phone"></i>
+      <span>
+        <small>Customer Service</small>
+        +971 52 608 6977
+      </span>
     </a>
   </div>
 
