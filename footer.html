@@ -347,3 +347,43 @@
   </div>
 
 </footer>
+
+<!-- ═══════════ SCROLL TO TOP BUTTON ═══════════ -->
+<button id="scrollToTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top" style="position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:#0F172A;border:1px solid rgba(201,169,110,0.3);color:#C9A96E;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:3000;box-shadow:0 4px 16px rgba(0,0,0,0.3);transition:background 0.2s,border-color 0.2s,opacity 0.3s,transform 0.2s;opacity:0;">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"/>
+    <polyline points="5 12 12 5 19 12"/>
+  </svg>
+</button>
+
+<script>
+  (function () {
+    var btn = document.getElementById('scrollToTopBtn');
+
+    function toggleBtn() {
+      if (window.scrollY > 300) {
+        btn.style.display = 'flex';
+        requestAnimationFrame(function () { btn.style.opacity = '1'; });
+      } else {
+        btn.style.opacity = '0';
+        setTimeout(function () {
+          if (window.scrollY <= 300) btn.style.display = 'none';
+        }, 300);
+      }
+    }
+
+    window.addEventListener('scroll', toggleBtn);
+    toggleBtn();
+
+    btn.addEventListener('mouseenter', function () {
+      btn.style.background = 'rgba(201,169,110,0.15)';
+      btn.style.borderColor = '#C9A96E';
+      btn.style.transform = 'translateY(-3px)';
+    });
+    btn.addEventListener('mouseleave', function () {
+      btn.style.background = '#0F172A';
+      btn.style.borderColor = 'rgba(201,169,110,0.3)';
+      btn.style.transform = 'translateY(0)';
+    });
+  })();
+</script>
