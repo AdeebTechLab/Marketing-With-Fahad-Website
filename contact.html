@@ -555,13 +555,29 @@ ul{list-style:none}
 
 <script>
 /* ── Header / Footer ── */
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const [h, f] = await Promise.all([fetch("header.html"), fetch("footer.html")]);
-    document.getElementById("header-placeholder").innerHTML = await h.text();
-    document.getElementById("footer-placeholder").innerHTML = await f.text();
-  } catch(e) {}
-});
+    const [hRes, fRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
+    document.getElementById('header-placeholder').innerHTML = await hRes.text();
+    document.getElementById('footer-placeholder').innerHTML = await fRes.text();
+
+    // Re-execute scripts inside injected header/footer
+    ['header-placeholder', 'footer-placeholder'].forEach(id => {
+      const container = document.getElementById(id);
+      if (!container) return;
+      container.querySelectorAll('script').forEach(oldScript => {
+        const newScript = document.createElement('script');
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        document.body.appendChild(newScript);
+        oldScript.remove();
+      });
+    });
+  } catch (e) { console.warn('header/footer load error', e); }
+});;
 
 /* ── Scroll reveal (IntersectionObserver, no duplication) ── */
 (function(){
