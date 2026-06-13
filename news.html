@@ -531,40 +531,32 @@ button{font-family:inherit;cursor:pointer}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── HEADER / FOOTER LOADER ────────────────────────────────
-function runScripts(container){
-  container.querySelectorAll('script').forEach(function(oldScript){
-    var newScript=document.createElement('script');
-    if(oldScript.src){
-      newScript.src=oldScript.src;
-    }else{
-      newScript.textContent=oldScript.textContent;
-    }
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-        var el=document.getElementById("header-placeholder");
-        el.innerHTML = data;
-        runScripts(el);
+// ── HEADER / FOOTER LOADER ────────────────────────────────
+  function runScripts(container) {
+    container.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+      oldScript.remove();
     });
+  }
 
-
-    fetch("footer.html")
-    .then(response => response.text())
-    .then(data => {
-        var el=document.getElementById("footer-placeholder");
-        el.innerHTML = data;
+  async function loadPart(url, id) {
+    try {
+      const r = await fetch(url);
+      const el = document.getElementById(id);
+      if (el) {
+        el.innerHTML = await r.text();
         runScripts(el);
-    });
-
-});
+      }
+    } catch(e) { /* silently fail if files absent */ }
+  }
+  loadPart('header.html', 'header-placeholder');
+  loadPart('footer.html', 'footer-placeholder');
   // ── NEWS PREVIEW SWITCHER ─────────────────────────────────
   const previewItems = [...document.querySelectorAll('[data-index][class*="pub-preview__item"]')];
   const listItems    = [...document.querySelectorAll('[data-list-item]')];
