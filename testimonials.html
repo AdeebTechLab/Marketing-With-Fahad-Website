@@ -386,18 +386,30 @@ button{font-family:inherit;cursor:pointer}
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+function runScripts(container) {
+  container.querySelectorAll('script').forEach(oldScript => {
+    const newScript = document.createElement('script');
+    if (oldScript.src) {
+      newScript.src = oldScript.src;
+    } else {
+      newScript.textContent = oldScript.textContent;
+    }
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
 
-  // ── HEADER / FOOTER ─────────────────────────────────────
-  async function loadPart(url, id) {
-    try {
-      const r = await fetch(url);
-      const el = document.getElementById(id);
-      if (el) el.innerHTML = await r.text();
-    } catch(e) {}
-  }
-  loadPart('header.html', 'header-placeholder');
-  loadPart('footer.html', 'footer-placeholder');
-
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const [h, f] = await Promise.all([fetch("header.html"), fetch("footer.html")]);
+    const headerEl = document.getElementById("header-placeholder");
+    const footerEl = document.getElementById("footer-placeholder");
+    headerEl.innerHTML = await h.text();
+    runScripts(headerEl);
+    footerEl.innerHTML = await f.text();
+    runScripts(footerEl);
+  } catch(e) {}
+});
   // ── STAGGERED CARD REVEAL ────────────────────────────────
   const cards = document.querySelectorAll('.testi-card');
   if ('IntersectionObserver' in window) {
