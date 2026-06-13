@@ -730,14 +730,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </div>
 <script>
 // ── HEADER / FOOTER ───────────────────────────
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const [hRes, fRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
-    document.getElementById('header-placeholder').innerHTML = await hRes.text();
-    document.getElementById('footer-placeholder').innerHTML = await fRes.text();
-  } catch(e) { console.warn('Header/footer:', e); }
-});
+// ── HEADER / FOOTER ───────────────────────────────────────
+  function runScripts(container) {
+    container.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  }
 
+  async function loadPart(url, id) {
+    try {
+      const r = await fetch(url);
+      const el = document.getElementById(id);
+      if (el) { el.innerHTML = await r.text(); runScripts(el); }
+    } catch(e) {}
+  }
+  loadPart('header.html', 'header-placeholder');
+  loadPart('footer.html', 'footer-placeholder');
 // ── SCROLL REVEAL ─────────────────────────────
 (function(){
   const cards = document.querySelectorAll('.our-team__item');
