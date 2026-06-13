@@ -705,19 +705,36 @@ document.querySelectorAll('.photo-card').forEach(function(card){
 lbClose.addEventListener('click',closeLightbox);
 overlay.addEventListener('click',function(e){if(e.target===overlay)closeLightbox();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('active'))closeLightbox();});
+function runScripts(container){
+  container.querySelectorAll('script').forEach(function(oldScript){
+    var newScript=document.createElement('script');
+    if(oldScript.src){
+      newScript.src=oldScript.src;
+    }else{
+      newScript.textContent=oldScript.textContent;
+    }
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
     fetch("header.html")
     .then(response => response.text())
     .then(data => {
-        document.getElementById("header-placeholder").innerHTML = data;
+        var el=document.getElementById("header-placeholder");
+        el.innerHTML = data;
+        runScripts(el);
     });
 
 
     fetch("footer.html")
     .then(response => response.text())
     .then(data => {
-        document.getElementById("footer-placeholder").innerHTML = data;
+        var el=document.getElementById("footer-placeholder");
+        el.innerHTML = data;
+        runScripts(el);
     });
 
 });
