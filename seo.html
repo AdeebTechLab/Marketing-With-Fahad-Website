@@ -1250,22 +1250,29 @@ height:max-content;
 </div>
 
 <script>
-// =====================
-// Header / Footer Load
-// =====================
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const header = await fetch("header.html");
-    const hEl = document.getElementById("header-placeholder");
-    if (hEl) hEl.innerHTML = await header.text();
-  } catch(e) {}
-  try {
-    const footer = await fetch("footer.html");
-    const fEl = document.getElementById("footer-placeholder");
-    if (fEl) fEl.innerHTML = await footer.text();
-  } catch(e) {}
-});
+// ── HEADER / FOOTER ───────────────────────────────────────
+  function runScripts(container) {
+    container.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  }
 
+  async function loadPart(url, id) {
+    try {
+      const r = await fetch(url);
+      const el = document.getElementById(id);
+      if (el) { el.innerHTML = await r.text(); runScripts(el); }
+    } catch(e) {}
+  }
+  loadPart('header.html', 'header-placeholder');
+  loadPart('footer.html', 'footer-placeholder');
 // =====================
 // Scroll Reveal
 // =====================
