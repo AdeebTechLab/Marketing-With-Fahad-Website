@@ -635,19 +635,6 @@ height:max-content;
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
     <img class="lightbox-img" id="lightboxImg" src="" alt="">
   </div>
-
-  <!-- Header/Footer Loader -->
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      try {
-        const hRes = await fetch('header.html');
-        document.getElementById('header-placeholder').innerHTML = await hRes.text();
-        const fRes = await fetch('footer.html');
-        document.getElementById('footer-placeholder').innerHTML = await fRes.text();
-      } catch(e) { console.error('Header/footer load error:', e); }
-    });
-  </script>
-
   <script>
     /* ── Scroll Reveal (generic .reveal) ── */
     const revealEls = document.querySelectorAll('[data-reveal]');
@@ -655,6 +642,30 @@ height:max-content;
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
     }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
     revealEls.forEach(el => revealIO.observe(el));
+
+    document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const [hRes, fRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
+    document.getElementById('header-placeholder').innerHTML = await hRes.text();
+    document.getElementById('footer-placeholder').innerHTML = await fRes.text();
+
+    // Re-execute scripts inside injected header/footer
+    ['header-placeholder', 'footer-placeholder'].forEach(id => {
+      const container = document.getElementById(id);
+      if (!container) return;
+      container.querySelectorAll('script').forEach(oldScript => {
+        const newScript = document.createElement('script');
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        document.body.appendChild(newScript);
+        oldScript.remove();
+      });
+    });
+  } catch (e) { console.warn('header/footer load error', e); }
+});
 
     /* ── Staggered Cards ── */
     document.querySelectorAll('[data-stagger]').forEach((card, i) => {
