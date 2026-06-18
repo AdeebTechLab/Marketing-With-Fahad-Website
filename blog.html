@@ -109,7 +109,12 @@
       background-repeat: no-repeat;
     }
 
-    .blog-header__content { position: relative; z-index: 1; max-width: 620px; }
+    .blog-header__content {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      padding-left: clamp(8px, 4vw, 64px); /* extra breathing room from the left edge, scales with screen size */
+    }
 
     /* eyebrow needs light-on-dark tuning inside the hero only */
     .blog-header .eyebrow {
