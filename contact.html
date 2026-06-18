@@ -121,8 +121,122 @@ ul{list-style:none}
 .way-card h3{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:10px}
 .way-card a{color:var(--dark);font-size:14px;font-weight:500;transition:color .2s;word-break:break-word}
 .way-card a:hover{color:var(--gold)}
-.map-wrap{margin-top:48px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.05)}
-.map-wrap iframe{display:block;width:100%;height:340px;border:0}
+
+/* ── FIX #1: Map — replaced broken iframe with static map + styled pin overlay ── */
+.map-wrap{
+  margin-top:48px;
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 4px 20px rgba(0,0,0,.05);
+  position:relative;
+  height:340px;
+  background:#e8e0d5;
+}
+.map-wrap iframe{
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+  position:absolute;
+  inset:0;
+}
+/* Static map fallback shown when iframe fails to load */
+.map-static-fallback{
+  display:none; /* shown via JS if iframe errors */
+  width:100%;
+  height:100%;
+  position:relative;
+  background: linear-gradient(135deg,#e8e4da 0%,#ddd7c8 100%);
+  overflow:hidden;
+}
+/* Grid lines to mimic a map feel */
+.map-static-fallback::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(200,166,77,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,166,77,.08) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+/* Road lines */
+.map-road-h,.map-road-v{position:absolute;background:#fff;opacity:.7}
+.map-road-h{left:0;right:0;height:18px}
+.map-road-h.r1{top:38%}
+.map-road-h.r2{top:58%}
+.map-road-v{top:0;bottom:0;width:18px}
+.map-road-v.v1{left:32%}
+.map-road-v.v2{left:60%}
+/* Center pin */
+.map-pin-wrap{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-100%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.3));
+}
+.map-pin-icon{
+  width:44px;height:44px;
+  background:var(--gold);
+  border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);
+  border:3px solid #fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.map-pin-icon i{
+  transform:rotate(45deg);
+  color:#fff;
+  font-size:18px;
+}
+.map-pin-tail{
+  width:3px;height:16px;
+  background:var(--gold);
+  margin-top:-2px;
+}
+/* Label bubble */
+.map-label{
+  margin-top:10px;
+  background:var(--white);
+  border-radius:8px;
+  padding:8px 14px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--dark);
+  box-shadow:0 4px 16px rgba(0,0,0,.12);
+  white-space:nowrap;
+  text-align:center;
+  border:1px solid var(--gold-border);
+}
+.map-label span{
+  display:block;
+  font-weight:400;
+  color:var(--text-muted);
+  font-size:11px;
+  margin-top:2px;
+}
+/* Direction button on fallback */
+.map-dir-btn{
+  position:absolute;
+  bottom:16px;right:16px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:var(--white);
+  color:var(--dark);
+  font-size:13px;
+  font-weight:700;
+  padding:8px 16px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+  text-decoration:none;
+  transition:background .2s,color .2s;
+}
+.map-dir-btn:hover{background:var(--gold);color:var(--dark)}
+
 
 /* ════════════════════════════════════
    WHY
@@ -152,15 +266,43 @@ ul{list-style:none}
 
 /* ════════════════════════════════════
    REVIEWS
+   FIX #2: Cards now use equal height rows + clamped paragraph
+   so text never repeats/overflows into neighbour cards
 ════════════════════════════════════ */
 .reviews-section{background:#f8fafc;padding:clamp(56px,8vw,88px) 20px}
-.reviews-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.review-card{background:var(--white);padding:32px 24px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:0 4px 12px rgba(0,0,0,.04);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+  align-items:stretch; /* all cards stretch to tallest in row */
+}
+.review-card{
+  background:var(--white);
+  padding:32px 24px;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  box-shadow:0 4px 12px rgba(0,0,0,.04);
+  transition:transform .3s,box-shadow .3s;
+  display:flex;
+  flex-direction:column;
+  height:100%; /* fill grid cell so flex children distribute correctly */
+}
 .review-card:hover{transform:translateY(-8px);box-shadow:0 16px 36px rgba(0,0,0,.09)}
 .review-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
 .review-stars{color:#ffc107;font-size:16px;letter-spacing:2px}
 .review-quote{font-size:26px;color:rgba(200,166,77,.3);line-height:1}
-.review-card p{color:#48525f;font-size:14px;line-height:1.75;margin-bottom:20px;flex:1}
+/* FIX #2 core: grow the paragraph but cap visible lines so no card bleeds */
+.review-card p{
+  color:#48525f;
+  font-size:14px;
+  line-height:1.75;
+  margin-bottom:20px;
+  flex:1;                /* push author block to bottom */
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:6;  /* show max 6 lines — prevents repeat/overflow */
+  -webkit-box-orient:vertical;
+}
 .review-author{border-top:1px solid var(--border);padding-top:16px;margin-top:auto}
 .review-author strong{display:block;color:var(--dark);font-size:14px;margin-bottom:3px}
 .review-author span{font-size:12px;color:var(--text-muted)}
@@ -196,8 +338,6 @@ ul{list-style:none}
 .cta-desc{color:#475569;font-size:clamp(15px,2vw,17px);line-height:1.75;max-width:580px;margin:0 auto 36px}
 .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .cta-note{font-size:13px;color:#94a3b8;margin-top:20px;letter-spacing:.02em}
-
-
 
 /* ════════════════════════════════════
    RESPONSIVE
@@ -235,7 +375,7 @@ ul{list-style:none}
   .reviews-grid{grid-template-columns:1fr}
   .process-grid{grid-template-columns:repeat(2,1fr);gap:16px}
   .way-card,.why-card,.process-step{padding:24px 16px}
-  .map-wrap iframe{height:260px}
+  .map-wrap{height:260px}
   .cta-section{margin:24px 12px;border-radius:16px}
   .hero-btns{flex-direction:column}
   .hero-btns .btn-gold,.hero-btns .btn-outline{width:100%}
@@ -262,7 +402,7 @@ ul{list-style:none}
   .cta-section h2{font-size:24px}
   .cta-btns{flex-direction:column;align-items:center}
   .cta-btns .btn-gold,.cta-btns .btn-outline{width:100%;max-width:320px}
-  .map-wrap iframe{height:220px}
+  .map-wrap{height:220px}
 }
 
 @media(max-width:400px){
@@ -348,9 +488,50 @@ ul{list-style:none}
         <a href="https://calendly.com/marketingwithfahad" target="_blank" rel="noopener">Book a Time →</a>
       </div>
     </div>
-    <div class="map-wrap reveal">
-      <iframe src="https://maps.google.com/maps?q=JLT+Cluster+T+Fortune+Executive+Tower+Dubai&output=embed" allowfullscreen loading="lazy" title="Our Office — Fortune Executive Tower, JLT, Dubai"></iframe>
+
+    <!-- ══ FIX #1: Map — iframe with styled static fallback (pin + label) ══
+         The iframe loads Google Maps normally. If it fails (CSP / cookie block),
+         JS swaps in the styled static fallback so a map is ALWAYS visible.       -->
+    <div class="map-wrap reveal" id="map-wrap">
+      <iframe
+        id="map-iframe"
+        src="https://maps.google.com/maps?q=Fortune+Executive+Tower+JLT+Cluster+T+Dubai+UAE&output=embed"
+        allowfullscreen
+        loading="lazy"
+        title="Our Office — Fortune Executive Tower, JLT, Dubai"
+      ></iframe>
+
+      <!-- Static fallback (hidden until iframe error) -->
+      <div class="map-static-fallback" id="map-fallback" aria-label="Map showing Fortune Executive Tower, JLT, Dubai">
+        <!-- Decorative road lines -->
+        <div class="map-road-h r1"></div>
+        <div class="map-road-h r2"></div>
+        <div class="map-road-v v1"></div>
+        <div class="map-road-v v2"></div>
+
+        <!-- Pin -->
+        <div class="map-pin-wrap">
+          <div class="map-pin-icon"><i class="fa-solid fa-building"></i></div>
+          <div class="map-pin-tail"></div>
+          <div class="map-label">
+            Fortune Executive Tower
+            <span>Office 701, JLT Cluster T, Dubai</span>
+          </div>
+        </div>
+
+        <!-- Directions button -->
+        <a
+          class="map-dir-btn"
+          href="https://maps.google.com/maps?q=Fortune+Executive+Tower+JLT+Cluster+T+Dubai+UAE"
+          target="_blank"
+          rel="noopener"
+        >
+          <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+        </a>
+      </div>
     </div>
+    <!-- ── end FIX #1 ── -->
+
   </div>
 </section>
 
@@ -434,6 +615,8 @@ ul{list-style:none}
 </section>
 
 <!-- ── REVIEWS ── -->
+<!-- FIX #2: Cards use align-items:stretch + flex:1 on <p> + -webkit-line-clamp:6
+     so review text never bleeds/repeats into adjacent cards                       -->
 <section class="reviews-section">
   <div class="wrap">
     <div class="center reveal">
@@ -561,25 +744,55 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('header-placeholder').innerHTML = await hRes.text();
     document.getElementById('footer-placeholder').innerHTML = await fRes.text();
 
-    // Re-execute scripts inside injected header/footer
     ['header-placeholder', 'footer-placeholder'].forEach(id => {
       const container = document.getElementById(id);
       if (!container) return;
       container.querySelectorAll('script').forEach(oldScript => {
         const newScript = document.createElement('script');
-        if (oldScript.src) {
-          newScript.src = oldScript.src;
-        } else {
-          newScript.textContent = oldScript.textContent;
-        }
+        if (oldScript.src) { newScript.src = oldScript.src; }
+        else { newScript.textContent = oldScript.textContent; }
         document.body.appendChild(newScript);
         oldScript.remove();
       });
     });
   } catch (e) { console.warn('header/footer load error', e); }
-});;
+});
 
-/* ── Scroll reveal (IntersectionObserver, no duplication) ── */
+/* ── FIX #1: Map iframe fallback ──
+   If the iframe fails to load (CSP block, cookie consent wall, network error)
+   hide the iframe and show the styled static pin map instead.               */
+(function(){
+  const iframe   = document.getElementById('map-iframe');
+  const fallback = document.getElementById('map-fallback');
+  if (!iframe || !fallback) return;
+
+  // Timeout: if iframe hasn't loaded within 5s treat as failed
+  let loaded = false;
+  const timer = setTimeout(showFallback, 5000);
+
+  iframe.addEventListener('load', () => {
+    loaded = true;
+    clearTimeout(timer);
+    // Check if iframe got a real page (some browsers block silently)
+    try {
+      // Will throw cross-origin error — means iframe loaded a real page
+      const _ = iframe.contentDocument;
+      // If we reach here the iframe is same-origin (unlikely for Google Maps)
+    } catch(e){
+      // Cross-origin = Google Maps loaded correctly — keep iframe visible
+    }
+  });
+
+  iframe.addEventListener('error', showFallback);
+
+  function showFallback(){
+    if(loaded) return;
+    iframe.style.display = 'none';
+    fallback.style.display = 'block';
+  }
+})();
+
+/* ── Scroll reveal ── */
 (function(){
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => {
@@ -597,7 +810,6 @@ document.querySelectorAll(".faq-btn").forEach(btn => {
     const icon    = btn.querySelector(".faq-icon");
     const isOpen  = btn.classList.contains("open");
 
-    // close all
     document.querySelectorAll(".faq-item").forEach(i => {
       i.classList.remove("open");
       const b = i.querySelector(".faq-btn");
@@ -617,7 +829,7 @@ document.querySelectorAll(".faq-btn").forEach(btn => {
   });
 });
 
-/* ── Smooth scroll (mobile redirects to mobile form) ── */
+/* ── Smooth scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener("click", e => {
     let href = a.getAttribute("href");

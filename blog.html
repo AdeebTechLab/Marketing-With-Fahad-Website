@@ -48,7 +48,7 @@
 
     /* ── Layout ── */
     .l-wrapper { min-height: 100vh; display: flex; flex-direction: column; }
-    .l-main    { flex: 1; }
+    .l-main    { flex: 1; min-width: 0; }
     .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 22px; }
 
     /* ── Eyebrow pill (reused) ── */
@@ -81,11 +81,38 @@
     .breadcrumbs .sep { color: var(--gray-200); font-size: 10px; }
 
     /* ══════════════════════════════════════════
-       FIX #1 – Consistent top/bottom padding
-       Was: padding: 48px 0 56px (inconsistent)
-       Now: padding: 80px 0 (consistent ~80-96px)
+       HERO — standardized blog header
+       Structure: decorative motif (background) +
+       content wrapper (foreground, stacked via z-index)
+       so it scales the same way on every breakpoint.
     ══════════════════════════════════════════ */
-    .blog-header { padding: 80px 0; }
+    .blog-header {
+      position: relative;
+      padding: 80px 0;
+      overflow: hidden;
+      isolation: isolate; /* keeps the motif's stacking contained to this section */
+    }
+    .blog-header__motif {
+      position: absolute;
+      top: 6%;
+      right: -4%;
+      width: 44%;
+      max-width: 520px;
+      height: auto;
+      opacity: .14;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .blog-header__motif polyline {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .blog-header__motif circle { fill: var(--gold); }
+
+    .blog-header__content { position: relative; z-index: 1; }
 
     .blog-header__title {
       font-family: 'Playfair Display', serif;
@@ -115,15 +142,10 @@
     .blog-card.visible { opacity: 1; transform: translateY(0); }
     .blog-card:hover   { transform: translateY(-6px); box-shadow: var(--sh-lg); border-color: var(--gold); }
 
-    /* ══════════════════════════════════════════
-       FIX #2 – Fixed 16:9 ratio + object-fit: cover
-       Was: height: 220px (fixed px, distorts on resize)
-       Now: aspect-ratio: 16/9 with object-fit: cover
-    ══════════════════════════════════════════ */
     .blog-card__img-wrap {
       position: relative;
       overflow: hidden;
-      aspect-ratio: 16 / 9;        /* FIX #2 – true 16:9 ratio */
+      aspect-ratio: 16 / 9;        /* true 16:9 ratio at every screen size */
       background: var(--gray-100);
       display: block;
       width: 100%;
@@ -131,7 +153,7 @@
     .blog-card__img-wrap img {
       width: 100%;
       height: 100%;
-      object-fit: cover;            /* FIX #2 – always fill without distortion */
+      object-fit: cover;            /* always fills without distortion */
       object-position: center;
       transition: transform .55s ease;
     }
@@ -194,7 +216,6 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
       }
-      /* FIX #2 – featured card: override aspect-ratio so it fills height naturally */
       .blog-card:first-child .blog-card__img-wrap {
         aspect-ratio: unset;
         height: 100%;
@@ -236,18 +257,14 @@
     }
     .page-btn--all { background: var(--gray-50); font-size: 13px; }
 
-    /* ══════════════════════════════════════════
-       FIX #3 – FAQ block: page-relevant + compact
-       Was: generic 8 FAQs, large section padding
-       Now: 5 blog-specific FAQs, reduced padding
-    ══════════════════════════════════════════ */
+    /* ── FAQ ── */
     .faq-section { background: var(--gray-50); padding: 56px 0; border-top: 1px solid var(--gray-200); }
     .faq-inner { display: grid; grid-template-columns: 1fr 1.55fr; gap: 48px; align-items: start; }
     .faq-left { position: sticky; top: 32px; }
 
     .faq-left__heading {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 3.5vw, 40px);  /* FIX #3 – slightly smaller heading */
+      font-size: clamp(26px, 3.5vw, 40px);
       line-height: 1.1;
       color: var(--black);
       margin-bottom: 14px;
@@ -312,7 +329,22 @@
       font-size: 14px; color: var(--gray-600); line-height: 1.75;
     }
 
-    /* ── Responsive ── */
+    /* ══════════════════════════════════════════
+       Responsive breakpoints
+       Desktop: > 1024px (default rules above)
+       Laptop:  1024px → tighten paddings/gaps a touch
+       Tablet:  768–900px → single-column FAQ, smaller hero motif
+       Mobile:  ≤ 600px → stacked cards, compact hero/FAQ
+       Small:   ≤ 480px → tightest spacing, motif hidden
+    ══════════════════════════════════════════ */
+
+    /* ── Laptop ── */
+    @media (max-width: 1024px) {
+      .blog-grid { gap: 24px; }
+      .faq-inner { gap: 36px; }
+    }
+
+    /* ── Tablet ── */
     @media (max-width: 900px) {
       .faq-inner { grid-template-columns: 1fr; gap: 32px; }
       .faq-left  { position: static; }
@@ -320,9 +352,12 @@
     }
     @media (max-width: 768px) {
       .blog-grid { grid-template-columns: 1fr; gap: 20px; }
+      .blog-header { padding: 64px 0; }
+      .blog-header__motif { width: 58%; opacity: .10; }
     }
+
+    /* ── Mobile ── */
     @media (max-width: 600px) {
-      /* FIX #1 – Responsive padding stays consistent */
       .blog-header { padding: 56px 0; }
       .faq-section { padding: 40px 0; }
       .faq-summary  { font-size: 13px; }
@@ -330,7 +365,9 @@
       .page-btn     { min-width: 38px; height: 38px; font-size: 13px; }
     }
     @media (max-width: 480px) {
-      /* FIX #2 – aspect-ratio handles sizing naturally on mobile, no override needed */
+      .blog-header { padding: 48px 0; }
+      .blog-header__motif { display: none; } /* avoid clutter at narrow widths */
+      .blog-header__subtitle { font-size: 15px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .blog-card, .blog-card__img-wrap img { transition: none !important; }
@@ -352,9 +389,15 @@
       </nav>
 
       <header class="blog-header">
-        <div class="eyebrow">SEO &amp; Marketing Insights</div>
-        <h1 class="blog-header__title">Traffic <span>Blog</span></h1>
-        <p class="blog-header__subtitle">Expert articles on SEO, digital marketing, and growing your business online in the UAE.</p>
+        <svg class="blog-header__motif" viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+          <polyline points="0,190 70,168 140,178 210,118 280,140 350,72 420,92 490,34 560,46 600,18" />
+          <circle cx="600" cy="18" r="6"></circle>
+        </svg>
+        <div class="blog-header__content">
+          <div class="eyebrow">SEO &amp; Marketing Insights</div>
+          <h1 class="blog-header__title">Traffic <span>Blog</span></h1>
+          <p class="blog-header__subtitle">Expert articles on SEO, digital marketing, and growing your business online in the UAE.</p>
+        </div>
       </header>
 
       <section class="blog-grid" id="blogGrid" aria-label="Blog articles">
@@ -522,11 +565,6 @@
 
     </div>
 
-    <!-- ══════════════════════════════════════════
-         FIX #3 – Blog-page relevant FAQs only
-         Was: 8 generic FAQs, large padding
-         Now: 5 blog-specific FAQs, compact layout
-    ══════════════════════════════════════════ -->
     <section class="faq-section">
       <div class="container">
         <div class="faq-inner">
@@ -576,7 +614,7 @@
 </div>
 
 <script>
-  // Scroll-reveal
+  // Scroll-reveal for blog cards
   (function () {
     const cards = document.querySelectorAll('.blog-card');
     if (!cards.length || !('IntersectionObserver' in window)) {
@@ -593,29 +631,50 @@
     cards.forEach(c => io.observe(c));
   })();
 
-  // Header / footer
+  // ══════════════════════════════════════════
+  // Header / footer loader
+  // Fetches header.html and footer.html (same folder
+  // as this page) and injects them into the placeholders.
+  // <script> tags inside the fetched HTML don't execute
+  // automatically via innerHTML, so we recreate each one
+  // to force it to run (needed for the mobile nav toggle
+  // and the footer year script).
+  //
+  // NOTE: fetch() requires the page to be served over
+  // http(s) — opening blog.html directly as a file:// URL
+  // will block this with a CORS error. Use a local server,
+  // e.g. `python -m http.server` or VS Code's Live Server.
+  // ══════════════════════════════════════════
   document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const [hRes, fRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
-      document.getElementById('header-placeholder').innerHTML = await hRes.text();
-      document.getElementById('footer-placeholder').innerHTML = await fRes.text();
-
-      ['header-placeholder', 'footer-placeholder'].forEach(id => {
-        const container = document.getElementById(id);
-        if (!container) return;
-        container.querySelectorAll('script').forEach(oldScript => {
-          const newScript = document.createElement('script');
-          if (oldScript.src) {
-            newScript.src = oldScript.src;
-          } else {
-            newScript.textContent = oldScript.textContent;
-          }
-          document.body.appendChild(newScript);
-          oldScript.remove();
-        });
-      });
-    } catch (e) { console.warn('header/footer load error', e); }
+    await loadPartial('header.html', 'header-placeholder');
+    await loadPartial('footer.html', 'footer-placeholder');
   });
+
+  async function loadPartial(url, placeholderId) {
+    const container = document.getElementById(placeholderId);
+    if (!container) return;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`${url} responded with ${res.status}`);
+      container.innerHTML = await res.text();
+      executeScripts(container);
+    } catch (err) {
+      console.warn(`Could not load ${url}:`, err);
+    }
+  }
+
+  function executeScripts(container) {
+    container.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  }
 </script>
 </body>
 </html>

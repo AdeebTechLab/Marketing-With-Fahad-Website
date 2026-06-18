@@ -48,7 +48,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ── LAYOUT ─────────────────────────────────────────────── */
 .l-wrapper{display:flex;flex-direction:column;min-height:100vh}
-.l-main{flex:1;padding-bottom:70px;overflow-x:clip}
+.l-main{flex:1;padding:40px 0 70px;overflow-x:clip}
 .l-container{width:100%;max-width:1270px;margin:0 auto;padding:0 22px}
 
 /* ── HERO BANNER ────────────────────────────────────────── */
@@ -65,10 +65,21 @@ button{font-family:inherit;cursor:pointer}
 .breadcrumbs a::after{content:"›";margin:0 8px;color:#ccc}
 .breadcrumbs span{color:var(--gold);font-weight:600}
 
+/* breadcrumb/title sit on the dark hero image now, so they need light variants */
+.page-hero__content .breadcrumbs{padding:0 0 10px}
+.page-hero__content .breadcrumbs a{color:rgba(255,255,255,.78)}
+.page-hero__content .breadcrumbs a:hover{color:#fff}
+.page-hero__content .breadcrumbs a::after{color:rgba(255,255,255,.4)}
+.page-hero__content .breadcrumbs span{color:var(--gold)}
+
 /* ── PAGE TITLE ─────────────────────────────────────────── */
 .page-title{opacity:0;animation:fadeUp .7s .2s ease forwards;margin-bottom:36px}
 .page-title h1{font-size:clamp(24px,4vw,42px);font-weight:700;color:var(--dark);line-height:1.2}
 .page-title h1 span{color:var(--gold)}
+
+.page-hero__content .page-title{margin-bottom:0}
+.page-hero__content .page-title h1{color:#fff}
+.page-hero__content .page-title h1 span{color:var(--gold)}
 
 /* ── SECTION DIVIDER ────────────────────────────────────── */
 .sec-divider{display:flex;align-items:center;gap:14px;margin-bottom:28px}
@@ -81,21 +92,23 @@ button{font-family:inherit;cursor:pointer}
 @media(max-width:560px){.testimonials-grid{grid-template-columns:1fr;gap:18px}}
 
 /* ── TESTIMONIAL CARD ───────────────────────────────────── */
-.testi-card{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--white);border:1px solid var(--gold-border);opacity:0;transform:translateY(24px);cursor:pointer;transition:transform .45s ease,opacity .45s ease,box-shadow .25s,border-color .2s}
+.testi-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--white);border:1px solid var(--gold-border);opacity:0;transform:translateY(24px);cursor:pointer;transition:transform .45s ease,opacity .45s ease,box-shadow .25s,border-color .2s}
 .testi-card.visible{opacity:1;transform:none}
 .testi-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px var(--gold-shadow);border-color:var(--gold)}
 
-.testi-card__img-wrap{position:relative;overflow:hidden;aspect-ratio:16/10}
-.testi-card__img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+/* uniform frame/ratio for every certificate thumb, regardless of source orientation, plus a light shadow */
+.testi-card__img-wrap{position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--white);padding:10px;flex-shrink:0}
+.testi-card__img-wrap img{width:100%;height:100%;object-fit:cover;border-radius:8px;box-shadow:0 6px 16px rgba(26,26,46,.16);transition:transform .4s ease}
 .testi-card:hover .testi-card__img-wrap img{transform:scale(1.06)}
 
-.testi-card__overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,26,46,.75));opacity:0;transition:opacity .35s ease;display:flex;align-items:center;justify-content:center}
+.testi-card__overlay{position:absolute;inset:10px;border-radius:8px;background:linear-gradient(to bottom,transparent 40%,rgba(26,26,46,.75));opacity:0;transition:opacity .35s ease;display:flex;align-items:center;justify-content:center}
 .testi-card:hover .testi-card__overlay{opacity:1}
 .testi-card__zoom{width:52px;height:52px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;transform:scale(.7);transition:transform .3s ease;box-shadow:0 4px 18px rgba(0,0,0,.3)}
 .testi-card:hover .testi-card__zoom{transform:scale(1)}
 .testi-card__zoom svg{width:22px;height:22px}
 
-.testi-card__footer{padding:16px 20px 18px;background:var(--white);border-top:1px solid var(--gold-border)}
+/* footer fills any leftover row height and centers its content, so a shorter card never leaves dangling empty space below the link */
+.testi-card__footer{padding:16px 20px 18px;background:var(--white);border-top:1px solid var(--gold-border);flex:1;display:flex;flex-direction:column;justify-content:center}
 .testi-card__name{font-size:15px;font-weight:700;color:var(--dark);line-height:1.35}
 .testi-card__link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--gold);font-weight:600;margin-top:6px;transition:color .2s}
 .testi-card__link:hover{color:var(--gold-dark)}
@@ -165,15 +178,11 @@ button{font-family:inherit;cursor:pointer}
 <div class="l-wrapper">
   <div id="header-placeholder"></div>
 
-  <!-- HERO BANNER -->
+  <!-- HERO BANNER (title + breadcrumb now overlaid, matching the rest of the site) -->
   <div class="page-hero">
     <img src="assets/testimonials-1.jpeg" alt="Client Testimonials – Marketing with Fahad">
     <div class="page-hero__overlay"></div>
-  </div>
-
-  <main class="l-main">
-    <div class="l-container">
-
+    <div class="page-hero__content">
       <!-- BREADCRUMBS -->
       <nav class="breadcrumbs" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
         <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="index.html">
@@ -188,6 +197,11 @@ button{font-family:inherit;cursor:pointer}
       <div class="page-title">
         <h1>Client <span>Testimonials</span></h1>
       </div>
+    </div>
+  </div>
+
+  <main class="l-main">
+    <div class="l-container">
 
       <!-- SECTION DIVIDER -->
       <div class="sec-divider reveal">

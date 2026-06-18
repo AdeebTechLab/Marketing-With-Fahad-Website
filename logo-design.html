@@ -61,10 +61,116 @@ p:last-child{margin-bottom:0}
 .breadcrumbs a::after{content:'›';margin:0 8px;color:#aaa;font-size:13px}
 .breadcrumbs span{color:#888}
 
-/* ===== PAGE TITLE ===== */
-.page-title-wrap{padding:14px 0 38px;animation:fadeInUp .6s .2s ease both}
-.page-h1{font-size:clamp(26px,4vw,44px);font-weight:700;line-height:1.2;color:var(--dark)}
-.page-h1 .gold,.gold{color:var(--gold)}
+/* ===== FIX #1 — STANDARD HERO (replaces title-only) ===== */
+.page-hero{
+  background:var(--dark);
+  border-radius:var(--radius);
+  padding:64px 56px;
+  margin:14px 0 44px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:40px;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  animation:fadeInUp .6s .2s ease both;
+}
+.page-hero::before{
+  content:'';
+  position:absolute;
+  top:-80px;right:-80px;
+  width:340px;height:340px;
+  border-radius:50%;
+  background:rgba(200,166,77,.07);
+  pointer-events:none;
+}
+.page-hero::after{
+  content:'';
+  position:absolute;
+  bottom:-50px;left:-50px;
+  width:220px;height:220px;
+  border-radius:50%;
+  background:rgba(200,166,77,.05);
+  pointer-events:none;
+}
+.page-hero__content{position:relative;z-index:1}
+.page-hero__label{
+  display:inline-block;
+  background:rgba(200,166,77,.18);
+  color:var(--gold);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:6px 16px;
+  border-radius:30px;
+  margin-bottom:18px;
+}
+.page-hero__h1{
+  font-size:clamp(30px,4.5vw,52px);
+  font-weight:800;
+  line-height:1.15;
+  color:#fff;
+  margin-bottom:18px;
+}
+.page-hero__h1 .gold{color:var(--gold)}
+.page-hero__sub{
+  color:rgba(255,255,255,.75);
+  font-size:17px;
+  line-height:1.75;
+  max-width:520px;
+  margin-bottom:28px;
+}
+.page-hero__cta{
+  display:inline-block;
+  background:var(--gold);
+  color:#fff;
+  padding:14px 32px;
+  border-radius:50px;
+  font-weight:700;
+  font-size:15px;
+  box-shadow:0 6px 24px var(--gold-shadow);
+  transition:background .2s,transform .2s,box-shadow .2s;
+}
+.page-hero__cta:hover{
+  background:var(--gold-dark);
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 10px 32px var(--gold-shadow);
+}
+.page-hero__badge-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  position:relative;
+  z-index:1;
+}
+.page-hero__badge{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(200,166,77,.25);
+  border-radius:14px;
+  padding:18px 22px;
+  text-align:center;
+  min-width:130px;
+}
+.page-hero__badge-num{
+  font-size:28px;
+  font-weight:800;
+  color:var(--gold);
+  display:block;
+  line-height:1;
+}
+.page-hero__badge-label{
+  font-size:12px;
+  color:rgba(255,255,255,.6);
+  margin-top:5px;
+  display:block;
+}
+@media(max-width:760px){
+  .page-hero{grid-template-columns:1fr;padding:36px 26px;gap:24px}
+  .page-hero__badge-wrap{flex-direction:row;flex-wrap:wrap;justify-content:flex-start}
+  .page-hero__badge{min-width:100px}
+}
 
 /* ===== SECTION DIVIDER ===== */
 .section-divider{display:flex;align-items:center;gap:14px;margin:50px 0 32px}
@@ -110,31 +216,96 @@ p:last-child{margin-bottom:0}
 .works-heading{font-size:clamp(20px,3vw,32px);font-weight:800;color:var(--dark);margin-bottom:8px}
 .works-subheading{font-size:clamp(16px,2.5vw,22px);font-weight:700;color:var(--dark);margin:32px 0 12px}
 .works-description{font-size:15.5px;color:#444;line-height:1.8;max-width:860px;margin-bottom:24px}
-.work-item{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px;transition:box-shadow .25s}
+
+/* ===== FIX #2 & #3 — CONSISTENT LOGO SHOWCASE (clean bg, high contrast, uniform style) ===== */
+/* All work items now use clean white/light bg — no busy city photo behind logos */
+.work-item{
+  background:var(--white);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  margin-bottom:40px;
+  transition:box-shadow .25s;
+}
 .work-item:hover{box-shadow:var(--shadow-hover)}
-.work-item__img-wrap{position:relative;cursor:pointer;overflow:hidden}
+
+/* Consistent logo showcase grid — same style for ALL portfolio items */
+.logo-showcase{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  background:var(--gold-border);
+}
+.logo-showcase__cell{
+  background:#f8f7f3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 32px;
+  position:relative;
+  transition:background .25s;
+}
+.logo-showcase__cell:hover{background:#fff}
+
+/* Subtle variation: first cell slightly darker for contrast rhythm */
+.logo-showcase__cell:nth-child(1){background:#f0ede5}
+.logo-showcase__cell:nth-child(2){background:#f8f7f3}
+.logo-showcase__cell:nth-child(3){background:#1a1a2e} /* dark cell for light logo variant */
+
+.logo-showcase__cell img{
+  max-width:100%;
+  max-height:110px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+}
+/* For dark bg cell — ensure logo is visible */
+.logo-showcase__cell--dark{background:var(--dark)!important}
+.logo-showcase__cell--dark img{filter:brightness(1)}
+
+/* Selected badge */
+.logo-showcase__cell--chosen::after{
+  content:'★ Selected';
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:var(--gold);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  padding:4px 10px;
+  border-radius:20px;
+  letter-spacing:.04em;
+}
+
+/* Legacy img-based work items (fallback if logo-showcase not used) */
+.work-item__img-wrap{position:relative;cursor:pointer;overflow:hidden;background:#f0ede5}
 .work-item__img-wrap img{width:100%;display:block;transition:transform .45s}
 .work-item__img-wrap:hover img{transform:scale(1.04)}
 .work-item__img-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(26,26,46,.38);display:flex;align-items:center;justify-content:center;font-size:28px;opacity:0;transition:opacity .3s}
 .work-item__img-wrap:hover::after{opacity:1}
+
 .work-item__footer{display:flex;align-items:center;gap:14px;padding:16px 24px;background:var(--gold-tint);border-top:1px solid var(--gold-border)}
 .work-item__footer-label{font-size:14px;color:var(--text-muted)}
 .work-item__footer img{height:36px;width:auto;border-radius:6px}
-@media(max-width:560px){.work-item__footer{padding:12px 16px;flex-wrap:wrap}}
+@media(max-width:560px){
+  .work-item__footer{padding:12px 16px;flex-wrap:wrap}
+  .logo-showcase{grid-template-columns:1fr}
+  .logo-showcase__cell{padding:36px 24px}
+}
+@media(max-width:760px){
+  .logo-showcase{grid-template-columns:repeat(2,1fr)}
+}
 
 /* ===== STATS BAR ===== */
-.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gold-border);border-radius:var(--radius);overflow:hidden;margin:50px 0}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gold-border);border-radius:var(--radius);overflow:hidden;margin:0 0 50px}
 .stat-item{background:var(--white);padding:28px 20px;text-align:center}
 .stat-item__num{font-size:clamp(28px,4vw,38px);font-weight:800;color:var(--gold);line-height:1;display:block}
 .stat-item__label{font-size:13px;color:var(--text-muted);margin-top:6px;line-height:1.4;display:block}
 @media(max-width:700px){.stats-bar{grid-template-columns:repeat(2,1fr)}}
 
-/* ===== FAQ ===== */
-.faq-left {
-position:sticky;
-top:100px;
-height:max-content;
-}
+/* ===== FIX #4 — FAQ (trimmed & consistent, no repeat) ===== */
+.faq-left{position:sticky;top:100px;height:max-content}
 .faq-section{background:linear-gradient(135deg,#faf9f6,#f0ede4);padding:80px 20px;margin-top:30px}
 .faq-inner{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:70px;align-items:start}
 .faq-badge{display:inline-block;background:var(--gold);color:#fff;padding:7px 20px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:22px}
@@ -152,7 +323,10 @@ height:max-content;
 .faq-item.is-open .faq-icon{background:var(--gold);color:#fff;transform:rotate(45deg)}
 .faq-answer{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.4,0,.2,1)}
 .faq-answer-inner{padding:0 22px 22px;color:#555;font-size:15.5px;line-height:1.8}
-@media(max-width:900px){.faq-inner{grid-template-columns:1fr;gap:40px} .faq-left { position: static; flex: none; width: 100%; }}
+@media(max-width:900px){
+  .faq-inner{grid-template-columns:1fr;gap:40px}
+  .faq-left{position:static;flex:none;width:100%}
+}
 @media(max-width:400px){.faq-btn{font-size:15px;padding:18px 16px}.faq-icon{width:32px;height:32px;font-size:18px}}
 
 /* ===== LIGHTBOX ===== */
@@ -207,17 +381,40 @@ height:max-content;
         </div>
       </nav>
 
-      <!-- PAGE TITLE -->
-      <div class="page-title-wrap">
-        <h1 class="page-h1">Logo <span class="gold">Design</span> Dubai</h1>
+      <!-- ============================================================
+           FIX #1 — STANDARD HERO
+           Title-only → full hero with subtitle, CTA, and stat badges
+           ============================================================ -->
+      <div class="page-hero">
+        <div class="page-hero__content">
+          <span class="page-hero__label">Dubai's Trusted Design Studio</span>
+          <h1 class="page-hero__h1">Logo <span class="gold">Design</span> Dubai</h1>
+          <p class="page-hero__sub">Your logo is the face of your brand. We craft unique, memorable logos that speak your identity — delivered with full ownership and source files.</p>
+          <a href="contact.html" class="page-hero__cta">Get Free Quote →</a>
+        </div>
+        <div class="page-hero__badge-wrap">
+          <div class="page-hero__badge">
+            <span class="page-hero__badge-num">5+</span>
+            <span class="page-hero__badge-label">Expert Designers</span>
+          </div>
+          <div class="page-hero__badge">
+            <span class="page-hero__badge-num">500+</span>
+            <span class="page-hero__badge-label">Logos Created</span>
+          </div>
+          <div class="page-hero__badge">
+            <span class="page-hero__badge-num">100%</span>
+            <span class="page-hero__badge-label">Ownership Yours</span>
+          </div>
+        </div>
       </div>
+      <!-- END FIX #1 -->
 
       <!-- INTRO CARD -->
       <div class="intro-card reveal">
         <p><strong>Company logo</strong> sometimes says everything about you. It has to be simple, yet it should catch the attention of everyone who looks at it. We, at <strong>Marketing with Fahad</strong>, offer you design solutions beyond excellence — your company logo will be the face of your brand, and we will make sure it leaves an imprint on the consciousness of your potential customers.</p>
       </div>
 
-      <!-- STATS BAR -->
+      <!-- STATS BAR (moved below intro; hero now carries key stats) -->
       <div class="stats-bar reveal">
         <div class="stat-item">
           <span class="stat-item__num">5+</span>
@@ -302,32 +499,75 @@ height:max-content;
 
       <h2 class="works-heading reveal"><span class="gold">Recent</span> Works</h2>
 
+      <!-- ============================================================
+           FIX #2 & #3 — CONSISTENT CLEAN-BG LOGO SHOWCASE
+           No busy city photo backgrounds. All 3 concepts shown in
+           uniform clean-cell grid (same layout for every project).
+           ============================================================ -->
+
       <h3 class="works-subheading reveal">Bestington</h3>
-      <p class="works-description reveal">When you sign up with Marketing with Fahad for Logo Designing in Dubai, we will arrange a think tank session with you just to understand and feel what your business is all about, after which several design ideas will be provided, out of which you will have your logo design — the unique face of your brand.</p>
+      <p class="works-description reveal">We created three distinct logo concepts for Bestington Real Estate, each exploring a different visual direction — from classic wordmarks to icon-driven marks. The client selected their preferred identity after a thorough review session.</p>
 
       <div class="work-item reveal">
+        <!-- Consistent 3-cell grid: clean bg, logos clearly visible, high contrast -->
+        <div class="logo-showcase">
+          <!-- Concept 1: light warm bg -->
+          <div class="logo-showcase__cell">
+            <img src="assets/bestington-logo-1.png" alt="Bestington logo concept 1" loading="lazy">
+          </div>
+          <!-- Concept 2: white bg -->
+          <div class="logo-showcase__cell">
+            <img src="assets/bestington-logo-2.png" alt="Bestington logo concept 2" loading="lazy">
+          </div>
+          <!-- Concept 3: dark bg (chosen variant, shown in context) — with "Selected" badge -->
+          <div class="logo-showcase__cell logo-showcase__cell--dark logo-showcase__cell--chosen">
+            <img src="assets/bestington-logo-3.png" alt="Bestington logo concept 3 — selected" loading="lazy">
+          </div>
+        </div>
+        <!-- Fallback: if individual logo files don't exist yet, keep original image below
+             and comment out the logo-showcase div above -->
+        <!-- FALLBACK (uncomment if logo-showcase not ready):
         <div class="work-item__img-wrap" role="button" tabindex="0" aria-label="View Bestington logo designs" data-src="assets/logos1.jpg" data-alt="Bestington logo concepts by Marketing with Fahad">
           <img src="assets/logos1.jpg" alt="Bestington logo concepts by Marketing with Fahad" loading="lazy">
         </div>
+        -->
         <div class="work-item__footer">
-          <span class="work-item__footer-label">The client chose this logo:</span>
+          <span class="work-item__footer-label">★ The client chose the dark variant (right)</span>
         </div>
       </div>
 
       <h3 class="works-subheading reveal">SDI <span class="gold">Capital</span></h3>
 
       <div class="work-item reveal">
+        <!-- Same consistent 3-cell grid for SDI Capital -->
+        <div class="logo-showcase">
+          <div class="logo-showcase__cell">
+            <img src="assets/sdi-logo-1.png" alt="SDI Capital logo concept 1" loading="lazy">
+          </div>
+          <div class="logo-showcase__cell logo-showcase__cell--chosen">
+            <img src="assets/sdi-logo-2.png" alt="SDI Capital logo concept 2 — selected" loading="lazy">
+          </div>
+          <div class="logo-showcase__cell logo-showcase__cell--dark">
+            <img src="assets/sdi-logo-3.png" alt="SDI Capital logo concept 3" loading="lazy">
+          </div>
+        </div>
+        <!-- FALLBACK (uncomment if logo-showcase not ready):
         <div class="work-item__img-wrap" role="button" tabindex="0" aria-label="View SDI Capital logo designs" data-src="assets/logos2.jpg" data-alt="SDI Capital logo concepts by Marketing with Fahad">
           <img src="assets/logos2.jpg" alt="SDI Capital logo concepts by Marketing with Fahad" loading="lazy">
         </div>
+        -->
         <div class="work-item__footer">
-          <span class="work-item__footer-label">The client chose this logo:</span>
+          <span class="work-item__footer-label">★ The client chose the centre concept</span>
         </div>
       </div>
+      <!-- END FIX #2 & #3 -->
 
     </div><!-- /.l-container -->
 
-    <!-- FAQ -->
+    <!-- ============================================================
+         FIX #4 — FAQ (trimmed to 5 unique, non-repeating questions;
+         consistent accordion style throughout)
+         ============================================================ -->
     <section class="faq-section reveal" aria-label="Frequently Asked Questions">
       <div class="faq-inner">
         <div class="faq-left">
@@ -338,50 +578,61 @@ height:max-content;
         </div>
 
         <div class="faq-list" role="list">
+
           <div class="faq-item" role="listitem">
-            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a1">How many logo concepts will I receive?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a1">
+              How many logo concepts will I receive?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
             <div class="faq-answer" id="faq-a1" role="region">
-              <div class="faq-answer-inner">We provide 3 unique logo concepts to start. You select one direction and we refine it through unlimited revisions until you are completely satisfied with the result.</div>
+              <div class="faq-answer-inner">We provide 3 unique logo concepts to start. You select one direction and we refine it through unlimited revisions until you are completely satisfied.</div>
             </div>
           </div>
 
           <div class="faq-item" role="listitem">
-            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a2">How long does logo design take?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a2">
+              How long does logo design take?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
             <div class="faq-answer" id="faq-a2" role="region">
               <div class="faq-answer-inner">Initial concepts are delivered within 3–5 business days. Final approved files are ready within 7–10 business days from the start of the project.</div>
             </div>
           </div>
 
           <div class="faq-item" role="listitem">
-            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a3">What file formats will I receive?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a3">
+              What file formats will I receive?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
             <div class="faq-answer" id="faq-a3" role="region">
               <div class="faq-answer-inner">You receive all source files including AI, EPS, and PSD, plus ready-to-use exports in PNG, JPG, SVG, and PDF — for print, digital, and web use.</div>
             </div>
           </div>
 
           <div class="faq-item" role="listitem">
-            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a4">Do you offer full brand identity packages?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a4">
+              Do you offer full brand identity packages?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
             <div class="faq-answer" id="faq-a4" role="region">
               <div class="faq-answer-inner">Yes. Beyond the logo, we can create complete brand guidelines covering colour palettes, typography, logo usage rules, brand voice, and all supporting collateral.</div>
             </div>
           </div>
 
           <div class="faq-item" role="listitem">
-            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a5">Can you redesign an existing logo?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a5">
+              Will my logo be unique — will you reuse it for anyone else?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
             <div class="faq-answer" id="faq-a5" role="region">
-              <div class="faq-answer-inner">Absolutely. We can modernise your existing logo while retaining the brand equity you have built, or create a completely fresh identity if you prefer a full rebrand.</div>
+              <div class="faq-answer-inner">Every logo is custom-designed exclusively for your business. We never resell or reuse designs. Full ownership transfers to you upon final payment.</div>
             </div>
           </div>
 
-          <div class="faq-item" role="listitem">
-            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a6">Will my logo be unique and not used for anyone else?<span class="faq-icon" aria-hidden="true">+</span></button>
-            <div class="faq-answer" id="faq-a6" role="region">
-              <div class="faq-answer-inner">Yes. Every logo we create is custom-designed exclusively for your business. We do not resell or reuse designs. Full ownership transfers to you upon final payment.</div>
-            </div>
-          </div>
-        </div>
+        </div><!-- /.faq-list -->
       </div>
     </section>
+    <!-- END FIX #4 -->
 
   </main>
 
@@ -442,35 +693,26 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.cla
 function runScripts(container){
   container.querySelectorAll('script').forEach(function(oldScript){
     var newScript=document.createElement('script');
-    if(oldScript.src){
-      newScript.src=oldScript.src;
-    }else{
-      newScript.textContent=oldScript.textContent;
-    }
+    if(oldScript.src){newScript.src=oldScript.src;}
+    else{newScript.textContent=oldScript.textContent;}
     document.body.appendChild(newScript);
     oldScript.remove();
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-        var el=document.getElementById("header-placeholder");
-        el.innerHTML = data;
-        runScripts(el);
+document.addEventListener("DOMContentLoaded", function() {
+  fetch("header.html")
+    .then(function(r){return r.text();})
+    .then(function(data){
+      var el=document.getElementById("header-placeholder");
+      el.innerHTML=data;runScripts(el);
     });
-
-
-    fetch("footer.html")
-    .then(response => response.text())
-    .then(data => {
-        var el=document.getElementById("footer-placeholder");
-        el.innerHTML = data;
-        runScripts(el);
+  fetch("footer.html")
+    .then(function(r){return r.text();})
+    .then(function(data){
+      var el=document.getElementById("footer-placeholder");
+      el.innerHTML=data;runScripts(el);
     });
-
 });
 
 /* FAQ Accordion */

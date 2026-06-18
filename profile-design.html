@@ -84,17 +84,92 @@ button { font-family: var(--font); cursor: pointer; }
 }
 .breadcrumbs span { color: var(--muted); }
 
-/* ── PAGE TITLE ── */
-.page-title-wrap {
-  opacity: 0; transform: translateY(12px);
-  animation: fadeUp 0.55s 0.2s forwards;
-  padding: 18px 0 10px;
+/* ══════════════════════════════════════════
+   FIX #1 — HERO: Text-only → Proper hero
+   ══════════════════════════════════════════ */
+.page-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--dark) 0%, #16213e 60%, #0f3460 100%);
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding: 60px 48px;
+  margin: 20px 0 44px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.15s forwards;
 }
-.page-title-wrap h1 {
-  font-size: clamp(26px, 4vw, 40px);
-  font-weight: 700; color: var(--dark); line-height: 1.2;
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,166,77,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 20%, rgba(200,166,77,0.10) 0%, transparent 60%);
+  pointer-events: none;
 }
-.page-title-wrap h1 span { color: var(--gold); }
+.page-hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-dark), var(--gold));
+}
+.page-hero-text { position: relative; z-index: 2; flex: 1; }
+.page-hero-eyebrow {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 14px;
+}
+.page-hero-text h1 {
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 700; color: #fff; line-height: 1.15;
+  margin-bottom: 16px;
+}
+.page-hero-text h1 span { color: var(--gold); }
+.page-hero-text p {
+  font-size: 16px; color: rgba(255,255,255,0.72);
+  line-height: 1.75; max-width: 520px; margin-bottom: 28px;
+}
+.page-hero-cta {
+  display: inline-block;
+  background: var(--gold); color: #fff;
+  font-size: 15px; font-weight: 600;
+  padding: 13px 30px; border-radius: 50px;
+  border: none;
+  box-shadow: 0 6px 20px var(--gold-shadow);
+  transition: background var(--tr), transform var(--tr), box-shadow var(--tr);
+}
+.page-hero-cta:hover {
+  background: var(--gold-dark); color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px var(--gold-shadow);
+}
+.page-hero-visual {
+  position: relative; z-index: 2;
+  flex-shrink: 0; width: 280px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.page-hero-visual img {
+  border-radius: 10px; width: 100%; aspect-ratio: 4/3;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.page-hero-visual img:first-child {
+  grid-column: span 2;
+  aspect-ratio: 16/7;
+}
+@media (max-width: 860px) {
+  .page-hero { flex-direction: column; padding: 40px 28px; gap: 28px; }
+  .page-hero-visual { width: 100%; }
+}
+@media (max-width: 560px) {
+  .page-hero { padding: 32px 20px; }
+  .page-hero-visual { grid-template-columns: 1fr; }
+  .page-hero-visual img:first-child { grid-column: span 1; }
+}
 
 /* ── SECTION DIVIDER ── */
 .section-divider {
@@ -111,7 +186,7 @@ button { font-family: var(--font); cursor: pointer; }
   max-width: 860px; margin-bottom: 40px;
 }
 
-/* ── SERVICE CARDS (smm_plus items) ── */
+/* ── SERVICE CARDS ── */
 .service-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -137,7 +212,6 @@ button { font-family: var(--font); cursor: pointer; }
   border-color: var(--gold);
   transform: translateY(-4px);
 }
-
 .service-card-img {
   position: relative; overflow: hidden; height: 200px;
   background: var(--gold-tint);
@@ -155,7 +229,6 @@ button { font-family: var(--font); cursor: pointer; }
   transition: transform 0.4s ease;
 }
 .service-card:hover .service-card-img img { transform: scale(1.06); }
-
 .service-card-img .zoom-icon {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%) scale(0.7);
@@ -167,13 +240,13 @@ button { font-family: var(--font); cursor: pointer; }
 }
 .service-card-img .zoom-icon svg { fill: #fff; }
 .service-card:hover .zoom-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-
 .service-card-body { padding: 20px 22px 24px; }
 .service-card-body p { font-size: 14.5px; color: var(--muted); line-height: 1.65; }
 
-/* ── PROJECT SECTIONS ── */
+/* ── PROJECT SECTIONS ──
+   FIX #4: tighter, consistent spacing between showcase blocks */
 .project-section {
-  margin-bottom: 60px;
+  margin-bottom: 40px;   /* was 60px — tightened */
   opacity: 0; transform: translateY(20px);
 }
 .project-section.visible { animation: fadeUp 0.55s forwards; }
@@ -186,7 +259,10 @@ button { font-family: var(--font); cursor: pointer; }
 .project-header h2 span { color: var(--gold); }
 .project-header p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-top: 8px; max-width: 800px; }
 
-/* ── TABS SHOWCASE ── */
+/* ── TABS SHOWCASE
+   FIX #2: darker overlay so logo/content is clearly legible
+   FIX #3: larger thumbnails
+   FIX #4: consistent showcase height & padding ── */
 .project-showcase {
   background: var(--dark);
   border-radius: var(--radius);
@@ -194,19 +270,22 @@ button { font-family: var(--font); cursor: pointer; }
   position: relative;
 }
 .showcase-bg {
-  width: 100%; min-height: 400px;
+  width: 100%; min-height: 380px;
   position: relative;
   background-size: cover;
   background-position: center;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  padding: 30px 20px 100px;
+  padding: 32px 24px 112px;  /* consistent padding across all showcases */
 }
+
+/* FIX #2 — Overlay stronger: was rgba(0,0,0,0.55) → 0.72 */
 .showcase-bg::before {
   content: '';
   position: absolute; inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.72);
 }
+
 .tab-content { position: relative; z-index: 2; text-align: center; display: none; }
 .tab-content.active { display: block; }
 .tab-content-title {
@@ -214,45 +293,49 @@ button { font-family: var(--font); cursor: pointer; }
   margin-bottom: 16px; letter-spacing: 0.02em;
 }
 .tab-content img {
-  max-width: min(80%, 480px); max-height: 260px;
+  max-width: min(80%, 480px); max-height: 240px;
   object-fit: contain; margin: 0 auto;
   border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   transition: transform 0.3s ease;
 }
 .tab-content img:hover { transform: scale(1.03); }
 
-/* Thumbnail tabs */
+/* Thumbnail tabs — FIX #3: bigger thumbs, cleaner layout */
 .tab-thumbs {
   display: flex; align-items: center; gap: 0;
-  background: rgba(255,255,255,0.06);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  overflow-x: auto; padding: 12px 16px;
+  background: rgba(0,0,0,0.55);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  overflow-x: auto; padding: 14px 20px;
   position: absolute; bottom: 0; left: 0; right: 0;
   scrollbar-width: thin; scrollbar-color: var(--gold) transparent;
+  min-height: 100px;   /* FIX #3: taller thumb bar */
 }
 .tab-group-label {
-  font-size: 11px; font-weight: 700;
+  font-size: 10px; font-weight: 700;
   color: var(--gold); text-transform: uppercase;
   letter-spacing: 0.08em; white-space: nowrap;
   padding: 0 14px 0 8px; flex-shrink: 0;
+  align-self: center;
 }
 .tab-thumb {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
   cursor: pointer; flex-shrink: 0; padding: 0 10px;
   opacity: 0.65; transition: opacity var(--tr);
 }
 .tab-thumb:hover { opacity: 0.9; }
 .tab-thumb.active { opacity: 1; }
+
+/* FIX #3: was 60×42px → now 80×56px for clarity */
 .tab-thumb-icon {
-  width: 60px; height: 42px; border-radius: 6px;
-  overflow: hidden; border: 2px solid transparent;
-  background: rgba(255,255,255,0.08);
+  width: 80px; height: 56px; border-radius: 7px;
+  overflow: hidden; border: 2.5px solid transparent;
+  background: rgba(255,255,255,0.12);
   transition: border-color var(--tr);
 }
 .tab-thumb.active .tab-thumb-icon { border-color: var(--gold); }
 .tab-thumb-icon img { width: 100%; height: 100%; object-fit: cover; }
-.tab-thumb-name { font-size: 11px; color: #fff; white-space: nowrap; }
+.tab-thumb-name { font-size: 11px; color: rgba(255,255,255,0.9); white-space: nowrap; font-weight: 500; }
 
 /* ── RECENT WORKS HEADING ── */
 .recent-works-label {
@@ -263,10 +346,14 @@ button { font-family: var(--font); cursor: pointer; }
   padding: 5px 16px; border-radius: 30px;
   margin-bottom: 16px;
 }
-/* ── FAQ SECTION ── */
 
+/* ══════════════════════════════════════════
+   FIX #5 — FAQ: Trimmed to 5 unique items
+   (removed "Do I retain ownership" duplicate-feel entry
+    keeping only most relevant 5)
+   ══════════════════════════════════════════ */
 .faq-section {
-  padding: 80px 0;
+  padding: 72px 0;
   background: #f8f6f1;
   width: 100vw;
   margin-left: 50%;
@@ -283,12 +370,10 @@ button { font-family: var(--font); cursor: pointer; }
   top: 100px;
   height: max-content;
 }
-
 @media (max-width: 900px) {
   .faq-inner { grid-template-columns: 1fr; gap: 40px; }
   .faq-sidebar { position: static; }
 }
-
 .faq-sidebar .badge {
   display: inline-block; background: var(--gold); color: #fff;
   font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
@@ -336,6 +421,7 @@ button { font-family: var(--font); cursor: pointer; }
   padding: 0 22px; font-size: 15px; color: var(--muted); line-height: 1.75;
 }
 .faq-item.open .faq-content { max-height: 300px; padding: 0 22px 20px; }
+
 /* ── LIGHTBOX ── */
 .lightbox {
   display: none; position: fixed; inset: 0; z-index: 2000;
@@ -367,8 +453,9 @@ button { font-family: var(--font); cursor: pointer; }
 /* ── RESPONSIVE FIXES ── */
 @media (max-width: 560px) {
   .faq-btn { font-size: 15px; padding: 16px 18px; }
-  .showcase-bg { min-height: 300px; padding-bottom: 90px; }
-  .tab-content img { max-height: 180px; }
+  .showcase-bg { min-height: 300px; padding-bottom: 120px; }
+  .tab-content img { max-height: 160px; }
+  .tab-thumb-icon { width: 64px; height: 44px; }
 }
 @media (max-width: 400px) {
   .faq-btn { font-size: 14px; }
@@ -399,9 +486,21 @@ button { font-family: var(--font); cursor: pointer; }
         </span>
       </nav>
 
-      <!-- Page Title -->
-      <div class="page-title-wrap">
-        <h1>Company <span>Profile Designing</span></h1>
+      <!-- ══════════════════════════════════════════
+           FIX #1 — Proper Hero (not just plain h1)
+           ══════════════════════════════════════════ -->
+      <div class="page-hero">
+        <div class="page-hero-text">
+          <span class="page-hero-eyebrow">Dubai's Top Design Agency</span>
+          <h1>Company <span>Profile Designing</span></h1>
+          <p>Your company profile makes the first impression — and first impressions win deals. We craft profiles that are brief, elegant, and impossible to ignore.</p>
+          <a href="contact.html" class="page-hero-cta">Get a Free Consultation</a>
+        </div>
+        <div class="page-hero-visual" aria-hidden="true">
+          <img src="assets/cpd_txt1.jpg" alt="Company profile design sample">
+          <img src="assets/cpd_txt2.jpg" alt="Profile design example">
+          <img src="assets/cpd_txt3.jpg" alt="Brochure design sample">
+        </div>
       </div>
 
       <!-- Section Divider -->
@@ -651,13 +750,17 @@ button { font-family: var(--font); cursor: pointer; }
 
     </div><!-- /l-container -->
 
-    <!-- ── FAQ ── -->
+    <!-- ══════════════════════════════════════════
+         FIX #5 — FAQ: Trimmed from 6 → 5 items
+         (removed "Do I retain ownership" — felt
+          repetitive / less relevant for this page)
+         ══════════════════════════════════════════ -->
     <section class="faq-section" aria-label="Frequently Asked Questions">
       <div class="faq-inner">
         <div class="faq-sidebar" data-reveal>
           <span class="badge">FAQs</span>
           <h2>Frequently<br><span>Asked Questions</span></h2>
-          <p>Everything you need to know about our social media profile design and optimisation services.</p>
+          <p>Everything you need to know about our company profile design services in Dubai and the UAE.</p>
           <a href="contact.html" class="faq-cta">Get Free Profile Audit</a>
         </div>
 
@@ -713,16 +816,6 @@ button { font-family: var(--font); cursor: pointer; }
             </div>
           </div>
 
-          <div class="faq-item" data-reveal>
-            <button class="faq-btn" aria-expanded="false">
-              Do I retain ownership of all the graphics created?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-content" role="region">
-              Yes. All designs are created exclusively for you and full ownership transfers to you upon completion. You receive all source files and final exports.
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -732,7 +825,6 @@ button { font-family: var(--font); cursor: pointer; }
   <div id="footer-placeholder"></div>
 </div><!-- /l-wrapper -->
 
-
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&#215;</button>
@@ -741,29 +833,25 @@ button { font-family: var(--font); cursor: pointer; }
 
 <script>
 // ── HEADER / FOOTER ──
-// ── HEADER / FOOTER ───────────────────────────────────────
-  function runScripts(container) {
-    container.querySelectorAll('script').forEach(oldScript => {
-      const newScript = document.createElement('script');
-      if (oldScript.src) {
-        newScript.src = oldScript.src;
-      } else {
-        newScript.textContent = oldScript.textContent;
-      }
-      document.body.appendChild(newScript);
-      oldScript.remove();
-    });
-  }
+function runScripts(container) {
+  container.querySelectorAll('script').forEach(oldScript => {
+    const newScript = document.createElement('script');
+    if (oldScript.src) { newScript.src = oldScript.src; }
+    else { newScript.textContent = oldScript.textContent; }
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
+async function loadPart(url, id) {
+  try {
+    const r = await fetch(url);
+    const el = document.getElementById(id);
+    if (el) { el.innerHTML = await r.text(); runScripts(el); }
+  } catch(e) {}
+}
+loadPart('header.html', 'header-placeholder');
+loadPart('footer.html', 'footer-placeholder');
 
-  async function loadPart(url, id) {
-    try {
-      const r = await fetch(url);
-      const el = document.getElementById(id);
-      if (el) { el.innerHTML = await r.text(); runScripts(el); }
-    } catch(e) {}
-  }
-  loadPart('header.html', 'header-placeholder');
-  loadPart('footer.html', 'footer-placeholder');
 // ── SCROLL REVEAL ──
 const revealEls = document.querySelectorAll('[data-reveal]');
 const revealObs = new IntersectionObserver(entries => {
@@ -782,7 +870,7 @@ const revealObs = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObs.observe(el));
 
-// ── SERVICE CARD LIGHTBOX triggers ──
+// ── SERVICE CARD LIGHTBOX ──
 document.querySelectorAll('.service-card-img').forEach(wrap => {
   wrap.addEventListener('click', () => {
     if (window.innerWidth < 600) return;
@@ -807,7 +895,6 @@ document.querySelectorAll('.project-showcase').forEach(showcase => {
     });
   });
 
-  // Tab image lightbox
   contents.forEach(content => {
     const img = content.querySelector('img');
     if (!img) return;
@@ -855,7 +942,6 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
     }
   });
 });
-
 </script>
 </body>
 </html>

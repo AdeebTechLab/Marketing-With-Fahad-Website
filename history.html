@@ -55,7 +55,7 @@ p:last-child{margin-bottom:0}
 .l-main{flex:1;padding-bottom:60px}
 .l-container{width:100%;max-width:1270px;margin:0 auto;padding:0 22px}
 
-/* ===== HERO BANNER — FIX #1: title + breadcrumb overlay ===== */
+/* ===== HERO BANNER ===== */
 .hero-banner{
   position:relative;
   width:100%;
@@ -75,7 +75,6 @@ p:last-child{margin-bottom:0}
   position:absolute;inset:0;
   background:linear-gradient(to bottom,rgba(26,26,46,.15) 0%,rgba(26,26,46,.72) 100%);
 }
-/* Overlay content on hero */
 .hero-overlay{
   position:absolute;bottom:0;left:0;right:0;
   z-index:2;
@@ -93,13 +92,15 @@ p:last-child{margin-bottom:0}
 .hero-breadcrumbs a:hover{color:#fff}
 .hero-breadcrumbs a::after{content:'›';margin:0 8px;color:rgba(255,255,255,.45);font-size:12px}
 .hero-breadcrumbs span{color:rgba(255,255,255,.55)}
-/* FIX #3: Brand H1 with subtitle */
 .hero-h1{
   font-size:clamp(26px,4vw,46px);
   font-weight:800;
   line-height:1.15;
   color:#fff;
   margin-bottom:8px;
+  /* FIX #3: ensure no clip on heading */
+  overflow:visible;
+  padding-bottom:4px;
 }
 .hero-h1 .gold{color:var(--gold)}
 .hero-subtitle{
@@ -118,26 +119,28 @@ p:last-child{margin-bottom:0}
 .section-divider__label{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
 .section-divider__line{flex:1;height:1px;background:linear-gradient(to right,var(--gold-border),transparent)}
 
-/* ===== HISTORY TEXT — FIX #5: gold links, fix spacing; FIX #6: max-width, left-align ===== */
+/* ===== HISTORY TEXT ===== */
 .history-content{
   background:var(--white);
   border-radius:var(--radius);
   padding:36px 44px;
   box-shadow:var(--shadow);
   line-height:1.8;
-  max-width:800px; /* FIX #6 */
+  max-width:800px;
+  /* FIX #3: prevent content clip */
+  overflow:visible;
 }
 .history-content p{
   color:#3a3a3a;
   font-size:16.5px;
-  text-align:left; /* FIX #6: no justify */
+  text-align:left;
   margin-bottom:1.3em;
 }
-.history-content a{color:var(--gold);font-weight:500} /* FIX #5: gold, not purple */
+.history-content a{color:var(--gold);font-weight:500}
 .history-content a:hover{color:var(--gold-dark);text-decoration:underline}
 @media(max-width:700px){.history-content{padding:24px 20px;max-width:100%}}
 
-/* ===== PHOTO GRID — FIX #6 / #9: uniform grid, aspect-ratio consistent ===== */
+/* ===== PHOTO GRID ===== */
 .photo-grid{display:grid;gap:14px;margin:32px 0}
 .photo-grid--3{grid-template-columns:repeat(3,1fr)}
 .photo-grid--4{grid-template-columns:repeat(4,1fr)}
@@ -149,7 +152,15 @@ p:last-child{margin-bottom:0}
   background:#eee;
   aspect-ratio:1;
 }
-.photo-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.photo-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  /* FIX #2: consistent image rendering for all photos */
+  object-position:center center;
+  image-rendering:auto;
+  transition:transform .4s ease;
+}
 .photo-card::after{
   content:'🔍';
   position:absolute;inset:0;
@@ -161,7 +172,6 @@ p:last-child{margin-bottom:0}
 }
 .photo-card:hover img{transform:scale(1.06)}
 .photo-card:hover::after{opacity:1}
-/* Caption for team photos — FIX #6 */
 .photo-wrap{display:flex;flex-direction:column;gap:0}
 .photo-caption{
   font-size:13px;
@@ -169,6 +179,19 @@ p:last-child{margin-bottom:0}
   text-align:center;
   padding:8px 4px 0;
   font-weight:500;
+}
+/* FIX #2: Timeline photo grid - consistent aspect ratio & treatment */
+.photo-grid--timeline .photo-card{
+  aspect-ratio:4/3;
+  border:2px solid var(--gold-border);
+  box-shadow:var(--shadow);
+}
+.photo-grid--timeline .photo-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  filter:none;
 }
 @media(max-width:900px){.photo-grid--4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){
@@ -200,8 +223,17 @@ p:last-child{margin-bottom:0}
 .timeline-text{font-size:15px;color:#444;line-height:1.7}
 @media(max-width:560px){.timeline{padding-left:28px}}
 
-/* ===== STATS ROW — FIX #10: transition before FAQ ===== */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:40px 0}
+/* ===== STATS ROW — FIX #1: proper spacing, no overlap with hero ===== */
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  /* FIX #1: clear top margin so stats never overlap the hero banner */
+  margin:32px 0 40px;
+  padding-top:0;
+  position:relative;
+  z-index:1;
+}
 .stat-card{
   background:var(--white);border-radius:var(--radius-sm);
   padding:24px 16px;text-align:center;
@@ -209,12 +241,25 @@ p:last-child{margin-bottom:0}
   transition:transform .2s,box-shadow .2s;
 }
 .stat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
-.stat-card__num{font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--gold);line-height:1}
+.stat-card__num{
+  font-size:clamp(28px,4vw,40px);
+  font-weight:800;
+  color:var(--gold);
+  line-height:1;
+  /* FIX #3: prevent number clip */
+  overflow:visible;
+  padding-bottom:2px;
+}
 .stat-card__label{font-size:13px;color:var(--text-muted);margin-top:6px;line-height:1.4}
 @media(max-width:900px){.stats-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:400px){.stats-row{grid-template-columns:1fr 1fr}}
 
-/* ===== CTA STRIP — FIX #10: transition before FAQ section ===== */
+/* FIX #1: l-container gets proper top padding so stats row has breathing room */
+.l-main > .l-container:first-of-type{
+  padding-top:32px;
+}
+
+/* ===== CTA STRIP ===== */
 .cta-strip{
   background:linear-gradient(135deg,var(--dark) 0%,#2a2a4e 100%);
   border-radius:var(--radius);
@@ -231,6 +276,9 @@ p:last-child{margin-bottom:0}
   font-weight:800;
   color:#fff;
   margin-bottom:8px;
+  /* FIX #3: line-height fix, no clip */
+  line-height:1.2;
+  overflow:visible;
 }
 .cta-strip__text p{color:rgba(255,255,255,.65);font-size:16px;margin:0}
 .cta-strip__btn{
@@ -253,7 +301,7 @@ p:last-child{margin-bottom:0}
   .cta-strip{flex-direction:column;padding:28px 22px;text-align:center}
 }
 
-/* ===== FAQ SECTION — FIX #11 + #12 ===== */
+/* ===== FAQ SECTION ===== */
 .faq-section{
   background:linear-gradient(135deg,#faf9f6 0%,#f0ede4 100%);
   padding:80px 20px;
@@ -264,7 +312,6 @@ p:last-child{margin-bottom:0}
   display:grid;grid-template-columns:1fr 1.6fr;
   gap:70px;align-items:start;
 }
-/* FIX #11: sticky sidebar to fix empty space */
 .faq-left{position:sticky;top:24px}
 .faq-badge{
   display:inline-block;background:var(--gold);color:var(--white);
@@ -279,7 +326,6 @@ p:last-child{margin-bottom:0}
 }
 .faq-heading .gold{color:var(--gold)}
 .faq-subtext{font-size:16px;color:#555;line-height:1.8;margin-bottom:32px}
-/* Highlights box in sidebar — FIX #11 */
 .faq-highlights{
   background:var(--white);border-radius:var(--radius-sm);
   padding:20px 22px;margin:24px 0 28px;
@@ -366,6 +412,7 @@ p:last-child{margin-bottom:0}
 }
 .lightbox-close:hover{background:var(--gold-dark)}
 @media(max-width:600px){.lightbox-overlay{display:none!important}}
+
 /* ===== SCROLL REVEAL ===== */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -386,11 +433,10 @@ p:last-child{margin-bottom:0}
 
   <main class="l-main">
 
-    <!-- FIX #1 + #2 + #3: Hero with title, breadcrumbs, brand name, subtitle -->
+    <!-- HERO BANNER -->
     <div class="hero-banner">
       <img src="assets/history-1.jpeg" alt="Marketing with Fahad Dubai Office" title="History of Marketing with Fahad">
       <div class="hero-overlay">
-        <!-- FIX #2: breadcrumbs in gold theme, on the banner -->
         <nav class="hero-breadcrumbs" aria-label="Breadcrumb">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
@@ -403,11 +449,10 @@ p:last-child{margin-bottom:0}
 
     <div class="l-container">
 
-      <!-- STATS ROW -->
+      <!-- FIX #1: stats-row with proper margin-top so it never overlaps the hero -->
       <div class="stats-row reveal">
         <div class="stat-card reveal-delay-1">
           <div class="stat-card__num">2008</div>
-          <!-- FIX #12: consistent founding year -->
           <div class="stat-card__label">Year Founded</div>
         </div>
         <div class="stat-card reveal-delay-2">
@@ -431,14 +476,13 @@ p:last-child{margin-bottom:0}
         <div class="section-divider__line"></div>
       </div>
 
-      <!-- FIX #5 + #6: gold links, max-width 800px, left-aligned text -->
       <div class="history-content reveal">
         <p>Marketing with Fahad began with a clear opportunity: businesses across the UAE wanted an online presence, but very few specialists existed who truly understood both <a href="/services/web-design/">web development</a> and search engine visibility. We built the agency to close that gap.</p>
         <p>Our first projects used popular CMS platforms, always with original, custom design. Soon it became clear that building a website was only half the job — the other half was making sure people could find it. That insight pushed us to focus deeply on search engine algorithms from the very beginning.</p>
         <p>In 2008 we officially launched Marketing with Fahad as a dedicated SEO and digital marketing agency. Our proprietary CMS platform launched alongside the agency and has been improving ever since — now powering everything from corporate websites to full e-commerce stores, all built to rank.</p>
       </div>
 
-      <!-- TEAM SECTION — FIX #6: uniform grid, real captions -->
+      <!-- TEAM SECTION -->
       <div class="section-divider reveal" style="margin-top:44px">
         <div class="section-divider__dot"></div>
         <span class="section-divider__label">Our Team</span>
@@ -490,17 +534,16 @@ p:last-child{margin-bottom:0}
           <span class="timeline-year">2013</span>
           <p class="timeline-text">Reached 20+ employees across four offices. Established Dubai as the primary international hub.</p>
         </div>
-        <!-- FIX #12: removed "17 years" claim; consistent with 2008 founding -->
         <div class="timeline-item">
           <span class="timeline-year">Today</span>
           <p class="timeline-text">5+ SEO experts, 786 active clients, and 750+ websites ranking on Google Page 1 across the UAE, UK, and beyond.</p>
         </div>
       </div>
 
-      <!-- MORE HISTORY TEXT — FIX #8: removed "flash animators", replaced "guarantee" language -->
+      <!-- MORE HISTORY TEXT -->
+      <!-- FIX #2: Added photo-grid--timeline class for consistent photo treatment -->
       <div class="history-content reveal" style="margin-bottom:20px">
         <p>By 2010 our team had grown to 7 people across two offices, and by 2013 we had expanded to more than 20 employees in four locations. Marketing with Fahad in Dubai remains our flagship branch and international hub.</p>
-        <!-- FIX #8: "UI/UX designers" replaces "flash animators"; "proven track record" replaces "guarantee" -->
         <p>Our team — programmers, UI/UX designers, content writers, SEO experts, and account managers — all bring deep professional expertise. That collective knowledge gives us a proven track record across every type of SEO and digital marketing project.</p>
         <p>We have built a proprietary platform that centralises reporting, tracks every promoted project in real time, and allows our development team to ship new CMS modules continuously. This means our clients always benefit from current best practices, not yesterday's playbook.</p>
       </div>
@@ -511,7 +554,8 @@ p:last-child{margin-bottom:0}
         <div class="section-divider__line"></div>
       </div>
 
-      <div class="photo-grid photo-grid--3 reveal">
+      <!-- FIX #2: photo-grid--timeline for consistent border/aspect ratio on office photos -->
+      <div class="photo-grid photo-grid--3 photo-grid--timeline reveal">
         <div class="photo-wrap reveal-delay-1">
           <div class="photo-card" role="button" tabindex="0" aria-label="View office photo" data-src="assets/darvin_studio_rabota_03.jpg" data-alt="Marketing with Fahad Dubai Office">
             <img src="assets/darvin_studio_rabota_03.jpg" alt="Marketing with Fahad Dubai Office" loading="lazy">
@@ -532,7 +576,6 @@ p:last-child{margin-bottom:0}
         </div>
       </div>
 
-      <!-- FIX #10: CTA strip as transition before FAQ -->
       <div class="cta-strip reveal">
         <div class="cta-strip__text">
           <h2>Ready to rank on Page 1?</h2>
@@ -543,20 +586,19 @@ p:last-child{margin-bottom:0}
 
     </div><!-- /.l-container -->
 
-    <!-- FAQ SECTION — FIX #11: sticky sidebar, highlights box; FIX #12: no "17 years" conflict -->
+    <!-- FAQ SECTION -->
     <section class="faq-section reveal" aria-label="Frequently Asked Questions">
       <div class="faq-inner">
         <div class="faq-left">
           <span class="faq-badge">FAQs</span>
           <h2 class="faq-heading">Frequently<br><span class="gold">Asked Questions</span></h2>
           <p class="faq-subtext">Learn more about our journey and what makes Marketing with Fahad different in the UAE.</p>
-          <!-- FIX #11: highlights box replaces empty space -->
           <ul class="faq-highlights">
             <li>Founded in Dubai, 2008</li>
             <li>750+ Page 1 rankings delivered</li>
-            <li>20+ in-house  Team Members</li>
+            <li>20+ in-house Team Members</li>
             <li>Pay-after-results model</li>
-            <li>UAE, UK & international clients</li>
+            <li>UAE, UK &amp; international clients</li>
           </ul>
           <a href="contact.html" class="faq-cta">Get Free Consultation</a>
         </div>
@@ -605,7 +647,6 @@ p:last-child{margin-bottom:0}
           <div class="faq-item" role="listitem">
             <button class="faq-btn" aria-expanded="false" aria-controls="faq-a5">
               How has the agency stayed competitive in a fast-changing industry?
-              <!-- FIX #12: removed "17 years" claim from question -->
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" id="faq-a5" role="region">
@@ -705,6 +746,7 @@ document.querySelectorAll('.photo-card').forEach(function(card){
 lbClose.addEventListener('click',closeLightbox);
 overlay.addEventListener('click',function(e){if(e.target===overlay)closeLightbox();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('active'))closeLightbox();});
+
 function runScripts(container){
   container.querySelectorAll('script').forEach(function(oldScript){
     var newScript=document.createElement('script');
@@ -719,7 +761,6 @@ function runScripts(container){
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
     fetch("header.html")
     .then(response => response.text())
     .then(data => {
@@ -728,7 +769,6 @@ document.addEventListener("DOMContentLoaded", () => {
         runScripts(el);
     });
 
-
     fetch("footer.html")
     .then(response => response.text())
     .then(data => {
@@ -736,7 +776,6 @@ document.addEventListener("DOMContentLoaded", () => {
         el.innerHTML = data;
         runScripts(el);
     });
-
 });
 })();
 </script>

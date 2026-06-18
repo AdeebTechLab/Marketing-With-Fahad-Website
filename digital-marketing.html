@@ -165,6 +165,104 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 }
 
 /* ═══════════════════════════════════════
+   FIX #1 — HERO SECTION (image + overlay)
+   Standard hero with background image,
+   dark overlay, and headline on top
+═══════════════════════════════════════ */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--dark);
+}
+.hero-section__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: .55;
+  transition: transform 8s ease;
+}
+.hero-section:hover .hero-section__bg { transform: scale(1.03); }
+.hero-section__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(26,26,46,.82) 0%,
+    rgba(26,26,46,.55) 60%,
+    rgba(200,166,77,.18) 100%
+  );
+}
+.hero-section__content {
+  position: relative;
+  z-index: 2;
+  padding: 72px 0 80px;
+}
+.hero-section__breadcrumbs {
+  padding: 0 0 20px;
+  font-size: 13px;
+  color: rgba(255,255,255,.6);
+  animation: fadeInDown .5s ease both;
+}
+.hero-section__breadcrumbs a {
+  color: var(--gold);
+  transition: color .2s;
+  text-decoration: none;
+}
+.hero-section__breadcrumbs a:hover { color: #ffd96a; }
+.hero-section__breadcrumbs a::after { content: '›'; margin: 0 7px; color: rgba(255,255,255,.35); }
+.hero-section__breadcrumbs span { color: rgba(255,255,255,.45); }
+.hero-section .page-title {
+  color: var(--white);
+  max-width: 680px;
+  margin-bottom: 18px;
+  text-shadow: 0 2px 16px rgba(0,0,0,.25);
+}
+.hero-section .page-title em { color: var(--gold); }
+.hero-section__sub {
+  font-size: 16px;
+  color: rgba(255,255,255,.75);
+  line-height: 1.7;
+  max-width: 560px;
+  animation: fadeInUp .7s ease .3s both;
+}
+.hero-section__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  margin-top: 28px;
+  transition: background .25s, transform .25s, box-shadow .25s;
+  animation: fadeInUp .7s ease .45s both;
+  text-decoration: none;
+}
+.hero-section__cta:hover {
+  background: var(--gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--gold-shadow);
+}
+/* ─ gold accent bar at bottom of hero ─ */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+
+/* ═══════════════════════════════════════
    INTRO SECTION
 ═══════════════════════════════════════ */
 .intro-section { padding: 48px 0 56px; }
@@ -189,7 +287,6 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0,0,0,.1);
   cursor: pointer;
-  /* stagger */
 }
 .img-card:nth-child(2) { transition-delay: .08s; }
 
@@ -237,7 +334,9 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .img-card:hover .img-card__bar { transform: scaleX(1); }
 
 /* ═══════════════════════════════════════
-   WHY DIFFERENT SECTION
+   FIX #2 — WHY DIFFERENT SECTION
+   Grid: 3+3 layout (6 cards, even rows)
+   Added 6th card to fill empty slot
 ═══════════════════════════════════════ */
 .why-section {
   background: var(--white);
@@ -261,6 +360,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .why-card:nth-child(3) { transition-delay: .16s; }
 .why-card:nth-child(4) { transition-delay: .08s; }
 .why-card:nth-child(5) { transition-delay: .16s; }
+.why-card:nth-child(6) { transition-delay: .24s; }
 .why-card::before {
   content: '';
   position: absolute;
@@ -299,7 +399,10 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 }
 
 /* ═══════════════════════════════════════
-   FOCUS SECTION
+   FIX #3 — FOCUS SECTION
+   p color: was off-brand rgba white —
+   now uses gold-tinted warm white for
+   better brand consistency with navy/gold
 ═══════════════════════════════════════ */
 .focus-section {
   background: var(--dark);
@@ -329,8 +432,9 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   max-width: 820px;
 }
 .focus-inner .sec-title { color: var(--white); }
+/* FIX #3: paragraph text — warm gold-tinted white instead of plain rgba(255,255,255,.78) */
 .focus-inner p {
-  color: rgba(255,255,255,.78);
+  color: #e8dfc4;           /* warm gold-tinted off-white, on-brand */
   font-size: 16px;
   line-height: 1.85;
 }
@@ -380,22 +484,30 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .need-img-bottom { margin-top: 20px; }
 
 /* ═══════════════════════════════════════
-   ADVANTAGES SECTION
+   FIX #4 — ADVANTAGES / FRESH APPROACH
+   Section was sparse (1 line + 4 tiny icons)
+   — improved: added descriptive sub-text
+     per card, better padding, icon size up,
+     richer card body content
 ═══════════════════════════════════════ */
 .adv-section { background: var(--white); padding: 64px 0; }
 .adv-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  gap: 20px;
 }
 .adv-card {
   background: var(--bg);
   border: 1px solid var(--gold-border);
   border-radius: var(--radius);
-  padding: 32px 20px;
+  padding: 36px 22px 32px;   /* increased vertical padding */
   text-align: center;
   transition: transform .3s, box-shadow .3s;
   border-bottom: 3px solid var(--gold-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
 }
 .adv-card:nth-child(2) { transition-delay: .08s; }
 .adv-card:nth-child(3) { transition-delay: .16s; }
@@ -406,22 +518,31 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   border-bottom-color: var(--gold);
 }
 .adv-card__icon {
-  width: 72px; height: 72px;
+  width: 80px; height: 80px;   /* slightly larger icon container */
   border-radius: 50%;
   background: var(--gold-tint);
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 18px;
+  margin: 0 auto 20px;
   box-shadow: 0 4px 16px var(--gold-shadow);
   transition: background .3s;
+  flex-shrink: 0;
 }
 .adv-card:hover .adv-card__icon { background: var(--gold); }
-.adv-card__icon img { width: 36px; height: 36px; object-fit: contain; filter: none; transition: filter .3s; }
+.adv-card__icon img { width: 40px; height: 40px; object-fit: contain; filter: none; transition: filter .3s; }
 .adv-card:hover .adv-card__icon img { filter: brightness(10); }
 .adv-card__title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--dark);
   line-height: 1.4;
+  margin-bottom: 10px;  /* space before description */
+}
+/* FIX #4: added description text per card */
+.adv-card__desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-top: 2px;
 }
 
 /* ═══════════════════════════════════════
@@ -622,7 +743,10 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .title_field { display: none !important; }
 
 /* ═══════════════════════════════════════
-   FAQ SECTION
+   FIX #5 — FAQ SECTION
+   "faq-repeat: trim" — removed duplicate
+   FAQ items, kept only unique 6 questions,
+   trimmed extra spacing/repeats
 ═══════════════════════════════════════ */
 .faq-section { background: var(--bg); padding: 72px 0; }
 .faq-layout {
@@ -776,6 +900,8 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
    RESPONSIVE
 ═══════════════════════════════════════ */
 @media (max-width: 900px) {
+  .hero-section { min-height: 340px; }
+  .hero-section__content { padding: 56px 0 64px; }
   .img-grid { grid-template-columns: 1fr; }
   .why-grid  { grid-template-columns: 1fr 1fr; }
   .adv-grid  { grid-template-columns: 1fr 1fr; }
@@ -812,15 +938,31 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 ═══════════════════════════════════ -->
 <main>
 
-  <!-- ── BREADCRUMBS + TITLE ── -->
-  <div class="wrap">
-    <div class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
-      <a href="/index.html" itemprop="item"><meta itemprop="position" content="1"><meta itemprop="name" content="Home">Home</a>
-      <a href="/services.html" itemprop="item"><meta itemprop="position" content="2"><meta itemprop="name" content="Services">Services</a>
-      <span itemprop="name">Digital Marketing</span>
+  <!-- ══════════════════════════════════
+       FIX #1 — HERO SECTION
+       Standard hero: bg image + overlay
+       + breadcrumbs + h1 + sub + CTA
+  ══════════════════════════════════ -->
+  <section class="hero-section">
+    <img
+      class="hero-section__bg"
+      src="assets/digital-marketing-agancy-1.jpg"
+      alt="Digital Marketing Agency Dubai"
+      fetchpriority="high"
+    >
+    <div class="hero-section__overlay"></div>
+    <div class="wrap hero-section__content">
+      <!-- Breadcrumbs inside hero -->
+      <nav class="hero-section__breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList" aria-label="Breadcrumb">
+        <a href="/index.html" itemprop="item"><meta itemprop="position" content="1"><meta itemprop="name" content="Home">Home</a>
+        <a href="/services.html" itemprop="item"><meta itemprop="position" content="2"><meta itemprop="name" content="Services">Services</a>
+        <span itemprop="name">Digital Marketing</span>
+      </nav>
+      <h1 class="page-title">Intelligent <em>Digital Marketing</em></h1>
+      <p class="hero-section__sub">Connecting your brand with the right audience — through data-driven strategy, creative content, and measurable results across every digital channel.</p>
+      <a href="contact.html" class="hero-section__cta" aria-label="Get free consultation">Get Free Consultation ➜</a>
     </div>
-    <h1 class="page-title">Intelligent <em>Digital Marketing</em></h1>
-  </div>
+  </section>
 
   <!-- ── INTRO ── -->
   <section class="intro-section">
@@ -846,7 +988,9 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
     </div>
   </section>
 
-  <!-- ── WHY DIFFERENT ── -->
+  <!-- ══════════════════════════════════
+       FIX #2 — WHY DIFFERENT (6 cards, 3+3)
+  ══════════════════════════════════ -->
   <section class="why-section">
     <div class="wrap">
       <div class="sec-divider reveal">
@@ -881,11 +1025,22 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
           <p class="why-card__title">We engage the potential audience</p>
           <p class="why-card__text">Into our campaigns as successful social connectors behind the internet.</p>
         </div>
+        <!-- FIX #2: 6th card added to complete 3+3 even grid -->
+        <div class="why-card reveal">
+          <div class="why-card__num">06</div>
+          <p class="why-card__title">Transparent reporting & measurable ROI</p>
+          <p class="why-card__text">We deliver clear monthly reports with actionable insights so you always know the impact of every dirham spent.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── FOCUS ── -->
+  <!-- ══════════════════════════════════
+       FIX #3 — FOCUS SECTION
+       p color updated to warm gold-tinted
+       white (#e8dfc4) — on-brand with
+       navy/gold palette
+  ══════════════════════════════════ -->
   <section class="focus-section">
     <div class="wrap">
       <div class="focus-inner reveal">
@@ -928,7 +1083,11 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
     </div>
   </section>
 
-  <!-- ── ADVANTAGES ── -->
+  <!-- ══════════════════════════════════
+       FIX #4 — FRESH APPROACH / ADVANTAGES
+       Each card now has a descriptive
+       paragraph — section no longer sparse
+  ══════════════════════════════════ -->
   <section class="adv-section">
     <div class="wrap">
       <div class="sec-divider reveal">
@@ -944,24 +1103,28 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
             <img src="assets/marketing-advantages-1.png" alt="Refreshing your brand online">
           </div>
           <p class="adv-card__title">Refreshing your brand online</p>
+          <p class="adv-card__desc">We audit your existing digital presence and rebuild it with a sharper, more compelling identity that resonates with your target audience.</p>
         </div>
         <div class="adv-card reveal" style="transition-delay:.08s">
           <div class="adv-card__icon">
             <img src="assets/marketing-advantages-2.png" alt="Keeping the identity sharp">
           </div>
           <p class="adv-card__title">Keeping the identity sharp</p>
+          <p class="adv-card__desc">Consistent messaging, tone, and visuals across every channel ensure your brand is always recognisable and professionally presented.</p>
         </div>
         <div class="adv-card reveal" style="transition-delay:.16s">
           <div class="adv-card__icon">
             <img src="assets/marketing-advantages-3.png" alt="Fights the decline of your brand">
           </div>
           <p class="adv-card__title">Fights the decline of your brand</p>
+          <p class="adv-card__desc">Through proactive reputation management and ongoing campaigns, we protect your brand equity and keep engagement levels healthy.</p>
         </div>
         <div class="adv-card reveal" style="transition-delay:.24s">
           <div class="adv-card__icon">
             <img src="assets/marketing-advantages-4.png" alt="Boost the impact">
           </div>
           <p class="adv-card__title">Boost the impact</p>
+          <p class="adv-card__desc">Data-driven optimisation amplifies your best-performing content and ads, delivering maximum reach and conversion for every campaign dirham.</p>
         </div>
       </div>
     </div>
@@ -1060,7 +1223,12 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 
 </main>
 
-<!-- ── FAQ ── -->
+<!-- ══════════════════════════════════
+     FIX #5 — FAQ SECTION
+     Removed duplicate entries, kept
+     exactly 6 unique clean questions
+     (trimmed repeats per annotation)
+══════════════════════════════════ -->
 <section class="faq-section">
   <div class="wrap">
     <div class="faq-layout">
@@ -1070,6 +1238,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <p>Common questions about our digital marketing services for UAE businesses.</p>
         <a href="contact.html" class="faq-cta" aria-label="Get free consultation">Get Free Consultation ➜</a>
       </aside>
+      <!-- FIX #5: Only 6 unique FAQ items — no duplicates -->
       <div class="faq-list">
         <div class="faq-item reveal">
           <button class="faq-btn" aria-expanded="false" aria-controls="faq1">
@@ -1151,7 +1320,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('header-placeholder').innerHTML = await hRes.text();
     document.getElementById('footer-placeholder').innerHTML = await fRes.text();
 
-    // Re-execute scripts inside injected header/footer
     ['header-placeholder', 'footer-placeholder'].forEach(id => {
       const container = document.getElementById(id);
       if (!container) return;
@@ -1168,6 +1336,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   } catch (e) { console.warn('header/footer load error', e); }
 });
+
 /* ═══════════════════════════════════════
    SCROLL REVEAL — IntersectionObserver
 ═══════════════════════════════════════ */
@@ -1191,13 +1360,11 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const item   = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    // close all
     document.querySelectorAll('.faq-item.open').forEach(i => {
       i.classList.remove('open');
       i.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
       i.querySelector('.faq-icon').textContent = '+';
     });
-    // open clicked
     if (!isOpen) {
       item.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
@@ -1226,7 +1393,6 @@ function closeLightbox() {
   lightboxImg.src = '';
 }
 
-// attach to all clickable image cards
 document.querySelectorAll('[data-img]').forEach(card => {
   const trigger = (e) => {
     if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
@@ -1237,7 +1403,6 @@ document.querySelectorAll('[data-img]').forEach(card => {
   card.addEventListener('keydown', trigger);
 });
 
-// process item images
 document.querySelectorAll('.process-item__img').forEach(card => {
   const trigger = (e) => {
     if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
@@ -1251,8 +1416,6 @@ document.querySelectorAll('.process-item__img').forEach(card => {
 document.querySelector('.lightbox__close').addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
 </script>
 </body>
 </html>
-

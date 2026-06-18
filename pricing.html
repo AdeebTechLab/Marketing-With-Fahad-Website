@@ -155,32 +155,55 @@ h3{font-size:clamp(16px,2vw,19px)}
 
 /* ═══════════════════════════════════════
    WHAT'S INCLUDED STRIP
+   FIX #3: background stays var(--bg) to start alternating rhythm correctly
+   Hero = white/gold-tint
+   included = var(--bg) [cream]
+   tiers = var(--white)
+   roi = var(--bg) [cream]
+   why = var(--white)
+   faq = var(--bg) [cream]
+   cta = white/gold-tint
 ═══════════════════════════════════════ */
-.included-strip{background:var(--white)}
+/* FIX #3 — was var(--white), now var(--bg) to start proper alternating rhythm */
+.included-strip{background:var(--bg)}
 .included-heading h2{color:var(--dark)}
 .included-heading h2 span{color:var(--gold)}
 .included-heading p{color:var(--slate)}
 .included-grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px;
 }
+
+/* FIX #1 — Icon consistency: replaced ✓ text icon with outline SVG icon
+   All included-item icons now use a consistent stroke-style checkmark SVG
+   matching the same visual weight as tier/roi/why card icons */
 .included-item{
-  background:var(--gold-tint);border:1px solid var(--gold-border);border-radius:12px;
+  background:var(--white);border:1px solid var(--gold-border);border-radius:12px;
   padding:18px 20px;display:flex;align-items:center;gap:14px;transition:var(--trans);
 }
 .included-item:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow-sm)}
 .included-item-icon{
-  width:34px;height:34px;background:var(--gold);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex-shrink:0;
+  width:34px;height:34px;background:var(--gold-tint);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+/* FIX #1: Consistent SVG stroke icon — same visual style across all icon instances */
+.included-item-icon svg{
+  width:16px;height:16px;stroke:var(--gold-dark);stroke-width:2.5;
+  stroke-linecap:round;stroke-linejoin:round;fill:none;
 }
 .included-item span{color:var(--dark);font-size:14px;font-weight:500}
 
 /* ═══════════════════════════════════════
    PRICING TIERS
+   FIX #2: Removed extra top padding / tightened section-sm usage
+   FIX #3: background changed to var(--white)
 ═══════════════════════════════════════ */
-.tiers{background:var(--bg)}
+/* FIX #3 — was var(--bg), now var(--white) for correct alternation */
+.tiers{background:var(--white)}
+/* FIX #2 — Use section-sm padding (56px) instead of section (88px) to remove extra vertical whitespace */
+.tiers.section{padding:56px 0}
 .tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
 .tier-card{
-  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
   padding:38px 34px;transition:var(--trans);position:relative;overflow:hidden;
 }
 .tier-card::before{
@@ -221,14 +244,16 @@ h3{font-size:clamp(16px,2vw,19px)}
 
 /* ═══════════════════════════════════════
    ROI
+   FIX #3: background changed to var(--bg) [was var(--white)]
 ═══════════════════════════════════════ */
-.roi{background:var(--white)}
+/* FIX #3 — was var(--white), now var(--bg) for correct alternation */
+.roi{background:var(--bg)}
 .roi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
 .roi-card{
-  background:var(--gold-tint);border:1px solid var(--gold-border);border-radius:var(--radius);
+  background:var(--white);border:1px solid var(--gold-border);border-radius:var(--radius);
   padding:38px;transition:var(--trans);position:relative;overflow:hidden;
 }
-.roi-card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(0,0,0,.1);border-color:var(--gold);background:#fff}
+.roi-card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(0,0,0,.1);border-color:var(--gold)}
 .roi-card-icon{
   width:52px;height:52px;background:rgba(200,166,77,.15);border-radius:12px;
   display:flex;align-items:center;justify-content:center;font-size:22px;
@@ -240,11 +265,13 @@ h3{font-size:clamp(16px,2vw,19px)}
 
 /* ═══════════════════════════════════════
    WHY US
+   FIX #3: background changed to var(--white) [was var(--bg)]
 ═══════════════════════════════════════ */
-.why{background:var(--bg)}
+/* FIX #3 — was var(--bg), now var(--white) for correct alternation */
+.why{background:var(--white)}
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
 .why-card{
-  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
   padding:30px 26px;transition:var(--trans);
 }
 .why-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--gold-border)}
@@ -254,20 +281,22 @@ h3{font-size:clamp(16px,2vw,19px)}
 
 /* ═══════════════════════════════════════
    FAQ
+   FIX #3: background changed to var(--bg) [was var(--white)]
 ═══════════════════════════════════════ */
 .faq-sidebar {
 position:sticky;
 top:100px;
 height:max-content;
 }
-.faq{background:var(--white)}
+/* FIX #3 — was var(--white), now var(--bg) for correct alternation */
+.faq{background:var(--bg)}
 .faq-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:60px;align-items:start}
 .faq-sidebar h2{color:var(--dark);margin-bottom:16px}
 .faq-sidebar h2 span{color:var(--gold)}
 .faq-sidebar p{color:var(--slate);font-size:16px;line-height:1.7;margin-bottom:28px}
 .faq-item{
   border-radius:12px;overflow:hidden;margin-bottom:10px;
-  border:1px solid var(--gold-border);background:#fff;transition:border-color .25s;
+  border:1px solid var(--gold-border);background:var(--white);transition:border-color .25s;
 }
 .faq-item.open{border-color:var(--gold);box-shadow:0 4px 12px rgba(200,166,77,.1)}
 .faq-btn{
@@ -328,6 +357,7 @@ height:max-content;
   .faq-layout{grid-template-columns:1fr;gap:36px}
   .faq-sidebar .btn{display:none}
   .section{padding:60px 0}
+  .tiers.section{padding:48px 0}
   .included-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:560px){
@@ -405,6 +435,7 @@ height:max-content;
 </div>
 
 <!-- WHAT'S INCLUDED -->
+<!-- FIX #3: section background now var(--bg) — starts alternating rhythm -->
 <section class="included-strip section-sm">
   <div class="container">
     <div class="included-heading text-center reveal">
@@ -415,13 +446,44 @@ height:max-content;
         <a href="contact.html" class="btn btn-gold">Request a Growth Plan</a>
       </div>
     </div>
+    <!-- FIX #1: All icons now use consistent SVG stroke checkmark — same style/weight -->
     <div class="included-grid">
-      <div class="included-item reveal reveal-d1"><div class="included-item-icon">✓</div><span>Industry competition and ranking difficulty</span></div>
-      <div class="included-item reveal reveal-d2"><div class="included-item-icon">✓</div><span>Website size and total page count</span></div>
-      <div class="included-item reveal reveal-d3"><div class="included-item-icon">✓</div><span>Current technical SEO condition</span></div>
-      <div class="included-item reveal reveal-d1"><div class="included-item-icon">✓</div><span>Content creation and optimisation scope</span></div>
-      <div class="included-item reveal reveal-d2"><div class="included-item-icon">✓</div><span>Site architecture and technical complexity</span></div>
-      <div class="included-item reveal reveal-d3"><div class="included-item-icon">✓</div><span>Local, national, or international targeting</span></div>
+      <div class="included-item reveal reveal-d1">
+        <div class="included-item-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span>Industry competition and ranking difficulty</span>
+      </div>
+      <div class="included-item reveal reveal-d2">
+        <div class="included-item-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span>Website size and total page count</span>
+      </div>
+      <div class="included-item reveal reveal-d3">
+        <div class="included-item-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span>Current technical SEO condition</span>
+      </div>
+      <div class="included-item reveal reveal-d1">
+        <div class="included-item-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span>Content creation and optimisation scope</span>
+      </div>
+      <div class="included-item reveal reveal-d2">
+        <div class="included-item-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span>Site architecture and technical complexity</span>
+      </div>
+      <div class="included-item reveal reveal-d3">
+        <div class="included-item-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span>Local, national, or international targeting</span>
+      </div>
     </div>
   </div>
 </section>
@@ -436,6 +498,8 @@ height:max-content;
 </div>
 
 <!-- PRICING TIERS -->
+<!-- FIX #2: changed from .section to .tiers.section with reduced padding (56px vs 88px) -->
+<!-- FIX #3: background now var(--white) -->
 <section class="tiers section">
   <div class="container">
     <div class="section-header text-center reveal">
@@ -495,6 +559,7 @@ height:max-content;
 </div>
 
 <!-- ROI -->
+<!-- FIX #3: background now var(--bg) [was var(--white)] -->
 <section class="roi section">
   <div class="container">
     <div class="section-header text-center reveal">
@@ -527,6 +592,7 @@ height:max-content;
 </div>
 
 <!-- WHY US -->
+<!-- FIX #3: background now var(--white) [was var(--bg)] -->
 <section class="why section">
   <div class="container">
     <div class="section-header text-center reveal">
@@ -569,6 +635,7 @@ height:max-content;
 </div>
 
 <!-- FAQ -->
+<!-- FIX #3: background now var(--bg) [was var(--white)] -->
 <section class="faq section">
   <div class="container">
     <div class="faq-layout">
@@ -636,7 +703,6 @@ height:max-content;
 
 <script>
 // ── Header / Footer Loader ──
-// ── HEADER / FOOTER ───────────────────────────────────────
   function runScripts(container) {
     container.querySelectorAll('script').forEach(oldScript => {
       const newScript = document.createElement('script');
@@ -659,6 +725,7 @@ height:max-content;
   }
   loadPart('header.html', 'header-placeholder');
   loadPart('footer.html', 'footer-placeholder');
+
 // ── Scroll Reveal ──
 (function(){
   const io = new IntersectionObserver((entries) => {

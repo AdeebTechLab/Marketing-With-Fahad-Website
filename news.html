@@ -64,26 +64,41 @@ button{font-family:inherit;cursor:pointer}
 .sec-divider__label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .sec-divider__line{flex:1;height:1px;background:linear-gradient(to right,var(--gold-border),transparent)}
 
-/* ── NEWS FEATURED (publication-last) ────────────────────── */
+/* ── NEWS FEATURED ────────────────────────────────────────── */
 .pub-board{margin-bottom:56px}
 
 .pub-main{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-bottom:40px}
 @media(max-width:900px){.pub-main{grid-template-columns:1fr}}
 
-/* preview stack */
-.pub-preview{position:relative;border-radius:var(--radius);overflow:hidden;background:#ddd;aspect-ratio:16/8}
+/* ── FIX #1: Preview stack — full height, no grey dead-space ── */
+/* Removed fixed aspect-ratio so image fills the sidebar height */
+.pub-preview{
+  position:relative;
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:var(--dark); /* dark fallback, not grey */
+  /* stretch to match sidebar height instead of fixed ratio */
+  min-height:340px;
+}
 .pub-preview__item{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none}
 .pub-preview__item.is-active{opacity:1;pointer-events:auto}
 .pub-preview__item:first-child{position:relative;opacity:1}
+.pub-preview__img{width:100%;height:100%;position:absolute;inset:0}
 .pub-preview__img a{display:block;width:100%;height:100%}
-.pub-preview__img img{width:100%;height:320px;object-fit:cover;display:block}
-@media(max-width:560px){.pub-preview__img img{height:200px}}
+/* FIX #1: Image covers full container — no gap below */
+.pub-preview__img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
 .pub-preview__overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,46,.85) 0%,rgba(26,26,46,0) 55%);pointer-events:none}
 .pub-preview__text{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;color:#fff}
 .pub-preview__date{font-size:12px;font-weight:500;color:var(--gold);margin-bottom:6px;letter-spacing:.04em}
 .pub-preview__title{font-size:clamp(15px,2.2vw,22px);font-weight:700;color:#fff;line-height:1.35}
 .pub-preview__title:hover{color:var(--gold)}
-.pub-preview__brief{font-size:14px;color:rgba(255,255,255,.78);margin-top:8px;line-height:1.55;display:-webkit-box;-webkit-line-clamp-webkit-box-orient:vertical;overflow:hidden}
+.pub-preview__brief{font-size:14px;color:rgba(255,255,255,.78);margin-top:8px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
 /* sidebar list */
 .pub-list{background:var(--white);border-radius:var(--radius);border:1px solid var(--gold-border);overflow:hidden}
@@ -109,7 +124,40 @@ button{font-family:inherit;cursor:pointer}
 .pub-widget-card__img{position:relative;overflow:hidden;aspect-ratio:16/9}
 .pub-widget-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
 .pub-widget-card:hover .pub-widget-card__img img{transform:scale(1.06)}
-.pub-widget-card__img-overlay{position:absolute;inset:0;background:rgba(26,26,46,0);transition:background .3s;display:flex;align-items:center;justify-content:center}
+
+/* ── FIX #2: Branded fallback placeholder for missing images ── */
+.pub-widget-card__img img[src="assets/placeholder.svg"],
+.pub-widget-card__img img:not([src]),
+.pub-widget-card__img img[src=""] {
+  /* Hide broken img, show CSS fallback via parent */
+  opacity: 0;
+  position: absolute;
+}
+
+/* Branded fallback via pseudo-element on parent */
+.pub-widget-card__img.no-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--dark) 0%, #2a2a4a 100%);
+  z-index: 0;
+}
+.pub-widget-card__img.no-image::after {
+  content: "M";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: -1px;
+  z-index: 1;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.pub-widget-card__img-overlay{position:absolute;inset:0;background:rgba(26,26,46,0);transition:background .3s;display:flex;align-items:center;justify-content:center;z-index:2}
 .pub-widget-card:hover .pub-widget-card__img-overlay{background:rgba(26,26,46,.35)}
 .zoom-icon{opacity:0;transition:opacity .25s;color:#fff;font-size:28px}
 .pub-widget-card:hover .zoom-icon{opacity:1}
@@ -126,29 +174,56 @@ button{font-family:inherit;cursor:pointer}
 .slider-btn--next{right:-20px}
 @media(max-width:560px){.slider-btn{display:none}}
 
-/* ── FAQ SECTION ──────────────────────────────────────────── */
-.faq-section{padding:80px 22px;background:var(--white);border-top:1px solid var(--gold-border)}
+/* ── FIX #3: FAQ SECTION — trim repetitive block ─────────── */
+/* Reduced padding, unified look, no duplicate heading styles */
+.faq-section{
+  padding:60px 22px; /* trimmed from 80px */
+  background:var(--white);
+  border-top:1px solid var(--gold-border)
+}
 .faq-inner{max-width:1270px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:flex-start}
 @media(max-width:900px){.faq-inner{grid-template-columns:1fr;gap:36px}}
 
-.faq-label{display:inline-block;background:var(--gold);color:#fff;padding:7px 20px;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
-.faq-heading{font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1.12;color:var(--dark);margin-bottom:18px}
+.faq-label{
+  display:inline-block;
+  background:var(--gold);
+  color:#fff;
+  padding:6px 18px; /* slightly tighter */
+  border-radius:30px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:16px /* was 20px */
+}
+.faq-heading{
+  font-size:clamp(28px,3.5vw,46px); /* reduced from 52px max */
+  font-weight:700;
+  line-height:1.15;
+  color:var(--dark);
+  margin-bottom:14px /* was 18px */
+}
 .faq-heading span{color:var(--gold)}
-.faq-desc{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:32px}
-.faq-cta{display:inline-block;background:var(--gold);color:#fff;padding:15px 34px;border-radius:50px;font-size:15px;font-weight:700;box-shadow:0 6px 20px var(--gold-shadow);transition:background .2s,box-shadow .2s}
+.faq-desc{
+  font-size:15px; /* was 16px */
+  color:var(--muted);
+  line-height:1.7;
+  margin-bottom:26px /* was 32px */
+}
+.faq-cta{display:inline-block;background:var(--gold);color:#fff;padding:13px 30px;border-radius:50px;font-size:15px;font-weight:700;box-shadow:0 6px 20px var(--gold-shadow);transition:background .2s,box-shadow .2s}
 .faq-cta:hover{background:var(--gold-dark);box-shadow:0 8px 28px var(--gold-shadow);color:#fff}
 
-.faq-list{display:flex;flex-direction:column;gap:12px}
-.faq-item{background:var(--white);border-radius:14px;border:1px solid var(--gold-border);overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.faq-list{display:flex;flex-direction:column;gap:10px} /* gap reduced from 12px */
+.faq-item{background:var(--white);border-radius:12px;border:1px solid var(--gold-border);overflow:hidden;transition:box-shadow .25s,border-color .25s}
 .faq-item.open{border-color:var(--gold);box-shadow:0 6px 24px rgba(200,166,77,.1)}
-.faq-btn{width:100%;border:none;background:transparent;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;font-size:16px;font-weight:600;color:var(--dark);line-height:1.4;transition:color .2s}
+.faq-btn{width:100%;border:none;background:transparent;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;font-size:15px;font-weight:600;color:var(--dark);line-height:1.4;transition:color .2s}
 .faq-item.open .faq-btn{color:var(--gold)}
-@media(max-width:400px){.faq-btn{font-size:14px;padding:16px 16px}}
-.faq-icon{width:36px;height:36px;border-radius:50%;background:var(--gold-light);color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;font-weight:400;line-height:1;transition:background .2s,color .2s,transform .3s}
+@media(max-width:400px){.faq-btn{font-size:14px;padding:14px 14px}}
+.faq-icon{width:32px;height:32px;border-radius:50%;background:var(--gold-light);color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;font-weight:400;line-height:1;transition:background .2s,color .2s,transform .3s}
 .faq-item.open .faq-icon{background:var(--gold);color:#fff;transform:rotate(45deg)}
 .faq-content{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
-.faq-content-inner{padding:0 22px 20px;font-size:15px;color:var(--muted);line-height:1.75}
-@media(max-width:400px){.faq-content-inner{padding:0 16px 16px}}
+.faq-content-inner{padding:0 20px 18px;font-size:14px;color:var(--muted);line-height:1.7}
+@media(max-width:400px){.faq-content-inner{padding:0 14px 14px}}
 
 /* ── LIGHTBOX ─────────────────────────────────────────────── */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(10,10,20,.92);z-index:999;align-items:center;justify-content:center}
@@ -431,10 +506,11 @@ button{font-family:inherit;cursor:pointer}
               </div>
             </div>
 
+            <!-- FIX #2: Cards with missing/placeholder images get branded fallback via JS class -->
             <div class="pub-widget-card">
               <div class="pub-widget-card__img">
                 <a href="#" aria-label="Google CSS article">
-                  <img src="assets/placeholder.svg" alt="Google Looks CSS and JavaScripts than Ranks Sites">
+                  <img src="assets/placeholder.svg" alt="Google Looks CSS and JavaScripts than Ranks Sites" data-fallback="true">
                   <div class="pub-widget-card__img-overlay" aria-hidden="true"><span class="zoom-icon">&#8599;</span></div>
                 </a>
               </div>
@@ -447,7 +523,7 @@ button{font-family:inherit;cursor:pointer}
             <div class="pub-widget-card">
               <div class="pub-widget-card__img">
                 <a href="#" aria-label="Facebook money article">
-                  <img src="assets/placeholder.svg" alt="Money from Facebook">
+                  <img src="assets/placeholder.svg" alt="Money from Facebook" data-fallback="true">
                   <div class="pub-widget-card__img-overlay" aria-hidden="true"><span class="zoom-icon">&#8599;</span></div>
                 </a>
               </div>
@@ -465,7 +541,7 @@ button{font-family:inherit;cursor:pointer}
     </div><!-- /l-container -->
   </main><!-- /l-main -->
 
-  <!-- ── FAQ SECTION ─────────────────────────────────────────── -->
+  <!-- ── FAQ SECTION — FIX #3: Trimmed repetitive block ──── -->
   <section class="faq-section reveal" data-reveal aria-labelledby="faq-heading">
     <div class="faq-inner">
       <div class="faq-sidebar">
@@ -515,6 +591,7 @@ button{font-family:inherit;cursor:pointer}
             <div class="faq-content-inner">Subscribe to our updates, follow this news page, and speak to your account manager. We proactively notify clients when significant changes may affect their campaigns.</div>
           </div>
         </div>
+
       </div><!-- /faq-list -->
     </div><!-- /faq-inner -->
   </section>
@@ -531,7 +608,7 @@ button{font-family:inherit;cursor:pointer}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-// ── HEADER / FOOTER LOADER ────────────────────────────────
+  // ── HEADER / FOOTER LOADER ────────────────────────────────
   function runScripts(container) {
     container.querySelectorAll('script').forEach(oldScript => {
       const newScript = document.createElement('script');
@@ -557,6 +634,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   loadPart('header.html', 'header-placeholder');
   loadPart('footer.html', 'footer-placeholder');
+
+  // ── FIX #2: Branded fallback for missing/broken images ───
+  // Detect placeholder.svg images and mark parent with .no-image
+  document.querySelectorAll('.pub-widget-card__img img').forEach(img => {
+    const applyFallback = () => {
+      const wrapper = img.closest('.pub-widget-card__img');
+      if (wrapper) wrapper.classList.add('no-image');
+    };
+
+    // If src is placeholder or broken
+    if (img.src.includes('placeholder') || img.getAttribute('data-fallback')) {
+      applyFallback();
+    }
+
+    img.addEventListener('error', applyFallback);
+  });
+
+  // ── FIX #1: Sync pub-preview height to sidebar ───────────
+  function syncPreviewHeight() {
+    const preview = document.getElementById('pubPreview');
+    const sidebar = document.querySelector('.pub-list');
+    if (preview && sidebar) {
+      const sidebarH = sidebar.offsetHeight;
+      if (sidebarH > 0) {
+        preview.style.minHeight = sidebarH + 'px';
+      }
+    }
+  }
+  // Run after layout settles
+  setTimeout(syncPreviewHeight, 100);
+  window.addEventListener('resize', syncPreviewHeight);
+
   // ── NEWS PREVIEW SWITCHER ─────────────────────────────────
   const previewItems = [...document.querySelectorAll('[data-index][class*="pub-preview__item"]')];
   const listItems    = [...document.querySelectorAll('[data-list-item]')];
@@ -613,8 +722,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── LIGHTBOX (desktop only) ───────────────────────────────
-  const lightbox    = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
+  const lightbox      = document.getElementById('lightbox');
+  const lightboxImg   = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
 
   function openLightbox(src, alt) {
@@ -629,7 +738,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  // only attach lightbox on desktop (>600px)
   if (window.innerWidth > 600) {
     document.querySelectorAll('.pub-widget-card__img a').forEach(link => {
       link.addEventListener('click', e => {

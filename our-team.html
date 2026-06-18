@@ -57,12 +57,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* ── DEPARTMENT GROUPS ──────────────────────── */
 .dept-group{margin-bottom:48px}
-.dept-label{display:inline-flex;align-items:center;gap:8px;background:var(--gold-light);border:1px solid var(--gold-border);border-radius:30px;padding:6px 16px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-.dept-label svg{width:14px;height:14px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* FIX #1: dept-label — solid gold bg, white text, high contrast */
+.dept-label{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);          /* solid gold fill */
+  border:1px solid var(--gold-dark);
+  border-radius:30px;
+  padding:6px 16px;
+  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#fff;                       /* white label text — passes WCAG AA */
+  margin-bottom:20px
+}
+.dept-label svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── TEAM GRID ──────────────────────────────── */
 .team-section{padding:0 0 60px}
-.our-team__list{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+
+/* FIX #2: strict 3-col grid — no 4th card peeking in */
+.our-team__list{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);   /* locked to 3 columns */
+  gap:20px
+}
 
 /* ── TEAM CARD ──────────────────────────────── */
 .our-team__item{
@@ -74,16 +91,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 .our-team__item.visible{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease,box-shadow .3s ease}
 .our-team__item:hover{transform:translateY(-6px);box-shadow:0 12px 32px var(--gold-shadow)}
+
+/* FIX #3: single brand accent bar — all cards get gold only, no rainbow colours */
 .our-team__item::before{
   content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:40px;height:4px;border-radius:4px 4px 0 0;background:var(--gold);z-index:2
+  width:40px;height:4px;border-radius:4px 4px 0 0;
+  background:var(--gold);           /* gold only — all nth-child overrides removed */
+  z-index:2
 }
-.our-team__item:nth-child(7n+2)::before{background:#fd9261}
-.our-team__item:nth-child(7n+3)::before{background:#dac92d}
-.our-team__item:nth-child(7n+4)::before{background:#20a2c1}
-.our-team__item:nth-child(7n+5)::before{background:#fd9261}
-.our-team__item:nth-child(7n+6)::before{background:#545dba}
-.our-team__item:nth-child(7n)::before{background:#e63946}
+/* Removed all nth-child colour overrides that were producing random colours */
 
 /* ── CARD IMAGE ─────────────────────────────── */
 .our-team__item-img{
@@ -112,7 +128,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .our-team__item-name{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:4px}
 .our-team__item-position{font-size:12px;color:var(--muted);margin-bottom:10px}
 .our-team__item-position a{color:var(--gold)}
+
+/* FIX #2 continued: LinkedIn link removed from card-links — keep container for spacing */
 .card-links{display:flex;justify-content:center;gap:8px;margin-top:8px}
+/* card-links a styles kept in case other links are added, but LinkedIn removed from HTML */
 .card-links a{
   display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;
   color:var(--gold);border:1px solid var(--gold-border);border-radius:20px;padding:4px 10px;
@@ -206,6 +225,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 
 /* ── RESPONSIVE ─────────────────────────────── */
+/* FIX #2: responsive breakpoints updated for 3-col base grid */
 @media(max-width:1100px){.our-team__list{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:900px){
   .our-team__list{grid-template-columns:repeat(2,1fr)}
@@ -282,9 +302,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Maxim Sukhanov</p>
                 <p class="our-team__item-position">Project Manager</p>
-                <div class="card-links">
-                  <a href="#" aria-label="Maxim Sukhanov on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
-                </div>
+                <!-- FIX #2: LinkedIn link removed -->
               </div>
             </div>
 
@@ -297,9 +315,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Vladislav Kovalchuk</p>
                 <p class="our-team__item-position">Account Manager</p>
-                <div class="card-links">
-                  <a href="#" aria-label="Vladislav Kovalchuk on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
-                </div>
               </div>
             </div>
 
@@ -312,9 +327,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Julia Nagornova</p>
                 <p class="our-team__item-position">Accountant</p>
-                <div class="card-links">
-                  <a href="#" aria-label="Julia Nagornova on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
-                </div>
               </div>
             </div>
 
@@ -338,7 +350,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Larisa Romanchenko</p>
                 <p class="our-team__item-position">Head of SEO Optimization</p>
-                <div class="card-links"><a href="#" aria-label="Larisa Romanchenko on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -351,7 +362,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Dmitry Kolyadyuk</p>
                 <p class="our-team__item-position">Head of SEO Promotion</p>
-                <div class="card-links"><a href="#" aria-label="Dmitry Kolyadyuk on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -364,7 +374,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alyona Gladisheva</p>
                 <p class="our-team__item-position">SEO Specialist</p>
-                <div class="card-links"><a href="#" aria-label="Alyona Gladisheva on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -377,7 +386,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alina Ilyina</p>
                 <p class="our-team__item-position">SEO Optimizer</p>
-                <div class="card-links"><a href="#" aria-label="Alina Ilyina on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -390,7 +398,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Konstantin Korukov</p>
                 <p class="our-team__item-position">SEO Optimizer</p>
-                <div class="card-links"><a href="#" aria-label="Konstantin Korukov on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -403,7 +410,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Julia Varentsova</p>
                 <p class="our-team__item-position">SEO Optimizer</p>
-                <div class="card-links"><a href="#" aria-label="Julia Varentsova on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -416,7 +422,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Dmitry Kozitsky</p>
                 <p class="our-team__item-position">Link Builder</p>
-                <div class="card-links"><a href="#" aria-label="Dmitry Kozitsky on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -429,7 +434,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alexander Yusupov</p>
                 <p class="our-team__item-position">Link Builder</p>
-                <div class="card-links"><a href="#" aria-label="Alexander Yusupov on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -453,7 +457,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alexander Volodin</p>
                 <p class="our-team__item-position">Senior Back-end Developer</p>
-                <div class="card-links"><a href="#" aria-label="Alexander Volodin on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -466,7 +469,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Igor Nikolaev</p>
                 <p class="our-team__item-position">Senior Back-end Developer</p>
-                <div class="card-links"><a href="#" aria-label="Igor Nikolaev on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -479,7 +481,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Andrey Kozlov</p>
                 <p class="our-team__item-position">Senior Front-end Developer</p>
-                <div class="card-links"><a href="#" aria-label="Andrey Kozlov on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -492,7 +493,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Nikolay Mavrin</p>
                 <p class="our-team__item-position">Back-end Developer</p>
-                <div class="card-links"><a href="#" aria-label="Nikolay Mavrin on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -505,7 +505,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Nikolay Mikhailov</p>
                 <p class="our-team__item-position">Back-end Developer</p>
-                <div class="card-links"><a href="#" aria-label="Nikolay Mikhailov on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -518,7 +517,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alexey Gorshkov</p>
                 <p class="our-team__item-position">Back-end Developer</p>
-                <div class="card-links"><a href="#" aria-label="Alexey Gorshkov on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -531,7 +529,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alisa Stepanova</p>
                 <p class="our-team__item-position">Front-end Developer</p>
-                <div class="card-links"><a href="#" aria-label="Alisa Stepanova on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -544,7 +541,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Victoria Gladkova</p>
                 <p class="our-team__item-position">QA Specialist</p>
-                <div class="card-links"><a href="#" aria-label="Victoria Gladkova on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -568,7 +564,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Evgenia Marinina</p>
                 <p class="our-team__item-position">Creative Director</p>
-                <div class="card-links"><a href="#" aria-label="Evgenia Marinina on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -581,7 +576,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Denis Kovalev</p>
                 <p class="our-team__item-position">Senior Designer</p>
-                <div class="card-links"><a href="#" aria-label="Denis Kovalev on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -594,7 +588,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Elena Borisova</p>
                 <p class="our-team__item-position">Designer</p>
-                <div class="card-links"><a href="#" aria-label="Elena Borisova on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -607,7 +600,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Anton Vavilkin</p>
                 <p class="our-team__item-position">Designer</p>
-                <div class="card-links"><a href="#" aria-label="Anton Vavilkin on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -620,7 +612,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Denis Nesterenko</p>
                 <p class="our-team__item-position">Designer</p>
-                <div class="card-links"><a href="#" aria-label="Denis Nesterenko on LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
               </div>
             </div>
 
@@ -729,7 +720,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <img id="lightbox-img" src="" alt="">
 </div>
 <script>
-// ── HEADER / FOOTER ───────────────────────────
 // ── HEADER / FOOTER ───────────────────────────────────────
   function runScripts(container) {
     container.querySelectorAll('script').forEach(oldScript => {
@@ -764,7 +754,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       if(!entry.isIntersecting) return;
       const card = entry.target;
       const siblings = Array.from(card.closest('.our-team__list').children);
-      const delay = (siblings.indexOf(card) % 4) * 80;
+      const delay = (siblings.indexOf(card) % 3) * 80;  /* updated to match 3-col grid */
       setTimeout(() => card.classList.add('visible'), delay);
       obs.unobserve(card);
     });

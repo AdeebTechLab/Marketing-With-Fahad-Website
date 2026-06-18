@@ -93,7 +93,7 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 }
 
 /* ============================================================
-   HERO BANNER
+   HERO BANNER  — FIX #1: padding inward + brand-colour overlay for stronger contrast
    ============================================================ */
 .hero {
   position: relative;
@@ -111,14 +111,47 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
   object-position: center;
   opacity: .85;
 }
+/* FIX #1: brand-colour gradient wash so text never sits on raw photo */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(26,26,46,.92) 0%, rgba(45,39,80,.72) 40%, rgba(200,166,77,.35) 100%);
+  z-index: 1;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  max-width: 1270px;
+  margin: 0 auto;
+  /* FIX #1: padding brought inward so text never touches the edge */
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+}
+.hero-title {
+  color: var(--white);
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  text-shadow: 0 2px 14px rgba(0,0,0,.35);
+}
+.hero-title em { font-style: normal; color: var(--gold); }
 .hero-mobile { display: none; }
 
 @media (max-width: 567px) {
   .hero { display: none; }
   .hero-mobile {
     display: block;
+    position: relative;
     width: 100%;
     background: var(--dark);
+  }
+  .hero-mobile::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, rgba(26,26,46,.85) 0%, rgba(45,39,80,.6) 50%, rgba(200,166,77,.3) 100%);
   }
   .hero-mobile img { width: 100%; }
 }
@@ -208,16 +241,24 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 }
 
 /* ============================================================
-   SIDEBAR / STICKY CARD
+   SIDEBAR / STICKY CARD  — FIX #2: sticky + content-filled so column never feels empty
    ============================================================ */
 .sidebar {
   position: static;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 @media (min-width: 901px) {
   .sidebar {
+    /* FIX #2: stays pinned while the long curriculum scrolls past, so the
+       column is always filled with the card instead of trailing off into
+       empty space */
     position: sticky;
     top: 24px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
   }
 }
 
@@ -227,7 +268,7 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
   border: 1px solid var(--gold-border);
   box-shadow: 0 4px 24px var(--gold-shadow);
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
 .register-card__head {
   background: linear-gradient(135deg, var(--dark) 0%, #2d2750 100%);
@@ -318,36 +359,63 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 .info-item__value { font-weight: 600; color: var(--dark); }
 .info-item__old { text-decoration: line-through; color: var(--muted); font-size: 12px; margin-left: 6px; font-weight: 400; }
 
+/* FIX #2: trainer card moved into sidebar to fill empty left column space */
+.sidebar-trainer {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--gold-tint);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.sidebar-trainer img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--gold);
+  flex-shrink: 0;
+}
+.sidebar-trainer__text { font-size: 13px; line-height: 1.6; color: var(--text); }
+.sidebar-trainer__text b { display: block; color: var(--gold); font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; }
+
+/* FIX #2: trust/highlights strip to give the column substance instead of empty whitespace */
+.sidebar-highlights {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--gold-border);
+  padding: 18px 20px;
+}
+.sidebar-highlights__title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.sidebar-highlights ul { display: flex; flex-direction: column; gap: 10px; }
+.sidebar-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--text);
+  font-weight: 500;
+}
+.sidebar-highlights li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
 /* ============================================================
    CONTENT AREA
    ============================================================ */
 .content-area p { color: var(--text); margin-bottom: 18px; line-height: 1.75; }
 .content-area p:last-child { margin-bottom: 0; }
-
-/* Trainer card */
-.trainer-card {
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  background: var(--gold-tint);
-  border: 1px solid var(--gold-border);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin: 28px 0;
-}
-.trainer-card__img img {
-  width: 140px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--gold);
-}
-.trainer-card__text { font-size: 14px; line-height: 1.7; color: var(--text); }
-.trainer-card__text b { display: block; color: var(--gold); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
-
-@media (max-width: 560px) {
-  .trainer-card { flex-direction: column; }
-}
 
 /* Section heading inside content */
 .content-h2 {
@@ -367,66 +435,101 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
   margin: 28px 0 16px;
 }
 
-/* Session blocks */
-.session-block {
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 0 20px;
-  margin-bottom: 32px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .5s ease, transform .5s ease;
+/* ============================================================
+   FIX #3: CURRICULUM AS TABS (session-wise), replacing the long flat list
+   ============================================================ */
+.curriculum-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--gold-border);
+  padding-bottom: 0;
 }
-.session-block.is-visible { opacity: 1; transform: translateY(0); }
-
-.session-time {
-  font-size: 13px;
+.curriculum-tab {
+  padding: 12px 20px;
+  font-size: 13.5px;
   font-weight: 700;
-  color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  padding-top: 3px;
-  line-height: 1.5;
+  color: var(--muted);
+  background: transparent;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid transparent;
+  border-bottom: none;
+  position: relative;
+  top: 2px;
+  transition: color .2s, background .2s;
+  text-align: left;
+  line-height: 1.3;
+}
+.curriculum-tab span { display: block; font-size: 11px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+.curriculum-tab[aria-selected="true"] {
+  color: var(--gold-dark);
+  background: var(--white);
+  border-color: var(--gold-border);
+  box-shadow: 0 -2px 10px rgba(0,0,0,.03);
+}
+.curriculum-tab[aria-selected="true"] span { color: var(--gold); }
+.curriculum-tab:hover:not([aria-selected="true"]) { color: var(--dark); }
+
+@media (max-width: 560px) {
+  .curriculum-tabs { gap: 4px; }
+  .curriculum-tab { padding: 10px 12px; font-size: 12.5px; flex: 1 1 calc(50% - 4px); border-radius: 8px; top: 0; border-bottom: 1px solid var(--gold-border); }
+  .curriculum-tab[aria-selected="true"] { border-bottom-color: var(--gold-border); }
 }
 
-.session-content {
-  position: relative;
-  padding-left: 20px;
-  border-left: 2px solid var(--gold-border);
+.curriculum-panel {
+  display: none;
+  background: var(--white);
+  border: 1px solid var(--gold-border);
+  border-radius: 0 var(--radius) var(--radius) var(--radius);
+  padding: 28px 28px 32px;
 }
-.session-content ul { padding-left: 4px; }
-.session-content > ul > li {
+.curriculum-panel[aria-hidden="false"] { display: block; }
+
+.curriculum-panel-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--gold-border);
+}
+.curriculum-panel-head h4 { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+.curriculum-panel-head small { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+
+.curriculum-panel ul { padding-left: 4px; }
+.curriculum-panel > ul > li {
   position: relative;
-  padding: 4px 0 4px 18px;
+  padding: 6px 0 6px 18px;
   font-weight: 600;
   color: var(--dark);
   font-size: 14.5px;
 }
-.session-content > ul > li::before {
+.curriculum-panel > ul > li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 12px;
+  top: 14px;
   width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--gold);
 }
-.session-content ul ul {
-  margin: 6px 0 8px 4px;
+.curriculum-panel ul ul {
+  margin: 6px 0 10px 4px;
   padding-left: 14px;
 }
-.session-content ul ul li {
+.curriculum-panel ul ul li {
   position: relative;
   font-size: 13.5px;
   font-weight: 400;
   color: var(--muted);
-  padding: 2px 0 2px 14px;
+  padding: 3px 0 3px 14px;
 }
-.session-content ul ul li::before {
+.curriculum-panel ul ul li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 10px;
+  top: 11px;
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--gold-border);
@@ -434,9 +537,7 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 .important-icon { display: inline-block; vertical-align: middle; margin-left: 5px; }
 
 @media (max-width: 560px) {
-  .session-block { grid-template-columns: 1fr; gap: 6px; }
-  .session-time { border-bottom: 1px solid var(--gold-border); padding-bottom: 6px; margin-bottom: 10px; }
-  .session-content { border-left: none; padding-left: 0; }
+  .curriculum-panel { padding: 20px 18px 24px; }
 }
 
 /* ============================================================
@@ -618,9 +719,12 @@ height:max-content;
 
   <main class="l-main">
 
-    <!-- HERO -->
+    <!-- HERO — FIX #1: padding ke andar text + brand-colour gradient for stronger contrast -->
     <div class="hero">
       <img src="assets/hero-seo-courses.jpeg" alt="SEO Courses Dubai — Marketing with Fahad" title="SEO Courses">
+      <div class="hero-inner">
+        <h2 class="hero-title">Search Engine <em>Optimization</em> Course</h2>
+      </div>
     </div>
     <div class="hero-mobile">
       <img src="assets/414x180-seo-courses.png" alt="SEO Courses Dubai" title="SEO Courses">
@@ -649,7 +753,7 @@ height:max-content;
       <!-- TWO-COLUMN COURSE LAYOUT -->
       <div class="course-layout">
 
-        <!-- ── SIDEBAR ── -->
+        <!-- ── SIDEBAR — FIX #2: sticky + filled with trainer + highlights so column never looks empty ── -->
         <aside class="sidebar" aria-label="Course registration and info">
 
           <!-- Registration form card -->
@@ -716,6 +820,26 @@ height:max-content;
             </div>
           </div>
 
+          <!-- FIX #2: Trainer card moved into sidebar (fills empty space, also sticky-visible at all times) -->
+          <div class="sidebar-trainer reveal" style="transition-delay:.15s">
+            <img src="assets/photo.png" alt="SEO Expert Vadim Yudin" width="64" height="64">
+            <div class="sidebar-trainer__text">
+              <b>Your Trainer</b>
+              Vadim Yudin — 12 years of experience in SEO, with Top organic results delivered for hundreds of websites across different niches.
+            </div>
+          </div>
+
+          <!-- FIX #2: Highlights strip — gives the left column substance instead of trailing into empty whitespace -->
+          <div class="sidebar-highlights reveal" style="transition-delay:.2s">
+            <div class="sidebar-highlights__title">Why Join This Course</div>
+            <ul>
+              <li>Live sessions, not pre-recorded videos</li>
+              <li>Real client case studies from the UAE market</li>
+              <li>Hands-on tools: GA4, Search Console, Ahrefs, Screaming Frog</li>
+              <li>Certificate of completion</li>
+            </ul>
+          </div>
+
         </aside>
 
         <!-- ── CONTENT AREA ── -->
@@ -725,20 +849,9 @@ height:max-content;
             <p>This course is not just about the basics of SEO knowledge which you can find on the internet. We intend to provide our numerous years of SEO Experience and special techniques in the corporate market. You will be able to thoroughly understand the concepts of <a href="/">SEO in Dubai</a>&nbsp;which will attain top rankings for the website for Google Organic Search after the completion of this program. Not only this but we also will teach you strategies and secrets which help us get 1st-page positions for our valuable clients.</p>
 
             <h2 class="content-h2"><em>Total:</em> 4 Sessions — Every Sunday &amp; Wednesday, 6:30–8:30 pm</h2>
-
-            <!-- Trainer -->
-            <div class="trainer-card">
-              <div class="trainer-card__img">
-                <img src="assets/photo.png" alt="SEO Expert Vadim Yudin" width="140" height="100">
-              </div>
-              <div class="trainer-card__text">
-                <b>Your Trainer</b>
-                Vadim Yudin is a professional practical Digital Marketing expert at Marketing with Fahad and Darvin Studio. He has 12 years of experience in Search Engine Optimization and achieved Top organic results for hundreds of websites from different niches.
-              </div>
-            </div>
           </div>
 
-          <!-- Course programme -->
+          <!-- Course programme — FIX #3: long flat list converted into session-wise tabs -->
           <div class="reveal">
             <div class="section-divider">
               <div class="section-divider__dot" aria-hidden="true"></div>
@@ -746,12 +859,29 @@ height:max-content;
               <div class="section-divider__line" aria-hidden="true"></div>
             </div>
             <h3 class="content-h3">Search Engine Optimization Course Program</h3>
-          </div>
 
-          <!-- Session 1 -->
-          <div class="session-block reveal" style="transition-delay:.05s">
-            <div class="session-time">1st Session<br>(2–3 hours)</div>
-            <div class="session-content">
+            <!-- FIX #3: Tabs replace the long flat list — one session shown at a time -->
+            <div class="curriculum-tabs" role="tablist" aria-label="Course session tabs">
+              <button class="curriculum-tab" role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1">
+                1st Session<span>2–3 hours</span>
+              </button>
+              <button class="curriculum-tab" role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2">
+                2nd Session<span>2–3 hours</span>
+              </button>
+              <button class="curriculum-tab" role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3">
+                3rd Session<span>2–3 hours</span>
+              </button>
+              <button class="curriculum-tab" role="tab" aria-selected="false" aria-controls="panel-4" id="tab-4">
+                4th Session<span>2–3 hours</span>
+              </button>
+            </div>
+
+            <!-- Panel 1 -->
+            <div class="curriculum-panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1" aria-hidden="false">
+              <div class="curriculum-panel-head">
+                <h4>1st Session</h4>
+                <small>Foundations — Google, Analytics &amp; Webmaster Tools</small>
+              </div>
               <ul>
                 <li>Marketing with Fahad Case Studies</li>
                 <li>Google
@@ -783,12 +913,13 @@ height:max-content;
                 </li>
               </ul>
             </div>
-          </div>
 
-          <!-- Session 2 -->
-          <div class="session-block reveal" style="transition-delay:.1s">
-            <div class="session-time">2nd Session<br>(2–3 hours)</div>
-            <div class="session-content">
+            <!-- Panel 2 -->
+            <div class="curriculum-panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" aria-hidden="true">
+              <div class="curriculum-panel-head">
+                <h4>2nd Session</h4>
+                <small>Keyword Research &amp; Technical Optimization</small>
+              </div>
               <ul>
                 <li>Semantic Keyword Research
                   <ul>
@@ -830,12 +961,13 @@ height:max-content;
                 </li>
               </ul>
             </div>
-          </div>
 
-          <!-- Session 3 -->
-          <div class="session-block reveal" style="transition-delay:.15s">
-            <div class="session-time">3rd Session<br>(2–3 hours)</div>
-            <div class="session-content">
+            <!-- Panel 3 -->
+            <div class="curriculum-panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3" aria-hidden="true">
+              <div class="curriculum-panel-head">
+                <h4>3rd Session</h4>
+                <small>On-Page Optimization</small>
+              </div>
               <ul>
                 <li>On-Page Optimization
                   <ul>
@@ -853,12 +985,13 @@ height:max-content;
                 </li>
               </ul>
             </div>
-          </div>
 
-          <!-- Session 4 -->
-          <div class="session-block reveal" style="transition-delay:.2s">
-            <div class="session-time">4th Session<br>(2–3 hours)</div>
-            <div class="session-content">
+            <!-- Panel 4 -->
+            <div class="curriculum-panel" id="panel-4" role="tabpanel" aria-labelledby="tab-4" aria-hidden="true">
+              <div class="curriculum-panel-head">
+                <h4>4th Session</h4>
+                <small>Off-Page Optimization &amp; PBN Websites</small>
+              </div>
               <ul>
                 <li>Off-Page Optimization
                   <ul>
@@ -885,6 +1018,7 @@ height:max-content;
                 </li>
               </ul>
             </div>
+
           </div>
 
         </div><!-- /content-area -->
@@ -1049,7 +1183,7 @@ height:max-content;
   }
 
   if (!("IntersectionObserver" in window) || prefersReduced) {
-    document.querySelectorAll(".reveal, .session-block").forEach(el => {
+    document.querySelectorAll(".reveal").forEach(el => {
       el.style.opacity = "1";
       el.style.transform = "none";
     });
@@ -1065,7 +1199,7 @@ height:max-content;
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
-  document.querySelectorAll(".reveal, .session-block").forEach(el => observer.observe(el));
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 })();
 
 // ── FAQ accordion ────────────────────────────────────────────
@@ -1097,7 +1231,23 @@ height:max-content;
   });
 })();
 
+// ── FIX #3: Curriculum tabs (session-wise) ──────────────────
+(function () {
+  const tabs = document.querySelectorAll(".curriculum-tab");
+  const panels = document.querySelectorAll(".curriculum-panel");
+  if (!tabs.length) return;
 
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.setAttribute("aria-selected", "false"));
+      panels.forEach(p => p.setAttribute("aria-hidden", "true"));
+
+      tab.setAttribute("aria-selected", "true");
+      const panel = document.getElementById(tab.getAttribute("aria-controls"));
+      if (panel) panel.setAttribute("aria-hidden", "false");
+    });
+  });
+})();
 
 // ── Lightbox (desktop ≥600px only) ──────────────────────────
 (function () {
@@ -1126,7 +1276,7 @@ height:max-content;
   });
 
   // Wire up any content images (not icons/logos)
-  document.querySelectorAll(".content-area img:not(.important-icon):not(.trainer-card__img img)").forEach(image => {
+  document.querySelectorAll(".content-area img:not(.important-icon)").forEach(image => {
     if (!image.closest("a")) {
       image.style.cursor = "zoom-in";
       image.addEventListener("click", () => openLightbox(image.src, image.alt));

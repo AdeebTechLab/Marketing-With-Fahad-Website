@@ -35,7 +35,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ── LAYOUT ───────────────────────────────────── */
 .l-wrapper{display:flex;flex-direction:column;min-height:100vh}
 .l-main{flex:1}
-.l-container{width:100%;max-width:1270px;margin:0 auto;padding:0 22px}
+
+/* FIX #1 — container: overflow fix, right padding, no clip */
+.l-container{
+  width:100%;
+  max-width:1270px;
+  margin:0 auto;
+  padding:0 22px;
+  overflow:visible;   /* prevent card clipping */
+}
 
 /* ── HERO BANNER ──────────────────────────────── */
 .hero-banner{width:100%;overflow:hidden;position:relative;background:#1a1a2e;max-height:300px}
@@ -102,31 +110,47 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* ── PORTFOLIO GRID ───────────────────────────── */
 .portfolio-section{padding:0 0 80px}
+
+/* FIX #2 — strict 4-col grid, no empty peek slots */
 .portfolio-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:20px
+  gap:20px;
+  /* Prevent orphan/peeking last-row cards */
+  align-items:start;
 }
+
+/* Hide any empty ghost cards (data-title missing / injected blanks) */
+.portfolio-card:empty{display:none}
 
 /* ── PORTFOLIO CARD ───────────────────────────── */
 .portfolio-card{
   background:var(--white);border-radius:var(--radius);overflow:hidden;
   box-shadow:0 2px 12px rgba(0,0,0,.07);
   transition:transform .3s ease,box-shadow .3s ease;
-  opacity:0;transform:translateY(24px)
+  opacity:0;transform:translateY(24px);
+  /* Ensure card never bleeds outside grid column */
+  min-width:0;
 }
 .portfolio-card.visible{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease,box-shadow .3s ease}
 .portfolio-card:hover{transform:translateY(-6px);box-shadow:0 14px 36px var(--gold-shadow)}
 
-/* card image wrapper */
+/* FIX #3 — fixed aspect ratio + object-position top so website headers show */
 .card-img{
-  position:relative;overflow:hidden;
-  padding-bottom:75%;/* 4:3 ratio */
-  background:var(--gold-light);cursor:pointer
+  position:relative;
+  overflow:hidden;
+  /* Fixed 16:10 ratio — shows top of each website screenshot */
+  padding-bottom:62.5%;
+  background:var(--gold-light);
+  cursor:pointer;
 }
 .card-img img{
-  position:absolute;top:0;left:0;width:100%;height:100%;
-  object-fit:cover;transition:transform .4s ease
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:top;   /* FIX #3 — always show top of screenshot */
+  transition:transform .4s ease;
 }
 .card-img:hover img{transform:scale(1.06)}
 
@@ -180,9 +204,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 
 /* ── FAQ SECTION ──────────────────────────────── */
+/* FIX #4/#5 — single FAQ section, no repeat, trimmed */
 .faq-section{padding:80px 0;background:var(--white)}
 .faq-inner{display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap}
-.faq-left{flex:1;min-width:280px}
+.faq-left{flex:1;min-width:280px;position:sticky;top:100px;height:max-content}
 .faq-right{flex:1.5;min-width:320px}
 .faq-badge{
   display:inline-block;background:var(--gold);color:#fff;
@@ -199,12 +224,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 .faq-cta:hover{background:var(--gold-dark);color:#fff;transform:translateY(-2px)}
 
-/* FAQ ACCORDION */
-.faq-left {
-position:sticky;
-top:100px;
-height:max-content;
-}
 .faq-item{margin-bottom:12px;border-radius:var(--radius-sm);border:1px solid var(--gold-border);overflow:hidden;transition:box-shadow .2s}
 .faq-item.open{border-color:var(--gold);box-shadow:0 4px 20px rgba(200,166,77,.1)}
 .faq-btn{
@@ -237,7 +256,7 @@ height:max-content;
 @media(max-width:900px){
   .portfolio-grid{grid-template-columns:repeat(2,1fr)}
   .faq-inner{flex-direction:column;gap:36px}
-  .faq-left { position: static; flex: none; width: 100%; }
+  .faq-left{position:static;flex:none;width:100%}
 }
 @media(max-width:560px){
   .portfolio-grid{grid-template-columns:repeat(2,1fr);gap:12px}
@@ -687,13 +706,14 @@ height:max-content;
               <a href="#" class="card-link-icon">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
             </div>
           </div>
+
         </div><!-- /portfolio-grid -->
       </section>
 
     </div><!-- /l-container -->
   </main>
 
-  <!-- FAQ SECTION -->
+  <!-- FAQ SECTION — single instance, trimmed (FIX #4 / #5) -->
   <section class="faq-section" aria-labelledby="faq-heading">
     <div class="l-container">
       <div class="faq-inner">
@@ -770,29 +790,25 @@ height:max-content;
 
 <script>
 // ── HEADER / FOOTER ───────────────────────────
-// ── HEADER / FOOTER ───────────────────────────────────────
-  function runScripts(container) {
-    container.querySelectorAll('script').forEach(oldScript => {
-      const newScript = document.createElement('script');
-      if (oldScript.src) {
-        newScript.src = oldScript.src;
-      } else {
-        newScript.textContent = oldScript.textContent;
-      }
-      document.body.appendChild(newScript);
-      oldScript.remove();
-    });
-  }
+function runScripts(container) {
+  container.querySelectorAll('script').forEach(oldScript => {
+    const newScript = document.createElement('script');
+    if (oldScript.src) { newScript.src = oldScript.src; }
+    else { newScript.textContent = oldScript.textContent; }
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
+async function loadPart(url, id) {
+  try {
+    const r = await fetch(url);
+    const el = document.getElementById(id);
+    if (el) { el.innerHTML = await r.text(); runScripts(el); }
+  } catch(e) {}
+}
+loadPart('header.html', 'header-placeholder');
+loadPart('footer.html', 'footer-placeholder');
 
-  async function loadPart(url, id) {
-    try {
-      const r = await fetch(url);
-      const el = document.getElementById(id);
-      if (el) { el.innerHTML = await r.text(); runScripts(el); }
-    } catch(e) {}
-  }
-  loadPart('header.html', 'header-placeholder');
-  loadPart('footer.html', 'footer-placeholder');
 // ── SCROLL REVEAL ─────────────────────────────
 (function(){
   const cards = document.querySelectorAll('.portfolio-card');

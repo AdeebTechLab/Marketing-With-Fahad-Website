@@ -30,6 +30,7 @@
   --gold-shadow: rgba(200,166,77,0.3);
   --dark:        #1a1a2e;
   --dark-80:     rgba(26,26,46,0.80);
+  --navy:        #16213e;
   --body-bg:     #f5f4f0;
   --white:       #ffffff;
   --text:        #2e2e2e;
@@ -219,25 +220,40 @@ p:last-child { margin-bottom: 0; }
 .breadcrumbs span { color: var(--gold); }
 
 /* ═══════════════════════════════════════════
-   HERO SECTION
+   HERO SECTION  — FIX #1: full-height, standard hero treatment
 ═══════════════════════════════════════════ */
 .hero {
   background: var(--white);
   position: relative;
   overflow: hidden;
-  padding: clamp(60px, 10vw, 110px) 22px clamp(80px, 12vw, 140px);
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  padding: clamp(110px, 14vw, 160px) 22px clamp(90px, 10vw, 120px);
   border-bottom: 1px solid var(--gold-border);
 }
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 65% 40%, rgba(200,166,77,.06), transparent 65%);
+  background: radial-gradient(ellipse at 65% 40%, rgba(200,166,77,.08), transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26,26,46,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,26,46,.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 65% 40%, black, transparent 70%);
   pointer-events: none;
 }
 .hero-inner {
   max-width: 1270px;
   margin: 0 auto;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 420px;
   gap: 56px;
@@ -264,19 +280,35 @@ p:last-child { margin-bottom: 0; }
   border-radius: 2px;
 }
 .hero h1 {
-  font-size: clamp(28px, 4.5vw, 50px);
+  font-size: clamp(32px, 5vw, 56px);
   font-weight: 700;
   color: var(--dark);
   line-height: 1.12;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 .hero h1 .accent { color: var(--gold); }
 .hero-desc {
-  font-size: clamp(15px, 2vw, 17px);
+  font-size: clamp(16px, 2vw, 18px);
   color: var(--text-light);
   max-width: 520px;
   line-height: 1.78;
   margin-bottom: 36px;
+}
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.hero-stat-num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.hero-stat-num span { color: var(--gold); }
+.hero-stat-label {
+  font-size: 13px;
+  color: var(--text-light);
 }
 .hero-network-pills {
   display: flex;
@@ -387,7 +419,7 @@ p:last-child { margin-bottom: 0; }
 .hero-mobile-form-inner textarea { height: 100px; resize: none; }
 
 /* ═══════════════════════════════════════════
-   INTRO TEXT SECTION  ← FIXED HERE
+   INTRO TEXT SECTION
 ═══════════════════════════════════════════ */
 .intro-section {
   background: var(--white);
@@ -402,25 +434,65 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
 }
 
-/* ── FIX: give the wrap a fixed aspect ratio so landscape image always shows ── */
+/* FIX #2: off-brand orange/green blobs behind the image — replaced with a
+   single unified gold/navy brand blob, and the photo itself is tinted with
+   a gold duotone overlay so any stray colours read as on-brand. */
+.intro-img-frame {
+  position: relative;
+}
+.intro-img-frame::before {
+  content: '';
+  position: absolute;
+  top: -22px; left: -26px;
+  width: 78%;
+  height: 78%;
+  background: radial-gradient(circle at 30% 30%, var(--gold) 0%, var(--gold-tint) 70%);
+  border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  opacity: .35;
+  z-index: 0;
+  filter: blur(2px);
+}
+.intro-img-frame::after {
+  content: '';
+  position: absolute;
+  bottom: -24px; right: -20px;
+  width: 56%;
+  height: 56%;
+  background: radial-gradient(circle at 70% 70%, var(--dark) 0%, var(--navy) 70%);
+  border-radius: 58% 42% 38% 62% / 55% 48% 52% 45%;
+  opacity: .14;
+  z-index: 0;
+}
 .intro-img-wrap {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   position: relative;
-  aspect-ratio: 16 / 10;        /* matches landscape photo — change to 4/3 if needed */
-  background: var(--gold-tint); /* placeholder colour while image loads */
+  z-index: 1;
+  aspect-ratio: 16 / 10;
+  background: var(--gold-tint);
 }
 .intro-img-wrap img {
   width: 100%;
-  height: 100%;                 /* fill the container fully */
-  object-fit: cover;            /* no distortion, slight edge crop */
+  height: 100%;
+  object-fit: cover;
   object-position: center;
   display: block;
   border-radius: var(--radius);
   transition: transform 0.45s ease;
 }
 .intro-img-wrap:hover img { transform: scale(1.06); }
+/* unify any off-brand colours baked into the source photo with a gold duotone wash */
+.intro-img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(200,166,77,.30) 0%, rgba(26,26,46,.18) 100%);
+  mix-blend-mode: color;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: var(--radius);
+}
 
 .img-zoom-overlay {
   position: absolute;
@@ -433,6 +505,7 @@ p:last-child { margin-bottom: 0; }
   transition: opacity var(--transition);
   cursor: zoom-in;
   border-radius: var(--radius);
+  z-index: 3;
 }
 .img-zoom-overlay svg { width: 48px; height: 48px; fill: var(--gold); }
 .intro-img-wrap:hover .img-zoom-overlay { opacity: 1; }
@@ -466,7 +539,7 @@ p:last-child { margin-bottom: 0; }
 .two-col-text p { color: var(--text-light); margin-bottom: 12px; }
 
 /* ═══════════════════════════════════════════
-   SOCIAL NETWORKS GRID
+   SOCIAL NETWORKS GRID — FIX #3: uniform headers, 1 CTA per card
 ═══════════════════════════════════════════ */
 .networks-section {
   background: var(--white);
@@ -477,6 +550,7 @@ p:last-child { margin-bottom: 0; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  align-items: stretch;
 }
 .network-card {
   background: var(--white);
@@ -487,6 +561,7 @@ p:last-child { margin-bottom: 0; }
   transition: transform var(--transition), box-shadow var(--transition);
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .network-card:hover {
   transform: translateY(-6px);
@@ -518,7 +593,12 @@ p:last-child { margin-bottom: 0; }
 .network-card-img-overlay svg { width: 40px; height: 40px; fill: var(--gold); }
 .network-card:hover .network-card-img-overlay { opacity: 1; }
 
-.network-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.network-card-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 .network-card-title {
   display: flex;
   align-items: center;
@@ -527,37 +607,24 @@ p:last-child { margin-bottom: 0; }
   font-weight: 700;
   color: var(--dark);
   margin-bottom: 12px;
+  min-height: 28px;
 }
 .network-card-title img { width: 28px; height: 28px; }
-.network-card-text { color: var(--text-light); font-size: 15px; line-height: 1.7; flex: 1; }
-.network-card-extra { display: none; color: var(--text-light); font-size: 15px; line-height: 1.7; margin-top: 10px; }
-.network-card.expanded .network-card-extra { display: block; }
+.network-card-text {
+  color: var(--text-light);
+  font-size: 15px;
+  line-height: 1.7;
+  flex: 1;
+}
 .network-card-footer {
-  display: flex;
-  gap: 10px;
   margin-top: 20px;
-  flex-wrap: wrap;
 }
 .network-card-footer .btn {
-  height: 42px;
-  padding: 0 18px;
+  height: 44px;
+  width: 100%;
   font-size: 14px;
   border-radius: var(--radius-sm);
 }
-.btn-read-more {
-  background: transparent;
-  color: var(--gold);
-  border: 1px solid var(--gold-border);
-  font-size: 14px;
-  height: 42px;
-  padding: 0 18px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: 600;
-  transition: background var(--transition), color var(--transition);
-}
-.btn-read-more:hover { background: var(--gold-tint); }
 
 /* ═══════════════════════════════════════════
    ADVANTAGES GRID
@@ -602,10 +669,10 @@ p:last-child { margin-bottom: 0; }
 .advantage-card-text { font-size: 14px; color: var(--text-light); line-height: 1.65; }
 
 /* ═══════════════════════════════════════════
-   PRICING STRIP
+   PRICING STRIP — FIX #4: navy/gold instead of purple gradient
 ═══════════════════════════════════════════ */
 .pricing-section {
-  background: linear-gradient(135deg, var(--dark) 0%, #2a1a5e 50%, #1a1a2e 100%);
+  background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 50%, var(--dark) 100%);
   padding: clamp(52px,8vw,92px) 22px;
   text-align: center;
   position: relative;
@@ -615,7 +682,14 @@ p:last-child { margin-bottom: 0; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(200,166,77,.12), transparent 60%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(200,166,77,.18), transparent 60%);
+  pointer-events: none;
+}
+.pricing-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(200,166,77,.06), transparent 40%);
   pointer-events: none;
 }
 .pricing-inner {
@@ -673,7 +747,7 @@ p:last-child { margin-bottom: 0; }
 .enquiry-form textarea { height: 130px; resize: none; margin-bottom: 14px; }
 
 /* ═══════════════════════════════════════════
-   FAQ SECTION
+   FAQ SECTION — FIX #5: trimmed list
 ═══════════════════════════════════════════ */
 .faq-left {
   position: sticky;
@@ -811,6 +885,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (max-width: 1023px) {
+  .hero { min-height: auto; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-form-card { display: none; }
   .hero-mobile-form { display: block; }
@@ -875,13 +950,27 @@ p:last-child { margin-bottom: 0; }
   </nav>
 </div>
 
-<!-- HERO -->
+<!-- HERO — FIX #1: full-height, standard hero treatment -->
 <section class="hero">
   <div class="hero-inner">
     <div class="reveal">
       <p class="hero-eyebrow">Social Media Marketing Dubai</p>
       <h1>Marketing with Fahad: <span class="accent">No.1 in Professional</span> SMM Services in Dubai</h1>
       <p class="hero-desc">Creating content that attracts attention, drives engagement, and grows your brand across every major social platform — with measurable results.</p>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num"><span>50+</span></div>
+          <div class="hero-stat-label">Brands Managed</div>
+        </div>
+        <div>
+          <div class="hero-stat-num"><span>1M+</span></div>
+          <div class="hero-stat-label">Daily Reach</div>
+        </div>
+        <div>
+          <div class="hero-stat-num"><span>6</span></div>
+          <div class="hero-stat-label">Platforms Covered</div>
+        </div>
+      </div>
       <div class="hero-network-pills">
         <a href="https://facebook.com/">📘 Facebook</a>
         <a href="https://instagram.com/">📷 Instagram</a>
@@ -916,15 +1005,17 @@ p:last-child { margin-bottom: 0; }
   </div>
 </div>
 
-<!-- INTRO — FIXED SECTION -->
+<!-- INTRO — FIX #2: unified gold/navy brand blobs + gold duotone wash on photo -->
 <section class="intro-section">
   <div class="intro-inner container" style="padding:0 22px;">
     <div class="reveal">
-      <div class="intro-img-wrap">
-        <picture>
-          <source srcset="assets/smm-advanteges-1.jpg" type="image/webp">
-          <img src="assets/smm-advanteges-1.jpg" alt="Marketing with Fahad professional SMM services in Dubai" loading="lazy">
-        </picture>
+      <div class="intro-img-frame">
+        <div class="intro-img-wrap">
+          <picture>
+            <source srcset="assets/smm-advanteges-1.jpg" type="image/webp">
+            <img src="assets/smm-advanteges-1.jpg" alt="Marketing with Fahad professional SMM services in Dubai" loading="lazy">
+          </picture>
+        </div>
       </div>
     </div>
     <div class="reveal reveal-delay-2">
@@ -979,7 +1070,7 @@ p:last-child { margin-bottom: 0; }
   </div>
 </section>
 
-<!-- NETWORKS -->
+<!-- NETWORKS — FIX #3: uniform headers, 1 CTA per card -->
 <section class="networks-section" id="networks">
   <div class="networks-section-inner">
     <div class="section-center reveal" style="text-align:center;margin-bottom:52px;">
@@ -1003,11 +1094,9 @@ p:last-child { margin-bottom: 0; }
           <div class="network-card-title">
             <img src="assets/social-networks-icon-facebook.svg" alt="Facebook">Facebook
           </div>
-          <p class="network-card-text">Facebook is the most popular social media service in the world. Our Dubai strategy allows us to place targeted information about your brand, build theme groups, and drive subscriber growth — turning followers into traffic.</p>
-          <div class="network-card-extra">Facebook allows contextual and banner ads with detailed targeting by age, location, interest, and behaviour. Some tools, such as text ads and app ads, are also available at competitive CPCs for the UAE market.</div>
+          <p class="network-card-text">Facebook is the most popular social media service in the world. Our Dubai strategy allows us to place targeted information about your brand, build theme groups, and drive subscriber growth — turning followers into traffic. We also run contextual and banner ads with detailed targeting by age, location, interest and behaviour, at competitive CPCs for the UAE market.</p>
           <div class="network-card-footer">
             <a href="services.html" class="btn btn-gold">Send Enquiry</a>
-            <button class="btn-read-more js-read-more" aria-expanded="false" aria-label="Read more about Facebook">Read More</button>
           </div>
         </div>
       </div>
@@ -1039,11 +1128,9 @@ p:last-child { margin-bottom: 0; }
           <div class="network-card-title">
             <img src="assets/social-networks-icon-snapchat.svg" alt="Snapchat">Snapchat
           </div>
-          <p class="network-card-text">Extremely popular among UAE users with over 229 million daily users worldwide. We use Snapchat to increase brand awareness, generate leads, and push those leads into conversion through creative short-form ad formats.</p>
-          <div class="network-card-extra">Ad formats available on Snapchat include single image/video ads, collection ads, story ads, and commercial ads — each acting differently to promote your business to Snapchatters across the UAE.</div>
+          <p class="network-card-text">Extremely popular among UAE users with over 229 million daily users worldwide. We use Snapchat to increase brand awareness, generate leads, and push those leads into conversion through image, video, collection, story and commercial ad formats.</p>
           <div class="network-card-footer">
             <a href="services.html" class="btn btn-gold">Send Enquiry</a>
-            <button class="btn-read-more js-read-more" aria-expanded="false" aria-label="Read more about Snapchat">Read More</button>
           </div>
         </div>
       </div>
@@ -1058,11 +1145,9 @@ p:last-child { margin-bottom: 0; }
           <div class="network-card-title">
             <img src="assets/social-networks-icon-linkedin.svg" alt="LinkedIn">LinkedIn
           </div>
-          <p class="network-card-text">People connect easily through LinkedIn. The most important factor from our perspective is promoting your business through company videos, short case studies, and thought-leadership content to increase brand awareness.</p>
-          <div class="network-card-extra">We help you use statistical posts, company event sharing, and blog articles in your page. LinkedIn users will land on your website with a single click — supporting your SEO and lead generation efforts simultaneously.</div>
+          <p class="network-card-text">People connect easily through LinkedIn. We promote your business through company videos, short case studies, statistical posts and thought-leadership content, driving clicks back to your website to support SEO and lead generation.</p>
           <div class="network-card-footer">
             <a href="services.html" class="btn btn-gold">Send Enquiry</a>
-            <button class="btn-read-more js-read-more" aria-expanded="false" aria-label="Read more about LinkedIn">Read More</button>
           </div>
         </div>
       </div>
@@ -1077,11 +1162,9 @@ p:last-child { margin-bottom: 0; }
           <div class="network-card-title">
             <img src="assets/social-networks-icon-twitter.svg" alt="Twitter X">Twitter / X
           </div>
-          <p class="network-card-text">We don't recommend focusing on one channel only. Advertising across different channels reaches a wider audience, which leads to bigger conversion opportunities and significant profit for your company.</p>
-          <div class="network-card-extra">Our expert team will help you promote your brand effectively on Twitter/X through strategic use of links, blog posts, tips, quotes, and daily promotions — tailored to the UAE audience.</div>
+          <p class="network-card-text">We don't recommend focusing on one channel only. Our team promotes your brand on Twitter/X through strategic links, blog posts, tips and quotes — tailored to the UAE audience and reaching a wider, more diverse pool of customers.</p>
           <div class="network-card-footer">
             <a href="services.html" class="btn btn-gold">Send Enquiry</a>
-            <button class="btn-read-more js-read-more" aria-expanded="false" aria-label="Read more about Twitter">Read More</button>
           </div>
         </div>
       </div>
@@ -1096,11 +1179,9 @@ p:last-child { margin-bottom: 0; }
           <div class="network-card-title">
             <img src="assets/social-networks-icon-tiktok2.svg" alt="TikTok">TikTok
           </div>
-          <p class="network-card-text">One of the newest trends in social media, TikTok ads have captured attention globally. We help business owners upload short videos (15–60 seconds) to engage users and promote brands in creative, viral ways.</p>
-          <div class="network-card-extra">The key to a successful TikTok campaign is specific techniques and creative brainstorming. Our active expert team puts strong effort into helping you create campaigns that help your videos go viral and reach millions of users.</div>
+          <p class="network-card-text">One of the newest trends in social media. We help business owners upload short videos (15–60 seconds) to engage users and promote brands in creative, viral ways — with our team focused on the techniques that help campaigns reach millions of users.</p>
           <div class="network-card-footer">
             <a href="services.html" class="btn btn-gold">Send Enquiry</a>
-            <button class="btn-read-more js-read-more" aria-expanded="false" aria-label="Read more about TikTok">Read More</button>
           </div>
         </div>
       </div>
@@ -1169,7 +1250,7 @@ p:last-child { margin-bottom: 0; }
   </div>
 </section>
 
-<!-- PRICING -->
+<!-- PRICING — FIX #4: navy/gold gradient -->
 <section class="pricing-section">
   <div class="pricing-inner reveal">
     <div class="badge">Pricing</div>
@@ -1209,7 +1290,7 @@ p:last-child { margin-bottom: 0; }
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- FAQ — FIX #5: trimmed list (8 → 5) -->
 <section class="faq-section">
   <div class="faq-inner">
     <div class="faq-left reveal">
@@ -1243,29 +1324,11 @@ p:last-child { margin-bottom: 0; }
       </div>
       <div class="faq-item">
         <button class="faq-btn" aria-expanded="false">
-          <span>How many posts do you create per month?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-content" role="region">
-          <div class="faq-content-inner">Our standard package includes 12–20 posts per month per platform, combining feed posts, stories, and reels depending on the platform and your audience engagement patterns.</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-btn" aria-expanded="false">
           <span>Do you run paid social media ads?</span>
           <i class="faq-icon">+</i>
         </button>
         <div class="faq-content" role="region">
           <div class="faq-content-inner">Yes. We create and manage targeted paid campaigns on Instagram, Facebook, Snapchat, and TikTok to accelerate follower growth, drive website traffic, and generate direct leads and sales.</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-btn" aria-expanded="false">
-          <span>How long does it take to grow a social media following?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-content" role="region">
-          <div class="faq-content-inner">Organic growth is gradual — typically 3–6 months to build consistent momentum. Paid campaigns can accelerate this significantly. We focus on quality followers who match your ideal customer profile.</div>
         </div>
       </div>
       <div class="faq-item">
@@ -1284,15 +1347,6 @@ p:last-child { margin-bottom: 0; }
         </button>
         <div class="faq-content" role="region">
           <div class="faq-content-inner">We track follower growth, reach, impressions, engagement rate, link clicks, lead form submissions, and ad performance. Monthly reports show exactly what is working and what needs adjustment.</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-btn" aria-expanded="false">
-          <span>Can you manage social media for a new business with no existing accounts?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-content" role="region">
-          <div class="faq-content-inner">Yes. We set up all social media profiles from scratch — optimizing bios, profile photos, cover images, and link-in-bio tools — then begin content creation and community building immediately.</div>
         </div>
       </div>
     </div>
@@ -1358,15 +1412,6 @@ document.querySelectorAll(".faq-btn").forEach(btn => {
       item.classList.add("open");
       content.style.maxHeight = content.scrollHeight + "px";
     }
-  });
-});
-
-document.querySelectorAll(".js-read-more").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const card = btn.closest(".network-card");
-    const open = card.classList.toggle("expanded");
-    btn.textContent = open ? "Show Less" : "Read More";
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
   });
 });
 

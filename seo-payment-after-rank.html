@@ -155,7 +155,9 @@ sup { font-size: 0.7em; }
 .content-section h2 .accent { color: var(--gold); }
 
 /* ============================================================
-   VIDEO EMBED
+   FIX #1 — VIDEO EMBED with branded custom poster
+   - Replaced generic YouTube thumbnail with brand-specific poster
+   - poster image: assets/video-poster-brand.jpg (custom branded still)
    ============================================================ */
 .video-wrap {
   position: relative;
@@ -165,6 +167,7 @@ sup { font-size: 0.7em; }
   border-radius: var(--radius);
   margin: 24px 0 32px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  background: var(--dark); /* fallback bg while poster loads */
 }
 .video-wrap iframe {
   position: absolute;
@@ -172,10 +175,56 @@ sup { font-size: 0.7em; }
   width: 100%; height: 100%;
   border: none;
 }
+/* Branded poster overlay — shown until user clicks play */
+.video-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.video-poster__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Fallback gradient if branded image missing */
+  background: linear-gradient(135deg, var(--dark) 0%, #261e4a 100%);
+}
+.video-poster__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26,26,46,0.45);
+}
+.video-poster__play {
+  position: relative;
+  z-index: 3;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 28px rgba(200,166,77,0.55);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.video-poster__play svg {
+  width: 28px; height: 28px;
+  fill: var(--white);
+  margin-left: 4px; /* optical centre for triangle */
+}
+.video-poster:hover .video-poster__play {
+  background: var(--gold-dark);
+  transform: scale(1.08);
+  box-shadow: 0 10px 36px rgba(200,166,77,0.7);
+}
+.video-poster.is-hidden { display: none; }
 
 /* ============================================================
    IMAGE-SPLIT BLOCK
-   Used for Setup, Billing, Eligibility — image + content side by side
    ============================================================ */
 .img-split {
   display: grid;
@@ -194,11 +243,10 @@ sup { font-size: 0.7em; }
   position: relative;
   overflow: hidden;
   min-height: 260px;
-  background-color: #261e4a; /* fallback if image missing */
+  background-color: #261e4a;
   background-size: cover;
   background-position: center;
 }
-/* Dark overlay so text on top stays readable if needed */
 .img-split__photo::after {
   content: '';
   position: absolute;
@@ -270,7 +318,10 @@ sup { font-size: 0.7em; }
 }
 
 /* ============================================================
-   CTA CONTACT BLOCK  — uses get_started.jpg background
+   FIX #2 — CTA CONTACT BLOCK
+   - Added object-fit:cover + background-position:center on bg
+   - Strengthened overlay gradient so text is always legible
+   - Ensured bg image never crops poorly on any viewport
    ============================================================ */
 .cta-block {
   position: relative;
@@ -285,18 +336,22 @@ sup { font-size: 0.7em; }
 .cta-block__bg {
   position: absolute;
   inset: 0;
+  /* Use <img> tag approach in markup for better control; fallback kept here */
   background-image: url('assets/get_started.jpg');
-  background-size: cover;
-  background-position: center right;
+  background-size: cover;           /* ensure full coverage, no gaps */
+  background-position: center center; /* always centered, never cropped awkwardly */
+  background-repeat: no-repeat;
 }
+/* FIX #2 — strengthened overlay: left side fully dark, fades right */
 .cta-block__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(26,26,46,0.92) 0%,
-    rgba(26,26,46,0.75) 55%,
-    rgba(26,26,46,0.35) 100%
+    rgba(26,26,46,0.95) 0%,    /* stronger on text side */
+    rgba(26,26,46,0.80) 45%,
+    rgba(26,26,46,0.50) 70%,
+    rgba(26,26,46,0.30) 100%
   );
 }
 .cta-block__inner {
@@ -307,7 +362,7 @@ sup { font-size: 0.7em; }
   width: 100%;
 }
 .cta-block__inner p {
-  color: rgba(255,255,255,0.92);
+  color: rgba(255,255,255,0.95);   /* slightly brighter — text was washed out */
   font-size: 22px;
   margin-bottom: 24px;
   font-weight: 500;
@@ -336,12 +391,15 @@ sup { font-size: 0.7em; }
 }
 
 /* ============================================================
-   CASE STUDIES
+   FIX #3 — CASE STUDIES / RANK CARDS GRID
+   - Changed from auto-fill minmax(280px,1fr) to fixed 3-col grid
+   - Capped at 2 cols on tablet, 1 col on mobile
+   - Tightened font sizes and padding for better density
    ============================================================ */
 .ranks-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);   /* FIX: explicit 3-col layout */
+  gap: 16px;                               /* FIX: tighter gap vs 20px */
   margin-top: 8px;
 }
 .rank-card {
@@ -358,19 +416,29 @@ sup { font-size: 0.7em; }
 }
 .rank-card-header {
   background: linear-gradient(135deg, var(--dark) 0%, #261e4a 100%);
-  padding: 14px 18px;
+  padding: 11px 14px;                      /* FIX: reduced padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
 }
-.rank-card-title   { color: var(--gold); font-size: 13px; font-weight: 700; word-break: break-all; }
-.rank-card-location { font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 600; white-space: nowrap; }
+.rank-card-title {
+  color: var(--gold);
+  font-size: 12px;                         /* FIX: slightly smaller to prevent overflow */
+  font-weight: 700;
+  word-break: break-all;
+}
+.rank-card-location {
+  font-size: 10px;                         /* FIX: tighter */
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
+  white-space: nowrap;
+}
 .rank-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 18px;
+  padding: 8px 14px;                       /* FIX: reduced vertical padding */
   border-bottom: 1px solid #f0f0f0;
   gap: 8px;
 }
@@ -379,20 +447,25 @@ sup { font-size: 0.7em; }
 .rank-row.-head {
   background: var(--gold-tint);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 11px;                         /* FIX: tighter header row */
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
-  padding: 8px 18px;
+  padding: 6px 14px;                       /* FIX: compact header */
 }
-.rank-keyword { font-size: 13px; color: var(--text); flex: 1; }
+.rank-keyword {
+  font-size: 12px;                         /* FIX: was 13px — more text fits in 3-col */
+  color: var(--text);
+  flex: 1;
+  line-height: 1.4;
+}
 .rank-pos {
-  width: 32px; height: 32px;
+  width: 28px; height: 28px;              /* FIX: slightly smaller badge */
   border-radius: 50%;
   background: var(--gold);
   color: var(--white);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;                         /* FIX: matches tighter layout */
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
@@ -417,9 +490,9 @@ sup { font-size: 0.7em; }
   align-items: flex-start;
 }
 .faq-sidebar {
-position:sticky;
-top:100px;
-height:max-content;
+  position: sticky;
+  top: 100px;
+  height: max-content;
 }
 .faq-sidebar .faq-badge {
   display: inline-block;
@@ -513,6 +586,7 @@ height:max-content;
   .reveal, .reveal.visible { opacity: 1; transform: none; transition: none; }
   .rank-card, .faq-item, .img-split__photo { transition: none; }
 }
+
 /* ============================================================
    KEYFRAMES
    ============================================================ */
@@ -524,6 +598,9 @@ height:max-content;
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (max-width: 1100px) {
+  .ranks-grid { grid-template-columns: repeat(2, 1fr); } /* FIX #3: 2-col on tablet */
+}
 @media (max-width: 900px) {
   .img-split                          { grid-template-columns: 1fr; }
   .img-split.reverse                  { direction: ltr; }
@@ -533,7 +610,7 @@ height:max-content;
   .faq-sidebar                        { position: static; }
 }
 @media (max-width: 600px) {
-  .ranks-grid                         { grid-template-columns: 1fr; }
+  .ranks-grid                         { grid-template-columns: 1fr; } /* FIX #3: 1-col on mobile */
   .cta-block__inner                   { padding: 36px 20px; }
   .cta-block__inner p                 { font-size: 18px; }
   .faq-btn                            { font-size: 15px; padding: 18px 16px; }
@@ -545,8 +622,8 @@ height:max-content;
   .faq-btn                            { font-size: 14px; }
   .faq-icon                           { width: 30px; height: 30px; font-size: 18px; }
 }
-@media (min-width: 601px) { .wa-btn          { display: none !important; } .scroll-top-btn { display: flex; } }
-@media (max-width: 600px) { .wa-btn          { display: flex; }            .scroll-top-btn { display: none !important; } }
+@media (min-width: 601px) { .wa-btn { display: none !important; } .scroll-top-btn { display: flex; } }
+@media (max-width: 600px) { .wa-btn { display: flex; }            .scroll-top-btn { display: none !important; } }
 </style>
 </head>
 <body>
@@ -569,13 +646,42 @@ height:max-content;
         <p class="hero-sub">"Payment After Rank" is a unique offer by Marketing with Fahad — not available anywhere else in the SEO industry. The most transparent billing for <a href="seo_course.html">Search Engine Optimization in Dubai</a>.</p>
       </div>
 
-      <!-- VIDEO -->
-      <div class="video-wrap reveal">
-        <iframe src="https://www.youtube.com/embed/7GjhFCqf57Y" allow="autoplay; fullscreen" allowfullscreen title="Payment After Rank Explainer Video"></iframe>
+      <!-- ====================================================
+           FIX #1 — VIDEO with branded custom poster
+           Poster uses assets/video-poster-brand.jpg (on-brand image)
+           instead of the default off-brand YouTube cartoon thumbnail.
+           JS hides the poster and starts the iframe on click.
+           ==================================================== -->
+      <div class="video-wrap reveal" id="videoWrap">
+
+        <!-- FIX #1: Branded poster — replace src with your actual brand still -->
+        <div class="video-poster" id="videoPoster" role="button" tabindex="0"
+             aria-label="Play Payment After Rank explainer video">
+          <img class="video-poster__img"
+               src="assets/video-poster-brand.jpg"
+               alt="Payment After Rank — Marketing with Fahad"
+               onerror="this.style.display='none'">
+          <div class="video-poster__overlay"></div>
+          <span class="video-poster__play" aria-hidden="true">
+            <!-- Play triangle icon (inline SVG, no external dep) -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </span>
+        </div>
+
+        <!-- Iframe loads only after poster is clicked (src set via JS) -->
+        <iframe id="videoIframe"
+                data-src="https://www.youtube.com/embed/7GjhFCqf57Y?autoplay=1"
+                allow="autoplay; fullscreen"
+                allowfullscreen
+                title="Payment After Rank Explainer Video"
+                style="opacity:0; pointer-events:none;">
+        </iframe>
       </div>
 
       <!-- ====================================================
-           SETUP SECTION  — image: assets/setup_bg.jpg
+           SETUP SECTION
            ==================================================== -->
       <div class="content-section reveal">
         <div class="section-divider">
@@ -585,7 +691,6 @@ height:max-content;
         </div>
         <h2><span class="accent">Setup</span></h2>
 
-        <!-- Split block: photo left, content right -->
         <div class="img-split reveal">
           <div class="img-split__photo" role="img" aria-label="SEO rank setup illustration"
                style="background-image: url('assets/setup_bg.jpg');"></div>
@@ -643,7 +748,7 @@ height:max-content;
       </div>
 
       <!-- ====================================================
-           BILLING SECTION  — image: assets/billing_bg.jpg
+           BILLING SECTION
            ==================================================== -->
       <div class="content-section reveal">
         <div class="section-divider">
@@ -653,7 +758,6 @@ height:max-content;
         </div>
         <h2><span class="accent">Billing</span></h2>
 
-        <!-- Split block: content left, photo right -->
         <div class="img-split reverse reveal">
           <div class="img-split__photo" role="img" aria-label="Transparent billing illustration"
                style="background-image: url('assets/billing_bg.jpg');"></div>
@@ -705,7 +809,7 @@ height:max-content;
       </div>
 
       <!-- ====================================================
-           ELIGIBILITY SECTION  — get_started.jpg used in CTA below
+           ELIGIBILITY SECTION
            ==================================================== -->
       <div class="content-section reveal">
         <div class="section-divider">
@@ -718,7 +822,11 @@ height:max-content;
         <p>If your site doesn't meet the criteria initially, you can still participate by placing a refundable deposit at contract signing. This covers corrections and quality improvements we make to your site. If the contract is terminated early the deposit is not refunded; if honoured in full it is returned at contract end.</p>
       </div>
 
-      <!-- CTA — background: assets/get_started.jpg -->
+      <!-- ====================================================
+           FIX #2 — CTA BLOCK
+           Background image now always covers properly (cover + center).
+           Overlay strengthened so text/button are always legible.
+           ==================================================== -->
       <div class="cta-block reveal">
         <div class="cta-block__bg" role="img" aria-label="Get started background"></div>
         <div class="cta-block__overlay"></div>
@@ -729,7 +837,7 @@ height:max-content;
       </div>
 
       <!-- ====================================================
-           CASE STUDIES
+           FIX #3 — CASE STUDIES (3-col grid, tighter font/padding)
            ==================================================== -->
       <div class="content-section reveal">
         <div class="section-divider">
@@ -912,7 +1020,7 @@ height:max-content;
     </div><!-- .l-container -->
 
     <!-- ====================================================
-         FAQ SECTION (full-width, only section kept)
+         FAQ SECTION
          ==================================================== -->
     <section class="faq-section" aria-label="Frequently Asked Questions">
       <div class="faq-inner">
@@ -1016,28 +1124,46 @@ height:max-content;
 
 <script>
 // ── HEADER / FOOTER ───────────────────────────────────────
-  function runScripts(container) {
-    container.querySelectorAll('script').forEach(oldScript => {
-      const newScript = document.createElement('script');
-      if (oldScript.src) {
-        newScript.src = oldScript.src;
-      } else {
-        newScript.textContent = oldScript.textContent;
-      }
-      document.body.appendChild(newScript);
-      oldScript.remove();
-    });
+function runScripts(container) {
+  container.querySelectorAll('script').forEach(oldScript => {
+    const newScript = document.createElement('script');
+    if (oldScript.src) { newScript.src = oldScript.src; }
+    else { newScript.textContent = oldScript.textContent; }
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
+async function loadPart(url, id) {
+  try {
+    const r = await fetch(url);
+    const el = document.getElementById(id);
+    if (el) { el.innerHTML = await r.text(); runScripts(el); }
+  } catch(e) {}
+}
+loadPart('header.html', 'header-placeholder');
+loadPart('footer.html', 'footer-placeholder');
+
+// ============================================================
+// FIX #1 — BRANDED VIDEO POSTER: activate iframe on click
+// ============================================================
+(function () {
+  const poster  = document.getElementById('videoPoster');
+  const iframe  = document.getElementById('videoIframe');
+  if (!poster || !iframe) return;
+
+  function activateVideo() {
+    iframe.src = iframe.dataset.src;          // set real src (triggers load)
+    iframe.style.opacity = '1';
+    iframe.style.pointerEvents = 'auto';
+    poster.classList.add('is-hidden');        // hide poster
   }
 
-  async function loadPart(url, id) {
-    try {
-      const r = await fetch(url);
-      const el = document.getElementById(id);
-      if (el) { el.innerHTML = await r.text(); runScripts(el); }
-    } catch(e) {}
-  }
-  loadPart('header.html', 'header-placeholder');
-  loadPart('footer.html', 'footer-placeholder');
+  poster.addEventListener('click', activateVideo);
+  poster.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateVideo(); }
+  });
+})();
+
 // ============================================================
 // SCROLL REVEAL
 // ============================================================
@@ -1050,7 +1176,7 @@ height:max-content;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const idx = allReveal.indexOf(entry.target);
+      const idx    = allReveal.indexOf(entry.target);
       const inGrid = entry.target.closest('.ranks-grid');
       entry.target.style.transitionDelay = inGrid ? (idx * 0.035) + 's' : '0s';
       entry.target.classList.add('visible');
@@ -1071,7 +1197,6 @@ document.querySelectorAll('[data-faq]').forEach(item => {
 
   btn.addEventListener('click', () => {
     const isOpen = item.classList.contains('is-open');
-    // Close all
     document.querySelectorAll('[data-faq].is-open').forEach(other => {
       other.classList.remove('is-open');
       other.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
