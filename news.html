@@ -6,16 +6,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="You can learn more interesting news about our company, where we talk about our victories and local changes.">
-<link rel="canonical" href="contact.html">
-<meta name="yandex-verification" content="52f389f433da9518">
-<link rel="icon" href="/assets/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-<link rel="icon" type="image/png" href="/assets/favicon-dark-bg.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="/assets/favicon-light-bg.png" media="(prefers-color-scheme: dark)">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180x180.png">
-<link rel="manifest" href="/assets/site.webmanifest">
-<meta name="theme-color" content="#141414">
 <style>
 /* ── RESET & BASE ─────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -70,22 +60,41 @@ button{font-family:inherit;cursor:pointer}
 .pub-main{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-bottom:40px}
 @media(max-width:900px){.pub-main{grid-template-columns:1fr}}
 
-/* ── FIX #1: Preview stack — full height, no grey dead-space ── */
-/* Removed fixed aspect-ratio so image fills the sidebar height */
+/* ── PREVIEW AREA — full height, image fills completely ── */
 .pub-preview{
   position:relative;
   border-radius:var(--radius);
   overflow:hidden;
-  background:var(--dark); /* dark fallback, not grey */
-  /* stretch to match sidebar height instead of fixed ratio */
-  min-height:340px;
+  background:var(--dark);
+  min-height:420px;
 }
-.pub-preview__item{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none}
-.pub-preview__item.is-active{opacity:1;pointer-events:auto}
-.pub-preview__item:first-child{position:relative;opacity:1}
-.pub-preview__img{width:100%;height:100%;position:absolute;inset:0}
-.pub-preview__img a{display:block;width:100%;height:100%}
-/* FIX #1: Image covers full container — no gap below */
+
+/* All items stacked absolutely, only active shown */
+.pub-preview__item{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity .5s ease;
+  pointer-events:none;
+}
+.pub-preview__item.is-active{
+  opacity:1;
+  pointer-events:auto;
+  position:absolute; /* keep absolute so image fills full area */
+}
+
+/* Image fills the entire preview box */
+.pub-preview__img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.pub-preview__img a{
+  display:block;
+  width:100%;
+  height:100%;
+}
 .pub-preview__img img{
   width:100%;
   height:100%;
@@ -93,12 +102,63 @@ button{font-family:inherit;cursor:pointer}
   object-position:center;
   display:block;
 }
-.pub-preview__overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,46,.85) 0%,rgba(26,26,46,0) 55%);pointer-events:none}
-.pub-preview__text{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;color:#fff}
-.pub-preview__date{font-size:12px;font-weight:500;color:var(--gold);margin-bottom:6px;letter-spacing:.04em}
-.pub-preview__title{font-size:clamp(15px,2.2vw,22px);font-weight:700;color:#fff;line-height:1.35}
+
+/* Branded CSS fallback when image fails */
+.pub-preview__img.img-error{
+  background:linear-gradient(135deg,#1a1a2e 0%,#2a2a4a 60%,#1a1a2e 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.pub-preview__img.img-error::after{
+  content:"M";
+  font-size:80px;
+  font-weight:900;
+  color:var(--gold);
+  opacity:.35;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+
+.pub-preview__overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(10,10,30,.9) 0%,rgba(10,10,30,.2) 45%,transparent 70%);
+  pointer-events:none;
+  z-index:2;
+}
+.pub-preview__text{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  padding:28px 32px;
+  color:#fff;
+  z-index:3;
+}
+.pub-preview__date{
+  font-size:12px;font-weight:600;
+  color:var(--gold);
+  margin-bottom:8px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.pub-preview__title{
+  font-size:clamp(17px,2.4vw,26px);
+  font-weight:700;
+  color:#fff;
+  line-height:1.3;
+  display:block;
+  transition:color .2s;
+}
 .pub-preview__title:hover{color:var(--gold)}
-.pub-preview__brief{font-size:14px;color:rgba(255,255,255,.78);margin-top:8px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pub-preview__brief{
+  font-size:14px;
+  color:rgba(255,255,255,.8);
+  margin-top:10px;
+  line-height:1.6;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
 
 /* sidebar list */
 .pub-list{background:var(--white);border-radius:var(--radius);border:1px solid var(--gold-border);overflow:hidden}
@@ -115,115 +175,53 @@ button{font-family:inherit;cursor:pointer}
 .pub-also__heading{font-size:20px;font-weight:700;color:var(--dark);margin-bottom:20px}
 .pub-also__heading span{color:var(--gold)}
 .pub-slider-wrap{position:relative}
-.pub-slider{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;transition:transform .3s}
+.pub-slider{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 @media(max-width:900px){.pub-slider{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.pub-slider{grid-template-columns:1fr}}
 
 .pub-widget-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--gold-border);transition:transform .25s,box-shadow .25s}
 .pub-widget-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--gold-shadow)}
-.pub-widget-card__img{position:relative;overflow:hidden;aspect-ratio:16/9}
-.pub-widget-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.pub-widget-card__img{position:relative;overflow:hidden;aspect-ratio:16/9;background:linear-gradient(135deg,#1a1a2e,#2a2a4a)}
+.pub-widget-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .35s;position:absolute;inset:0}
 .pub-widget-card:hover .pub-widget-card__img img{transform:scale(1.06)}
-
-/* ── FIX #2: Branded fallback placeholder for missing images ── */
-.pub-widget-card__img img[src="assets/placeholder.svg"],
-.pub-widget-card__img img:not([src]),
-.pub-widget-card__img img[src=""] {
-  /* Hide broken img, show CSS fallback via parent */
-  opacity: 0;
-  position: absolute;
-}
-
-/* Branded fallback via pseudo-element on parent */
-.pub-widget-card__img.no-image::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--dark) 0%, #2a2a4a 100%);
-  z-index: 0;
-}
-.pub-widget-card__img.no-image::after {
-  content: "M";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--gold);
-  letter-spacing: -1px;
-  z-index: 1;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-}
-
 .pub-widget-card__img-overlay{position:absolute;inset:0;background:rgba(26,26,46,0);transition:background .3s;display:flex;align-items:center;justify-content:center;z-index:2}
 .pub-widget-card:hover .pub-widget-card__img-overlay{background:rgba(26,26,46,.35)}
 .zoom-icon{opacity:0;transition:opacity .25s;color:#fff;font-size:28px}
 .pub-widget-card:hover .zoom-icon{opacity:1}
 .pub-widget-card__body{padding:14px 16px 18px}
 .pub-widget-card__date{font-size:11px;color:var(--muted);margin-bottom:5px}
-.pub-widget-card__title{font-size:14px;font-weight:600;color:var(--dark);line-height:1.4}
+.pub-widget-card__title{font-size:14px;font-weight:600;color:var(--dark);line-height:1.4;display:block}
 .pub-widget-card__title:hover{color:var(--gold)}
 
-/* slider nav buttons */
-.slider-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:var(--white);border:2px solid var(--gold-border);display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s,border-color .2s}
-.slider-btn:hover{background:var(--gold);border-color:var(--gold)}
-.slider-btn:hover svg path{stroke:#fff}
-.slider-btn--prev{left:-20px}
-.slider-btn--next{right:-20px}
-@media(max-width:560px){.slider-btn{display:none}}
-
-/* ── FIX #3: FAQ SECTION — trim repetitive block ─────────── */
-/* Reduced padding, unified look, no duplicate heading styles */
-.faq-section{
-  padding:60px 22px; /* trimmed from 80px */
-  background:var(--white);
-  border-top:1px solid var(--gold-border)
+/* CSS fallback for widget cards with broken images */
+.pub-widget-card__img.no-img::after{
+  content:"M";
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:36px;font-weight:900;
+  color:var(--gold);opacity:.4;
+  z-index:1;
 }
+
+/* ── FAQ SECTION ──────────────────────────────────────────── */
+.faq-section{padding:60px 22px;background:var(--white);border-top:1px solid var(--gold-border)}
 .faq-inner{max-width:1270px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:flex-start}
 @media(max-width:900px){.faq-inner{grid-template-columns:1fr;gap:36px}}
-
-.faq-label{
-  display:inline-block;
-  background:var(--gold);
-  color:#fff;
-  padding:6px 18px; /* slightly tighter */
-  border-radius:30px;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  margin-bottom:16px /* was 20px */
-}
-.faq-heading{
-  font-size:clamp(28px,3.5vw,46px); /* reduced from 52px max */
-  font-weight:700;
-  line-height:1.15;
-  color:var(--dark);
-  margin-bottom:14px /* was 18px */
-}
+.faq-label{display:inline-block;background:var(--gold);color:#fff;padding:6px 18px;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.faq-heading{font-size:clamp(28px,3.5vw,46px);font-weight:700;line-height:1.15;color:var(--dark);margin-bottom:14px}
 .faq-heading span{color:var(--gold)}
-.faq-desc{
-  font-size:15px; /* was 16px */
-  color:var(--muted);
-  line-height:1.7;
-  margin-bottom:26px /* was 32px */
-}
+.faq-desc{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:26px}
 .faq-cta{display:inline-block;background:var(--gold);color:#fff;padding:13px 30px;border-radius:50px;font-size:15px;font-weight:700;box-shadow:0 6px 20px var(--gold-shadow);transition:background .2s,box-shadow .2s}
 .faq-cta:hover{background:var(--gold-dark);box-shadow:0 8px 28px var(--gold-shadow);color:#fff}
-
-.faq-list{display:flex;flex-direction:column;gap:10px} /* gap reduced from 12px */
+.faq-list{display:flex;flex-direction:column;gap:10px}
 .faq-item{background:var(--white);border-radius:12px;border:1px solid var(--gold-border);overflow:hidden;transition:box-shadow .25s,border-color .25s}
 .faq-item.open{border-color:var(--gold);box-shadow:0 6px 24px rgba(200,166,77,.1)}
 .faq-btn{width:100%;border:none;background:transparent;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;font-size:15px;font-weight:600;color:var(--dark);line-height:1.4;transition:color .2s}
 .faq-item.open .faq-btn{color:var(--gold)}
-@media(max-width:400px){.faq-btn{font-size:14px;padding:14px 14px}}
 .faq-icon{width:32px;height:32px;border-radius:50%;background:var(--gold-light);color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;font-weight:400;line-height:1;transition:background .2s,color .2s,transform .3s}
 .faq-item.open .faq-icon{background:var(--gold);color:#fff;transform:rotate(45deg)}
 .faq-content{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
 .faq-content-inner{padding:0 20px 18px;font-size:14px;color:var(--muted);line-height:1.7}
-@media(max-width:400px){.faq-content-inner{padding:0 14px 14px}}
 
 /* ── LIGHTBOX ─────────────────────────────────────────────── */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(10,10,20,.92);z-index:999;align-items:center;justify-content:center}
@@ -245,7 +243,6 @@ button{font-family:inherit;cursor:pointer}
   .reveal{opacity:1;transform:none}
 }
 
-/* ── MAIN CONTENT WRAPPER ─────────────────────────────────── */
 .l-main{padding-bottom:60px}
 </style>
 </head>
@@ -258,21 +255,10 @@ button{font-family:inherit;cursor:pointer}
     <div class="l-container">
 
       <!-- BREADCRUMBS -->
-      <nav class="breadcrumbs" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-        <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="index.html">
-          <meta itemprop="position" content="1">
-          <meta itemprop="name" content="Home">
-          <meta itemprop="item" content="https://www.marketingwithfahad.ae/">
-          Home</a>
-        <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="about.html">
-          <meta itemprop="position" content="2">
-          <meta itemprop="name" content="About">
-          <meta itemprop="item" content="https://www.marketingwithfahad.ae/about/">
-          About</a>
-        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <meta itemprop="position" content="3">
-          <meta itemprop="name" content="News">
-          News</span>
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <span>News</span>
       </nav>
 
       <!-- PAGE TITLE -->
@@ -283,7 +269,6 @@ button{font-family:inherit;cursor:pointer}
       <!-- NEWS PUBLICATION BOARD -->
       <div class="pub-board reveal" data-reveal>
 
-        <!-- FEATURED / LATEST NEWS -->
         <div class="sec-divider">
           <span class="sec-divider__dot" aria-hidden="true"></span>
           <span class="sec-divider__label">Latest</span>
@@ -294,99 +279,127 @@ button{font-family:inherit;cursor:pointer}
           <!-- Preview area -->
           <div class="pub-preview" id="pubPreview" aria-live="polite">
 
+            <!-- Item 1: DMOZ legacy — online directory / web archive theme -->
             <div class="pub-preview__item is-active" data-index="1">
               <div class="pub-preview__img">
-                <a href="/about/news/dmoz-18-years-of-legacy-coming-to-an-end/">
-                  <img src="assets/group-169-1.jpeg" alt="DMOZ, 18 Years of Legacy Coming To An End">
+                <a href="#">
+                  <img
+                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80"
+                    alt="DMOZ, 18 Years of Legacy Coming To An End"
+                    onerror="this.parentElement.classList.add('img-error');this.style.display='none'">
                 </a>
               </div>
               <div class="pub-preview__overlay" aria-hidden="true"></div>
               <div class="pub-preview__text">
                 <div class="pub-preview__date">05.03.2017</div>
-                <a class="pub-preview__title" href="/about/news/dmoz-18-years-of-legacy-coming-to-an-end/">DMOZ, 18 Years of Legacy Coming To An End</a>
-                <p class="pub-preview__brief">DMOZ, leaves behind an undying legacy of 18 years for the generations to cherish. An online digital directory, founded 18 years ago, in the United States has brought together, the people from across the globe.</p>
+                <a class="pub-preview__title" href="#">DMOZ, 18 Years of Legacy Coming To An End</a>
+                <p class="pub-preview__brief">DMOZ leaves behind an undying legacy of 18 years for the generations to cherish. An online digital directory, founded 18 years ago in the United States, brought together people from across the globe.</p>
               </div>
             </div>
 
+            <!-- Item 2: 100% Keywords — SEO / search rankings theme -->
             <div class="pub-preview__item" data-index="2">
               <div class="pub-preview__img">
-                <a href="/about/news/we-got-100-keywords-on-the-top-for-13-days/">
-                  <img src="assets/1-4-1.jpeg" alt="We Got 100% Keywords on the Top for 13 days">
+                <a href="#">
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80"
+                    alt="We Got 100% Keywords on the Top for 13 days"
+                    onerror="this.parentElement.classList.add('img-error');this.style.display='none'">
                 </a>
               </div>
               <div class="pub-preview__overlay" aria-hidden="true"></div>
               <div class="pub-preview__text">
                 <div class="pub-preview__date">13.10.2015</div>
-                <a class="pub-preview__title" href="/about/news/we-got-100-keywords-on-the-top-for-13-days/">We Got 100% Keywords on the Top for 13 days</a>
+                <a class="pub-preview__title" href="#">We Got 100% Keywords on the Top for 13 days</a>
                 <p class="pub-preview__brief">Believe it or not! These are real results. All keywords in the first page in 13 days. This is possible only with marketingwithfahad.</p>
               </div>
             </div>
 
+            <!-- Item 3: Ramadan Kareem — celebration / light theme -->
             <div class="pub-preview__item" data-index="3">
               <div class="pub-preview__img">
-                <a href="/about/news/ramadan-kareem-greetings-to-all/">
-                  <img src="assets/2.jpeg" alt="Ramadan Kareem Greetings To All">
+                <a href="#">
+                  <img
+                    src="https://images.unsplash.com/photo-1591378603223-e15b45a81640?w=900&q=80"
+                    alt="Ramadan Kareem Greetings To All"
+                    onerror="this.parentElement.classList.add('img-error');this.style.display='none'">
                 </a>
               </div>
               <div class="pub-preview__overlay" aria-hidden="true"></div>
               <div class="pub-preview__text">
                 <div class="pub-preview__date">18.06.2015</div>
-                <a class="pub-preview__title" href="/about/news/ramadan-kareem-greetings-to-all/">Ramadan Kareem Greetings To All</a>
+                <a class="pub-preview__title" href="#">Ramadan Kareem Greetings To All</a>
               </div>
             </div>
 
+            <!-- Item 4: Google mobile update — mobile/search theme -->
             <div class="pub-preview__item" data-index="4">
               <div class="pub-preview__img">
-                <a href="/about/news/google-update-and-mobile-friendly-websites/">
-                  <img src="assets/3-1.jpeg" alt="Google Update and Mobile-Friendly Websites">
+                <a href="#">
+                  <img
+                    src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&q=80"
+                    alt="Google Update and Mobile-Friendly Websites"
+                    onerror="this.parentElement.classList.add('img-error');this.style.display='none'">
                 </a>
               </div>
               <div class="pub-preview__overlay" aria-hidden="true"></div>
               <div class="pub-preview__text">
                 <div class="pub-preview__date">21.04.2015</div>
-                <a class="pub-preview__title" href="/about/news/google-update-and-mobile-friendly-websites/">Google Update and Mobile-Friendly Websites</a>
+                <a class="pub-preview__title" href="#">Google Update and Mobile-Friendly Websites</a>
                 <p class="pub-preview__brief">Google's algorithm update will affect non mobile-friendly websites and lower their positions in search results.</p>
               </div>
             </div>
 
+            <!-- Item 5: Dubai branch — Dubai skyline theme -->
             <div class="pub-preview__item" data-index="5">
               <div class="pub-preview__img">
-                <a href="/about/news/our-new-branch-in-dubai/">
-                  <img src="assets/image54f84b0f68da0.png" alt="Our new branch in Dubai">
+                <a href="#">
+                  <img
+                    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80"
+                    alt="Our new branch in Dubai"
+                    onerror="this.parentElement.classList.add('img-error');this.style.display='none'">
                 </a>
               </div>
               <div class="pub-preview__overlay" aria-hidden="true"></div>
               <div class="pub-preview__text">
                 <div class="pub-preview__date">07.01.2015</div>
-                <a class="pub-preview__title" href="/about/news/our-new-branch-in-dubai/">Our new branch in Dubai</a>
+                <a class="pub-preview__title" href="#">Our new branch in Dubai</a>
                 <p class="pub-preview__brief">marketingwithfahad Company has now opened its new and main branch in Dubai for its SEO services.</p>
               </div>
             </div>
 
+            <!-- Item 6: Google CSS/JS — code/design theme -->
             <div class="pub-preview__item" data-index="6">
               <div class="pub-preview__img">
-                <a href="/about/news/google-looks-css-and-javascripts-than-ranks-sites/">
-                  <img src="assets/placeholder.svg" alt="Google Looks CSS and JavaScripts than Ranks Sites">
+                <a href="#">
+                  <img
+                    src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&q=80"
+                    alt="Google Looks CSS and JavaScripts than Ranks Sites"
+                    onerror="this.parentElement.classList.add('img-error');this.style.display='none'">
                 </a>
               </div>
               <div class="pub-preview__overlay" aria-hidden="true"></div>
               <div class="pub-preview__text">
                 <div class="pub-preview__date">01.01.2015</div>
-                <a class="pub-preview__title" href="/about/news/google-looks-css-and-javascripts-than-ranks-sites/">Google Looks CSS and JavaScripts than Ranks Sites</a>
+                <a class="pub-preview__title" href="#">Google Looks CSS and JavaScripts than Ranks Sites</a>
                 <p class="pub-preview__brief">Since 2015 Google has learned to understand good design from bad. Launched a new era of search engines.</p>
               </div>
             </div>
 
+            <!-- Item 7: Facebook money — social media / finance theme -->
             <div class="pub-preview__item" data-index="7">
               <div class="pub-preview__img">
-                <a href="/about/news/money-from-facebook/">
-                  <img src="assets/placeholder.svg" alt="Money from Facebook">
+                <a href="#">
+                  <img
+                    src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=900&q=80"
+                    alt="Money from Facebook"
+                    onerror="this.parentElement.classList.add('img-error');this.style.display='none'">
                 </a>
               </div>
               <div class="pub-preview__overlay" aria-hidden="true"></div>
               <div class="pub-preview__text">
                 <div class="pub-preview__date">05.08.2013</div>
-                <a class="pub-preview__title" href="/about/news/money-from-facebook/">Money from Facebook</a>
+                <a class="pub-preview__title" href="#">Money from Facebook</a>
                 <p class="pub-preview__brief">Facebook paid more than 1,000,000 dollars to its users.</p>
               </div>
             </div>
@@ -398,34 +411,33 @@ button{font-family:inherit;cursor:pointer}
             <div class="pub-list__header">
               <h3>All News</h3>
             </div>
-
             <div class="pub-list__item is-active" data-list-item data-index="1">
               <div class="date">05.03.2017</div>
-              <a href="/about/news/dmoz-18-years-of-legacy-coming-to-an-end/">DMOZ, 18 Years of Legacy Coming To An End</a>
+              <a href="#">DMOZ, 18 Years of Legacy Coming To An End</a>
             </div>
             <div class="pub-list__item" data-list-item data-index="2">
               <div class="date">13.10.2015</div>
-              <a href="/about/news/we-got-100-keywords-on-the-top-for-13-days/">We Got 100% Keywords on the Top for 13 days</a>
+              <a href="#">We Got 100% Keywords on the Top for 13 days</a>
             </div>
             <div class="pub-list__item" data-list-item data-index="3">
               <div class="date">18.06.2015</div>
-              <a href="/about/news/ramadan-kareem-greetings-to-all/">Ramadan Kareem Greetings To All</a>
+              <a href="#">Ramadan Kareem Greetings To All</a>
             </div>
             <div class="pub-list__item" data-list-item data-index="4">
               <div class="date">21.04.2015</div>
-              <a href="/about/news/google-update-and-mobile-friendly-websites/">Google Update and Mobile-Friendly Websites</a>
+              <a href="#">Google Update and Mobile-Friendly Websites</a>
             </div>
             <div class="pub-list__item" data-list-item data-index="5">
               <div class="date">07.01.2015</div>
-              <a href="/about/news/our-new-branch-in-dubai/">Our new branch in Dubai</a>
+              <a href="#">Our new branch in Dubai</a>
             </div>
             <div class="pub-list__item" data-list-item data-index="6">
               <div class="date">01.01.2015</div>
-              <a href="/about/news/google-looks-css-and-javascripts-than-ranks-sites/">Google Looks CSS and JavaScripts than Ranks Sites</a>
+              <a href="#">Google Looks CSS and JavaScripts than Ranks Sites</a>
             </div>
             <div class="pub-list__item" data-list-item data-index="7">
               <div class="date">05.08.2013</div>
-              <a href="/about/news/money-from-facebook/">Money from Facebook</a>
+              <a href="#">Money from Facebook</a>
             </div>
           </aside>
 
@@ -443,8 +455,8 @@ button{font-family:inherit;cursor:pointer}
 
             <div class="pub-widget-card">
               <div class="pub-widget-card__img">
-                <a href="" aria-label="DMOZ article">
-                  <img src="assets/group-169-1.jpeg" alt="DMOZ, 18 Years of Legacy Coming To An End">
+                <a href="#" aria-label="DMOZ article">
+                  <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=480&q=75" alt="DMOZ, 18 Years of Legacy" onerror="this.closest('.pub-widget-card__img').classList.add('no-img');this.style.display='none'">
                   <div class="pub-widget-card__img-overlay" aria-hidden="true"><span class="zoom-icon">&#8599;</span></div>
                 </a>
               </div>
@@ -457,7 +469,7 @@ button{font-family:inherit;cursor:pointer}
             <div class="pub-widget-card">
               <div class="pub-widget-card__img">
                 <a href="#" aria-label="100% Keywords article">
-                  <img src="assets/1-4-1.jpeg" alt="We Got 100% Keywords on the Top for 13 days">
+                  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&q=75" alt="100% Keywords on Top" onerror="this.closest('.pub-widget-card__img').classList.add('no-img');this.style.display='none'">
                   <div class="pub-widget-card__img-overlay" aria-hidden="true"><span class="zoom-icon">&#8599;</span></div>
                 </a>
               </div>
@@ -470,7 +482,7 @@ button{font-family:inherit;cursor:pointer}
             <div class="pub-widget-card">
               <div class="pub-widget-card__img">
                 <a href="#" aria-label="Ramadan Kareem article">
-                  <img src="assets/2.jpeg" alt="Ramadan Kareem Greetings To All">
+                  <img src="https://images.unsplash.com/photo-1591378603223-e15b45a81640?w=480&q=75" alt="Ramadan Kareem" onerror="this.closest('.pub-widget-card__img').classList.add('no-img');this.style.display='none'">
                   <div class="pub-widget-card__img-overlay" aria-hidden="true"><span class="zoom-icon">&#8599;</span></div>
                 </a>
               </div>
@@ -483,20 +495,20 @@ button{font-family:inherit;cursor:pointer}
             <div class="pub-widget-card">
               <div class="pub-widget-card__img">
                 <a href="#" aria-label="Google Update article">
-                  <img src="assets/3.jpeg" alt="Google Update and Mobile-Friendly Websites">
+                  <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=480&q=75" alt="Google Mobile Update" onerror="this.closest('.pub-widget-card__img').classList.add('no-img');this.style.display='none'">
                   <div class="pub-widget-card__img-overlay" aria-hidden="true"><span class="zoom-icon">&#8599;</span></div>
                 </a>
               </div>
               <div class="pub-widget-card__body">
                 <div class="pub-widget-card__date">21.04.2015</div>
-                <a class="pub-widget-card__title" href="/#">Google Update and Mobile-Friendly Websites</a>
+                <a class="pub-widget-card__title" href="#">Google Update and Mobile-Friendly Websites</a>
               </div>
             </div>
 
             <div class="pub-widget-card">
               <div class="pub-widget-card__img">
                 <a href="#" aria-label="Dubai branch article">
-                  <img src="assets/image54f84b0f68da0.png" alt="Our new branch in Dubai">
+                  <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=480&q=75" alt="New branch in Dubai" onerror="this.closest('.pub-widget-card__img').classList.add('no-img');this.style.display='none'">
                   <div class="pub-widget-card__img-overlay" aria-hidden="true"><span class="zoom-icon">&#8599;</span></div>
                 </a>
               </div>
@@ -506,11 +518,10 @@ button{font-family:inherit;cursor:pointer}
               </div>
             </div>
 
-            <!-- FIX #2: Cards with missing/placeholder images get branded fallback via JS class -->
             <div class="pub-widget-card">
               <div class="pub-widget-card__img">
                 <a href="#" aria-label="Google CSS article">
-                  <img src="assets/placeholder.svg" alt="Google Looks CSS and JavaScripts than Ranks Sites" data-fallback="true">
+                  <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=480&q=75" alt="Google CSS and JavaScript" onerror="this.closest('.pub-widget-card__img').classList.add('no-img');this.style.display='none'">
                   <div class="pub-widget-card__img-overlay" aria-hidden="true"><span class="zoom-icon">&#8599;</span></div>
                 </a>
               </div>
@@ -523,7 +534,7 @@ button{font-family:inherit;cursor:pointer}
             <div class="pub-widget-card">
               <div class="pub-widget-card__img">
                 <a href="#" aria-label="Facebook money article">
-                  <img src="assets/placeholder.svg" alt="Money from Facebook" data-fallback="true">
+                  <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=480&q=75" alt="Money from Facebook" onerror="this.closest('.pub-widget-card__img').classList.add('no-img');this.style.display='none'">
                   <div class="pub-widget-card__img-overlay" aria-hidden="true"><span class="zoom-icon">&#8599;</span></div>
                 </a>
               </div>
@@ -534,14 +545,14 @@ button{font-family:inherit;cursor:pointer}
             </div>
 
           </div><!-- /pub-slider -->
-        </div><!-- /slider-wrap -->
+        </div>
 
       </div><!-- /pub-board -->
 
     </div><!-- /l-container -->
-  </main><!-- /l-main -->
+  </main>
 
-  <!-- ── FAQ SECTION — FIX #3: Trimmed repetitive block ──── -->
+  <!-- FAQ SECTION -->
   <section class="faq-section reveal" data-reveal aria-labelledby="faq-heading">
     <div class="faq-inner">
       <div class="faq-sidebar">
@@ -592,14 +603,14 @@ button{font-family:inherit;cursor:pointer}
           </div>
         </div>
 
-      </div><!-- /faq-list -->
-    </div><!-- /faq-inner -->
+      </div>
+    </div>
   </section>
 
   <div id="footer-placeholder"></div>
-</div><!-- /l-wrapper -->
+</div>
 
-<!-- LIGHTBOX (desktop only) -->
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
   <button class="lightbox__close" id="lightboxClose" aria-label="Close lightbox">&times;</button>
   <img class="lightbox__img" id="lightboxImg" src="" alt="">
@@ -612,62 +623,36 @@ document.addEventListener('DOMContentLoaded', () => {
   function runScripts(container) {
     container.querySelectorAll('script').forEach(oldScript => {
       const newScript = document.createElement('script');
-      if (oldScript.src) {
-        newScript.src = oldScript.src;
-      } else {
-        newScript.textContent = oldScript.textContent;
-      }
+      if (oldScript.src) { newScript.src = oldScript.src; }
+      else { newScript.textContent = oldScript.textContent; }
       document.body.appendChild(newScript);
       oldScript.remove();
     });
   }
-
   async function loadPart(url, id) {
     try {
       const r = await fetch(url);
       const el = document.getElementById(id);
-      if (el) {
-        el.innerHTML = await r.text();
-        runScripts(el);
-      }
-    } catch(e) { /* silently fail if files absent */ }
+      if (el) { el.innerHTML = await r.text(); runScripts(el); }
+    } catch(e) {}
   }
   loadPart('header.html', 'header-placeholder');
   loadPart('footer.html', 'footer-placeholder');
 
-  // ── FIX #2: Branded fallback for missing/broken images ───
-  // Detect placeholder.svg images and mark parent with .no-image
-  document.querySelectorAll('.pub-widget-card__img img').forEach(img => {
-    const applyFallback = () => {
-      const wrapper = img.closest('.pub-widget-card__img');
-      if (wrapper) wrapper.classList.add('no-image');
-    };
-
-    // If src is placeholder or broken
-    if (img.src.includes('placeholder') || img.getAttribute('data-fallback')) {
-      applyFallback();
-    }
-
-    img.addEventListener('error', applyFallback);
-  });
-
-  // ── FIX #1: Sync pub-preview height to sidebar ───────────
+  // ── SYNC PREVIEW HEIGHT TO SIDEBAR ───────────────────────
   function syncPreviewHeight() {
     const preview = document.getElementById('pubPreview');
     const sidebar = document.querySelector('.pub-list');
     if (preview && sidebar) {
-      const sidebarH = sidebar.offsetHeight;
-      if (sidebarH > 0) {
-        preview.style.minHeight = sidebarH + 'px';
-      }
+      const h = sidebar.offsetHeight;
+      if (h > 0) preview.style.minHeight = h + 'px';
     }
   }
-  // Run after layout settles
-  setTimeout(syncPreviewHeight, 100);
+  setTimeout(syncPreviewHeight, 150);
   window.addEventListener('resize', syncPreviewHeight);
 
   // ── NEWS PREVIEW SWITCHER ─────────────────────────────────
-  const previewItems = [...document.querySelectorAll('[data-index][class*="pub-preview__item"]')];
+  const previewItems = [...document.querySelectorAll('.pub-preview__item[data-index]')];
   const listItems    = [...document.querySelectorAll('[data-list-item]')];
 
   function activateSlide(idx) {
@@ -688,14 +673,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const item    = btn.closest('.faq-item');
       const content = btn.nextElementSibling;
       const isOpen  = item.classList.contains('open');
-
-      // close all
       document.querySelectorAll('.faq-item.open').forEach(openItem => {
         openItem.classList.remove('open');
         openItem.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
         openItem.querySelector('.faq-content').style.maxHeight = '0';
       });
-
       if (!isOpen) {
         item.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
@@ -721,7 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
     reveals.forEach(el => el.classList.add('visible'));
   }
 
-  // ── LIGHTBOX (desktop only) ───────────────────────────────
+  // ── LIGHTBOX ──────────────────────────────────────────────
   const lightbox      = document.getElementById('lightbox');
   const lightboxImg   = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
