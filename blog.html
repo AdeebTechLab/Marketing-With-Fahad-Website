@@ -44,12 +44,14 @@
       --sh-lg:       0 20px 48px rgba(0,0,0,.14);
       --ease:        .3s cubic-bezier(.4,0,.2,1);
       --max-w:       1270px;
+      --section-pad-y: 64px;   /* shared vertical rhythm for every major section */
+      --section-pad-x: 22px;   /* shared horizontal gutter, mirrors .container */
     }
 
     /* ── Layout ── */
     .l-wrapper { min-height: 100vh; display: flex; flex-direction: column; }
     .l-main    { flex: 1; min-width: 0; }
-    .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 22px; }
+    .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--section-pad-x); }
 
     /* ── Eyebrow pill (reused) ── */
     .eyebrow {
@@ -81,10 +83,12 @@
     .breadcrumbs .sep { color: var(--gray-200); font-size: 10px; }
 
     /* ══════════════════════════════════════════
-       HERO — standardized blog header with background image
-       Structure: background photo + gradient overlay (for
-       text legibility) + content wrapper, stacked so the
-       same markup reflows cleanly at every breakpoint.
+       HERO — full-viewport-height blog header with
+       background image. The breadcrumb trail lives
+       inside the hero (top), the nav row sits just
+       below it, and the title block is vertically
+       centered in the remaining space so the whole
+       hero feels intentional at every screen height.
 
        Swap the file in --hero-img / --hero-img-mobile for
        your own photo. Keep it under ~300KB; a 1920×1080
@@ -98,7 +102,9 @@
       position: relative;
       overflow: hidden;
       isolation: isolate;
-      padding: 110px 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       color: #fff;
       background-color: var(--black); /* shows instantly while the photo loads */
       background-image:
@@ -109,11 +115,62 @@
       background-repeat: no-repeat;
     }
 
+    /* breadcrumbs + nav row, pinned to the top of the hero */
+    .blog-header__top {
+      position: relative;
+      z-index: 1;
+      padding-top: 28px;
+    }
+
+    .blog-header .breadcrumbs {
+      padding-top: 0;
+      color: rgba(255,255,255,.6);
+    }
+    .blog-header .breadcrumbs a { color: var(--gold); }
+    .blog-header .breadcrumbs .sep { color: rgba(255,255,255,.25); }
+
+    .blog-header__nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+    .blog-header__nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: rgba(255,255,255,.88);
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,.28);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(3px);
+      transition: background var(--ease), border-color var(--ease), color var(--ease), transform var(--ease);
+    }
+    .blog-header__nav a:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .blog-header__nav a[aria-current="page"] {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #fff;
+    }
+
+    /* title block, vertically centered in remaining hero space */
     .blog-header__content {
       position: relative;
       z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       max-width: 620px;
-      padding-left: clamp(8px, 4vw, 64px); /* extra breathing room from the left edge, scales with screen size */
     }
 
     /* eyebrow needs light-on-dark tuning inside the hero only */
@@ -136,11 +193,10 @@
     .blog-header__subtitle  { font-size: 16px; color: rgba(255,255,255,.82); max-width: 560px; }
 
     .blog-header__scroll {
-      position: absolute;
-      left: 50%;
-      bottom: 30px;
-      transform: translateX(-50%);
+      position: relative;
       z-index: 1;
+      align-self: center;
+      margin-bottom: 36px;
       width: 44px; height: 44px;
       border-radius: 50%;
       background: rgba(255,255,255,.14);
@@ -160,16 +216,16 @@
       border-color: var(--gold);
     }
     @keyframes scrollBounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%      { transform: translateX(-50%) translateY(6px); }
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(6px); }
     }
     @media (prefers-reduced-motion: reduce) {
       .blog-header__scroll { animation: none; }
     }
 
     /* ── Blog grid ── */
-    /* ── Blog grid ── */
-.blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; padding-top: 30px; padding-bottom: 40px; }
+    .blog-grid-section { padding: var(--section-pad-y) 0; }
+    .blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
 
     /* ── Blog card ── */
     .blog-card {
@@ -276,7 +332,7 @@
       justify-content: center;
       align-items: center;
       gap: 8px;
-      padding: 16px 0 64px;
+      padding-top: 36px;
       flex-wrap: wrap;
     }
     .page-btn {
@@ -302,7 +358,7 @@
     .page-btn--all { background: var(--gray-50); font-size: 13px; }
 
     /* ── FAQ ── */
-    .faq-section { background: var(--gray-50); padding: 56px 0; border-top: 1px solid var(--gray-200); }
+    .faq-section { background: var(--gray-50); padding: var(--section-pad-y) 0; border-top: 1px solid var(--gray-200); }
     .faq-inner { display: grid; grid-template-columns: 1fr 1.55fr; gap: 48px; align-items: start; }
     .faq-left { position: sticky; top: 32px; }
 
@@ -384,6 +440,7 @@
 
     /* ── Laptop ── */
     @media (max-width: 1024px) {
+      :root { --section-pad-y: 56px; }
       .blog-grid { gap: 24px; }
       .faq-inner { gap: 36px; }
     }
@@ -392,12 +449,11 @@
     @media (max-width: 900px) {
       .faq-inner { grid-template-columns: 1fr; gap: 32px; }
       .faq-left  { position: static; }
-      .faq-section { padding: 48px 0; }
     }
     @media (max-width: 768px) {
+      :root { --section-pad-y: 48px; }
       .blog-grid { grid-template-columns: 1fr; gap: 20px; }
       .blog-header {
-        padding: 72px 0;
         /* swap to a portrait-friendly crop and switch the gradient
            to top-down so it still reads well behind shorter text blocks */
         background-image:
@@ -406,19 +462,22 @@
         background-position: center;
       }
       .blog-header__content { max-width: 100%; }
+      .blog-header__nav a { padding: 9px 16px; font-size: 12.5px; }
     }
 
     /* ── Mobile ── */
     @media (max-width: 600px) {
-      .blog-header { padding: 60px 0; background-position: center 25%; }
-      .faq-section { padding: 40px 0; }
+      :root { --section-pad-y: 40px; }
+      .blog-header { background-position: center 25%; }
       .faq-summary  { font-size: 13px; }
       .pagination   { gap: 6px; }
       .page-btn     { min-width: 38px; height: 38px; font-size: 13px; }
+      .blog-header__nav { gap: 8px; }
+      .blog-header__nav a { padding: 8px 14px; font-size: 12px; }
     }
     @media (max-width: 480px) {
-      .blog-header { padding: 52px 0; }
       .blog-header__subtitle { font-size: 15px; }
+      .blog-header__scroll { width: 38px; height: 38px; margin-bottom: 24px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .blog-card, .blog-card__img-wrap img { transition: none !important; }
@@ -431,186 +490,197 @@
   <div id="header-placeholder"></div>
 
   <main class="l-main">
-    <div class="container">
-
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <a href="/index.html">Home</a><span class="sep" aria-hidden="true">›</span>
-        <a href="/about.html">About</a><span class="sep" aria-hidden="true">›</span>
-        <span aria-current="page">Blog</span>
-      </nav>
 
       <header class="blog-header">
-        <div class="blog-header__content">
+        <div class="container blog-header__top">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/index.html">Home</a><span class="sep" aria-hidden="true">›</span>
+            <a href="/about.html">About</a><span class="sep" aria-hidden="true">›</span>
+            <span aria-current="page">Blog</span>
+          </nav>
+
+          <nav class="blog-header__nav" aria-label="Primary">
+            <a href="/index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a>
+            <a href="/about.html"><i class="fa-solid fa-user" aria-hidden="true"></i> About</a>
+            <a href="/blog.html" aria-current="page"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Blog</a>
+          </nav>
+        </div>
+
+        <div class="container blog-header__content">
           <div class="eyebrow">SEO &amp; Marketing Insights</div>
           <h1 class="blog-header__title">Traffic <span>Blog</span></h1>
           <p class="blog-header__subtitle">Expert articles on SEO, digital marketing, and growing your business online in the UAE.</p>
         </div>
+
+        <a href="#blogGrid" class="blog-header__scroll" aria-label="Scroll to articles"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
       </header>
 
-      <section class="blog-grid" id="blogGrid" aria-label="Blog articles">
+    <section class="blog-grid-section">
+      <div class="container">
+        <div class="blog-grid" id="blogGrid" aria-label="Blog articles">
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/best-5-uae-domain-registrars-dubai.jpg" alt="Best 5 UAE Domain Names Registrars" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2025-05-01">01 May 2025</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="/blog.html">
-              <h2 class="blog-card__title">Best 5 UAE Domain Names Registrars</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/best-5-uae-domain-registrars-dubai.jpg" alt="Best 5 UAE Domain Names Registrars" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2025-05-01">01 May 2025</time>
             </a>
-            <p class="blog-card__excerpt">Choosing the right domain registrar is one of the first critical decisions for any UAE business going online. We rank the top five options available today.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: Best 5 UAE Domain Names Registrars">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="/blog.html">
+                <h2 class="blog-card__title">Best 5 UAE Domain Names Registrars</h2>
+              </a>
+              <p class="blog-card__excerpt">Choosing the right domain registrar is one of the first critical decisions for any UAE business going online. We rank the top five options available today.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: Best 5 UAE Domain Names Registrars">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/accelerating-growth.jpg" alt="Accelerating Growth – Google Ads GPS case study" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2025-03-31">31 Mar 2025</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="/blog.html">
-              <h2 class="blog-card__title">Accelerating Growth: How Google Ads Ignited Conversions for a Vehicle GPS Tracking System</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/accelerating-growth.jpg" alt="Accelerating Growth – Google Ads GPS case study" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2025-03-31">31 Mar 2025</time>
             </a>
-            <p class="blog-card__excerpt">A deep-dive case study into how targeted Google Ads campaigns transformed a GPS tracking company's lead pipeline from near-zero to consistent daily conversions.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: Accelerating Growth Google Ads case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="/blog.html">
+                <h2 class="blog-card__title">Accelerating Growth: How Google Ads Ignited Conversions for a Vehicle GPS Tracking System</h2>
+              </a>
+              <p class="blog-card__excerpt">A deep-dive case study into how targeted Google Ads campaigns transformed a GPS tracking company's lead pipeline from near-zero to consistent daily conversions.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: Accelerating Growth Google Ads case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/vape-shop-dubai-net-case-study-mobile.jpg" alt="Vape-shop-dubai.com SEO Case Study" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2024-11-18">18 Nov 2024</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="/blog.html">
-              <h2 class="blog-card__title">Vape-shop-dubai.com – Case Study</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/vape-shop-dubai-net-case-study-mobile.jpg" alt="Vape-shop-dubai.com SEO Case Study" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2024-11-18">18 Nov 2024</time>
             </a>
-            <p class="blog-card__excerpt">Core SEO strategies that helped increase organic search traffic. Includes screenshots, key takeaways, and a detailed breakdown of how we achieved these outcomes.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: Vape Shop Dubai case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="/blog.html">
+                <h2 class="blog-card__title">Vape-shop-dubai.com – Case Study</h2>
+              </a>
+              <p class="blog-card__excerpt">Core SEO strategies that helped increase organic search traffic. Includes screenshots, key takeaways, and a detailed breakdown of how we achieved these outcomes.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: Vape Shop Dubai case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/mazda-uae-com-case-study-mobile.jpg" alt="Mazda-uae.com SEO Case Study" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2024-11-15">15 Nov 2024</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="/blog.html">
-              <h2 class="blog-card__title">Mazda-uae.com – Case Study</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/mazda-uae-com-case-study-mobile.jpg" alt="Mazda-uae.com SEO Case Study" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2024-11-15">15 Nov 2024</time>
             </a>
-            <p class="blog-card__excerpt">SEO techniques that boosted organic search traffic by 100%. Includes screenshots, key insights, and details on how we accomplished results for this B2B project.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: Mazda UAE case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="/blog.html">
+                <h2 class="blog-card__title">Mazda-uae.com – Case Study</h2>
+              </a>
+              <p class="blog-card__excerpt">SEO techniques that boosted organic search traffic by 100%. Includes screenshots, key insights, and details on how we accomplished results for this B2B project.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: Mazda UAE case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/alnojoomcleaningequipment-com-case-study.png" alt="Alnojoomcleaningequipments.com Case Study" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2021-10-22">22 Oct 2021</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="/blog.html">
-              <h2 class="blog-card__title">Alnojoomcleaningequipments.com – Case Study</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/alnojoomcleaningequipment-com-case-study.png" alt="Alnojoomcleaningequipments.com Case Study" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2021-10-22">22 Oct 2021</time>
             </a>
-            <p class="blog-card__excerpt">White hat SEO strategies that increased organic traffic by 100% for a B2B client in the cleaning equipment sector — with key findings and highlights.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: Alnojoom Cleaning case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="/blog.html">
+                <h2 class="blog-card__title">Alnojoomcleaningequipments.com – Case Study</h2>
+              </a>
+              <p class="blog-card__excerpt">White hat SEO strategies that increased organic traffic by 100% for a B2B client in the cleaning equipment sector — with key findings and highlights.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: Alnojoom Cleaning case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/17-common-mistakes-companies-make-when-promoting-on-instagram-preview.jpg" alt="17 Common Instagram Marketing Mistakes" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2021-09-30">30 Sep 2021</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="/blog.html">
-              <h2 class="blog-card__title">17 Common Mistakes Companies Make When Promoting on Instagram</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/17-common-mistakes-companies-make-when-promoting-on-instagram-preview.jpg" alt="17 Common Instagram Marketing Mistakes" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2021-09-30">30 Sep 2021</time>
             </a>
-            <p class="blog-card__excerpt">Widespread mistakes that prevent companies from reaching their target audience on Instagram — and exactly how to avoid them.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: 17 Instagram mistakes">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="/blog.html">
+                <h2 class="blog-card__title">17 Common Mistakes Companies Make When Promoting on Instagram</h2>
+              </a>
+              <p class="blog-card__excerpt">Widespread mistakes that prevent companies from reaching their target audience on Instagram — and exactly how to avoid them.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: 17 Instagram mistakes">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/google-link-update-what-s-going-to-change-for-seo-in-uae-preview.jpg" alt="Google Link Update SEO Impact UAE" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2021-09-13">13 Sep 2021</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="blog.html">
-              <h2 class="blog-card__title">Google Link Update: What's Going To Change For SEO In UAE</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/google-link-update-what-s-going-to-change-for-seo-in-uae-preview.jpg" alt="Google Link Update SEO Impact UAE" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2021-09-13">13 Sep 2021</time>
             </a>
-            <p class="blog-card__excerpt">Everything you need to know about Google's link update — how it fights link spam and what changes for SEO practitioners in the UAE market.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: Google link update UAE">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="blog.html">
+                <h2 class="blog-card__title">Google Link Update: What's Going To Change For SEO In UAE</h2>
+              </a>
+              <p class="blog-card__excerpt">Everything you need to know about Google's link update — how it fights link spam and what changes for SEO practitioners in the UAE market.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: Google link update UAE">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/hero-case-mobile.jpeg" alt="Quicklease.ae SEO Case Study" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2020-05-26">26 May 2020</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="/blog.html">
-              <h2 class="blog-card__title">Quicklease.ae – Case Study (SEO)</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/hero-case-mobile.jpeg" alt="Quicklease.ae SEO Case Study" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2020-05-26">26 May 2020</time>
             </a>
-            <p class="blog-card__excerpt">A complete breakdown of our SEO campaign for one of the UAE's leading vehicle leasing platforms — from audit to ranking results.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: Quicklease SEO case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="/blog.html">
+                <h2 class="blog-card__title">Quicklease.ae – Case Study (SEO)</h2>
+              </a>
+              <p class="blog-card__excerpt">A complete breakdown of our SEO campaign for one of the UAE's leading vehicle leasing platforms — from audit to ranking results.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: Quicklease SEO case study">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/seo-checklist-marketingwithfahad-2020-small.jpeg" alt="SEO Checklist Infographic" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2020-05-11">11 May 2020</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="/blog.html">
-              <h2 class="blog-card__title">SEO Checklist by Marketing with Fahad [Infographic]</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/seo-checklist-marketingwithfahad-2020-small.jpeg" alt="SEO Checklist Infographic" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2020-05-11">11 May 2020</time>
             </a>
-            <p class="blog-card__excerpt">A comprehensive visual SEO checklist — from technical fixes to content optimisation. A practical reference for any website owner looking to improve organic rankings.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: SEO checklist infographic">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="/blog.html">
+                <h2 class="blog-card__title">SEO Checklist by Marketing with Fahad [Infographic]</h2>
+              </a>
+              <p class="blog-card__excerpt">A comprehensive visual SEO checklist — from technical fixes to content optimisation. A practical reference for any website owner looking to improve organic rankings.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: SEO checklist infographic">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-        <article class="blog-card">
-          <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/download-instagram-video-photos-fastest-way-marketingwithfahad.jpeg" alt="How to Download Instagram Videos" loading="lazy" width="600" height="338">
-            <div class="blog-card__overlay" aria-hidden="true"></div>
-            <time class="blog-card__date" datetime="2020-05-05">05 May 2020</time>
-          </a>
-          <div class="blog-card__body">
-            <a href="/blog.html">
-              <h2 class="blog-card__title">How to Download Video from Instagram Posts with Two Buttons</h2>
+          <article class="blog-card">
+            <a href="/blog.html" class="blog-card__img-wrap">
+              <img src="assets/download-instagram-video-photos-fastest-way-marketingwithfahad.jpeg" alt="How to Download Instagram Videos" loading="lazy" width="600" height="338">
+              <div class="blog-card__overlay" aria-hidden="true"></div>
+              <time class="blog-card__date" datetime="2020-05-05">05 May 2020</time>
             </a>
-            <p class="blog-card__excerpt">A quick guide for saving Instagram video content directly from any post — useful for repurposing your own content or archiving campaign material.</p>
-            <a href="/blog.html" class="blog-card__link" aria-label="Read: Download Instagram videos">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
+            <div class="blog-card__body">
+              <a href="/blog.html">
+                <h2 class="blog-card__title">How to Download Video from Instagram Posts with Two Buttons</h2>
+              </a>
+              <p class="blog-card__excerpt">A quick guide for saving Instagram video content directly from any post — useful for repurposing your own content or archiving campaign material.</p>
+              <a href="/blog.html" class="blog-card__link" aria-label="Read: Download Instagram videos">Read article <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
 
-      </section>
+        </div>
 
-      <nav class="pagination" aria-label="Blog pagination">
-        <span class="page-btn" aria-current="page">1</span>
-        <a class="page-btn" href="/blog.html">2</a>
-        <a class="page-btn" href="/blog.html">3</a>
-        <a class="page-btn" href="/blog.html">4</a>
-        <a class="page-btn" href="/blog.html">5</a>
-        <a class="page-btn page-btn--all" href="blog.html" rel="nofollow">Show All</a>
-      </nav>
-
-    </div>
+        <nav class="pagination" aria-label="Blog pagination">
+          <span class="page-btn" aria-current="page">1</span>
+          <a class="page-btn" href="/blog.html">2</a>
+          <a class="page-btn" href="/blog.html">3</a>
+          <a class="page-btn" href="/blog.html">4</a>
+          <a class="page-btn" href="/blog.html">5</a>
+          <a class="page-btn page-btn--all" href="blog.html" rel="nofollow">Show All</a>
+        </nav>
+      </div>
+    </section>
 
     <section class="faq-section">
       <div class="container">
