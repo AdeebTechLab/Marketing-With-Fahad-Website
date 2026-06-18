@@ -80,7 +80,68 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   grid-template-columns:repeat(3,1fr);   /* locked to 3 columns */
   gap:20px
 }
-
+/* ── PAGE HERO ──────────────────────────────── */
+.page-hero{
+  background:#1a1a2e;
+  padding:64px 0 60px;
+  position:relative;overflow:hidden;
+  margin:0 -22px; /* bleed to edges if needed, or remove */
+}
+.page-hero::before{
+  content:'';position:absolute;top:-60px;right:-80px;
+  width:340px;height:340px;border-radius:50%;
+  border:1px solid rgba(200,166,77,.12);pointer-events:none;
+}
+.page-hero::after{
+  content:'';position:absolute;bottom:-90px;left:-60px;
+  width:260px;height:260px;border-radius:50%;
+  border:1px solid rgba(200,166,77,.08);pointer-events:none;
+}
+.page-hero__inner{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:32px;flex-wrap:wrap;position:relative;z-index:1;
+}
+.page-hero__kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,166,77,.15);border:1px solid rgba(200,166,77,.3);
+  border-radius:30px;padding:5px 14px;
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.page-hero__kicker::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--gold);display:inline-block;
+}
+.page-hero h1{
+  font-size:clamp(32px,5vw,54px);font-weight:700;
+  color:var(--gold);line-height:1.1;margin-bottom:14px;
+}
+.page-hero h1 em{font-style:normal;color:#fff}
+.page-hero__desc{
+  color:rgba(255,255,255,.6);font-size:16px;
+  line-height:1.75;max-width:540px;
+}
+.page-hero__stats{
+  display:flex;flex-shrink:0;
+  border:1px solid rgba(200,166,77,.2);border-radius:14px;
+  overflow:hidden;align-self:center;
+}
+.page-hero__stat{
+  padding:20px 28px;text-align:center;
+  border-right:1px solid rgba(200,166,77,.2);
+  background:rgba(200,166,77,.06);
+}
+.page-hero__stat:last-child{border-right:none}
+.page-hero__stat-num{font-size:28px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px}
+.page-hero__stat-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+@media(max-width:800px){
+  .page-hero{padding:48px 0 44px}
+  .page-hero__stats{align-self:flex-start}
+}
+@media(max-width:560px){
+  .page-hero__stat{padding:14px 18px}
+  .page-hero__stat-num{font-size:22px}
+}
 /* ── TEAM CARD ──────────────────────────────── */
 .our-team__item{
   background:var(--white);border-radius:var(--radius);overflow:hidden;
@@ -269,19 +330,33 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           <meta itemprop="name" content="Our Team">
           Our Team</span>
       </nav>
-
-      <!-- PAGE TITLE -->
-      <div class="page-title-wrap">
-        <h1>Our <span>Expert</span> Team</h1>
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="Team introduction">
+  <div class="l-container">
+    <div class="page-hero__inner">
+      <div>
+        <div class="page-hero__kicker">Our Expert Team</div>
+        <h1><em>Meet the People</em><br>Behind Your <span>Results</span></h1>
+        <p class="page-hero__desc">A dedicated team of SEO specialists, developers, designers, and account managers — all working in-house to grow your business.</p>
       </div>
-
-      <!-- SECTION DIVIDER -->
-      <div class="section-divider" aria-hidden="true">
-        <div class="section-divider__dot"></div>
-        <span class="section-divider__label">Meet the People Behind Your Results</span>
-        <div class="section-divider__line"></div>
+      <div class="page-hero__stats">
+        <div class="page-hero__stat">
+          <div class="page-hero__stat-num">23+</div>
+          <div class="page-hero__stat-label">Team members</div>
+        </div>
+        <div class="page-hero__stat">
+          <div class="page-hero__stat-num">4</div>
+          <div class="page-hero__stat-label">Departments</div>
+        </div>
+        <div class="page-hero__stat">
+          <div class="page-hero__stat-num">100%</div>
+          <div class="page-hero__stat-label">In-house</div>
+        </div>
       </div>
-
+    </div>
+  </div>
+</section>
+   
       <!-- TEAM GRID -->
       <section class="team-section" aria-label="Team members">
 
