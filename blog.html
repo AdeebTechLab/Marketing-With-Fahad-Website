@@ -11,14 +11,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="icon" href="/assets/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-<link rel="icon" type="image/png" href="/assets/favicon-dark-bg.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="/assets/favicon-light-bg.png" media="(prefers-color-scheme: dark)">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180x180.png">
-<link rel="manifest" href="/assets/site.webmanifest">
-<meta name="theme-color" content="#141414">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" href="/assets/favicon-dark-bg.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="/assets/favicon-light-bg.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180x180.png">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <meta name="theme-color" content="#141414">
   <style>
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,8 +80,13 @@
     .breadcrumbs a:hover { opacity: .75; }
     .breadcrumbs .sep { color: var(--gray-200); font-size: 10px; }
 
-    /* ── Page header ── */
-    .blog-header { padding: 48px 0 56px; }
+    /* ══════════════════════════════════════════
+       FIX #1 – Consistent top/bottom padding
+       Was: padding: 48px 0 56px (inconsistent)
+       Now: padding: 80px 0 (consistent ~80-96px)
+    ══════════════════════════════════════════ */
+    .blog-header { padding: 80px 0; }
+
     .blog-header__title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(32px, 5vw, 54px);
@@ -110,16 +115,24 @@
     .blog-card.visible { opacity: 1; transform: translateY(0); }
     .blog-card:hover   { transform: translateY(-6px); box-shadow: var(--sh-lg); border-color: var(--gold); }
 
+    /* ══════════════════════════════════════════
+       FIX #2 – Fixed 16:9 ratio + object-fit: cover
+       Was: height: 220px (fixed px, distorts on resize)
+       Now: aspect-ratio: 16/9 with object-fit: cover
+    ══════════════════════════════════════════ */
     .blog-card__img-wrap {
       position: relative;
       overflow: hidden;
-      height: 220px;
+      aspect-ratio: 16 / 9;        /* FIX #2 – true 16:9 ratio */
       background: var(--gray-100);
       display: block;
+      width: 100%;
     }
     .blog-card__img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;            /* FIX #2 – always fill without distortion */
+      object-position: center;
       transition: transform .55s ease;
     }
     .blog-card:hover .blog-card__img-wrap img { transform: scale(1.06); }
@@ -181,10 +194,15 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
       }
-      .blog-card:first-child .blog-card__img-wrap { height: 100%; min-height: 280px; border-radius: 0; }
-      .blog-card:first-child .blog-card__body     { padding: 36px 40px; display: flex; flex-direction: column; justify-content: center; }
-      .blog-card:first-child .blog-card__title    { font-size: 24px; }
-      
+      /* FIX #2 – featured card: override aspect-ratio so it fills height naturally */
+      .blog-card:first-child .blog-card__img-wrap {
+        aspect-ratio: unset;
+        height: 100%;
+        min-height: 280px;
+        border-radius: 0;
+      }
+      .blog-card:first-child .blog-card__body { padding: 36px 40px; display: flex; flex-direction: column; justify-content: center; }
+      .blog-card:first-child .blog-card__title { font-size: 24px; }
     }
 
     /* ── Pagination ── */
@@ -218,20 +236,24 @@
     }
     .page-btn--all { background: var(--gray-50); font-size: 13px; }
 
-    /* ── FAQ ── */
-    .faq-section { background: var(--gray-50); padding: 80px 0; border-top: 1px solid var(--gray-200); }
-    .faq-inner { display: grid; grid-template-columns: 1fr 1.55fr; gap: 64px; align-items: start; }
+    /* ══════════════════════════════════════════
+       FIX #3 – FAQ block: page-relevant + compact
+       Was: generic 8 FAQs, large section padding
+       Now: 5 blog-specific FAQs, reduced padding
+    ══════════════════════════════════════════ */
+    .faq-section { background: var(--gray-50); padding: 56px 0; border-top: 1px solid var(--gray-200); }
+    .faq-inner { display: grid; grid-template-columns: 1fr 1.55fr; gap: 48px; align-items: start; }
     .faq-left { position: sticky; top: 32px; }
 
     .faq-left__heading {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(32px, 4vw, 50px);
+      font-size: clamp(26px, 3.5vw, 40px);  /* FIX #3 – slightly smaller heading */
       line-height: 1.1;
       color: var(--black);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
     .faq-left__heading span { color: var(--gold); }
-    .faq-left__sub { font-size: 15px; color: var(--gray-600); line-height: 1.75; margin-bottom: 32px; }
+    .faq-left__sub { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 28px; }
 
     .faq-cta {
       display: inline-flex;
@@ -240,13 +262,13 @@
       background: var(--gold);
       color: #fff;
       font-weight: 700; font-size: 14px;
-      padding: 14px 30px;
+      padding: 12px 26px;
       border-radius: 50px;
       transition: background var(--ease), box-shadow var(--ease), transform var(--ease);
     }
     .faq-cta:hover { background: var(--gold-dark); box-shadow: 0 8px 24px rgba(201,169,110,.38); transform: translateY(-2px); }
 
-    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
     .faq-item {
       background: #fff;
       border: 1px solid var(--gray-200);
@@ -260,54 +282,55 @@
 
     .faq-summary {
       list-style: none;
-      padding: 20px 22px;
+      padding: 18px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
       cursor: pointer;
-      font-size: 15px; font-weight: 600;
+      font-size: 14px; font-weight: 600;
       color: var(--black); line-height: 1.4;
     }
     .faq-summary::-webkit-details-marker { display: none; }
 
     .faq-icon {
       flex-shrink: 0;
-      width: 34px; height: 34px;
+      width: 30px; height: 30px;
       border-radius: 50%;
       background: var(--gold-light);
       border: 1.5px solid var(--gold);
       color: var(--gold);
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 700; line-height: 1;
+      font-size: 16px; font-weight: 700; line-height: 1;
       transition: background var(--ease), color var(--ease), transform var(--ease);
       user-select: none;
     }
     .faq-item[open] .faq-icon { background: var(--gold); color: #fff; transform: rotate(45deg); }
 
     .faq-answer {
-      padding: 0 22px 20px;
+      padding: 0 20px 18px;
       font-size: 14px; color: var(--gray-600); line-height: 1.75;
     }
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .faq-inner { grid-template-columns: 1fr; gap: 40px; }
+      .faq-inner { grid-template-columns: 1fr; gap: 32px; }
       .faq-left  { position: static; }
-      .faq-section { padding: 64px 0; }
+      .faq-section { padding: 48px 0; }
     }
     @media (max-width: 768px) {
       .blog-grid { grid-template-columns: 1fr; gap: 20px; }
     }
     @media (max-width: 600px) {
-      .blog-header { padding: 32px 0 40px; }
-      .faq-section { padding: 56px 0; }
-      .faq-summary  { font-size: 14px; }
+      /* FIX #1 – Responsive padding stays consistent */
+      .blog-header { padding: 56px 0; }
+      .faq-section { padding: 40px 0; }
+      .faq-summary  { font-size: 13px; }
       .pagination   { gap: 6px; }
       .page-btn     { min-width: 38px; height: 38px; font-size: 13px; }
     }
     @media (max-width: 480px) {
-      .blog-card__img-wrap { height: 180px; }
+      /* FIX #2 – aspect-ratio handles sizing naturally on mobile, no override needed */
     }
     @media (prefers-reduced-motion: reduce) {
       .blog-card, .blog-card__img-wrap img { transition: none !important; }
@@ -338,7 +361,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/best-5-uae-domain-registrars-dubai.jpg" alt="Best 5 UAE Domain Names Registrars" loading="lazy" width="600" height="220">
+            <img src="assets/best-5-uae-domain-registrars-dubai.jpg" alt="Best 5 UAE Domain Names Registrars" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2025-05-01">01 May 2025</time>
           </a>
@@ -353,7 +376,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/accelerating-growth.jpg" alt="Accelerating Growth – Google Ads GPS case study" loading="lazy" width="600" height="220">
+            <img src="assets/accelerating-growth.jpg" alt="Accelerating Growth – Google Ads GPS case study" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2025-03-31">31 Mar 2025</time>
           </a>
@@ -368,7 +391,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/vape-shop-dubai-net-case-study-mobile.jpg" alt="Vape-shop-dubai.com SEO Case Study" loading="lazy" width="600" height="220">
+            <img src="assets/vape-shop-dubai-net-case-study-mobile.jpg" alt="Vape-shop-dubai.com SEO Case Study" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2024-11-18">18 Nov 2024</time>
           </a>
@@ -383,7 +406,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/mazda-uae-com-case-study-mobile.jpg" alt="Mazda-uae.com SEO Case Study" loading="lazy" width="600" height="220">
+            <img src="assets/mazda-uae-com-case-study-mobile.jpg" alt="Mazda-uae.com SEO Case Study" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2024-11-15">15 Nov 2024</time>
           </a>
@@ -398,7 +421,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/alnojoomcleaningequipment-com-case-study.png" alt="Alnojoomcleaningequipments.com Case Study" loading="lazy" width="600" height="220">
+            <img src="assets/alnojoomcleaningequipment-com-case-study.png" alt="Alnojoomcleaningequipments.com Case Study" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2021-10-22">22 Oct 2021</time>
           </a>
@@ -413,7 +436,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/17-common-mistakes-companies-make-when-promoting-on-instagram-preview.jpg" alt="17 Common Instagram Marketing Mistakes" loading="lazy" width="600" height="220">
+            <img src="assets/17-common-mistakes-companies-make-when-promoting-on-instagram-preview.jpg" alt="17 Common Instagram Marketing Mistakes" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2021-09-30">30 Sep 2021</time>
           </a>
@@ -428,7 +451,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/google-link-update-what-s-going-to-change-for-seo-in-uae-preview.jpg" alt="Google Link Update SEO Impact UAE" loading="lazy" width="600" height="220">
+            <img src="assets/google-link-update-what-s-going-to-change-for-seo-in-uae-preview.jpg" alt="Google Link Update SEO Impact UAE" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2021-09-13">13 Sep 2021</time>
           </a>
@@ -443,7 +466,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/hero-case-mobile.jpeg" alt="Quicklease.ae SEO Case Study" loading="lazy" width="600" height="220">
+            <img src="assets/hero-case-mobile.jpeg" alt="Quicklease.ae SEO Case Study" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2020-05-26">26 May 2020</time>
           </a>
@@ -458,7 +481,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/seo-checklist-marketingwithfahad-2020-small.jpeg" alt="SEO Checklist Infographic" loading="lazy" width="600" height="220">
+            <img src="assets/seo-checklist-marketingwithfahad-2020-small.jpeg" alt="SEO Checklist Infographic" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2020-05-11">11 May 2020</time>
           </a>
@@ -473,7 +496,7 @@
 
         <article class="blog-card">
           <a href="/blog.html" class="blog-card__img-wrap">
-            <img src="assets/download-instagram-video-photos-fastest-way-marketingwithfahad.jpeg" alt="How to Download Instagram Videos" loading="lazy" width="600" height="220">
+            <img src="assets/download-instagram-video-photos-fastest-way-marketingwithfahad.jpeg" alt="How to Download Instagram Videos" loading="lazy" width="600" height="338">
             <div class="blog-card__overlay" aria-hidden="true"></div>
             <time class="blog-card__date" datetime="2020-05-05">05 May 2020</time>
           </a>
@@ -499,15 +522,19 @@
 
     </div>
 
-    <!-- FAQ -->
+    <!-- ══════════════════════════════════════════
+         FIX #3 – Blog-page relevant FAQs only
+         Was: 8 generic FAQs, large padding
+         Now: 5 blog-specific FAQs, compact layout
+    ══════════════════════════════════════════ -->
     <section class="faq-section">
       <div class="container">
         <div class="faq-inner">
 
           <div class="faq-left">
-            <div class="eyebrow">FAQs</div>
-            <h2 class="faq-left__heading">Frequently<br><span>Asked Questions</span></h2>
-            <p class="faq-left__sub">Questions about our blog content, SEO insights, publishing schedule, and how to use our articles to grow your digital marketing knowledge.</p>
+            <div class="eyebrow">Blog FAQs</div>
+            <h2 class="faq-left__heading">Questions About<br><span>Our Articles</span></h2>
+            <p class="faq-left__sub">Everything you need to know about our blog content, publishing schedule, and how to get the most from our SEO insights.</p>
             <a href="contact.html" class="faq-cta"><i class="fa fa-comments" aria-hidden="true"></i> Get Free Consultation</a>
           </div>
 
@@ -519,8 +546,8 @@
             </details>
 
             <details class="faq-item">
-              <summary class="faq-summary">Who writes your blog content? <span class="faq-icon" aria-hidden="true">+</span></summary>
-              <p class="faq-answer">All blog posts are written by our in-house SEO specialists and digital marketing experts with real campaign experience — not generic AI-generated content.</p>
+              <summary class="faq-summary">Do you cover UAE-specific SEO topics? <span class="faq-icon" aria-hidden="true">+</span></summary>
+              <p class="faq-answer">Yes. Many articles focus on the UAE digital landscape — covering local SEO for Dubai and Abu Dhabi, Arabic vs. English keyword strategy, and UAE consumer search behaviour.</p>
             </details>
 
             <details class="faq-item">
@@ -529,28 +556,13 @@
             </details>
 
             <details class="faq-item">
-              <summary class="faq-summary">Do you cover UAE-specific SEO topics? <span class="faq-icon" aria-hidden="true">+</span></summary>
-              <p class="faq-answer">Yes. Many articles focus on the UAE digital landscape — covering local SEO for Dubai and Abu Dhabi, Arabic vs. English keyword strategy, and UAE consumer search behaviour.</p>
-            </details>
-
-            <details class="faq-item">
               <summary class="faq-summary">Can I suggest a topic for a future blog post? <span class="faq-icon" aria-hidden="true">+</span></summary>
               <p class="faq-answer">Absolutely. Send us your question or topic via the contact form or WhatsApp and we'll consider it for a future article.</p>
             </details>
 
             <details class="faq-item">
-              <summary class="faq-summary">Do your blog posts rank on Google? <span class="faq-icon" aria-hidden="true">+</span></summary>
-              <p class="faq-answer">Yes. We practice what we preach — our posts are fully SEO-optimised with target keywords, structured headings, internal links, and schema markup to achieve Google rankings.</p>
-            </details>
-
-            <details class="faq-item">
               <summary class="faq-summary">Can I share your blog content on my website? <span class="faq-icon" aria-hidden="true">+</span></summary>
               <p class="faq-answer">You may share excerpts with a clear link back to the original article. Full reproduction without permission is not allowed. Contact us to discuss content partnership opportunities.</p>
-            </details>
-
-            <details class="faq-item">
-              <summary class="faq-summary">Can I get notified when new posts are published? <span class="faq-icon" aria-hidden="true">+</span></summary>
-              <p class="faq-answer">Yes. Follow us on Instagram, LinkedIn, and Facebook, or subscribe via our contact form to receive notifications when new articles go live.</p>
             </details>
 
           </div>
@@ -583,28 +595,27 @@
 
   // Header / footer
   document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const [hRes, fRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
-    document.getElementById('header-placeholder').innerHTML = await hRes.text();
-    document.getElementById('footer-placeholder').innerHTML = await fRes.text();
+    try {
+      const [hRes, fRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
+      document.getElementById('header-placeholder').innerHTML = await hRes.text();
+      document.getElementById('footer-placeholder').innerHTML = await fRes.text();
 
-    // Re-execute scripts inside injected header/footer
-    ['header-placeholder', 'footer-placeholder'].forEach(id => {
-      const container = document.getElementById(id);
-      if (!container) return;
-      container.querySelectorAll('script').forEach(oldScript => {
-        const newScript = document.createElement('script');
-        if (oldScript.src) {
-          newScript.src = oldScript.src;
-        } else {
-          newScript.textContent = oldScript.textContent;
-        }
-        document.body.appendChild(newScript);
-        oldScript.remove();
+      ['header-placeholder', 'footer-placeholder'].forEach(id => {
+        const container = document.getElementById(id);
+        if (!container) return;
+        container.querySelectorAll('script').forEach(oldScript => {
+          const newScript = document.createElement('script');
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
       });
-    });
-  } catch (e) { console.warn('header/footer load error', e); }
-});
+    } catch (e) { console.warn('header/footer load error', e); }
+  });
 </script>
 </body>
 </html>
