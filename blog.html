@@ -135,6 +135,38 @@
     .blog-header__title span { color: var(--gold); }
     .blog-header__subtitle  { font-size: 16px; color: rgba(255,255,255,.82); max-width: 560px; }
 
+    .blog-header__scroll {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      z-index: 1;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 16px;
+      backdrop-filter: blur(2px);
+      cursor: pointer;
+      transition: background var(--ease), border-color var(--ease), transform var(--ease);
+      animation: scrollBounce 2.2s ease-in-out infinite;
+    }
+    .blog-header__scroll:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(6px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .blog-header__scroll { animation: none; }
+    }
+
     /* ── Blog grid ── */
     /* ── Blog grid ── */
 .blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; padding-top: 30px; padding-bottom: 40px; }
