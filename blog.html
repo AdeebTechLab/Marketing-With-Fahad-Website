@@ -171,6 +171,7 @@
       flex-direction: column;
       justify-content: center;
       max-width: 620px;
+      padding-left: clamp(8px, 3vw, 32px); /* small extra left margin, scales down on narrow screens */
     }
 
     /* eyebrow needs light-on-dark tuning inside the hero only */
@@ -498,6 +499,8 @@
             <a href="/about.html">About</a><span class="sep" aria-hidden="true">›</span>
             <span aria-current="page">Blog</span>
           </nav>
+
+
         </div>
 
         <div class="container blog-header__content">
