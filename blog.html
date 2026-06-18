@@ -81,48 +81,54 @@
     .breadcrumbs .sep { color: var(--gray-200); font-size: 10px; }
 
     /* ══════════════════════════════════════════
-       HERO — standardized blog header
-       Structure: decorative motif (background) +
-       content wrapper (foreground, stacked via z-index)
-       so it scales the same way on every breakpoint.
+       HERO — standardized blog header with background image
+       Structure: background photo + gradient overlay (for
+       text legibility) + content wrapper, stacked so the
+       same markup reflows cleanly at every breakpoint.
+
+       Swap the file in --hero-img / --hero-img-mobile for
+       your own photo. Keep it under ~300KB; a 1920×1080
+       desktop crop and a separate ~960×1280 portrait-ish
+       mobile crop both load fastest and frame better.
     ══════════════════════════════════════════ */
     .blog-header {
-      position: relative;
-      padding: 80px 0;
-      overflow: hidden;
-      isolation: isolate; /* keeps the motif's stacking contained to this section */
-    }
-    .blog-header__motif {
-      position: absolute;
-      top: 6%;
-      right: -4%;
-      width: 44%;
-      max-width: 520px;
-      height: auto;
-      opacity: .14;
-      z-index: 0;
-      pointer-events: none;
-    }
-    .blog-header__motif polyline {
-      fill: none;
-      stroke: var(--gold);
-      stroke-width: 3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .blog-header__motif circle { fill: var(--gold); }
+      --hero-img: url('assets/blog-hero-bg.jpg');
+      --hero-img-mobile: url('assets/blog-hero-bg-mobile.jpg');
 
-    .blog-header__content { position: relative; z-index: 1; }
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: 110px 0;
+      color: #fff;
+      background-color: var(--black); /* shows instantly while the photo loads */
+      background-image:
+        linear-gradient(120deg, rgba(15,23,42,.92) 0%, rgba(15,23,42,.72) 38%, rgba(15,23,42,.45) 100%),
+        var(--hero-img);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .blog-header__content { position: relative; z-index: 1; max-width: 620px; }
+
+    /* eyebrow needs light-on-dark tuning inside the hero only */
+    .blog-header .eyebrow {
+      background: rgba(201,169,110,.16);
+      border-color: var(--gold);
+      color: var(--gold);
+      backdrop-filter: blur(2px);
+    }
 
     .blog-header__title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(32px, 5vw, 54px);
-      color: var(--black);
+      color: #fff;
       line-height: 1.15;
       margin-bottom: 16px;
+      text-shadow: 0 2px 18px rgba(0,0,0,.25);
     }
     .blog-header__title span { color: var(--gold); }
-    .blog-header__subtitle  { font-size: 16px; color: var(--gray-600); max-width: 560px; }
+    .blog-header__subtitle  { font-size: 16px; color: rgba(255,255,255,.82); max-width: 560px; }
 
     /* ── Blog grid ── */
     .blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; padding-bottom: 64px; }
@@ -352,21 +358,28 @@
     }
     @media (max-width: 768px) {
       .blog-grid { grid-template-columns: 1fr; gap: 20px; }
-      .blog-header { padding: 64px 0; }
-      .blog-header__motif { width: 58%; opacity: .10; }
+      .blog-header {
+        padding: 72px 0;
+        /* swap to a portrait-friendly crop and switch the gradient
+           to top-down so it still reads well behind shorter text blocks */
+        background-image:
+          linear-gradient(180deg, rgba(15,23,42,.88) 0%, rgba(15,23,42,.55) 55%, rgba(15,23,42,.78) 100%),
+          var(--hero-img-mobile);
+        background-position: center;
+      }
+      .blog-header__content { max-width: 100%; }
     }
 
     /* ── Mobile ── */
     @media (max-width: 600px) {
-      .blog-header { padding: 56px 0; }
+      .blog-header { padding: 60px 0; background-position: center 25%; }
       .faq-section { padding: 40px 0; }
       .faq-summary  { font-size: 13px; }
       .pagination   { gap: 6px; }
       .page-btn     { min-width: 38px; height: 38px; font-size: 13px; }
     }
     @media (max-width: 480px) {
-      .blog-header { padding: 48px 0; }
-      .blog-header__motif { display: none; } /* avoid clutter at narrow widths */
+      .blog-header { padding: 52px 0; }
       .blog-header__subtitle { font-size: 15px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -389,10 +402,6 @@
       </nav>
 
       <header class="blog-header">
-        <svg class="blog-header__motif" viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
-          <polyline points="0,190 70,168 140,178 210,118 280,140 350,72 420,92 490,34 560,46 600,18" />
-          <circle cx="600" cy="18" r="6"></circle>
-        </svg>
         <div class="blog-header__content">
           <div class="eyebrow">SEO &amp; Marketing Insights</div>
           <h1 class="blog-header__title">Traffic <span>Blog</span></h1>
