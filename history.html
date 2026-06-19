@@ -68,6 +68,11 @@ p:last-child{margin-bottom:0}
   object-fit:cover;object-position:center top;
   opacity:.55;
   transition:transform 6s ease;
+  /* Improved rendering quality */
+  image-rendering:-webkit-optimize-contrast;
+  image-rendering:crisp-edges;
+  backface-visibility:hidden;
+  transform:translateZ(0);
 }
 .hero-banner:hover img{transform:scale(1.04)}
 .hero-banner::after{
@@ -148,7 +153,6 @@ p:last-child{margin-bottom:0}
   position:relative;
   border-radius:var(--radius-sm);
   overflow:hidden;
-  cursor:pointer;
   background:#eee;
   aspect-ratio:1;
 }
@@ -156,22 +160,15 @@ p:last-child{margin-bottom:0}
   width:100%;
   height:100%;
   object-fit:cover;
-  /* FIX #2: consistent image rendering for all photos */
+  /* FIX #2: consistent image rendering for all photos, improved sharpness */
   object-position:center center;
-  image-rendering:auto;
+  image-rendering:-webkit-optimize-contrast;
+  image-rendering:crisp-edges;
+  backface-visibility:hidden;
+  transform:translateZ(0);
   transition:transform .4s ease;
 }
-.photo-card::after{
-  content:'🔍';
-  position:absolute;inset:0;
-  background:rgba(26,26,46,.45);
-  display:flex;align-items:center;justify-content:center;
-  font-size:28px;
-  opacity:0;
-  transition:opacity .3s ease;
-}
 .photo-card:hover img{transform:scale(1.06)}
-.photo-card:hover::after{opacity:1}
 .photo-wrap{display:flex;flex-direction:column;gap:0}
 .photo-caption{
   font-size:13px;
@@ -387,32 +384,6 @@ p:last-child{margin-bottom:0}
   .faq-heading{font-size:clamp(28px,6vw,42px)}
 }
 
-/* ===== LIGHTBOX ===== */
-.lightbox-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(15,15,25,.92);z-index:9000;
-  align-items:center;justify-content:center;cursor:pointer;
-}
-.lightbox-overlay.active{display:flex}
-.lightbox-img-wrap{position:relative;max-width:90vw;max-height:88vh;cursor:default}
-.lightbox-img-wrap img{
-  max-width:90vw;max-height:86vh;
-  border-radius:10px;display:block;
-  box-shadow:0 20px 80px rgba(0,0,0,.6);
-}
-.lightbox-close{
-  position:absolute;top:-20px;right:-20px;
-  width:40px;height:40px;
-  background:var(--gold);color:#fff;
-  border:none;border-radius:50%;
-  font-size:20px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 12px rgba(0,0,0,.3);
-  transition:background .2s;
-}
-.lightbox-close:hover{background:var(--gold-dark)}
-@media(max-width:600px){.lightbox-overlay{display:none!important}}
-
 /* ===== SCROLL REVEAL ===== */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -491,19 +462,19 @@ p:last-child{margin-bottom:0}
 
       <div class="photo-grid photo-grid--3 reveal">
         <div class="photo-wrap reveal-delay-1">
-          <div class="photo-card" role="button" tabindex="0" aria-label="View team photo" data-src="assets/katie2.jpg" data-alt="Marketing with Fahad — Ekaterina, Content Strategist">
+          <div class="photo-card">
             <img src="assets/katie2.jpg" alt="Marketing with Fahad — Ekaterina" loading="lazy">
           </div>
           <p class="photo-caption">Ekaterina — Content Strategist</p>
         </div>
         <div class="photo-wrap reveal-delay-2">
-          <div class="photo-card" role="button" tabindex="0" aria-label="View team photo" data-src="assets/mansoor.jpg" data-alt="SEO Dubai — Mansoor, SEO Lead">
+          <div class="photo-card">
             <img src="assets/mansoor.jpg" alt="SEO Dubai — Mansoor" loading="lazy">
           </div>
           <p class="photo-caption">Mansoor — SEO Lead</p>
         </div>
         <div class="photo-wrap reveal-delay-3">
-          <div class="photo-card" role="button" tabindex="0" aria-label="View team photo" data-src="assets/suheyla2.jpg" data-alt="Marketing with Fahad — Suheyla, Client Manager">
+          <div class="photo-card">
             <img src="assets/suheyla2.jpg" alt="Marketing with Fahad — Suheyla" loading="lazy">
           </div>
           <p class="photo-caption">Suheyla — Client Manager</p>
@@ -557,19 +528,19 @@ p:last-child{margin-bottom:0}
       <!-- FIX #2: photo-grid--timeline for consistent border/aspect ratio on office photos -->
       <div class="photo-grid photo-grid--3 photo-grid--timeline reveal">
         <div class="photo-wrap reveal-delay-1">
-          <div class="photo-card" role="button" tabindex="0" aria-label="View office photo" data-src="assets/darvin_studio_rabota_03.jpg" data-alt="Marketing with Fahad Dubai Office">
+          <div class="photo-card">
             <img src="assets/darvin_studio_rabota_03.jpg" alt="Marketing with Fahad Dubai Office" loading="lazy">
           </div>
           <p class="photo-caption">JLT Office — Dubai</p>
         </div>
         <div class="photo-wrap reveal-delay-2">
-          <div class="photo-card" role="button" tabindex="0" aria-label="View office photo" data-src="assets/darvin_studio_rabota_06.jpg" data-alt="Marketing with Fahad Dubai Office">
+          <div class="photo-card">
             <img src="assets/darvin_studio_rabota_06.jpg" alt="Marketing with Fahad Dubai Office" loading="lazy">
           </div>
           <p class="photo-caption">SEO Operations Floor</p>
         </div>
         <div class="photo-wrap reveal-delay-3">
-          <div class="photo-card" role="button" tabindex="0" aria-label="View office photo" data-src="assets/darvin_studio_rabota_08.jpg" data-alt="Marketing with Fahad Dubai Office">
+          <div class="photo-card">
             <img src="assets/darvin_studio_rabota_08.jpg" alt="Marketing with Fahad Dubai Office" loading="lazy">
           </div>
           <p class="photo-caption">Client Strategy Room</p>
@@ -673,13 +644,6 @@ p:last-child{margin-bottom:0}
   <div id="footer-placeholder"></div>
 </div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
-  <div class="lightbox-img-wrap" id="lightboxWrap">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">✕</button>
-    <img id="lightboxImg" src="" alt="">
-  </div>
-</div>
 <script>
 (function(){
 'use strict';
@@ -719,33 +683,6 @@ faqItems.forEach(function(item){
     }
   });
 });
-
-/* LIGHTBOX */
-var overlay=document.getElementById('lightbox');
-var lbImg=document.getElementById('lightboxImg');
-var lbClose=document.getElementById('lightboxClose');
-
-function openLightbox(src,alt){
-  if(window.innerWidth<=600)return;
-  lbImg.src=src;lbImg.alt=alt||'';
-  overlay.classList.add('active');
-  document.body.style.overflow='hidden';
-}
-function closeLightbox(){
-  overlay.classList.remove('active');
-  document.body.style.overflow='';
-  lbImg.src='';
-}
-
-document.querySelectorAll('.photo-card').forEach(function(card){
-  function activate(){openLightbox(card.dataset.src,card.dataset.alt);}
-  card.addEventListener('click',activate);
-  card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
-});
-
-lbClose.addEventListener('click',closeLightbox);
-overlay.addEventListener('click',function(e){if(e.target===overlay)closeLightbox();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('active'))closeLightbox();});
 
 function runScripts(container){
   container.querySelectorAll('script').forEach(function(oldScript){
