@@ -137,7 +137,6 @@ p:last-child { margin-bottom: 0; }
   color: var(--dark);
   margin-bottom: 20px;
 }
-/* FIX #2 — higher contrast gold on light bg */
 .section-title em {
   font-style: normal;
   color: var(--gold-dark);
@@ -153,7 +152,6 @@ p:last-child { margin-bottom: 0; }
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-/* FIX #3 — consistent section spacing on one scale */
 .reveal:nth-child(1) { transition-delay: 0s; }
 .reveal:nth-child(2) { transition-delay: .05s; }
 .reveal:nth-child(3) { transition-delay: .1s; }
@@ -182,7 +180,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ============================================================
-   INFO CARD (setup / billing blocks)
+   INFO CARD (setup / billing blocks) — plain (no image)
    ============================================================ */
 .info-card {
   background: var(--white);
@@ -204,42 +202,77 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ============================================================
-   IMAGE BLOCK (clickable for lightbox)
+   INFO CARD — split layout: text on one side, real <img> on the other
+   Replaces the old CSS background-image approach (which failed
+   silently whenever the path was wrong) with an actual <img> tag
+   inside its own white panel, so it's always visible and reliably
+   responsive.
+   ============================================================ */
+.info-card--split {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  background: var(--white);
+}
+.info-card--split .info-card__content {
+  flex: 1 1 50%;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--text);
+}
+.info-card--split .info-card__content p { color: var(--text); margin-bottom: 12px; line-height: 1.8; }
+.info-card--split .info-card__content p:last-child { margin-bottom: 0; }
+
+.info-card--split .info-card__media {
+  flex: 1 1 50%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  min-height: 220px;
+}
+.info-card--split .info-card__media img {
+  width: 100%;
+  height: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Image-on-right by default; .-rev flips the order */
+.info-card--split.-rev { flex-direction: row-reverse; }
+
+/* Stack on tablets/phones */
+@media (max-width: 760px) {
+  .info-card--split,
+  .info-card--split.-rev {
+    flex-direction: column;
+  }
+  .info-card--split .info-card__media { min-height: 180px; padding: 16px 16px 0; }
+  .info-card--split .info-card__content { padding: 24px 22px; }
+}
+
+/* ============================================================
+   IMAGE BLOCK (plain display, no zoom/search overlay)
    ============================================================ */
 .img-block {
   margin: 28px 0;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 6px 24px rgba(0,0,0,.1);
-  cursor: zoom-in;
   position: relative;
   display: inline-block;
   width: 100%;
+  background: var(--white);
 }
 .img-block img {
   width: 100%;
   display: block;
-  transition: transform .35s ease;
 }
-.img-block:hover img { transform: scale(1.03); }
-.img-block__overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background .3s;
-}
-.img-block:hover .img-block__overlay { background: rgba(0,0,0,.25); }
-.img-block__icon {
-  opacity: 0;
-  color: #fff;
-  font-size: 36px;
-  transition: opacity .3s;
-}
-.img-block:hover .img-block__icon { opacity: 1; }
-@media (max-width: 599px) { .img-block { cursor: default; } }
 
 /* ============================================================
    CTA BLOCK
@@ -413,63 +446,24 @@ p:last-child { margin-bottom: 0; }
 @media (max-width: 400px) { .faq-btn { font-size: 13px; padding: 16px 16px; } }
 
 /* ============================================================
-   LIGHTBOX (desktop ≥600px)
-   ============================================================ */
-.lightbox-overlay {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,.88);
-  z-index: 1000;
-  align-items: center; justify-content: center;
-}
-.lightbox-overlay[aria-modal="true"] { display: flex; }
-.lightbox-overlay img { max-width: 90vw; max-height: 88vh; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
-.lightbox-close {
-  position: absolute; top: 20px; right: 24px;
-  width: 42px; height: 42px; border-radius: 50%;
-  background: rgba(255,255,255,.15); color: #fff; font-size: 22px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; border: none; transition: background .2s;
-}
-.lightbox-close:hover { background: rgba(255,255,255,.3); }
-@media (max-width: 599px) { .lightbox-overlay { display: none !important; } }
-
-/* ============================================================
-   Info card with background image
-   FIX #1 — removed bottom-fade gradient; image now shows clean
-   ============================================================ */
-.info-card--bg {
-  background-color: transparent;
-  background-size: cover;
-  background-position: center center;  /* FIX #1: was "center right", centred for better crop */
-  background-repeat: no-repeat;
-  min-height: 200px;                   /* FIX #1: taller to show more of fresh image */
-  display: flex;
-  align-items: center;
-  padding: 0;
-  border-color: transparent;
-  box-shadow: 0 6px 24px rgba(0,0,0,.15);
-  /* FIX #1: NO bottom-fade mask — removed the old ::after gradient */
-}
-.info-card--bg .info-card__content {
-  background: rgba(26,26,46,.82);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  padding: 28px 32px;
-  border-radius: 0 var(--radius) var(--radius) 4px;
-  color: #fff;
-  max-width: 540px;
-  width: 100%;
-}
-.info-card--bg .info-card__content p { color: #e8e8e8; margin-bottom: 12px; line-height: 1.75; }
-.info-card--bg .info-card__content p:last-child { margin-bottom: 0; }
-.info-card--bg::before { background: var(--gold); }
-
-/* ============================================================
-   PAGE SECTION SPACING — FIX #3: one consistent scale
+   PAGE SECTION SPACING
    ============================================================ */
 .page-section { margin-bottom: 48px; }
 .page-section + .page-section { margin-top: 0; }
+
+/* ============================================================
+   GLOBAL RESPONSIVE TUNING
+   ============================================================ */
+@media (max-width: 760px) {
+  .l-container { padding: 0 16px; }
+  .info-card { padding: 22px 20px; }
+  .cta-block { padding: 32px 22px; }
+  .section-divider__label { font-size: 11px; }
+}
+@media (max-width: 480px) {
+  body { font-size: 15px; }
+  .cta-btn, .faq-cta-btn { padding: 13px 26px; font-size: 14px; }
+}
 </style>
 </head>
 
@@ -510,7 +504,6 @@ p:last-child { margin-bottom: 0; }
       </div>
 
       <!-- SETUP SECTION -->
-      <!-- FIX #3: removed inline style="transition-delay:..." — now handled by CSS nth-child rule -->
       <div class="page-section reveal">
         <div class="section-divider">
           <div class="section-divider__dot" aria-hidden="true"></div>
@@ -518,46 +511,52 @@ p:last-child { margin-bottom: 0; }
           <div class="section-divider__line" aria-hidden="true"></div>
         </div>
         <h2 class="section-title"><em>Setup</em></h2>
-        <!-- FIX #1: background-image updated to high-res version (mp_setup_hires.jpg) -->
-        <div class="info-card info-card--bg" style="background-image:url('assets/mp_setup_hires.jpg');">
+
+        <!-- Real <img> in its own white panel, beside the text. Stacks on mobile. -->
+        <div class="info-card info-card--split">
           <div class="info-card__content">
             <p>There are no hidden costs or setup fees. Our account manager will provide you the best set of keywords that are most popular in searches.</p>
             <p>The client approves the keywords and the contract is signed, and payment for the first month is paid upfront. After which, we would gain access to your website, perform in-depth analysis and begin our in-house consultations to decide on the best strategy for your website.</p>
           </div>
+          <div class="info-card__media">
+            <img src="assets/mp_setup_hires.jpg" alt="SEO monthly payment strategy setup process" loading="lazy">
+          </div>
         </div>
+
         <div class="content-prose">
           <p>We will provide you with a link and access to verify progress of your rankings for search results, which you can verify at any time of the day.</p>
         </div>
-        <div class="img-block js-lightbox-trigger" role="button" tabindex="0" aria-label="View results screenshot">
-          <img src="assets/mp_results.jpg" alt="SEO monthly payment strategy results tracking dashboard" title="Monthly Payment Strategy Results">
-          <div class="img-block__overlay" aria-hidden="true">
-            <span class="img-block__icon">&#128269;</span>
-          </div>
+
+        <!-- Plain image, no zoom/search overlay -->
+        <div class="img-block">
+          <img src="assets/mp_results.jpg" alt="SEO monthly payment strategy results tracking dashboard" title="Monthly Payment Strategy Results" loading="lazy">
         </div>
+
         <div class="content-prose">
           <p>You can choose any amount of keywords you like, as you might want to increase more visitors on your website who are looking to buy your product or services.</p>
         </div>
       </div>
 
       <!-- BILLING SECTION -->
-      <!-- FIX #3: removed inline transition-delay -->
       <div class="page-section reveal">
         <div class="section-divider">
           <div class="section-divider__dot" aria-hidden="true"></div>
           <span class="section-divider__label">Step 2</span>
           <div class="section-divider__line" aria-hidden="true"></div>
         </div>
-        <!-- FIX #2: .section-title em now uses --gold-dark via CSS for higher contrast -->
         <h2 class="section-title"><em>Billing</em></h2>
-        <div class="info-card info-card--bg" style="background-image:url('assets/mp_txt.jpg');">
+
+        <div class="info-card info-card--split -rev">
           <div class="info-card__content">
             <p>As agreed in the contract, you will be billed a fixed amount monthly which would have to be paid before the 5th of each month in advance.</p>
+          </div>
+          <div class="info-card__media">
+            <img src="assets/mp_txt.jpg" alt="Monthly SEO billing schedule" loading="lazy">
           </div>
         </div>
       </div>
 
       <!-- DURATION & TERMINATION -->
-      <!-- FIX #3: removed inline transition-delay -->
       <div class="page-section content-prose reveal">
         <div class="section-divider">
           <div class="section-divider__dot" aria-hidden="true"></div>
@@ -571,7 +570,6 @@ p:last-child { margin-bottom: 0; }
       </div>
 
       <!-- CTA BLOCK -->
-      <!-- FIX #3: removed inline transition-delay -->
       <div class="reveal">
         <div class="cta-block" style="background-image:url('assets/get_started.jpg');">
           <p>Contact one of our marketing professionals today!</p>
@@ -580,8 +578,6 @@ p:last-child { margin-bottom: 0; }
       </div>
 
       <!-- CASE STUDIES -->
-      <!-- FIX #4: rank cards loaded from shared partial via JS (ranks-grid.html) -->
-      <!-- FIX #3: removed inline transition-delay -->
       <div class="page-section reveal">
         <div class="section-divider">
           <div class="section-divider__dot" aria-hidden="true"></div>
@@ -589,7 +585,6 @@ p:last-child { margin-bottom: 0; }
           <div class="section-divider__line" aria-hidden="true"></div>
         </div>
         <h2 class="section-title"><em>Case Studies</em></h2>
-        <!-- FIX #4: placeholder — content injected from partials/ranks-grid.html -->
         <div id="ranks-placeholder">
           <!-- fallback: inline cards shown if fetch fails -->
           <div class="ranks-grid">
@@ -716,26 +711,6 @@ p:last-child { margin-bottom: 0; }
               </div>
             </div>
 
-            <div class="faq-item" data-open="false">
-              <button class="faq-btn" aria-expanded="false" aria-controls="faq-a7">
-                What if I want to cancel my monthly plan?
-                <span class="faq-icon" aria-hidden="true">+</span>
-              </button>
-              <div class="faq-answer" id="faq-a7" role="region">
-                <div class="faq-answer-inner">You can cancel with 30 days written notice after the initial commitment period. We make the transition as smooth as possible and provide all ranking data and content assets on exit.</div>
-              </div>
-            </div>
-
-            <div class="faq-item" data-open="false">
-              <button class="faq-btn" aria-expanded="false" aria-controls="faq-a8">
-                Will monthly SEO work for a new website?
-                <span class="faq-icon" aria-hidden="true">+</span>
-              </button>
-              <div class="faq-answer" id="faq-a8" role="region">
-                <div class="faq-answer-inner">Yes. New websites benefit greatly from monthly SEO through technical setup, content creation, and link building that builds domain authority from the ground up — often showing rankings within 3–4 months.</div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
@@ -744,12 +719,6 @@ p:last-child { margin-bottom: 0; }
   </main>
 
   <div id="footer-placeholder"></div>
-</div>
-
-<!-- Lightbox -->
-<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="false" aria-label="Image viewer" tabindex="-1">
-  <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">✕</button>
-  <img id="lightboxImg" src="" alt="">
 </div>
 
 <script>
@@ -773,10 +742,7 @@ async function loadPart(url, id) {
 loadPart('header.html', 'header-placeholder');
 loadPart('footer.html', 'footer-placeholder');
 
-// ── FIX #4 — Rank cards: load from shared partial ──────────
-// Create partials/ranks-grid.html with the .ranks-grid markup
-// and it will be reused across all pages that need it.
-// If the fetch fails, the inline fallback cards above remain visible.
+// ── Rank cards: load from shared partial ──────────
 (async function loadRanks() {
   try {
     const r = await fetch('partials/ranks-grid.html');
@@ -862,37 +828,6 @@ loadPart('footer.html', 'footer-placeholder');
         answer.style.maxHeight = answer.scrollHeight + "px";
         icon.textContent = "−";
       }
-    });
-  });
-})();
-
-// ── Lightbox ──────────────────────────────────────────────
-(function () {
-  const overlay  = document.getElementById("lightbox");
-  const closeBtn = document.getElementById("lightboxClose");
-  const img      = document.getElementById("lightboxImg");
-  if (!overlay || !closeBtn || !img) return;
-  function openLightbox(src, alt) {
-    if (window.innerWidth < 600) return;
-    img.src = src; img.alt = alt || "";
-    overlay.setAttribute("aria-modal", "true");
-    overlay.focus();
-  }
-  function closeLightbox() {
-    overlay.setAttribute("aria-modal", "false");
-    img.src = "";
-  }
-  closeBtn.addEventListener("click", closeLightbox);
-  overlay.addEventListener("click", e => { if (e.target === overlay) closeLightbox(); });
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && overlay.getAttribute("aria-modal") === "true") closeLightbox();
-  });
-  document.querySelectorAll(".js-lightbox-trigger").forEach(el => {
-    const image = el.querySelector("img");
-    if (!image) return;
-    el.addEventListener("click", () => openLightbox(image.src, image.alt));
-    el.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(image.src, image.alt); }
     });
   });
 })();
