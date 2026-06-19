@@ -220,7 +220,7 @@ p:last-child { margin-bottom: 0; }
 .breadcrumbs span { color: var(--gold); }
 
 /* ═══════════════════════════════════════════
-   HERO SECTION  — FIX #1: full-height, standard hero treatment
+   HERO SECTION
 ═══════════════════════════════════════════ */
 .hero {
   background: var(--white);
@@ -434,9 +434,6 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
 }
 
-/* FIX #2: off-brand orange/green blobs behind the image — replaced with a
-   single unified gold/navy brand blob, and the photo itself is tinted with
-   a gold duotone overlay so any stray colours read as on-brand. */
 .intro-img-frame {
   position: relative;
 }
@@ -482,7 +479,6 @@ p:last-child { margin-bottom: 0; }
   transition: transform 0.45s ease;
 }
 .intro-img-wrap:hover img { transform: scale(1.06); }
-/* unify any off-brand colours baked into the source photo with a gold duotone wash */
 .intro-img-wrap::before {
   content: '';
   position: absolute;
@@ -539,7 +535,7 @@ p:last-child { margin-bottom: 0; }
 .two-col-text p { color: var(--text-light); margin-bottom: 12px; }
 
 /* ═══════════════════════════════════════════
-   SOCIAL NETWORKS GRID — FIX #3: uniform headers, 1 CTA per card
+   SOCIAL NETWORKS GRID
 ═══════════════════════════════════════════ */
 .networks-section {
   background: var(--white);
@@ -669,7 +665,7 @@ p:last-child { margin-bottom: 0; }
 .advantage-card-text { font-size: 14px; color: var(--text-light); line-height: 1.65; }
 
 /* ═══════════════════════════════════════════
-   PRICING STRIP — FIX #4: navy/gold instead of purple gradient
+   PRICING STRIP
 ═══════════════════════════════════════════ */
 .pricing-section {
   background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 50%, var(--dark) 100%);
@@ -747,7 +743,7 @@ p:last-child { margin-bottom: 0; }
 .enquiry-form textarea { height: 130px; resize: none; margin-bottom: 14px; }
 
 /* ═══════════════════════════════════════════
-   FAQ SECTION — FIX #5: trimmed list
+   FAQ SECTION
 ═══════════════════════════════════════════ */
 .faq-left {
   position: sticky;
@@ -950,13 +946,27 @@ p:last-child { margin-bottom: 0; }
   </nav>
 </div>
 
-<!-- HERO — FIX #1: full-height, standard hero treatment -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div class="reveal">
       <p class="hero-eyebrow">Social Media Marketing Dubai</p>
       <h1>Marketing with Fahad: <span class="accent">No.1 in Professional</span> SMM Services in Dubai</h1>
       <p class="hero-desc">Creating content that attracts attention, drives engagement, and grows your brand across every major social platform — with measurable results.</p>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num"><span>250+</span></div>
+          <div class="hero-stat-label">Brands Grown</div>
+        </div>
+        <div>
+          <div class="hero-stat-num"><span>1M+</span></div>
+          <div class="hero-stat-label">Daily Views Driven</div>
+        </div>
+        <div>
+          <div class="hero-stat-num"><span>2hr</span></div>
+          <div class="hero-stat-label">Avg. Response Time</div>
+        </div>
+      </div>
       <div class="hero-network-pills">
         <a href="https://facebook.com/">📘 Facebook</a>
         <a href="https://instagram.com/">📷 Instagram</a>
@@ -991,7 +1001,7 @@ p:last-child { margin-bottom: 0; }
   </div>
 </div>
 
-<!-- INTRO — FIX #2: unified gold/navy brand blobs + gold duotone wash on photo -->
+<!-- INTRO -->
 <section class="intro-section">
   <div class="intro-inner container" style="padding:0 22px;">
     <div class="reveal">
@@ -1056,7 +1066,7 @@ p:last-child { margin-bottom: 0; }
   </div>
 </section>
 
-<!-- NETWORKS — FIX #3: uniform headers, 1 CTA per card -->
+<!-- NETWORKS -->
 <section class="networks-section" id="networks">
   <div class="networks-section-inner">
     <div class="section-center reveal" style="text-align:center;margin-bottom:52px;">
@@ -1236,7 +1246,7 @@ p:last-child { margin-bottom: 0; }
   </div>
 </section>
 
-<!-- PRICING — FIX #4: navy/gold gradient -->
+<!-- PRICING -->
 <section class="pricing-section">
   <div class="pricing-inner reveal">
     <div class="badge">Pricing</div>
@@ -1276,7 +1286,7 @@ p:last-child { margin-bottom: 0; }
   </div>
 </section>
 
-<!-- FAQ — FIX #5: trimmed list (8 → 5) -->
+<!-- FAQ -->
 <section class="faq-section">
   <div class="faq-inner">
     <div class="faq-left reveal">
