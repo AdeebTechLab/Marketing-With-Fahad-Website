@@ -68,11 +68,6 @@ p:last-child{margin-bottom:0}
   object-fit:cover;object-position:center top;
   opacity:.55;
   transition:transform 6s ease;
-  /* Improved rendering quality */
-  image-rendering:-webkit-optimize-contrast;
-  image-rendering:crisp-edges;
-  backface-visibility:hidden;
-  transform:translateZ(0);
 }
 .hero-banner:hover img{transform:scale(1.04)}
 .hero-banner::after{
@@ -160,12 +155,8 @@ p:last-child{margin-bottom:0}
   width:100%;
   height:100%;
   object-fit:cover;
-  /* FIX #2: consistent image rendering for all photos, improved sharpness */
+  /* FIX #2: consistent image rendering for all photos */
   object-position:center center;
-  image-rendering:-webkit-optimize-contrast;
-  image-rendering:crisp-edges;
-  backface-visibility:hidden;
-  transform:translateZ(0);
   transition:transform .4s ease;
 }
 .photo-card:hover img{transform:scale(1.06)}
