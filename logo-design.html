@@ -21,6 +21,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon-180x180.png">
 <meta name="msapplication-TileColor" content="#fff">
 <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
+
+<!-- Tabler Icons (for proof strip icons) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
 <style>
 /* ===== VARIABLES ===== */
 :root{
@@ -37,6 +41,7 @@
   --radius-sm:10px;
   --shadow:0 4px 24px rgba(0,0,0,.08);
   --shadow-hover:0 10px 40px rgba(0,0,0,.14);
+  --transition:0.25s ease;
 }
 
 /* ===== RESET & BASE ===== */
@@ -61,115 +66,279 @@ p:last-child{margin-bottom:0}
 .breadcrumbs a::after{content:'›';margin:0 8px;color:#aaa;font-size:13px}
 .breadcrumbs span{color:#888}
 
-/* ===== FIX #1 — STANDARD HERO (replaces title-only) ===== */
-.page-hero{
-  background:var(--dark);
-  border-radius:var(--radius);
-  padding:64px 56px;
-  margin:14px 0 44px;
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:40px;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
-  animation:fadeInUp .6s .2s ease both;
+/* ═══════════════════════════════════════════
+   HERO — same style as SMM page (file 2)
+═══════════════════════════════════════════ */
+.hero {
+  background: #fffdf5;
+  padding: 72px 0 80px;
+  border-bottom: 1px solid var(--gold-border);
+  position: relative;
+  overflow: hidden;
 }
-.page-hero::before{
-  content:'';
-  position:absolute;
-  top:-80px;right:-80px;
-  width:340px;height:340px;
-  border-radius:50%;
-  background:rgba(200,166,77,.07);
-  pointer-events:none;
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -80px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,0.09) 0%, transparent 70%);
+  pointer-events: none;
 }
-.page-hero::after{
-  content:'';
-  position:absolute;
-  bottom:-50px;left:-50px;
-  width:220px;height:220px;
-  border-radius:50%;
-  background:rgba(200,166,77,.05);
-  pointer-events:none;
+.hero__grid {
+  max-width: 1270px;
+  margin: 0 auto;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 52px;
+  align-items: center;
 }
-.page-hero__content{position:relative;z-index:1}
-.page-hero__label{
-  display:inline-block;
-  background:rgba(200,166,77,.18);
-  color:var(--gold);
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  padding:6px 16px;
-  border-radius:30px;
-  margin-bottom:18px;
+.hero__eyebrow {
+  display: inline-block;
+  background: rgba(201,169,110,0.12);
+  color: var(--gold-dark);
+  border: 1px solid rgba(201,169,110,0.4);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeSlideDown 0.5s 0.1s forwards;
 }
-.page-hero__h1{
-  font-size:clamp(30px,4.5vw,52px);
-  font-weight:800;
-  line-height:1.15;
-  color:#fff;
-  margin-bottom:18px;
+.hero h1 {
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.12;
+  margin: 0 0 18px;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.2s forwards;
 }
-.page-hero__h1 .gold{color:var(--gold)}
-.page-hero__sub{
-  color:rgba(255,255,255,.75);
-  font-size:17px;
-  line-height:1.75;
-  max-width:520px;
-  margin-bottom:28px;
+.hero h1 .accent { color: var(--gold); }
+.hero__desc {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 0 28px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.3s forwards;
 }
-.page-hero__cta{
-  display:inline-block;
-  background:var(--gold);
-  color:#fff;
-  padding:14px 32px;
-  border-radius:50px;
-  font-weight:700;
-  font-size:15px;
-  box-shadow:0 6px 24px var(--gold-shadow);
-  transition:background .2s,transform .2s,box-shadow .2s;
+.hero__btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.38s forwards;
 }
-.page-hero__cta:hover{
-  background:var(--gold-dark);
-  color:#fff;
-  transform:translateY(-2px);
-  box-shadow:0 10px 32px var(--gold-shadow);
+.btn-primary {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+  white-space: nowrap;
 }
-.page-hero__badge-wrap{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  position:relative;
-  z-index:1;
+.btn-primary:hover {
+  background: var(--gold-dark);
+  color: var(--white);
+  box-shadow: 0 6px 20px var(--gold-shadow);
+  transform: translateY(-1px);
 }
-.page-hero__badge{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(200,166,77,.25);
-  border-radius:14px;
-  padding:18px 22px;
-  text-align:center;
-  min-width:130px;
+.btn-outline {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--gold-dark);
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
 }
-.page-hero__badge-num{
-  font-size:28px;
-  font-weight:800;
-  color:var(--gold);
-  display:block;
-  line-height:1;
+.btn-outline:hover { background: rgba(201,169,110,0.08); color: var(--gold-dark); }
+
+/* Hero form card — dark */
+.hero-form-card {
+  background: var(--dark);
+  border: 1px solid #1e293b;
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  opacity: 0;
+  animation: fadeSlideRight 0.6s 0.3s forwards;
 }
-.page-hero__badge-label{
-  font-size:12px;
-  color:rgba(255,255,255,.6);
-  margin-top:5px;
-  display:block;
+.hero-form-card__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
 }
-@media(max-width:760px){
-  .page-hero{grid-template-columns:1fr;padding:36px 26px;gap:24px}
-  .page-hero__badge-wrap{flex-direction:row;flex-wrap:wrap;justify-content:flex-start}
-  .page-hero__badge{min-width:100px}
+.hero-form-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  background: rgba(201,169,110,0.15);
+  color: var(--gold);
+  font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hero-form-card__title {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  display: block;
+  margin: 0 0 2px;
+}
+.hero-form-card__sub { color: rgba(255,255,255,0.4); font-size: 13px; }
+.form-group { margin-bottom: 14px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: var(--white);
+  font-family: inherit;
+  transition: border-color var(--transition);
+}
+.form-input::placeholder { color: rgba(255,255,255,0.3); }
+.form-input:focus { border-color: var(--gold); outline: none; }
+.form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+.form-submit:hover { background: var(--gold-dark); box-shadow: 0 6px 20px var(--gold-shadow); }
+.form-note {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  margin: 10px 0 0;
+}
+
+/* Proof strip */
+.hero__proof-strip {
+  max-width: 1270px;
+  margin: 40px auto 0;
+  padding: 0 22px;
+}
+.hero__proof-strip-inner {
+  padding-top: 32px;
+  border-top: 1px solid var(--gold-border);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 1px;
+  background: var(--gold-border);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.55s forwards;
+}
+.hero__proof-item {
+  background: #fff;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.hero__proof-item:hover { background: #f9f9f9; }
+.hero__proof-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.hero__proof-icon.gold  { background: #FAEEDA; color: #854F0B; }
+.hero__proof-icon.blue  { background: #E6F1FB; color: #185FA5; }
+.hero__proof-icon.teal  { background: #E1F5EE; color: #0F6E56; }
+.hero__proof-icon.amber { background: #FEF3C7; color: #92400E; }
+.hero__proof-item strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+.hero__proof-item > span {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.hero__proof-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 4px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.hero__proof-badge.green { background: #EAF3DE; color: #3B6D11; }
+.hero__proof-badge.blue  { background: #E6F1FB; color: #185FA5; }
+
+/* Hero animations */
+@keyframes fadeSlideDown  { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeSlideUp    { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeSlideRight { to { opacity: 1; transform: translateX(0); } }
+.hero__eyebrow { transform: translateY(-8px); }
+.hero h1, .hero__desc, .hero__btns { transform: translateY(16px); }
+.hero-form-card { transform: translateX(16px); }
+
+/* Hero responsive */
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-form-card { max-width: 480px; }
+  .hero__proof-strip-inner { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 560px) {
+  .hero { padding: 48px 0 52px; }
+}
+@media (max-width: 400px) {
+  .hero h1 { font-size: 26px; }
 }
 
 /* ===== SECTION DIVIDER ===== */
@@ -214,88 +383,20 @@ p:last-child{margin-bottom:0}
 
 /* ===== WORKS SECTION ===== */
 .works-heading{font-size:clamp(20px,3vw,32px);font-weight:800;color:var(--dark);margin-bottom:8px}
+.gold{color:var(--gold)}
 .works-subheading{font-size:clamp(16px,2.5vw,22px);font-weight:700;color:var(--dark);margin:32px 0 12px}
 .works-description{font-size:15.5px;color:#444;line-height:1.8;max-width:860px;margin-bottom:24px}
 
-/* ===== FIX #2 & #3 — CONSISTENT LOGO SHOWCASE (clean bg, high contrast, uniform style) ===== */
-/* All work items now use clean white/light bg — no busy city photo behind logos */
-.work-item{
-  background:var(--white);
-  border-radius:var(--radius);
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  margin-bottom:40px;
-  transition:box-shadow .25s;
-}
+.work-item{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px;transition:box-shadow .25s}
 .work-item:hover{box-shadow:var(--shadow-hover)}
-
-/* Consistent logo showcase grid — same style for ALL portfolio items */
-.logo-showcase{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:0;
-  background:var(--gold-border);
-}
-.logo-showcase__cell{
-  background:#f8f7f3;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:48px 32px;
-  position:relative;
-  transition:background .25s;
-}
-.logo-showcase__cell:hover{background:#fff}
-
-/* Subtle variation: first cell slightly darker for contrast rhythm */
-.logo-showcase__cell:nth-child(1){background:#f0ede5}
-.logo-showcase__cell:nth-child(2){background:#f8f7f3}
-.logo-showcase__cell:nth-child(3){background:#1a1a2e} /* dark cell for light logo variant */
-
-.logo-showcase__cell img{
-  max-width:100%;
-  max-height:110px;
-  width:auto;
-  object-fit:contain;
-  display:block;
-}
-/* For dark bg cell — ensure logo is visible */
-.logo-showcase__cell--dark{background:var(--dark)!important}
-.logo-showcase__cell--dark img{filter:brightness(1)}
-
-/* Selected badge */
-.logo-showcase__cell--chosen::after{
-  content:'★ Selected';
-  position:absolute;
-  top:10px;
-  right:10px;
-  background:var(--gold);
-  color:#fff;
-  font-size:11px;
-  font-weight:700;
-  padding:4px 10px;
-  border-radius:20px;
-  letter-spacing:.04em;
-}
-
-/* Legacy img-based work items (fallback if logo-showcase not used) */
 .work-item__img-wrap{position:relative;cursor:pointer;overflow:hidden;background:#f0ede5}
 .work-item__img-wrap img{width:100%;display:block;transition:transform .45s}
 .work-item__img-wrap:hover img{transform:scale(1.04)}
 .work-item__img-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(26,26,46,.38);display:flex;align-items:center;justify-content:center;font-size:28px;opacity:0;transition:opacity .3s}
 .work-item__img-wrap:hover::after{opacity:1}
-
 .work-item__footer{display:flex;align-items:center;gap:14px;padding:16px 24px;background:var(--gold-tint);border-top:1px solid var(--gold-border)}
 .work-item__footer-label{font-size:14px;color:var(--text-muted)}
-.work-item__footer img{height:36px;width:auto;border-radius:6px}
-@media(max-width:560px){
-  .work-item__footer{padding:12px 16px;flex-wrap:wrap}
-  .logo-showcase{grid-template-columns:1fr}
-  .logo-showcase__cell{padding:36px 24px}
-}
-@media(max-width:760px){
-  .logo-showcase{grid-template-columns:repeat(2,1fr)}
-}
+@media(max-width:560px){.work-item__footer{padding:12px 16px;flex-wrap:wrap}}
 
 /* ===== STATS BAR ===== */
 .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gold-border);border-radius:var(--radius);overflow:hidden;margin:0 0 50px}
@@ -304,7 +405,7 @@ p:last-child{margin-bottom:0}
 .stat-item__label{font-size:13px;color:var(--text-muted);margin-top:6px;line-height:1.4;display:block}
 @media(max-width:700px){.stats-bar{grid-template-columns:repeat(2,1fr)}}
 
-/* ===== FIX #4 — FAQ (trimmed & consistent, no repeat) ===== */
+/* ===== FAQ ===== */
 .faq-left{position:sticky;top:100px;height:max-content}
 .faq-section{background:linear-gradient(135deg,#faf9f6,#f0ede4);padding:80px 20px;margin-top:30px}
 .faq-inner{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:70px;align-items:start}
@@ -359,6 +460,93 @@ p:last-child{margin-bottom:0}
   <div id="header-placeholder"></div>
 
   <main class="l-main">
+
+    <!-- ═══════════════════════════════════════════
+         HERO — same style as SMM page
+    ═══════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero__grid">
+
+        <!-- Left: text -->
+        <div>
+          <span class="hero__eyebrow">🎨 Dubai's Trusted Design Studio</span>
+          <h1>Professional <span class="accent">Logo Design</span> in Dubai</h1>
+          <p class="hero__desc">Your logo is the face of your brand. We craft unique, memorable logos that speak your identity — delivered with full ownership and source files.</p>
+          <div class="hero__btns">
+            <a href="contact.html" class="btn-primary">Get Free Quote →</a>
+            <a href="#portfolio" class="btn-outline">View Portfolio</a>
+          </div>
+        </div>
+
+        <!-- Right: dark form card -->
+        <div class="hero-form-card">
+          <div class="hero-form-card__header">
+            <div class="hero-form-card__icon" aria-hidden="true">✏️</div>
+            <div>
+              <strong class="hero-form-card__title">Get a Free Logo Quote</strong>
+              <span class="hero-form-card__sub">We reply within 2 hours</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="h-name">Full Name</label>
+            <input class="form-input" type="text" id="h-name" placeholder="Your full name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="h-phone">Phone / WhatsApp</label>
+            <input class="form-input" type="tel" id="h-phone" placeholder="+971">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="h-email">Email Address</label>
+            <input class="form-input" type="email" id="h-email" placeholder="john@company.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="h-service">Service Needed</label>
+            <select class="form-input" id="h-service">
+              <option value="">Select a service...</option>
+              <option>Logo Design</option>
+              <option>Brand Identity</option>
+              <option>Logo + Brand Guidelines</option>
+              <option>Logo Refresh / Redesign</option>
+            </select>
+          </div>
+          <button class="form-submit">Send Me a Free Quote →</button>
+          <p class="form-note">100% Free · No credit card · Reply within 2 hours</p>
+        </div>
+
+      </div>
+
+      <!-- Proof strip -->
+      <div class="hero__proof-strip">
+        <div class="hero__proof-strip-inner">
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon gold"><i class="ti ti-pencil"></i></div>
+            <strong>5+</strong>
+            <span>Expert Designers</span>
+            <span class="hero__proof-badge green"><i class="ti ti-circle-check"></i> In-House</span>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon blue"><i class="ti ti-brand-behance"></i></div>
+            <strong>500+</strong>
+            <span>Logos Created</span>
+            <span class="hero__proof-badge blue"><i class="ti ti-chart-bar"></i> Delivered</span>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon teal"><i class="ti ti-layers-intersect"></i></div>
+            <strong>3</strong>
+            <span>Concepts Delivered</span>
+            <span class="hero__proof-badge green"><i class="ti ti-trending-up"></i> Per Project</span>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon amber"><i class="ti ti-shield-check"></i></div>
+            <strong>100%</strong>
+            <span>Ownership Transferred</span>
+            <span class="hero__proof-badge blue"><i class="ti ti-lock"></i> Guaranteed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END HERO -->
+
     <div class="l-container">
 
       <!-- BREADCRUMBS -->
@@ -381,40 +569,12 @@ p:last-child{margin-bottom:0}
         </div>
       </nav>
 
-      <!-- ============================================================
-           FIX #1 — STANDARD HERO
-           Title-only → full hero with subtitle, CTA, and stat badges
-           ============================================================ -->
-      <div class="page-hero">
-        <div class="page-hero__content">
-          <span class="page-hero__label">Dubai's Trusted Design Studio</span>
-          <h1 class="page-hero__h1">Logo <span class="gold">Design</span> Dubai</h1>
-          <p class="page-hero__sub">Your logo is the face of your brand. We craft unique, memorable logos that speak your identity — delivered with full ownership and source files.</p>
-          <a href="contact.html" class="page-hero__cta">Get Free Quote →</a>
-        </div>
-        <div class="page-hero__badge-wrap">
-          <div class="page-hero__badge">
-            <span class="page-hero__badge-num">5+</span>
-            <span class="page-hero__badge-label">Expert Designers</span>
-          </div>
-          <div class="page-hero__badge">
-            <span class="page-hero__badge-num">500+</span>
-            <span class="page-hero__badge-label">Logos Created</span>
-          </div>
-          <div class="page-hero__badge">
-            <span class="page-hero__badge-num">100%</span>
-            <span class="page-hero__badge-label">Ownership Yours</span>
-          </div>
-        </div>
-      </div>
-      <!-- END FIX #1 -->
-
       <!-- INTRO CARD -->
       <div class="intro-card reveal">
         <p><strong>Company logo</strong> sometimes says everything about you. It has to be simple, yet it should catch the attention of everyone who looks at it. We, at <strong>Marketing with Fahad</strong>, offer you design solutions beyond excellence — your company logo will be the face of your brand, and we will make sure it leaves an imprint on the consciousness of your potential customers.</p>
       </div>
 
-      <!-- STATS BAR (moved below intro; hero now carries key stats) -->
+      <!-- STATS BAR -->
       <div class="stats-bar reveal">
         <div class="stat-item">
           <span class="stat-item__num">5+</span>
@@ -491,7 +651,7 @@ p:last-child{margin-bottom:0}
       </div>
 
       <!-- PORTFOLIO -->
-      <div class="section-divider reveal">
+      <div class="section-divider reveal" id="portfolio">
         <div class="section-divider__dot"></div>
         <span class="section-divider__label">Portfolio</span>
         <div class="section-divider__line"></div>
@@ -499,57 +659,44 @@ p:last-child{margin-bottom:0}
 
       <h2 class="works-heading reveal"><span class="gold">Recent</span> Works</h2>
 
-      <!-- ============================================================
-           FIX #2 & #3 — CONSISTENT CLEAN-BG LOGO SHOWCASE
-           No busy city photo backgrounds. All 3 concepts shown in
-           uniform clean-cell grid (same layout for every project).
-           ============================================================ -->
-
       <h3 class="works-subheading reveal">Bestington</h3>
       <p class="works-description reveal">We created three distinct logo concepts for Bestington Real Estate, each exploring a different visual direction — from classic wordmarks to icon-driven marks. The client selected their preferred identity after a thorough review session.</p>
 
       <div class="work-item reveal">
-  <div class="work-item__img-wrap"
-       role="button" tabindex="0"
-       aria-label="View Bestington logo designs"
-       data-src="assets/logos1.jpg"
-       data-alt="Bestington logo concepts by Marketing with Fahad">
-    <img src="assets/logos1.jpg"
-         alt="Bestington logo concepts by Marketing with Fahad"
-         loading="lazy">
-  </div>
-  <div class="work-item__footer">
-    <span class="work-item__footer-label">
-      ★ The client chose the dark variant
-    </span>
-  </div>
-</div>
+        <div class="work-item__img-wrap"
+             role="button" tabindex="0"
+             aria-label="View Bestington logo designs"
+             data-src="assets/logos1.jpg"
+             data-alt="Bestington logo concepts by Marketing with Fahad">
+          <img src="assets/logos1.jpg"
+               alt="Bestington logo concepts by Marketing with Fahad"
+               loading="lazy">
+        </div>
+        <div class="work-item__footer">
+          <span class="work-item__footer-label">★ The client chose the dark variant</span>
+        </div>
+      </div>
+
       <h3 class="works-subheading reveal">SDI <span class="gold">Capital</span></h3>
 
       <div class="work-item reveal">
-  <div class="work-item__img-wrap"
-       role="button" tabindex="0"
-       aria-label="View SDI Capital logo designs"
-       data-src="assets/logos2.jpg"
-       data-alt="SDI Capital logo concepts by Marketing with Fahad">
-    <img src="assets/logos2.jpg"
-         alt="SDI Capital logo concepts by Marketing with Fahad"
-         loading="lazy">
-  </div>
-  <div class="work-item__footer">
-    <span class="work-item__footer-label">
-      ★ The client chose the centre concept
-    </span>
-  </div>
-</div>
-      <!-- END FIX #2 & #3 -->
+        <div class="work-item__img-wrap"
+             role="button" tabindex="0"
+             aria-label="View SDI Capital logo designs"
+             data-src="assets/logos2.jpg"
+             data-alt="SDI Capital logo concepts by Marketing with Fahad">
+          <img src="assets/logos2.jpg"
+               alt="SDI Capital logo concepts by Marketing with Fahad"
+               loading="lazy">
+        </div>
+        <div class="work-item__footer">
+          <span class="work-item__footer-label">★ The client chose the centre concept</span>
+        </div>
+      </div>
 
     </div><!-- /.l-container -->
 
-    <!-- ============================================================
-         FIX #4 — FAQ (trimmed to 5 unique, non-repeating questions;
-         consistent accordion style throughout)
-         ============================================================ -->
+    <!-- FAQ -->
     <section class="faq-section reveal" aria-label="Frequently Asked Questions">
       <div class="faq-inner">
         <div class="faq-left">
@@ -560,7 +707,6 @@ p:last-child{margin-bottom:0}
         </div>
 
         <div class="faq-list" role="list">
-
           <div class="faq-item" role="listitem">
             <button class="faq-btn" aria-expanded="false" aria-controls="faq-a1">
               How many logo concepts will I receive?
@@ -610,11 +756,9 @@ p:last-child{margin-bottom:0}
               <div class="faq-answer-inner">Every logo is custom-designed exclusively for your business. We never resell or reuse designs. Full ownership transfers to you upon final payment.</div>
             </div>
           </div>
-
         </div><!-- /.faq-list -->
       </div>
     </section>
-    <!-- END FIX #4 -->
 
   </main>
 
