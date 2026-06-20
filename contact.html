@@ -77,10 +77,31 @@ ul{list-style:none}
 
 /* ════════════════════════════════════
    HERO
+   FIX #2: consistent banner-style hero — fixed min-height + banner
+   background strip so this page matches the tall-banner hero used on
+   Blog / Gallery instead of looking short & flat.
 ════════════════════════════════════ */
-.hero{background:var(--white);padding:clamp(48px,8vw,88px) 20px;position:relative;overflow:hidden;border-bottom:1px solid #ede9e0}
+.hero{
+  background:var(--white);
+  padding:clamp(48px,8vw,88px) 20px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid #ede9e0;
+  min-height:560px;
+  display:flex;
+  align-items:center;
+}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(200,166,77,.06),transparent 65%);pointer-events:none}
-.hero-inner{max-width:1270px;margin:0 auto;display:grid;grid-template-columns:1fr 440px;gap:48px;align-items:center}
+/* Banner strip — same device used across other pages' hero banners */
+.hero::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:6px;
+  background:linear-gradient(90deg,var(--gold-dark),var(--gold) 50%,var(--gold-dark));
+  pointer-events:none;
+}
+.hero-inner{max-width:1270px;margin:0 auto;display:grid;grid-template-columns:1fr 440px;gap:48px;align-items:center;width:100%}
 .hero-badge{display:inline-block;background:var(--gold-tint);color:var(--gold-dark);border:1px solid var(--gold-border);border-radius:20px;font-size:11px;font-weight:700;padding:4px 14px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:18px}
 .hero h1{font-size:clamp(28px,4.5vw,46px);font-weight:700;color:var(--dark);line-height:1.15;margin-bottom:18px}
 .hero h1 span{color:var(--gold)}
@@ -122,7 +143,14 @@ ul{list-style:none}
 .way-card a{color:var(--dark);font-size:14px;font-weight:500;transition:color .2s;word-break:break-word}
 .way-card a:hover{color:var(--gold)}
 
-/* ── FIX #1: Map — replaced broken iframe with static map + styled pin overlay ── */
+/* ── FIX #1: Map — always-on styled static map (no flaky 3rd-party iframe) ──
+   Google Maps iframes can be blocked by X-Frame-Options/CSP without firing
+   a JS 'error' event, and the 'load' event still fires on the blocked
+   navigation — so load/error detection cannot reliably tell us the map
+   failed. Result was a permanent empty grey box + spinner.
+   Fix: drop the unreliable iframe entirely and always render the styled
+   static map with pin + label + "Get Directions" link. This is guaranteed
+   to render every time, with zero dependency on third-party embeds. ── */
 .map-wrap{
   margin-top:48px;
   border-radius:var(--radius);
@@ -133,17 +161,8 @@ ul{list-style:none}
   height:340px;
   background:#e8e0d5;
 }
-.map-wrap iframe{
-  display:block;
-  width:100%;
-  height:100%;
-  border:0;
-  position:absolute;
-  inset:0;
-}
-/* Static map fallback shown when iframe fails to load */
 .map-static-fallback{
-  display:none; /* shown via JS if iframe errors */
+  display:block;
   width:100%;
   height:100%;
   position:relative;
@@ -266,7 +285,7 @@ ul{list-style:none}
 
 /* ════════════════════════════════════
    REVIEWS
-   FIX #2: Cards now use equal height rows + clamped paragraph
+   Cards use equal height rows + clamped paragraph
    so text never repeats/overflows into neighbour cards
 ════════════════════════════════════ */
 .reviews-section{background:#f8fafc;padding:clamp(56px,8vw,88px) 20px}
@@ -291,7 +310,6 @@ ul{list-style:none}
 .review-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
 .review-stars{color:#ffc107;font-size:16px;letter-spacing:2px}
 .review-quote{font-size:26px;color:rgba(200,166,77,.3);line-height:1}
-/* FIX #2 core: grow the paragraph but cap visible lines so no card bleeds */
 .review-card p{
   color:#48525f;
   font-size:14px;
@@ -358,7 +376,7 @@ ul{list-style:none}
   .faq-left h2{font-size:36px}
   .wa-float{display:flex}
   .scroll-top{display:none!important}
-  .hero{padding:56px 20px}
+  .hero{padding:56px 20px;min-height:420px}
 }
 
 @media(max-width:900px){
@@ -388,7 +406,7 @@ ul{list-style:none}
   .why-grid{grid-template-columns:1fr}
   .process-grid{grid-template-columns:1fr}
   .way-card,.why-card,.process-step{padding:22px 18px}
-  .hero{padding:40px 16px}
+  .hero{padding:40px 16px;min-height:auto}
   .hero h1{font-size:26px}
   .hero-desc{font-size:14px}
   .hero-btns{gap:10px}
@@ -414,7 +432,7 @@ ul{list-style:none}
 
 <div id="header-placeholder"></div>
 
-<!-- ── HERO ── -->
+<!-- ── HERO (FIX #2: consistent banner-style height across pages) ── -->
 <section class="hero" id="top">
   <div class="hero-inner wrap" style="padding:0 20px">
     <div class="reveal" style="animation-fill-mode:both">
@@ -489,19 +507,8 @@ ul{list-style:none}
       </div>
     </div>
 
-    <!-- ══ FIX #1: Map — iframe with styled static fallback (pin + label) ══
-         The iframe loads Google Maps normally. If it fails (CSP / cookie block),
-         JS swaps in the styled static fallback so a map is ALWAYS visible.       -->
+    <!-- ══ FIX #1: Map — always-rendered static styled map, no flaky iframe ══ -->
     <div class="map-wrap reveal" id="map-wrap">
-      <iframe
-        id="map-iframe"
-        src="https://maps.google.com/maps?q=Fortune+Executive+Tower+JLT+Cluster+T+Dubai+UAE&output=embed"
-        allowfullscreen
-        loading="lazy"
-        title="Our Office — Fortune Executive Tower, JLT, Dubai"
-      ></iframe>
-
-      <!-- Static fallback (hidden until iframe error) -->
       <div class="map-static-fallback" id="map-fallback" aria-label="Map showing Fortune Executive Tower, JLT, Dubai">
         <!-- Decorative road lines -->
         <div class="map-road-h r1"></div>
@@ -615,8 +622,6 @@ ul{list-style:none}
 </section>
 
 <!-- ── REVIEWS ── -->
-<!-- FIX #2: Cards use align-items:stretch + flex:1 on <p> + -webkit-line-clamp:6
-     so review text never bleeds/repeats into adjacent cards                       -->
 <section class="reviews-section">
   <div class="wrap">
     <div class="center reveal">
@@ -743,40 +748,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   } catch (e) { console.warn('header/footer load error', e); }
 });
-
-/* ── FIX #1: Map iframe fallback ──
-   If the iframe fails to load (CSP block, cookie consent wall, network error)
-   hide the iframe and show the styled static pin map instead.               */
-(function(){
-  const iframe   = document.getElementById('map-iframe');
-  const fallback = document.getElementById('map-fallback');
-  if (!iframe || !fallback) return;
-
-  // Timeout: if iframe hasn't loaded within 5s treat as failed
-  let loaded = false;
-  const timer = setTimeout(showFallback, 5000);
-
-  iframe.addEventListener('load', () => {
-    loaded = true;
-    clearTimeout(timer);
-    // Check if iframe got a real page (some browsers block silently)
-    try {
-      // Will throw cross-origin error — means iframe loaded a real page
-      const _ = iframe.contentDocument;
-      // If we reach here the iframe is same-origin (unlikely for Google Maps)
-    } catch(e){
-      // Cross-origin = Google Maps loaded correctly — keep iframe visible
-    }
-  });
-
-  iframe.addEventListener('error', showFallback);
-
-  function showFallback(){
-    if(loaded) return;
-    iframe.style.display = 'none';
-    fallback.style.display = 'block';
-  }
-})();
 
 /* ── Scroll reveal ── */
 (function(){
