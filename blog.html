@@ -367,78 +367,25 @@
       box-shadow: 0 4px 14px rgba(201,169,110,.35);
     }
     .page-btn--all { background: var(--gray-50); font-size: 13px; }
-
-    /* ── FAQ ── */
-    .faq-section { background: var(--gray-50); padding: var(--section-pad-y) 0; border-top: 1px solid var(--gray-200); }
-    .faq-inner { display: grid; grid-template-columns: 1fr 1.55fr; gap: 48px; align-items: start; }
-    .faq-left { position: sticky; top: 32px; }
-
-    .faq-left__heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 3.5vw, 40px);
-      line-height: 1.1;
-      color: var(--black);
-      margin-bottom: 14px;
-    }
-    .faq-left__heading span { color: var(--gold); }
-    .faq-left__sub { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 28px; }
-
-    .faq-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gold);
-      color: #fff;
-      font-weight: 700; font-size: 14px;
-      padding: 12px 26px;
-      border-radius: 50px;
-      transition: background var(--ease), box-shadow var(--ease), transform var(--ease);
-    }
-    .faq-cta:hover { background: var(--gold-dark); box-shadow: 0 8px 24px rgba(201,169,110,.38); transform: translateY(-2px); }
-
-    .faq-list { display: flex; flex-direction: column; gap: 10px; }
-    .faq-item {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--r);
-      overflow: hidden;
-      box-shadow: var(--sh-sm);
-      transition: border-color var(--ease), box-shadow var(--ease);
-    }
-    .faq-item:hover { border-color: var(--gold); box-shadow: var(--sh-md); }
-    .faq-item[open] { border-color: var(--gold); }
-
-    .faq-summary {
-      list-style: none;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      cursor: pointer;
-      font-size: 14px; font-weight: 600;
-      color: var(--black); line-height: 1.4;
-    }
-    .faq-summary::-webkit-details-marker { display: none; }
-
-    .faq-icon {
-      flex-shrink: 0;
-      width: 30px; height: 30px;
-      border-radius: 50%;
-      background: var(--gold-light);
-      border: 1.5px solid var(--gold);
-      color: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; font-weight: 700; line-height: 1;
-      transition: background var(--ease), color var(--ease), transform var(--ease);
-      user-select: none;
-    }
-    .faq-item[open] .faq-icon { background: var(--gold); color: #fff; transform: rotate(45deg); }
-
-    .faq-answer {
-      padding: 0 20px 18px;
-      font-size: 14px; color: var(--gray-600); line-height: 1.75;
-    }
+/* ── FAQ SECTION ──────────────────────────────────────────── */
+.faq-section{padding:60px 22px;background:var(--white);border-top:1px solid var(--gold-border)}
+.faq-inner{max-width:1270px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:flex-start}
+@media(max-width:900px){.faq-inner{grid-template-columns:1fr;gap:36px}}
+.faq-label{display:inline-block;background:var(--gold);color:#fff;padding:6px 18px;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.faq-heading{font-size:clamp(28px,3.5vw,46px);font-weight:700;line-height:1.15;color:var(--dark);margin-bottom:14px}
+.faq-heading span{color:var(--gold)}
+.faq-desc{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:26px}
+.faq-cta{display:inline-block;background:var(--gold);color:#fff;padding:13px 30px;border-radius:50px;font-size:15px;font-weight:700;box-shadow:0 6px 20px var(--gold-shadow);transition:background .2s,box-shadow .2s}
+.faq-cta:hover{background:var(--gold-dark);box-shadow:0 8px 28px var(--gold-shadow);color:#fff}
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{background:var(--white);border-radius:12px;border:1px solid var(--gold-border);overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.faq-item.open{border-color:var(--gold);box-shadow:0 6px 24px rgba(200,166,77,.1)}
+.faq-btn{width:100%;border:none;background:transparent;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;font-size:15px;font-weight:600;color:var(--dark);line-height:1.4;transition:color .2s}
+.faq-item.open .faq-btn{color:var(--gold)}
+.faq-icon{width:32px;height:32px;border-radius:50%;background:var(--gold-light);color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;font-weight:400;line-height:1;transition:background .2s,color .2s,transform .3s}
+.faq-item.open .faq-icon{background:var(--gold);color:#fff;transform:rotate(45deg)}
+.faq-content{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+.faq-content-inner{padding:0 20px 18px;font-size:14px;color:var(--muted);line-height:1.7}
 
     /* ══════════════════════════════════════════
        Responsive breakpoints
@@ -720,6 +667,59 @@
         </div>
       </div>
     </section>
+    <section class="faq-section reveal" data-reveal aria-labelledby="faq-heading">
+    <div class="faq-inner">
+      <div class="faq-sidebar">
+        <span class="faq-label">FAQs</span>
+        <h2 class="faq-heading" id="faq-heading">Frequently<br><span>Asked Questions</span></h2>
+        <p class="faq-desc">Everything you need to know about our blog content, publishing schedule, and how to get the most from our SEO insights.</p>
+        <a href="/contact.html" class="faq-cta">Get Free Consultation</a>
+      </div>
+      <div class="faq-list" role="list">
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-btn" aria-expanded="false">
+            How often do you publish new blog posts?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" role="region">
+            <div class="faq-content-inner">We publish new SEO tips, digital marketing insights, algorithm updates, and UAE market news every 1–2 weeks to keep you ahead of the latest industry developments.</div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-btn" aria-expanded="false">
+            Can I apply blog tips to my own website? 
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" role="region">
+            <div class="faq-content-inner">Yes. Our articles include practical, actionable advice you can implement yourself. For complex technical changes, we recommend consulting with an SEO specialist.</div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-btn" aria-expanded="false">
+            Can I suggest a topic for a future blog post?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" role="region">
+            <div class="faq-content-inner">Absolutely. Send us your question or topic via the contact form or WhatsApp and we'll consider it for a future article.</div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-btn" aria-expanded="false">
+            Can I share your blog content on my website?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" role="region">
+            <div class="faq-content-inner">You may share excerpts with a clear link back to the original article. Full reproduction without permission is not allowed. Contact us to discuss content partnership opportunities.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   </main>
 
