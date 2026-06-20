@@ -261,7 +261,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .our-team__item-img{
   position:relative;overflow:hidden;
   padding-bottom:100%;
-  background:var(--gold-light);cursor:pointer;
+  background:var(--gold-light);
 }
 .our-team__item-img img{
   position:absolute;top:0;left:0;width:100%;height:100%;
@@ -272,22 +272,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 .our-team__item-img:hover img.default-img{transform:scale(1.06)}
 .our-team__item-img:hover img.hover-img{opacity:1;transform:scale(1.06)}
-.our-team__item-img .zoom-overlay{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(26,26,46,.45);
-  opacity:0;transition:opacity .3s ease;pointer-events:none;
-}
-.our-team__item-img:hover .zoom-overlay{opacity:1}
-.zoom-icon{
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(200,166,77,.9);
-  display:flex;align-items:center;justify-content:center;
-}
-.zoom-icon svg{
-  width:20px;height:20px;fill:none;
-  stroke:#fff;stroke-width:2;stroke-linecap:round;
-}
 
 /* ── CARD TEXT ──────────────────────────────── */
 .our-team__item-text{
@@ -302,13 +286,24 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* ── JOIN CARD ──────────────────────────────── */
 .our-team__item.join-card{
-  border:2px dashed var(--gold-border);
-  box-shadow:none;
+  background:linear-gradient(155deg,var(--dark) 0%,#23233f 100%);
+  border:1px solid rgba(200,166,77,.35);
+  box-shadow:0 8px 24px rgba(26,26,46,.18);
+  position:relative;
 }
 .our-team__item.join-card::before{display:none}
+.our-team__item.join-card::after{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 85% 12%,rgba(200,166,77,.35),transparent 55%),
+    radial-gradient(circle at 10% 95%,rgba(200,166,77,.18),transparent 50%);
+  pointer-events:none;
+}
 .our-team__item.join-card:hover{
+  transform:translateY(-6px) scale(1.015);
+  box-shadow:0 16px 40px rgba(200,166,77,.35);
   border-color:var(--gold);
-  box-shadow:0 8px 24px var(--gold-shadow);
 }
 .join-card .join-inner{
   display:flex;flex-direction:column;
@@ -316,27 +311,38 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   padding:var(--space-lg) var(--space-md);
   gap:12px;min-height:260px;
   text-align:center;
+  position:relative;z-index:1;
 }
 .join-icon{
-  width:56px;height:56px;border-radius:50%;
-  background:var(--gold-light);
+  width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);
   display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(200,166,77,.45);
+  transition:transform .3s ease;
 }
+.our-team__item.join-card:hover .join-icon{transform:scale(1.08) rotate(-6deg)}
 .join-icon svg{
   width:26px;height:26px;fill:none;
-  stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
 }
-.join-card .our-team__item-name{font-size:15px;font-weight:700;color:var(--dark)}
-.join-card .our-team__item-position{font-size:13px;color:var(--muted)}
+.join-card .our-team__item-name{
+  font-size:17px;font-weight:700;color:#fff;
+  letter-spacing:.01em;text-align:center;width:100%;
+}
+.join-card .our-team__item-position{
+  font-size:13px;color:rgba(255,255,255,.6);
+  line-height:1.6;text-align:center;width:100%;
+  max-width:220px;margin:0 auto;
+}
 .join-cta{
-  display:inline-block;background:var(--gold);color:#fff;
-  padding:10px 22px;border-radius:50px;
+  display:inline-block;background:var(--gold);color:#1a1a2e;
+  padding:11px 26px;border-radius:50px;
   font-weight:700;font-size:13px;
-  box-shadow:0 4px 14px var(--gold-shadow);
-  transition:background .2s,transform .2s;
-  margin-top:4px;
+  box-shadow:0 4px 14px rgba(200,166,77,.4);
+  transition:background .2s,transform .2s,box-shadow .2s,color .2s;
+  margin-top:6px;
 }
-.join-cta:hover{background:var(--gold-dark);color:#fff;transform:translateY(-2px)}
+.join-cta:hover{background:#fff;color:var(--dark);transform:translateY(-2px);box-shadow:0 8px 20px rgba(200,166,77,.5)}
 
 /* ── LIGHTBOX ───────────────────────────────── */
 #lightbox{
@@ -633,10 +639,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           <div class="our-team__list">
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Maxim Sukhanov" data-full="assets/staff-1.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-1.jpeg">
                 <img class="default-img" src="assets/staff-1.jpeg" alt="Maxim Sukhanov" loading="lazy">
                 <img class="hover-img" src="assets/staff-1-h.png" alt="Maxim Sukhanov hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Maxim Sukhanov</p>
@@ -645,10 +650,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Vladislav Kovalchuk" data-full="assets/staff-12.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-12.jpeg">
                 <img class="default-img" src="assets/staff-12.jpeg" alt="Vladislav Kovalchuk" loading="lazy">
                 <img class="hover-img" src="assets/staff-12-h.png" alt="Vladislav Kovalchuk hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Vladislav Kovalchuk</p>
@@ -657,10 +661,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Julia Nagornova" data-full="assets/staff-21.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-21.jpeg">
                 <img class="default-img" src="assets/staff-21.jpeg" alt="Julia Nagornova" loading="lazy">
                 <img class="hover-img" src="assets/staff-21-h.png" alt="Julia Nagornova hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Julia Nagornova</p>
@@ -680,10 +683,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           <div class="our-team__list">
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Larisa Romanchenko" data-full="assets/staff-17.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-17.jpeg">
                 <img class="default-img" src="assets/staff-17.jpeg" alt="Larisa Romanchenko" loading="lazy">
                 <img class="hover-img" src="assets/staff-17-h.png" alt="Larisa Romanchenko hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Larisa Romanchenko</p>
@@ -692,10 +694,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Dmitry Kolyadyuk" data-full="assets/staff-19.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-19.jpeg">
                 <img class="default-img" src="assets/staff-19.jpeg" alt="Dmitry Kolyadyuk" loading="lazy">
                 <img class="hover-img" src="assets/staff-19-h.png" alt="Dmitry Kolyadyuk hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Dmitry Kolyadyuk</p>
@@ -704,10 +705,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Alyona Gladisheva" data-full="assets/staff-7.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-7.jpeg">
                 <img class="default-img" src="assets/staff-7.jpeg" alt="Alyona Gladisheva" loading="lazy">
                 <img class="hover-img" src="assets/staff-7-h.png" alt="Alyona Gladisheva hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alyona Gladisheva</p>
@@ -716,10 +716,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Alina Ilyina" data-full="assets/staff-18.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-18.jpeg">
                 <img class="default-img" src="assets/staff-18.jpeg" alt="Alina Ilyina" loading="lazy">
                 <img class="hover-img" src="assets/staff-18-h.png" alt="Alina Ilyina hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alina Ilyina</p>
@@ -728,10 +727,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Konstantin Korukov" data-full="assets/staff-20.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-20.jpeg">
                 <img class="default-img" src="assets/staff-20.jpeg" alt="Konstantin Korukov" loading="lazy">
                 <img class="hover-img" src="assets/staff-20-h.png" alt="Konstantin Korukov hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Konstantin Korukov</p>
@@ -740,10 +738,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Julia Varentsova" data-full="assets/staff-22.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-22.jpeg">
                 <img class="default-img" src="assets/staff-22.jpeg" alt="Julia Varentsova" loading="lazy">
                 <img class="hover-img" src="assets/staff-22-h.png" alt="Julia Varentsova hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Julia Varentsova</p>
@@ -752,10 +749,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Dmitry Kozitsky" data-full="assets/staff-16.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-16.jpeg">
                 <img class="default-img" src="assets/staff-16.jpeg" alt="Dmitry Kozitsky" loading="lazy">
                 <img class="hover-img" src="assets/staff-16-h.png" alt="Dmitry Kozitsky hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Dmitry Kozitsky</p>
@@ -764,10 +760,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Alexander Yusupov" data-full="assets/staff-23.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-23.jpeg">
                 <img class="default-img" src="assets/staff-23.jpeg" alt="Alexander Yusupov" loading="lazy">
                 <img class="hover-img" src="assets/staff-23-h.png" alt="Alexander Yusupov hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alexander Yusupov</p>
@@ -798,10 +793,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           <div class="our-team__list">
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Alexander Volodin" data-full="assets/staff-5.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-5.jpeg">
                 <img class="default-img" src="assets/staff-5.jpeg" alt="Alexander Volodin" loading="lazy">
                 <img class="hover-img" src="assets/staff-5-h.png" alt="Alexander Volodin hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alexander Volodin</p>
@@ -810,10 +804,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Igor Nikolaev" data-full="assets/staff-14.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-14.jpeg">
                 <img class="default-img" src="assets/staff-14.jpeg" alt="Igor Nikolaev" loading="lazy">
                 <img class="hover-img" src="assets/staff-14-h.png" alt="Igor Nikolaev hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Igor Nikolaev</p>
@@ -822,10 +815,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Andrey Kozlov" data-full="assets/staff-10.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-10.jpeg">
                 <img class="default-img" src="assets/staff-10.jpeg" alt="Andrey Kozlov" loading="lazy">
                 <img class="hover-img" src="assets/staff-10-h.png" alt="Andrey Kozlov hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Andrey Kozlov</p>
@@ -834,10 +826,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Nikolay Mavrin" data-full="assets/staff-2.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-2.jpeg">
                 <img class="default-img" src="assets/staff-2.jpeg" alt="Nikolay Mavrin" loading="lazy">
                 <img class="hover-img" src="assets/staff-2-h.png" alt="Nikolay Mavrin hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Nikolay Mavrin</p>
@@ -846,10 +837,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Nikolay Mikhailov" data-full="assets/staff-9.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-9.jpeg">
                 <img class="default-img" src="assets/staff-9.jpeg" alt="Nikolay Mikhailov" loading="lazy">
                 <img class="hover-img" src="assets/staff-9-h.png" alt="Nikolay Mikhailov hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Nikolay Mikhailov</p>
@@ -858,10 +848,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Alexey Gorshkov" data-full="assets/staff-11.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-11.jpeg">
                 <img class="default-img" src="assets/staff-11.jpeg" alt="Alexey Gorshkov" loading="lazy">
                 <img class="hover-img" src="assets/staff-11-h.png" alt="Alexey Gorshkov hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alexey Gorshkov</p>
@@ -870,10 +859,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Alisa Stepanova" data-full="assets/staff-13.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-13.jpeg">
                 <img class="default-img" src="assets/staff-13.jpeg" alt="Alisa Stepanova" loading="lazy">
                 <img class="hover-img" src="assets/staff-13-h.png" alt="Alisa Stepanova hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Alisa Stepanova</p>
@@ -882,10 +870,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Victoria Gladkova" data-full="assets/staff-6.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-6.jpeg">
                 <img class="default-img" src="assets/staff-6.jpeg" alt="Victoria Gladkova" loading="lazy">
                 <img class="hover-img" src="assets/staff-6-h.png" alt="Victoria Gladkova hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Victoria Gladkova</p>
@@ -916,10 +903,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           <div class="our-team__list">
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Evgenia Marinina" data-full="assets/staff-3.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-3.jpeg">
                 <img class="default-img" src="assets/staff-3.jpeg" alt="Evgenia Marinina" loading="lazy">
                 <img class="hover-img" src="assets/staff-3-h.png" alt="Evgenia Marinina hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Evgenia Marinina</p>
@@ -928,10 +914,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Denis Kovalev" data-full="assets/staff-8.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-8.jpeg">
                 <img class="default-img" src="assets/staff-8.jpeg" alt="Denis Kovalev" loading="lazy">
                 <img class="hover-img" src="assets/staff-8-h.png" alt="Denis Kovalev hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Denis Kovalev</p>
@@ -940,10 +925,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Elena Borisova" data-full="assets/staff-4.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-4.jpeg">
                 <img class="default-img" src="assets/staff-4.jpeg" alt="Elena Borisova" loading="lazy">
                 <img class="hover-img" src="assets/staff-4-h.png" alt="Elena Borisova hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Elena Borisova</p>
@@ -952,10 +936,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Anton Vavilkin" data-full="assets/staff-24.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-24.jpeg">
                 <img class="default-img" src="assets/staff-24.jpeg" alt="Anton Vavilkin" loading="lazy">
                 <img class="hover-img" src="assets/staff-24-h.png" alt="Anton Vavilkin hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Anton Vavilkin</p>
@@ -964,10 +947,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             </div>
 
             <div class="our-team__item">
-              <div class="our-team__item-img" role="button" tabindex="0" aria-label="View photo of Denis Nesterenko" data-full="assets/staff-26.jpeg">
+              <div class="our-team__item-img" data-full="assets/staff-26.jpeg">
                 <img class="default-img" src="assets/staff-26.jpeg" alt="Denis Nesterenko" loading="lazy">
                 <img class="hover-img" src="assets/staff-26-h.png" alt="Denis Nesterenko hover" loading="lazy">
-                <div class="zoom-overlay" aria-hidden="true"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div></div>
               </div>
               <div class="our-team__item-text">
                 <p class="our-team__item-name">Denis Nesterenko</p>
@@ -1118,30 +1100,6 @@ loadPart('footer.html', 'footer-placeholder');
     });
   }, { threshold: 0.1, rootMargin:'0px 0px -40px 0px' });
   cards.forEach(c => obs.observe(c));
-})();
-
-// ── LIGHTBOX ──────────────────────────────────
-(function(){
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightbox-img');
-  const lbClose = document.getElementById('lightbox-close');
-  document.querySelectorAll('.our-team__item-img[data-full]').forEach(el => {
-    el.addEventListener('click', () => {
-      if(window.innerWidth < 600) return;
-      lbImg.src = el.dataset.full;
-      lbImg.alt = el.closest('.our-team__item').querySelector('.our-team__item-name').textContent;
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      lbClose.focus();
-    });
-    el.addEventListener('keydown', e => {
-      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); }
-    });
-  });
-  function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
-  lbClose.addEventListener('click', closeLB);
-  lb.addEventListener('click', e => { if(e.target===lb) closeLB(); });
-  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
 })();
 
 // ── FAQ ACCORDION ─────────────────────────────
