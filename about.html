@@ -2,37 +2,50 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<title>About Our Company - Marketing with Fahad</title>
+<title>About Marketing with Fahad — Dubai's SEO Agency Since 2008</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Marketing with Fahad — Dubai's results-driven SEO agency since 2008. 786+ clients, 750+ Page 1 rankings, worldwide.">
-<link rel="canonical" href="contact.html">
+<link rel="canonical" href="about.html">
 <link rel="icon" href="/assets/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-<link rel="icon" type="image/png" href="/assets/favicon-dark-bg.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="/assets/favicon-light-bg.png" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180x180.png">
 <link rel="manifest" href="/assets/site.webmanifest">
 <meta name="theme-color" content="#141414">
+
+<script type="application/ld+json">
+{"@context":"http://schema.org","@type":"Organization","address":{"@type":"PostalAddress","addressCountry":"UAE","addressLocality":"Dubai","addressRegion":"Dubai","streetAddress":"JLT, Cluster T, Fortune Executive Tower, Office 701"},"email":"info@marketingwithfahad.ae","name":"Marketing with Fahad","telephone":"971526086977","url":"https://www.marketingwithfahad.ae"}
+</script>
+
 <style>
 /* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f4f0;color:#1a1a2e;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;background:#f5f4f0;color:#1a1a2e;overflow-x:hidden;line-height:1.7}
 a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
+img{max-width:100%;display:block;height:auto}
+p{margin-bottom:1.2em}
+p:last-child{margin-bottom:0}
 
 /* ── TOKENS ── */
 :root{
-  --gold:#c8a64d;--gold-dark:#a8842e;--gold-tint:#fdf3d8;
-  --gold-border:#f5e9c8;--gold-shadow:rgba(200,166,77,.3);
-  --dark:#1a1a2e;--bg:#f5f4f0;--white:#fff;
-  --muted:#666;--radius:16px;
+  --gold:#c8a64d;
+  --gold-dark:#a8842e;
+  --gold-tint:#fdf3d8;
+  --gold-border:#f5e9c8;
+  --gold-shadow:rgba(200,166,77,.28);
+  --dark:#1a1a2e;
+  --bg:#f5f4f0;
+  --white:#fff;
+  --muted:#666;
+  --text:#2e2e2e;
+  --radius:16px;
+  --radius-sm:10px;
+  --shadow:0 4px 24px rgba(0,0,0,.08);
+  --shadow-hover:0 12px 40px rgba(0,0,0,.14);
 }
 
 /* ── SCROLL REVEAL ── */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
 .reveal.on{opacity:1;transform:none}
 .rev-l{opacity:0;transform:translateX(-36px);transition:opacity .6s ease,transform .6s ease}
 .rev-l.on{opacity:1;transform:none}
@@ -42,82 +55,122 @@ img{max-width:100%;display:block}
   .reveal,.rev-l,.rev-r,.tl-item{opacity:1!important;transform:none!important;transition:none!important}
 }
 
-/* ── DIVIDER ── */
+/* ── SECTION DIVIDER ── */
 .sec-divider{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .sec-divider-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
-.sec-divider-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em}
+.sec-divider-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
 .sec-divider-line{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-border),transparent)}
 
 /* ── HERO ── */
 .hero{
-  position:relative;overflow:hidden;padding:88px 24px 96px;
-  background:linear-gradient(rgba(26,26,46,.88),rgba(26,26,46,.96)),
-    url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+  position:relative;overflow:hidden;
+  height:420px;
+  background:#1a1a2e;
 }
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.hero-inner{max-width:1240px;margin:0 auto;position:relative;z-index:2}
-.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.45);margin-bottom:26px;animation:fadeDown .55s ease both}
-.breadcrumb a{color:rgba(255,255,255,.45);transition:color .2s}
+.hero-img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  opacity:.48;
+  transition:transform 7s ease;
+}
+.hero:hover .hero-img{transform:scale(1.04)}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(26,26,46,.1) 0%,rgba(26,26,46,.78) 100%);
+}
+.hero-overlay{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:32px 28px 44px;
+  max-width:1240px;
+  width:100%;
+  margin:0 auto;
+  left:50%;
+  transform:translateX(-50%);
+}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.5);margin-bottom:18px}
+.breadcrumb a{color:rgba(255,255,255,.5);transition:color .2s}
 .breadcrumb a:hover{color:var(--gold)}
 .breadcrumb .sep{color:rgba(255,255,255,.25)}
 .hero-badge{
-  display:inline-block;background:rgba(200,166,77,.15);color:var(--gold);
-  border:1px solid rgba(200,166,77,.4);border-radius:20px;
+  display:inline-block;background:rgba(200,166,77,.18);color:var(--gold);
+  border:1px solid rgba(200,166,77,.45);border-radius:20px;
   font-size:11px;font-weight:700;padding:5px 16px;letter-spacing:.08em;text-transform:uppercase;
-  margin-bottom:20px;animation:fadeDown .55s .08s ease both;
+  margin-bottom:14px;
 }
 .hero h1{
-  font-size:clamp(28px,4.5vw,52px);font-weight:800;color:#fff;
-  line-height:1.12;margin-bottom:20px;animation:fadeDown .6s .14s ease both;
+  font-size:clamp(26px,4.5vw,50px);font-weight:800;color:#fff;
+  line-height:1.12;margin-bottom:14px;overflow:visible;padding-bottom:4px;
 }
 .hero h1 span{color:var(--gold)}
-.hero-desc{
-  font-size:17px;color:rgba(255,255,255,.6);line-height:1.8;
-  max-width:680px;margin-bottom:34px;animation:fadeDown .6s .2s ease both;
-}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeDown .6s .26s ease both}
+.hero-subtitle{font-size:16px;color:rgba(255,255,255,.68);margin-bottom:26px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .btn-gold{
   background:var(--gold);color:var(--dark);height:50px;padding:0 26px;
   display:inline-flex;align-items:center;font-weight:700;font-size:15px;
   border-radius:10px;border:none;cursor:pointer;transition:background .2s,transform .2s;
+  text-decoration:none;gap:8px;
 }
 .btn-gold:hover{background:var(--gold-dark);transform:translateY(-2px)}
 .btn-outline{
-  border:1.5px solid rgba(255,255,255,.28);color:#fff;height:50px;padding:0 22px;
+  border:1.5px solid rgba(255,255,255,.3);color:#fff;height:50px;padding:0 22px;
   display:inline-flex;align-items:center;font-size:15px;font-weight:600;
   border-radius:10px;transition:border-color .2s,background .2s,transform .2s;
+  text-decoration:none;
 }
 .btn-outline:hover{border-color:var(--gold);background:rgba(200,166,77,.1);transform:translateY(-2px)}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
 
 /* ── TICKER ── */
-.ticker-wrap{background:var(--dark);border-top:1px solid rgba(200,166,77,.18);overflow:hidden;padding:10px 0;white-space:nowrap}
+.ticker-wrap{background:var(--dark);border-top:1px solid rgba(200,166,77,.15);overflow:hidden;padding:10px 0;white-space:nowrap}
 .ticker-track{display:inline-flex;animation:ticker 30s linear infinite}
 .ticker-wrap:hover .ticker-track{animation-play-state:paused}
-.ticker-item{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:rgba(255,255,255,.65);padding:0 34px}
-.ticker-item .dot{color:var(--gold);font-size:17px;line-height:1}
+.ticker-item{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:rgba(255,255,255,.6);padding:0 32px}
+.ticker-item .dot{color:var(--gold);font-size:16px}
 .ticker-item strong{color:var(--gold)}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ── STATS ── */
-.stats{background:var(--dark);padding:34px 24px}
-.stats-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.stat{text-align:center;padding:18px 8px}
-.stat-num{font-size:36px;font-weight:800;color:var(--gold);line-height:1}
-.stat-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.07em;margin-top:5px}
-/* trust bar under stats */
-.trust-bar{background:var(--dark);border-top:1px solid rgba(200,166,77,.12);padding:14px 24px 18px}
-.trust-bar-inner{max-width:1240px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap}
-.trust-pill{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:rgba(255,255,255,.55)}
-.trust-pill .tp-icon{font-size:15px}
-.trust-sep{width:1px;height:16px;background:rgba(200,166,77,.2)}
+/* ── STATS ROW ── */
+.stats-row{
+  background:var(--dark);
+  padding:0 24px 28px;
+}
+.stats-inner{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  padding-top:28px;
+}
+.stat-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(200,166,77,.15);
+  border-top:3px solid var(--gold);
+  border-radius:var(--radius-sm);
+  padding:22px 16px;text-align:center;
+  transition:background .2s,transform .2s;
+}
+.stat-card:hover{background:rgba(200,166,77,.06);transform:translateY(-3px)}
+.stat-num{font-size:clamp(28px,3.5vw,40px);font-weight:800;color:var(--gold);line-height:1;overflow:visible;padding-bottom:2px}
+.stat-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.07em;margin-top:6px}
+/* trust bar */
+.trust-bar{background:var(--dark);border-top:1px solid rgba(200,166,77,.1);padding:13px 24px 16px}
+.trust-bar-inner{max-width:1240px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap}
+.trust-pill{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:rgba(255,255,255,.5)}
+.trust-pill .tp-icon{font-size:14px}
+.trust-sep{width:1px;height:14px;background:rgba(200,166,77,.2)}
 
-/* ── MISSION ── */
-.mission{padding:88px 24px;background:var(--white)}
-.mission-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:center}
+/* ── SHARED SECTION ── */
+.section{padding:80px 24px}
+.section-white{background:var(--white)}
+.section-bg{background:var(--bg)}
+.section-inner{max-width:1240px;margin:0 auto}
 .sec-h2{font-size:clamp(24px,3vw,38px);font-weight:800;color:var(--dark);line-height:1.18;margin-bottom:16px}
 .sec-h2 span{color:var(--gold)}
-.sec-p{font-size:16px;color:var(--muted);line-height:1.78;margin-bottom:12px}
+.sec-p{font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:12px}
+.sec-head{text-align:center;margin-bottom:46px}
+.sec-head .sec-divider{justify-content:center}
+.sec-head p{color:#888;font-size:15px;margin-top:10px}
+
+/* ── MISSION ── */
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .values{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .val-card{
   background:var(--bg);border:1px solid var(--gold-border);border-radius:var(--radius);
@@ -129,42 +182,63 @@ img{max-width:100%;display:block}
 .val-title{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:5px}
 .val-text{font-size:13px;color:#888;line-height:1.55}
 
+/* ── STORY TEXT ── */
+.story-content{
+  background:var(--white);border-radius:var(--radius);
+  padding:36px 44px;box-shadow:var(--shadow);
+  line-height:1.8;max-width:800px;
+}
+.story-content p{color:#3a3a3a;font-size:16.5px;margin-bottom:1.3em}
+.story-content a{color:var(--gold);font-weight:500}
+.story-content a:hover{color:var(--gold-dark);text-decoration:underline}
+
 /* ── TEAM ── */
-.team{padding:88px 24px;background:var(--bg)}
-.team-inner{max-width:1240px;margin:0 auto}
-.sec-head{text-align:center;margin-bottom:46px}
-.sec-head .sec-divider{justify-content:center}
-.sec-head p{color:#888;font-size:15px;margin-top:10px}
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin:0 auto}
-.team-card{
-  background:var(--white);border-radius:var(--radius);padding:30px 18px 22px;
-  text-align:center;border:1px solid rgba(0,0,0,.06);
-  transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:820px;margin:0 auto}
+.photo-card{
+  position:relative;border-radius:var(--radius-sm);
+  overflow:hidden;background:#eee;
+  aspect-ratio:1;
+  border:1px solid var(--gold-border);
+  box-shadow:var(--shadow);
+  transition:transform .3s,box-shadow .3s;
 }
-.team-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .35s}
-.team-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px var(--gold-shadow)}
-.team-card:hover::before{transform:scaleX(1)}
-.avatar{width:78px;height:78px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 13px;font-size:26px;font-weight:800;color:#fff}
-.av1{background:linear-gradient(135deg,#c8a64d,#7a5e22)}
-.av2{background:linear-gradient(135deg,#2d5a9e,#1a3a6c)}
-.av3{background:linear-gradient(135deg,#1a7a5a,#0f4a37)}
-.av4{background:linear-gradient(135deg,#6b3fa0,#3d1f6e)}
-.t-name{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:4px}
-.t-role{font-size:12px;color:var(--gold);font-weight:600}
-.t-linkedin{
-  display:inline-flex;align-items:center;gap:5px;margin-top:10px;
-  font-size:12px;font-weight:600;color:#0077b5;
-  border:1px solid rgba(0,119,181,.25);border-radius:6px;padding:4px 10px;
-  transition:background .2s,color .2s;
+.photo-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--gold);transform:scaleX(0);transition:transform .35s;z-index:1;
 }
-.t-linkedin:hover{background:#0077b5;color:#fff}
-.team-more{text-align:center;margin-top:30px}
+.photo-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.photo-card:hover::before{transform:scaleX(1)}
+.photo-card img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  transition:transform .4s ease;
+}
+.photo-card:hover img{transform:scale(1.05)}
+.photo-caption{font-size:13px;color:var(--muted);text-align:center;padding:8px 4px 0;font-weight:500}
+.photo-wrap{display:flex;flex-direction:column}
+.team-more{text-align:center;margin-top:28px}
 .team-more a{color:var(--gold);font-weight:700;font-size:14px;border-bottom:1.5px solid rgba(200,166,77,.3);padding-bottom:2px;transition:border-color .2s}
 .team-more a:hover{border-color:var(--gold)}
 
+/* ── OFFICE PHOTOS ── */
+.office-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.office-card{
+  position:relative;border-radius:var(--radius-sm);
+  overflow:hidden;background:#eee;
+  aspect-ratio:4/3;
+  border:1px solid var(--gold-border);
+  box-shadow:var(--shadow);
+}
+.office-card img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  transition:transform .4s ease;
+}
+.office-card:hover img{transform:scale(1.05)}
+
 /* ── CLIENT LOGOS ── */
-.client-logos{padding:36px 0 0}
-.client-logos-label{text-align:center;font-size:12px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px}
+.client-logos{margin-top:40px}
+.client-logos-label{text-align:center;font-size:12px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px}
 .logos-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px}
 .logo-pill{
   background:var(--white);border:1px solid rgba(0,0,0,.08);border-radius:10px;
@@ -174,142 +248,171 @@ img{max-width:100%;display:block}
 .logo-pill:hover{border-color:var(--gold);color:var(--gold)}
 
 /* ── REVIEWS ── */
-.reviews-strip{background:var(--white);padding:32px 24px;border-top:1px solid rgba(0,0,0,.06)}
 .reviews-inner{max-width:900px;margin:0 auto}
-.reviews-header{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
-.reviews-score{font-size:36px;font-weight:800;color:var(--dark)}
-.reviews-stars{color:#f5a623;font-size:20px;letter-spacing:2px}
+.reviews-header{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:24px;flex-wrap:wrap}
+.reviews-score{font-size:42px;font-weight:800;color:var(--dark)}
+.reviews-stars{color:#f5a623;font-size:22px;letter-spacing:2px}
 .reviews-count{font-size:13px;color:#888}
 .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.review-card{background:var(--bg);border:1px solid var(--gold-border);border-radius:12px;padding:16px 18px}
+.review-card{background:var(--bg);border:1px solid var(--gold-border);border-radius:12px;padding:18px}
 .review-stars{color:#f5a623;font-size:14px;margin-bottom:8px}
-.review-text{font-size:13px;color:#555;line-height:1.6;margin-bottom:10px;font-style:italic}
+.review-text{font-size:13px;color:#555;line-height:1.65;margin-bottom:12px;font-style:italic}
 .review-author{font-size:12px;font-weight:700;color:var(--dark)}
 .review-via{font-size:11px;color:#aaa}
 
-/* ── JOURNEY ── */
-.journey{padding:88px 24px;background:var(--white)}
-.journey-inner{max-width:1240px;margin:0 auto}
-.tl{position:relative;max-width:680px;margin:0 auto;padding-left:44px}
-.tl::before{content:'';position:absolute;left:14px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--gold),rgba(200,166,77,.06))}
-.tl-item{position:relative;margin-bottom:40px;opacity:0;transform:translateX(-26px);transition:opacity .5s ease,transform .5s ease}
+/* ── TIMELINE ── */
+.tl{position:relative;max-width:700px;margin:0 auto;padding-left:44px}
+.tl::before{content:'';position:absolute;left:14px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--gold),rgba(200,166,77,.05))}
+.tl-item{position:relative;margin-bottom:38px;opacity:0;transform:translateX(-24px);transition:opacity .5s ease,transform .5s ease}
 .tl-item.on{opacity:1;transform:none}
 .tl-dot{position:absolute;left:-36px;top:7px;width:16px;height:16px;border-radius:50%;background:var(--gold);border:3px solid var(--white);box-shadow:0 0 0 2px var(--gold);z-index:1}
-.tl-year{display:inline-block;background:var(--gold-tint);color:var(--gold);border:1px solid var(--gold-border);border-radius:20px;font-size:11px;font-weight:700;padding:3px 12px;margin-bottom:6px;letter-spacing:.04em}
+.tl-year{display:inline-block;background:var(--gold);color:var(--white);border-radius:20px;font-size:11px;font-weight:700;padding:3px 12px;margin-bottom:6px;letter-spacing:.04em}
 .tl-title{font-size:17px;font-weight:700;color:var(--dark);margin-bottom:5px}
 .tl-text{font-size:14px;color:#777;line-height:1.65}
 
 /* ── FAQ ── */
-.faq{padding:88px 24px;background:var(--bg);overflow:visible}
-.faq-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1.55fr;gap:68px;align-items:start}
-.faq-left{position:sticky;top:40px;align-self:start}
+.faq-inner-grid{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1.55fr;gap:64px;align-items:start}
+.faq-left{position:sticky;top:36px}
 .faq-left h2{font-size:clamp(26px,3.5vw,42px);font-weight:800;color:var(--dark);line-height:1.15;margin:12px 0 14px}
 .faq-left h2 span{color:var(--gold)}
-.faq-left p{font-size:15px;color:#777;line-height:1.75;margin-bottom:26px}
+.faq-left p{font-size:15px;color:#777;line-height:1.75;margin-bottom:24px}
+.faq-highlights{
+  background:var(--white);border-radius:var(--radius-sm);
+  padding:18px 20px;margin:0 0 24px;
+  border-left:3px solid var(--gold);box-shadow:var(--shadow);
+}
+.faq-highlights li{
+  list-style:none;font-size:14px;color:#444;
+  padding:5px 0;border-bottom:1px solid var(--gold-border);
+  display:flex;align-items:center;gap:10px;
+}
+.faq-highlights li:last-child{border-bottom:none}
+.faq-highlights li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
 .faq-cta{
   display:inline-flex;align-items:center;background:var(--gold);color:var(--dark);
-  height:48px;padding:0 24px;font-size:15px;font-weight:700;border-radius:10px;
-  box-shadow:0 6px 20px var(--gold-shadow);margin-bottom:24px;
-  transition:background .2s,transform .2s;
+  height:50px;padding:0 26px;font-size:15px;font-weight:700;border-radius:50px;
+  box-shadow:0 6px 20px var(--gold-shadow);
+  transition:background .2s,transform .2s;text-decoration:none;
 }
 .faq-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}
-.faq-list{display:flex;flex-direction:column;gap:10px}
-.faq-item{background:var(--white);border:1px solid var(--gold-border);border-radius:var(--radius);overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--white);border:1.5px solid var(--gold-border);border-radius:var(--radius);overflow:hidden;transition:border-color .3s,box-shadow .3s}
 .faq-item.open{border-color:var(--gold);box-shadow:0 6px 24px rgba(200,166,77,.1)}
 .faq-btn{
-  width:100%;background:transparent;border:none;padding:18px 20px;
+  width:100%;background:transparent;border:none;padding:20px 22px;
   font-size:15px;font-weight:600;color:var(--dark);cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;text-align:left;gap:12px;transition:color .2s;
+  display:flex;justify-content:space-between;align-items:center;text-align:left;gap:12px;transition:color .2s;font-family:inherit;
 }
 .faq-btn:hover{color:var(--gold)}
 .faq-item.open .faq-btn{color:var(--gold)}
 .faq-icon{
-  width:28px;height:28px;min-width:28px;border-radius:50%;
+  width:30px;height:30px;min-width:30px;border-radius:50%;
   background:var(--gold-tint);color:var(--gold);
   display:flex;align-items:center;justify-content:center;
-  font-size:18px;font-weight:700;line-height:1;
+  font-size:20px;font-weight:300;line-height:1;
   transition:transform .35s,background .3s,color .3s;
 }
 .faq-item.open .faq-icon{transform:rotate(45deg);background:var(--gold);color:#fff}
 .faq-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
-.faq-item.open .faq-body{max-height:220px}
-.faq-body p{padding:0 20px 18px;font-size:14px;color:#666;line-height:1.72}
+.faq-item.open .faq-body{max-height:240px}
+.faq-body p{padding:0 22px 20px;font-size:14.5px;color:#555;line-height:1.75}
 
-/* ── CTA ── */
-.cta{padding:88px 24px;background:var(--white);text-align:center;position:relative}
-.cta::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.cta-inner{max-width:720px;margin:0 auto}
-.cta-badge{display:inline-block;background:var(--gold);color:var(--dark);border-radius:20px;font-size:11px;font-weight:700;padding:5px 16px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
-.cta h2{font-size:clamp(22px,3vw,36px);font-weight:800;color:var(--dark);margin-bottom:12px}
-.cta h2 span{color:var(--gold)}
-.cta p{color:#777;font-size:16px;margin-bottom:28px}
-.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-dark{background:var(--dark);color:#fff;height:52px;padding:0 28px;display:inline-flex;align-items:center;font-size:15px;font-weight:700;border-radius:10px;transition:background .2s,transform .2s}
+/* ── CTA STRIP ── */
+.cta-strip{
+  background:linear-gradient(135deg,var(--dark) 0%,#2a2a4e 100%);
+  border-radius:var(--radius);padding:44px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  box-shadow:var(--shadow);
+}
+.cta-strip-text h2{font-size:clamp(22px,3vw,32px);font-weight:800;color:#fff;margin-bottom:8px;line-height:1.2;overflow:visible}
+.cta-strip-text p{color:rgba(255,255,255,.6);font-size:16px;margin:0}
+.btn-dark{
+  background:var(--white);color:var(--dark);height:52px;padding:0 28px;
+  display:inline-flex;align-items:center;font-size:15px;font-weight:700;
+  border-radius:50px;transition:background .2s,transform .2s;
+  text-decoration:none;white-space:nowrap;flex-shrink:0;
+}
 .btn-dark:hover{background:var(--gold);color:var(--dark);transform:translateY(-2px)}
-.btn-border{border:2px solid var(--dark);color:var(--dark);height:52px;padding:0 28px;display:inline-flex;align-items:center;font-size:15px;font-weight:700;border-radius:10px;transition:background .2s,color .2s,transform .2s}
-.btn-border:hover{background:var(--dark);color:#fff;transform:translateY(-2px)}
+.btn-border{
+  border:2px solid rgba(255,255,255,.35);color:#fff;height:52px;padding:0 26px;
+  display:inline-flex;align-items:center;font-size:15px;font-weight:700;
+  border-radius:50px;transition:all .2s;text-decoration:none;
+}
+.btn-border:hover{border-color:var(--gold);background:rgba(200,166,77,.1);transform:translateY(-2px)}
+.cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ── FINAL CTA ── */
+.final-cta{padding:88px 24px;background:var(--white);text-align:center;position:relative}
+.final-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.final-cta-inner{max-width:720px;margin:0 auto}
+.cta-badge{display:inline-block;background:var(--gold);color:var(--dark);border-radius:20px;font-size:11px;font-weight:700;padding:5px 16px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
 
 /* ── RESPONSIVE ── */
-@media(max-width:960px){
-  .mission-inner{grid-template-columns:1fr;gap:38px}
-  .faq-inner{grid-template-columns:1fr;gap:34px}
+@media(max-width:1000px){
+  .mission-grid{grid-template-columns:1fr;gap:38px}
+  .faq-inner-grid{grid-template-columns:1fr;gap:34px}
   .faq-left{position:static}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
-  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .cta-strip{flex-direction:column;padding:28px 22px;text-align:center}
 }
-@media(max-width:640px){
-  .hero{padding:58px 18px 68px}
+@media(max-width:700px){
+  .hero{height:320px}
   .values{grid-template-columns:1fr}
   .reviews-grid{grid-template-columns:1fr}
   .team-grid{grid-template-columns:repeat(2,1fr)}
-  .wa{display:flex}
-  #scroll-top{display:none!important}
-  .trust-bar-inner{gap:12px}
+  .office-grid{grid-template-columns:repeat(2,1fr)}
+  .story-content{padding:24px 20px}
+}
+@media(max-width:560px){
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .office-grid{grid-template-columns:1fr 1fr}
   .trust-sep{display:none}
 }
-@media(min-width:641px){#scroll-top{display:flex}}
-@media(max-width:400px){.faq-btn{font-size:13px}.stats-inner{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:400px){
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .office-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
 <div id="header-placeholder"></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
+<!-- ═══════════════════════════════════════════════
+     HERO — photo-based, matching History page style
+     ═══════════════════════════════════════════════ -->
+<div class="hero">
+  <img class="hero-img" src="assets/history-1.jpeg" alt="Marketing with Fahad Dubai Office">
+  <div class="hero-overlay">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="../../index.html">Home</a>
-      <span class="sep" aria-hidden="true">›</span>
+      <span class="sep">›</span>
       <span aria-current="page">About Us</span>
     </nav>
     <div class="hero-badge">Our Story Since 2008</div>
-    <h1>We started in 2008 with one goal &mdash;<br>make SEO <span>risk-free</span> for UAE businesses.</h1>
-    <p class="hero-desc">
-      Marketing with Fahad was founded in Dubai with a simple belief: businesses should only pay for SEO when they see real results. That principle has guided every campaign we have run for 17 years — and it is why 786+ clients across the HQ Dubai, client worldwide trust us with their digital growth.
-    </p>
+    <h1>We started in 2008 with one goal —<br>make SEO <span>risk-free</span> for UAE businesses.</h1>
+    <p class="hero-subtitle">How Dubai's leading SEO agency was built — and why 786+ clients trust us with their growth.</p>
     <div class="hero-btns">
       <a href="../../pages/contact/contact.html" class="btn-gold">Get Free SEO Audit</a>
-      <a href="../../pages/our-seo-ranks/our-seo-ranks.html" class="btn-outline">See Our Results &rarr;</a>
+      <a href="../../pages/our-seo-ranks/our-seo-ranks.html" class="btn-outline">See Our Results →</a>
     </div>
   </div>
-</section>
+</div>
 
 <!-- TICKER -->
-<!-- FIX #1: Redundant stats bands removed. Ticker already shows all key stats. -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
     <span class="ticker-item"><span class="dot">●</span> HQ: <strong>Dubai, UAE</strong></span>
     <span class="ticker-item"><span class="dot">●</span> Serving clients <strong>Worldwide</strong></span>
-    <span class="ticker-item"><span class="dot">●</span> <strong>786</strong> Active Clients</span>
-    <span class="ticker-item"><span class="dot">●</span> <strong>750</strong> Websites on Google Page 1</span>
+    <span class="ticker-item"><span class="dot">●</span> <strong>786+</strong> Active Clients</span>
+    <span class="ticker-item"><span class="dot">●</span> <strong>750+</strong> Websites on Google Page 1</span>
     <span class="ticker-item"><span class="dot">●</span> Founded <strong>2008</strong> in Dubai</span>
     <span class="ticker-item"><span class="dot">●</span> <strong>17 Years</strong> of Proven SEO Results</span>
     <span class="ticker-item"><span class="dot">●</span> Pay After Rank — <strong>No results, no fee</strong></span>
     <span class="ticker-item"><span class="dot">●</span> HQ: <strong>Dubai, UAE</strong></span>
     <span class="ticker-item"><span class="dot">●</span> Serving clients <strong>Worldwide</strong></span>
-    <span class="ticker-item"><span class="dot">●</span> <strong>786</strong> Active Clients</span>
-    <span class="ticker-item"><span class="dot">●</span> <strong>750</strong> Websites on Google Page 1</span>
+    <span class="ticker-item"><span class="dot">●</span> <strong>786+</strong> Active Clients</span>
+    <span class="ticker-item"><span class="dot">●</span> <strong>750+</strong> Websites on Google Page 1</span>
     <span class="ticker-item"><span class="dot">●</span> Founded <strong>2008</strong> in Dubai</span>
     <span class="ticker-item"><span class="dot">●</span> <strong>17 Years</strong> of Proven SEO Results</span>
     <span class="ticker-item"><span class="dot">●</span> Pay After Rank — <strong>No results, no fee</strong></span>
@@ -317,117 +420,149 @@ img{max-width:100%;display:block}
 </div>
 
 <!-- STATS -->
-<!-- FIX #2: Corrected counter values — 786, 750+, 17, 20+ -->
-<div class="stats" role="region" aria-label="Key statistics">
+<div class="stats-row" role="region" aria-label="Key statistics">
   <div class="stats-inner">
-    <div class="stat reveal"><div class="stat-num" data-t="786">0</div><div class="stat-label">Active Clients</div></div>
-    <div class="stat reveal" style="transition-delay:.07s"><div class="stat-num" data-t="750">0</div><div class="stat-label">Websites Ranked</div></div>
-    <div class="stat reveal" style="transition-delay:.14s"><div class="stat-num" data-t="17">0</div><div class="stat-label">Years Experience</div></div>
-    <div class="stat reveal" style="transition-delay:.21s"><div class="stat-num" data-t="20">0</div><div class="stat-label">Team Specialists</div></div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-num" data-t="786">0</div>
+      <div class="stat-label">Active Clients</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-num" data-t="750">0</div>
+      <div class="stat-label">Websites on Page 1</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-num" data-t="17">0</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-4">
+      <div class="stat-num" data-t="20">0</div>
+      <div class="stat-label">Team Specialists</div>
+    </div>
+  </div>
+</div>
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-pill"><span class="tp-icon">🏆</span> UAE SEO Leader Since 2008</span>
+    <span class="trust-sep"></span>
+    <span class="trust-pill"><span class="tp-icon">⭐</span> 4.8★ on Google (120+ reviews)</span>
+    <span class="trust-sep"></span>
+    <span class="trust-pill"><span class="tp-icon">🌍</span> UAE · UK · Worldwide</span>
+    <span class="trust-sep"></span>
+    <span class="trust-pill"><span class="tp-icon">✅</span> Pay After Rank — No results, no fee</span>
+    <span class="trust-sep"></span>
+    <span class="trust-pill"><span class="tp-icon">📍</span> Founded Dubai, 2008</span>
   </div>
 </div>
 
-<!-- MISSION -->
-<section class="mission" aria-labelledby="mission-heading">
-  <div class="mission-inner">
-    <div class="rev-l">
-      <div class="sec-divider">
-        <span class="sec-divider-dot" aria-hidden="true"></span>
-        <span class="sec-divider-label">Our Mission</span>
-        <span class="sec-divider-line" aria-hidden="true"></span>
-      </div>
-      <h2 class="sec-h2" id="mission-heading">Helping UAE businesses grow online &mdash; <span>the right way.</span></h2>
-      <p class="sec-p">We believe SEO should be transparent, accountable, and tied to real business outcomes. Every strategy we build starts with your goals — not a generic package designed to look good on paper.</p>
-      <p class="sec-p">From a single startup in Dubai to a team of 20+ specialists serving clients across three continents, our mission has never changed: deliver rankings you can see, results you can measure, and growth you can trust.</p>
+<!-- ═══════════════════════════════════════════════
+     OUR STORY (from History page — richer content)
+     ═══════════════════════════════════════════════ -->
+<section class="section section-white" aria-labelledby="story-heading">
+  <div class="section-inner">
+    <div class="sec-divider reveal">
+      <span class="sec-divider-dot"></span>
+      <span class="sec-divider-label">Our Story</span>
+      <span class="sec-divider-line"></span>
     </div>
-    <div class="values rev-r" role="list">
-      <div class="val-card" role="listitem">
-        <div class="val-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c8a64d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8 14l-4 7h16l-4-7"/><path d="M12 14v7"/></svg>
+    <div class="story-content reveal">
+      <p>Marketing with Fahad began with a clear opportunity: businesses across the UAE wanted an online presence, but very few specialists existed who truly understood both web development and search engine visibility. We built the agency to close that gap.</p>
+      <p>Our first projects used popular CMS platforms, always with original, custom design. Soon it became clear that building a website was only half the job — the other half was making sure people could find it. That insight pushed us to focus deeply on search engine algorithms from the very beginning.</p>
+      <p>In 2008 we officially launched Marketing with Fahad as a dedicated SEO and digital marketing agency in Dubai. Our proprietary CMS platform launched alongside the agency and has been improving ever since — now powering everything from corporate websites to full e-commerce stores, all built to rank. Today we serve 786 active clients across three continents, built entirely on referrals and a proven track record — not a single paid ad, just results talking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     MISSION & VALUES
+     ═══════════════════════════════════════════════ -->
+<section class="section section-bg" aria-labelledby="mission-heading">
+  <div class="section-inner">
+    <div class="mission-grid">
+      <div class="rev-l">
+        <div class="sec-divider">
+          <span class="sec-divider-dot"></span>
+          <span class="sec-divider-label">Our Mission</span>
+          <span class="sec-divider-line"></span>
         </div>
-        <div class="val-title">Results-First</div>
-        <div class="val-text">You see rankings before you pay. No results, no invoice.</div>
+        <h2 class="sec-h2" id="mission-heading">Helping UAE businesses grow online — <span>the right way.</span></h2>
+        <p class="sec-p">We believe SEO should be transparent, accountable, and tied to real business outcomes. Every strategy we build starts with your goals — not a generic package designed to look good on paper.</p>
+        <p class="sec-p">From a single startup in Dubai to a team of 20+ specialists serving clients across three continents, our mission has never changed: deliver rankings you can see, results you can measure, and growth you can trust.</p>
       </div>
-      <div class="val-card" role="listitem">
-        <div class="val-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c8a64d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <div class="values rev-r" role="list">
+        <div class="val-card" role="listitem">
+          <div class="val-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8a64d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8 14l-4 7h16l-4-7"/><path d="M12 14v7"/></svg>
+          </div>
+          <div class="val-title">Results-First</div>
+          <div class="val-text">You see rankings before you pay. No results, no invoice.</div>
         </div>
-        <div class="val-title">Transparent Reporting</div>
-        <div class="val-text">Monthly reports showing exactly what was done and why.</div>
-      </div>
-      <div class="val-card" role="listitem">
-        <div class="val-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c8a64d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="val-card" role="listitem">
+          <div class="val-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8a64d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="val-title">Transparent Reporting</div>
+          <div class="val-text">Monthly reports showing exactly what was done and why.</div>
         </div>
-        <div class="val-title">White-Hat Only</div>
-        <div class="val-text">100% ethical SEO. No shortcuts that risk your rankings.</div>
-      </div>
-      <div class="val-card" role="listitem">
-        <div class="val-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c8a64d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="val-card" role="listitem">
+          <div class="val-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8a64d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="val-title">White-Hat Only</div>
+          <div class="val-text">100% ethical SEO. No shortcuts that risk your rankings.</div>
         </div>
-        <div class="val-title">17 Years Expertise</div>
-        <div class="val-text">Founded 2008 — one of UAE's longest-standing SEO agencies.</div>
+        <div class="val-card" role="listitem">
+          <div class="val-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8a64d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="val-title">17 Years Expertise</div>
+          <div class="val-text">Founded 2008 — one of UAE's longest-standing SEO agencies.</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TEAM -->
-<section class="team" aria-labelledby="team-heading">
-  <div class="team-inner">
+<!-- ═══════════════════════════════════════════════
+     TEAM — Real photos (from History page)
+     ═══════════════════════════════════════════════ -->
+<section class="section section-white" aria-labelledby="team-heading">
+  <div class="section-inner">
     <div class="sec-head reveal">
       <div class="sec-divider" style="justify-content:center">
-        <span class="sec-divider-dot" aria-hidden="true"></span>
+        <span class="sec-divider-dot"></span>
         <span class="sec-divider-label">Our People</span>
-        <span class="sec-divider-line" style="max-width:120px" aria-hidden="true"></span>
+        <span class="sec-divider-line" style="max-width:120px"></span>
       </div>
       <h2 class="sec-h2" id="team-heading" style="text-align:center">Meet the <span>Team</span></h2>
       <p>The people behind your rankings — experienced, accountable, and invested in your growth.</p>
     </div>
     <div class="team-grid" role="list">
-      <div class="team-card reveal" style="transition-delay:.08s" role="listitem">
-        <div class="avatar av1" aria-hidden="true">F</div>
-        <div class="t-name">Fahad</div>
-        <div class="t-role">Founder &amp; SEO Director</div>
-        <a href="https://www.linkedin.com/in/marketingwithfahad/" target="_blank" rel="noopener" class="t-linkedin" aria-label="Fahad on LinkedIn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
+      <div class="photo-wrap reveal" style="transition-delay:.08s" role="listitem">
+        <div class="photo-card">
+          <img src="assets/katie2.png" alt="Ekaterina — Content Strategist at Marketing with Fahad" loading="lazy">
+        </div>
+        <p class="photo-caption">Ekaterina — Content Strategist</p>
       </div>
-      <div class="team-card reveal" style="transition-delay:.16s" role="listitem">
-        <div class="avatar av3" aria-hidden="true">A</div>
-        <div class="t-name">Ahmed</div>
-        <div class="t-role">Technical SEO Lead</div>
-        <a href="https://www.linkedin.com/company/marketing-with-fahad/" target="_blank" rel="noopener" class="t-linkedin" aria-label="Ahmed on LinkedIn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
+      <div class="photo-wrap reveal" style="transition-delay:.16s" role="listitem">
+        <div class="photo-card">
+          <img src="assets/mansoor.png" alt="Mansoor — SEO Lead at Marketing with Fahad" loading="lazy">
+        </div>
+        <p class="photo-caption">Mansoor — SEO Lead</p>
       </div>
-      <div class="team-card reveal" style="transition-delay:.24s" role="listitem">
-        <div class="avatar av4" aria-hidden="true">S</div>
-        <div class="t-name">Sara</div>
-        <div class="t-role">Content &amp; Outreach Manager</div>
-        <a href="https://www.linkedin.com/company/marketing-with-fahad/" target="_blank" rel="noopener" class="t-linkedin" aria-label="Sara on LinkedIn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-      </div>
-      <div class="team-card reveal" style="transition-delay:.32s" role="listitem">
-        <div class="avatar av2" aria-hidden="true">M</div>
-        <div class="t-name">Mohammed</div>
-        <div class="t-role">SEO Strategist &amp; PPC Lead</div>
-        <a href="https://www.linkedin.com/company/marketing-with-fahad/" target="_blank" rel="noopener" class="t-linkedin" aria-label="Mohammed on LinkedIn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
+      <div class="photo-wrap reveal" style="transition-delay:.24s" role="listitem">
+        <div class="photo-card">
+          <img src="assets/suheyla2.png" alt="Suheyla — Client Manager at Marketing with Fahad" loading="lazy">
+        </div>
+        <p class="photo-caption">Suheyla — Client Manager</p>
       </div>
     </div>
-    <div class="team-more reveal"><a href="/our-team.html">View Full Team &rarr;</a></div>
+    <div class="team-more reveal">
+      <a href="/our-team.html">View Full Team →</a>
+    </div>
 
     <!-- Client logos -->
-    <div class="client-logos reveal" style="margin-top:36px">
-      <div class="client-logos-label">Trusted by businesses across UAE, GCC,UK, US &amp; worldwide</div>
+    <div class="client-logos reveal">
+      <div class="client-logos-label">Trusted by businesses across UAE, GCC, UK, US &amp; worldwide</div>
       <div class="logos-row">
         <div class="logo-pill">Real Estate Dubai</div>
         <div class="logo-pill">Auto Dealership UAE</div>
@@ -442,8 +577,10 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- GOOGLE REVIEWS -->
-<div class="reviews-strip" role="region" aria-label="Client reviews">
+<!-- ═══════════════════════════════════════════════
+     GOOGLE REVIEWS
+     ═══════════════════════════════════════════════ -->
+<div class="section section-bg" role="region" aria-label="Client reviews">
   <div class="reviews-inner">
     <div class="reviews-header reveal">
       <div class="reviews-score">4.8</div>
@@ -451,7 +588,7 @@ img{max-width:100%;display:block}
         <div class="reviews-stars">★★★★★</div>
         <div class="reviews-count">Based on 120+ Google reviews</div>
       </div>
-      <a href="https://www.google.com/search?q=Marketing+with+Fahad+reviews" target="_blank" rel="noopener" class="btn-gold" style="font-size:13px;height:40px;padding:0 18px;">See All Reviews &rarr;</a>
+      <a href="https://www.google.com/search?q=Marketing+with+Fahad+reviews" target="_blank" rel="noopener" class="btn-gold" style="font-size:13px;height:40px;padding:0 18px;">See All Reviews →</a>
     </div>
     <div class="reviews-grid">
       <div class="review-card reveal" style="transition-delay:.07s">
@@ -476,42 +613,56 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- JOURNEY -->
-<section class="journey" aria-labelledby="journey-heading">
-  <div class="journey-inner">
+<!-- ═══════════════════════════════════════════════
+     GROWTH TIMELINE (merged best of both)
+     ═══════════════════════════════════════════════ -->
+<section class="section section-white" aria-labelledby="journey-heading">
+  <div class="section-inner">
     <div class="sec-head reveal">
       <div class="sec-divider" style="justify-content:center">
-        <span class="sec-divider-dot" aria-hidden="true"></span>
+        <span class="sec-divider-dot"></span>
         <span class="sec-divider-label">Our Journey</span>
-        <span class="sec-divider-line" style="max-width:120px" aria-hidden="true"></span>
+        <span class="sec-divider-line" style="max-width:120px"></span>
       </div>
       <h2 class="sec-h2" id="journey-heading" style="text-align:center">17 Years of <span>Growth &amp; Results</span></h2>
-      <p style="color:#888;font-size:15px;margin-top:8px;text-align:center">From a one-man Dubai startup to a 20+ person agency trusted across 3 continents.</p>
+      <p>From a one-man Dubai startup to a 20+ person agency trusted across 3 continents.</p>
     </div>
     <div class="tl" role="list">
       <div class="tl-item" role="listitem">
         <div class="tl-dot" aria-hidden="true"></div>
-        <div class="tl-year">2008</div>
-        <div class="tl-title">Founded in Dubai</div>
-        <div class="tl-text">Marketing with Fahad launched with a single focus: ethical, results-driven SEO for UAE businesses.</div>
+        <div class="tl-year">2006</div>
+        <div class="tl-title">Early Roots</div>
+        <div class="tl-text">Early web development projects and first search optimisation experiments for clients in the UAE — the seeds of what would become Marketing with Fahad.</div>
       </div>
       <div class="tl-item" role="listitem">
         <div class="tl-dot" aria-hidden="true"></div>
-        <div class="tl-year">2012</div>
-        <div class="tl-title">100+ Clients Milestone</div>
-        <div class="tl-text">Reached 100 active clients and expanded into social media marketing and Google Ads services.</div>
+        <div class="tl-year">2008</div>
+        <div class="tl-title">Founded in Dubai</div>
+        <div class="tl-text">Officially launched as a dedicated SEO and digital marketing agency with a single focus: ethical, results-driven SEO for UAE businesses. Proprietary CMS platform launched alongside.</div>
+      </div>
+      <div class="tl-item" role="listitem">
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-year">2010</div>
+        <div class="tl-title">Team Grows to 7 Specialists</div>
+        <div class="tl-text">Expanded to 7 specialists across two offices. Services broadened into social media marketing and Google Ads.</div>
+      </div>
+      <div class="tl-item" role="listitem">
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-year">2013</div>
+        <div class="tl-title">20+ Employees, 4 Offices</div>
+        <div class="tl-text">Reached 20+ employees across four locations. Established Dubai as the primary international hub. 100+ active clients milestone reached.</div>
       </div>
       <div class="tl-item" role="listitem">
         <div class="tl-dot" aria-hidden="true"></div>
         <div class="tl-year">2016</div>
         <div class="tl-title">Pay After Rank Model Launched</div>
-        <div class="tl-text">Introduced our industry-leading Pay After Rank model — businesses only pay when they see Page 1 results.</div>
+        <div class="tl-text">Introduced our industry-leading Pay After Rank model — businesses only pay when they see Page 1 results. A first in the UAE market.</div>
       </div>
       <div class="tl-item" role="listitem">
         <div class="tl-dot" aria-hidden="true"></div>
         <div class="tl-year">2020</div>
-        <div class="tl-title">Fahad Expands Internationally</div>
-        <div class="tl-text">Marketing with Fahad expanded beyond the UAE, taking on clients in the UK and beyond. Built entirely on referrals and a proven track record — not a single paid ad, just results talking.</div>
+        <div class="tl-title">International Expansion</div>
+        <div class="tl-text">Expanded beyond the UAE, taking on clients in the UK and beyond. Built entirely on referrals and a proven track record — not a single paid ad, just results talking.</div>
       </div>
       <div class="tl-item" role="listitem">
         <div class="tl-dot" aria-hidden="true"></div>
@@ -523,28 +674,89 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- FAQ -->
-<!-- FIX #3: Removed duplicate "When was Marketing With Fahad founded?" question (was repeating). Kept 7 unique FAQs. -->
-<section class="faq" aria-labelledby="faq-heading">
-  <div class="faq-inner">
+<!-- ═══════════════════════════════════════════════
+     DUBAI OFFICE PHOTOS (from History page)
+     ═══════════════════════════════════════════════ -->
+<section class="section section-bg" aria-labelledby="office-heading">
+  <div class="section-inner">
+    <div class="sec-divider reveal">
+      <span class="sec-divider-dot"></span>
+      <span class="sec-divider-label">Our Dubai Office</span>
+      <span class="sec-divider-line"></span>
+    </div>
+    <h2 class="sec-h2 reveal" id="office-heading">Where the <span>work happens.</span></h2>
+    <p class="sec-p reveal" style="max-width:580px">JLT, Cluster T, Fortune Executive Tower — the Dubai hub where our SEO strategies come to life, with satellite teams across UAE, UK, and internationally.</p>
+    <div class="office-grid">
+      <div class="office-card reveal" style="transition-delay:.06s">
+        <img src="assets/darvin_studio_rabota_03.png" alt="Marketing with Fahad JLT Office — Dubai" loading="lazy">
+      </div>
+      <div class="office-card reveal" style="transition-delay:.12s">
+        <img src="assets/darvin_studio_rabota_06.png" alt="Marketing with Fahad SEO Operations Floor" loading="lazy">
+      </div>
+      <div class="office-card reveal" style="transition-delay:.18s">
+        <img src="assets/darvin_studio_rabota_08.png" alt="Marketing with Fahad Client Strategy Room" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CTA STRIP
+     ═══════════════════════════════════════════════ -->
+<div class="section section-white" style="padding-top:0;padding-bottom:80px">
+  <div class="section-inner">
+    <div class="cta-strip reveal">
+      <div class="cta-strip-text">
+        <h2>Ready to rank on Page 1?</h2>
+        <p>Join 786 businesses already growing with Marketing with Fahad.</p>
+      </div>
+      <div class="cta-btns">
+        <a href="../../pages/contact/contact.html" class="btn-dark">Get Free Consultation</a>
+        <a href="https://api.whatsapp.com/send?phone=971564166421" target="_blank" rel="noopener" class="btn-border" aria-label="Chat on WhatsApp">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FAQ (7 unique questions, no duplicates)
+     ═══════════════════════════════════════════════ -->
+<section class="section section-bg" aria-labelledby="faq-heading" style="overflow:visible">
+  <div class="faq-inner-grid">
     <div class="faq-left rev-l">
       <div class="sec-divider">
-        <span class="sec-divider-dot" aria-hidden="true"></span>
+        <span class="sec-divider-dot"></span>
         <span class="sec-divider-label">FAQs</span>
-        <span class="sec-divider-line" aria-hidden="true"></span>
+        <span class="sec-divider-line"></span>
       </div>
       <h2 id="faq-heading">Frequently <span>Asked Questions</span></h2>
-      <p>Learn more about Marketing With Fahad, our story, team, and what makes us a trusted digital marketing partner.</p>
+      <p>Learn more about Marketing With Fahad, our story, team, and what makes us a trusted digital marketing partner since 2008.</p>
+      <ul class="faq-highlights">
+        <li>Founded in Dubai, 2008</li>
+        <li>750+ Page 1 rankings delivered</li>
+        <li>20+ in-house specialists</li>
+        <li>Pay-after-results model</li>
+        <li>UAE, UK &amp; international clients</li>
+      </ul>
       <a href="../../pages/contact/contact.html" class="faq-cta">Get Free Consultation</a>
     </div>
     <div class="faq-list rev-r" role="list">
+      <div class="faq-item" role="listitem">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq1">
+          <span>When was Marketing with Fahad founded?</span>
+          <div class="faq-icon" aria-hidden="true">+</div>
+        </button>
+        <div class="faq-body" id="faq1" role="region">
+          <p>Marketing with Fahad was officially launched in Dubai in 2008. Our roots go back to 2006, when the founding team first began working on web development and early SEO projects for UAE businesses.</p>
+        </div>
+      </div>
       <div class="faq-item" role="listitem">
         <button class="faq-btn" aria-expanded="false" aria-controls="faq2">
           <span>How many clients have you worked with?</span>
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
         <div class="faq-body" id="faq2" role="region">
-          <p>We have worked with over 786 active clients across the UAE, UK, and worldwide, helping businesses of all sizes achieve Page 1 Google rankings.</p>
+          <p>We have 786+ active clients across the UAE, UK, and worldwide, helping businesses of all sizes achieve Page 1 Google rankings and measurable organic growth.</p>
         </div>
       </div>
       <div class="faq-item" role="listitem">
@@ -553,7 +765,7 @@ img{max-width:100%;display:block}
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
         <div class="faq-body" id="faq3" role="region">
-          <p>We have successfully ranked 750+ websites on Google Page 1 across industries including real estate, automotive, e-commerce, hospitality, and legal services.</p>
+          <p>We have successfully ranked 750+ websites on Google Page 1 across industries including real estate, automotive, e-commerce, hospitality, healthcare, and legal services.</p>
         </div>
       </div>
       <div class="faq-item" role="listitem">
@@ -562,16 +774,16 @@ img{max-width:100%;display:block}
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
         <div class="faq-body" id="faq4" role="region">
-          <p>Our primary market is the UAE, but we also serve clients in the UK and internationally. All services are delivered remotely with consistent quality.</p>
+          <p>Our primary market is the UAE, but we also serve clients in the UK and internationally. All services are delivered with consistent quality, managed from our Dubai headquarters.</p>
         </div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-btn" aria-expanded="false" aria-controls="faq5">
-          <span>What makes your team different?</span>
+          <span>What makes your team and approach different?</span>
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
         <div class="faq-body" id="faq5" role="region">
-          <p>Our team of 20+ specialists combines technical SEO, content strategy, paid advertising, and web development under one roof — managed by human experts, not automated tools.</p>
+          <p>Our team of 20+ specialists combines technical SEO, content strategy, paid advertising, and web development under one roof — managed by human experts, not automated tools. We use only white-hat, Google-approved techniques with no shortcuts.</p>
         </div>
       </div>
       <div class="faq-item" role="listitem">
@@ -580,35 +792,37 @@ img{max-width:100%;display:block}
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
         <div class="faq-body" id="faq6" role="region">
-          <p>Yes. Every client receives a dedicated account manager who provides monthly reports, answers questions directly, and ensures your campaign stays on track.</p>
+          <p>Yes. Every client receives a dedicated account manager who provides monthly reports, answers questions directly, and ensures your campaign stays on track toward Page 1.</p>
         </div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-btn" aria-expanded="false" aria-controls="faq7">
-          <span>What is your approach to SEO?</span>
+          <span>How has the agency stayed competitive across 17 years?</span>
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
         <div class="faq-body" id="faq7" role="region">
-          <p>We use only white-hat, Google-approved SEO techniques — quality content, technical optimization, and earned backlinks. No shortcuts that risk your website's rankings.</p>
+          <p>We have navigated every major Google algorithm change since 2008 by focusing on what Google actually rewards — quality, authority, and relevance. We are now expanding AI-assisted SEO capabilities and growing our UK presence.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta" aria-labelledby="cta-heading">
-  <div class="cta-inner reveal">
+<!-- ═══════════════════════════════════════════════
+     FINAL CTA
+     ═══════════════════════════════════════════════ -->
+<section class="final-cta" aria-labelledby="cta-heading">
+  <div class="final-cta-inner reveal">
     <div class="cta-badge">Start Growing Today</div>
-    <h2 id="cta-heading">Rated <span>4.8★ on Google</span> — UAE's Most Results-Driven SEO Agency</h2>
-    <p>Get a free, no-obligation SEO audit and discover exactly how to grow your organic traffic and revenue.</p>
-    <div class="cta-btns">
-      <a href="/contact.html" class="btn-dark">Get Your Free SEO Audit</a>
-      <a href="https://api.whatsapp.com/send?phone=971564166421" target="_blank" rel="noopener" class="btn-gold" aria-label="Chat on WhatsApp" style="gap:8px;">
+    <h2 class="sec-h2" id="cta-heading">Rated <span>4.8★ on Google</span> — UAE's Most Results-Driven SEO Agency</h2>
+    <p class="sec-p">Get a free, no-obligation SEO audit and discover exactly how to grow your organic traffic and revenue.</p>
+    <div class="cta-btns" style="justify-content:center;margin-top:24px">
+      <a href="../../pages/contact/contact.html" class="btn-gold" style="height:52px;font-size:15px;padding:0 28px;">Get Your Free SEO Audit</a>
+      <a href="https://api.whatsapp.com/send?phone=971564166421" target="_blank" rel="noopener" class="btn-gold" aria-label="Chat on WhatsApp" style="height:52px;font-size:15px;padding:0 24px;gap:8px;background:#25D366;color:#fff">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         WhatsApp Us
       </a>
-      <a href="/our-team.html" class="btn-border">Meet the Full Team</a>
+      <a href="/our-team.html" class="btn-border" style="border-color:var(--dark);color:var(--dark);height:52px;font-size:15px;padding:0 26px;border-radius:50px;">Meet the Full Team</a>
     </div>
   </div>
 </section>
@@ -668,7 +882,7 @@ function initPage() {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('on'); revObs.unobserve(e.target); }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08, rootMargin:'0px 0px -30px 0px' });
   document.querySelectorAll('.reveal,.rev-l,.rev-r,.tl-item').forEach(el => revObs.observe(el));
 
   /* Counter animation */
@@ -696,11 +910,11 @@ function initPage() {
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(i => {
         i.classList.remove('open');
-        i.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+        i.querySelector('.faq-btn').setAttribute('aria-expanded','false');
       });
       if (!isOpen) {
         item.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-expanded','true');
       }
     });
   });
