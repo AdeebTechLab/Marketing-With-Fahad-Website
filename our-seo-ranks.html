@@ -45,6 +45,10 @@ button{font-family:inherit;cursor:pointer}
   --radius:16px;
   --green:#13d186;
   --blue:#5c7daa;
+  /* FIX #2 — distinct mid-range colour so it no longer blends with the
+     gold card header. Amber/orange reads clearly against the gold-light
+     header background. */
+  --amber:#e07b25;
 }
 
 /* ── LAYOUT ───────────────────────────────────────────────── */
@@ -70,23 +74,29 @@ button{font-family:inherit;cursor:pointer}
 .sec-divider__label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .sec-divider__line{flex:1;height:1px;background:linear-gradient(to right,var(--gold-border),transparent)}
 
-/* ── FIX #1 — RANK LEGEND ────────────────────────────────── */
+/* ── RANK LEGEND ──────────────────────────────────────────── */
 .rank-legend{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:20px;padding:12px 18px;background:var(--white);border:1px solid var(--gold-border);border-radius:12px}
 .rank-legend__title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-right:4px}
 .rank-legend__item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text)}
 .rank-legend__dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
 .rank-legend__dot--green{background:var(--green);box-shadow:0 2px 8px rgba(19,209,134,.3)}
-.rank-legend__dot--gold{background:var(--gold);box-shadow:0 2px 8px var(--gold-shadow)}
+/* FIX #2 — legend dot for the 4-6 range now uses the distinct amber
+   colour instead of gold, matching the badges in the cards below */
+.rank-legend__dot--gold{background:var(--amber);box-shadow:0 2px 8px rgba(224,123,37,.3)}
 .rank-legend__dot--blue{background:var(--blue);box-shadow:0 2px 8px rgba(92,125,170,.3)}
 @media(max-width:560px){.rank-legend{gap:12px}}
 
 /* ── SEO RANKS GRID ───────────────────────────────────────── */
-/* FIX #3 — use auto-fill so orphan card centres itself */
 .ranks-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
   gap:20px;
   justify-content:center;
+  /* FIX #1 — without this, grid rows stretch every card in the row to
+     match the tallest card, leaving a big empty gap under cards that
+     have fewer keyword rows (e.g. quicklease.ae). align-items:start lets
+     each card hug its own content height instead. */
+  align-items:start;
 }
 /* Keep sensible max columns on large screens */
 @media(min-width:901px){.ranks-grid{grid-template-columns:repeat(3,1fr)}}
@@ -94,17 +104,23 @@ button{font-family:inherit;cursor:pointer}
 @media(max-width:560px){.ranks-grid{grid-template-columns:1fr}}
 
 /* ── RANK CARD ────────────────────────────────────────────── */
-.rank-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gold-border);overflow:hidden;transition:transform .25s,box-shadow .25s;opacity:0;transform:translateY(24px)}
-.rank-card.visible{opacity:1;transform:none;transition:transform .5s ease,box-shadow .25s,opacity .5s ease,border-color .2s}
+/* FIX #3 — the staggered reveal previously animated both opacity and
+   transform on the whole card. While a card was mid-fade its tan header
+   rendered visibly lighter than fully-revealed cards above it, making
+   row-2 headers look inconsistent. Headers now stay fully opaque at all
+   times; only the slide-up motion remains. */
+.rank-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gold-border);overflow:hidden;transition:transform .25s,box-shadow .25s;opacity:1;transform:translateY(24px)}
+.rank-card.visible{transform:none;transition:transform .5s ease,box-shadow .25s,border-color .2s}
 .rank-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--gold-shadow);border-color:var(--gold)}
 
-/* FIX #2 — consistent header style across all cards */
+/* FIX #3 — explicit, single source of truth for the header tan shade so
+   every card header (row 1, row 2, row 3...) renders identically */
 .rank-card__header{
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:14px 18px;
-  background:var(--gold-light);
+  background-color:var(--gold-light);
   border-bottom:1px solid var(--gold-border);
   gap:10px;
   min-height:52px;
@@ -122,9 +138,10 @@ button{font-family:inherit;cursor:pointer}
 .rank-row__keyword{font-size:14px;color:var(--text);flex:1;line-height:1.4}
 .rank-row__pos{width:36px;height:36px;min-width:36px;border-radius:50%;background:var(--gold);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px var(--gold-shadow)}
 
-/* FIX #1 — Position colour coding: 1-3 green, 4-6 gold, 7-10 blue */
+/* FIX #2 — Position colour coding: 1-3 green, 4-6 amber (distinct from
+   the gold card header), 7-10 blue */
 .rank-row__pos[data-pos="1"],.rank-row__pos[data-pos="2"],.rank-row__pos[data-pos="3"]{background:var(--green);box-shadow:0 2px 8px rgba(19,209,134,.3)}
-.rank-row__pos[data-pos="4"],.rank-row__pos[data-pos="5"],.rank-row__pos[data-pos="6"]{background:var(--gold);box-shadow:0 2px 8px var(--gold-shadow)}
+.rank-row__pos[data-pos="4"],.rank-row__pos[data-pos="5"],.rank-row__pos[data-pos="6"]{background:var(--amber);box-shadow:0 2px 8px rgba(224,123,37,.3)}
 .rank-row__pos[data-pos="7"],.rank-row__pos[data-pos="8"],.rank-row__pos[data-pos="9"],.rank-row__pos[data-pos="10"]{background:var(--blue);box-shadow:0 2px 8px rgba(92,125,170,.3)}
 
 /* ── STATS BANNER ─────────────────────────────────────────── */
@@ -215,7 +232,7 @@ button{font-family:inherit;cursor:pointer}
         <span class="sec-divider__line" aria-hidden="true"></span>
       </div>
 
-      <!-- FIX #1 — RANK COLOUR LEGEND -->
+      <!-- RANK COLOUR LEGEND -->
       <div class="rank-legend reveal" aria-label="Position colour legend">
         <span class="rank-legend__title">Position Key:</span>
         <span class="rank-legend__item">
@@ -434,7 +451,6 @@ button{font-family:inherit;cursor:pointer}
   </main>
 
   <!-- ── FAQ SECTION ─────────────────────────────────────────── -->
-  <!-- FIX #4 — trimmed to unique, non-duplicate questions only -->
   <section class="faq-section reveal" aria-labelledby="faq-heading">
     <div class="l-container">
       <div class="faq-inner">
