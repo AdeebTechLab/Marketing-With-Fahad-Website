@@ -109,11 +109,12 @@
     min-width: 0;
   }
 
+  /* Logo: full stacked lockup, sized large enough to stay legible */
   .l-footer .f-logo img {
-    height: 42px;
+    height: 140px;
     width: auto;
     display: block;
-    margin: 0 0 14px 0;
+    margin: 0 0 18px 0;
     padding: 0;
   }
 
@@ -201,6 +202,7 @@
     .l-footer .f-nav  { gap: 0 28px; }
     .l-footer .f-right { gap: 24px; }
     .l-footer .f-map-link img { width: 170px; }
+    .l-footer .f-logo img { height: 120px; }
   }
 
   /* ══════════════════════════════
@@ -221,6 +223,7 @@
       gap: 24px;
     }
     .l-footer .f-map-link img { width: 100%; max-width: 220px; }
+    .l-footer .f-logo img { height: 110px; }
   }
 
   /* ══════════════════════════════
@@ -237,6 +240,10 @@
     .l-footer .f-right { grid-template-columns: 1fr; gap: 20px; }
     .l-footer .f-map-link img { width: 100%; max-width: 100%; }
     .l-footer .f-whatsapp { width: 100%; justify-content: center; }
+
+    /* Center logo on its own row at this width for a cleaner stack */
+    .l-footer .f-logo { display: flex; justify-content: flex-start; }
+    .l-footer .f-logo img { height: 100px; margin-bottom: 16px; }
   }
 
   /* ══════════════════════════════
@@ -245,10 +252,11 @@
   @media (max-width: 380px) {
     .l-footer .f-social-icons a { width: 36px; height: 36px; }
     .l-footer .f-whatsapp { font-size: 12px; padding: 10px 14px; }
+    .l-footer .f-logo img { height: 84px; }
   }
 </style>
 
-<footer class="l-footer">
+<footer class="l-footer" id="siteFooter">
 
   <div class="f-top">
 
@@ -312,7 +320,12 @@
 
       <div class="f-logo-map">
         <div class="f-logo">
-          <img src="/assets/logo.png" alt="Marketing with Fahad">
+          <img
+            src="/assets/logo-full.png"
+            srcset="/assets/logo-full.png 1x, /assets/logo-full@2x.png 2x"
+            alt="Marketing with Fahad"
+            width="157" height="140"
+          >
         </div>
         <a href="https://maps.google.com/?q=BeOnTop+Office+701+JLT+Dubai" target="_blank" rel="noopener" class="f-map-link">
           <img src="/assets/footer-map.png" alt="BeOnTop – Office 701, JLT, Dubai">
@@ -349,6 +362,7 @@
 </footer>
 
 <!-- ═══════════ SCROLL TO TOP BUTTON ═══════════ -->
+<!-- Only appears once the footer (#siteFooter) enters the viewport, not on every page scroll -->
 <button id="scrollToTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top" style="position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:#0F172A;border:1px solid rgba(201,169,110,0.3);color:#C9A96E;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:3000;box-shadow:0 4px 16px rgba(0,0,0,0.3);transition:background 0.2s,border-color 0.2s,opacity 0.3s,transform 0.2s;opacity:0;">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
     <line x1="12" y1="19" x2="12" y2="5"/>
@@ -358,22 +372,50 @@
 
 <script>
   (function () {
-    var btn = document.getElementById('scrollToTopBtn');
+    var btn    = document.getElementById('scrollToTopBtn');
+    var footer = document.getElementById('siteFooter');
 
-    function toggleBtn() {
-      if (window.scrollY > 300) {
-        btn.style.display = 'flex';
-        requestAnimationFrame(function () { btn.style.opacity = '1'; });
-      } else {
-        btn.style.opacity = '0';
-        setTimeout(function () {
-          if (window.scrollY <= 300) btn.style.display = 'none';
-        }, 300);
-      }
+    function showBtn() {
+      btn.style.display = 'flex';
+      requestAnimationFrame(function () { btn.style.opacity = '1'; });
     }
 
-    window.addEventListener('scroll', toggleBtn);
-    toggleBtn();
+    function hideBtn() {
+      btn.style.opacity = '0';
+      setTimeout(function () {
+        // double-check it's still meant to be hidden before actually removing from flow
+        if (btn.style.opacity === '0') btn.style.display = 'none';
+      }, 300);
+    }
+
+    if (footer && 'IntersectionObserver' in window) {
+      // Trigger as soon as any part of the footer is visible in the viewport
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            showBtn();
+          } else {
+            hideBtn();
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0,        // fires the instant even 1px of the footer is visible
+        rootMargin: '0px'
+      });
+
+      observer.observe(footer);
+    } else if (footer) {
+      // Fallback for older browsers without IntersectionObserver support
+      function checkFooterVisibility() {
+        var rect = footer.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight && rect.bottom >= 0;
+        if (inView) { showBtn(); } else { hideBtn(); }
+      }
+      window.addEventListener('scroll', checkFooterVisibility);
+      window.addEventListener('resize', checkFooterVisibility);
+      checkFooterVisibility();
+    }
 
     btn.addEventListener('mouseenter', function () {
       btn.style.background = 'rgba(201,169,110,0.15)';

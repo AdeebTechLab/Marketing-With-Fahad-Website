@@ -30,8 +30,14 @@
   }
 
   /* ===== LOGO ===== */
+  .header__logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
   .header__logo img {
-    height: 40px;
+    height: 42px;
     width: auto;
     display: block;
   }
@@ -448,6 +454,9 @@
       font-size: 12px;
       padding: 7px 10px;
     }
+
+    /* Slightly smaller logo on tablet/mobile to balance with hamburger + report btn */
+    .header__logo img { height: 36px; }
   }
 
   /* Small mobile ≤ 480px: hide report button from header (it's in mobile menu footer) */
@@ -455,6 +464,14 @@
     .header__report { display: none; }
 
     .header__container { gap: 12px; padding: 0 16px; }
+
+    .header__logo img { height: 32px; }
+  }
+
+  /* Tiny screens ≤ 360px: keep logo from crowding hamburger button */
+  @media (max-width: 360px) {
+    .header__logo img { height: 28px; }
+    .header__container { gap: 8px; padding: 0 12px; }
   }
 </style>
 
@@ -464,7 +481,13 @@
     <div class="header__container">
 
       <a class="header__logo" href="index.html">
-        <img src="assets/logo.png" alt="Marketing with Fahad" title="Marketing with Fahad">
+        <img
+          src="assets/logo-icon.png"
+          srcset="assets/logo-icon.png 1x, assets/logo-icon@2x.png 2x"
+          alt="Marketing with Fahad"
+          title="Marketing with Fahad"
+          width="42" height="48"
+        >
       </a>
 
       <!-- Desktop navigation -->
