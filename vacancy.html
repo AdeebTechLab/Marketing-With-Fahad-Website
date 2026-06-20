@@ -33,9 +33,10 @@ ul{list-style:none;}
 .l-container{width:100%;max-width:1270px;margin:0 auto;padding:0 22px;}
 
 /* ── FIX #1: Standard Hero (image + dark overlay) ── */
-.page-hero{position:relative;width:100%;min-height:260px;display:flex;align-items:flex-end;overflow:hidden;}
-.page-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
-.page-hero__overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,26,46,0.82) 0%,rgba(26,26,46,0.55) 100%);}
+.page-hero{position:relative;width:100%;min-height:260px;display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(135deg,var(--dark) 0%,#26264a 60%,#1a1a2e 100%);}
+.page-hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(to right,var(--gold-dark),var(--gold) 50%,var(--gold-dark));}
+.page-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.5;}
+.page-hero__overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,26,46,0.92) 0%,rgba(26,26,46,0.65) 55%,rgba(168,132,46,0.28) 100%);}
 .page-hero__content{position:relative;z-index:1;padding:40px 22px 44px;max-width:1270px;margin:0 auto;width:100%;}
 .page-hero__content h1{font-size:clamp(26px,4vw,42px);font-weight:700;color:#fff;line-height:1.2;}
 .page-hero__content h1 span{color:var(--gold);}
@@ -142,10 +143,10 @@ ul{list-style:none;}
 
     <!-- FIX #1: Standard Hero with image + dark overlay -->
     <section class="page-hero" aria-label="Page hero">
-      <img class="page-hero__img" src="assets/images/vacancy-hero.jpg" alt="Vacancy at marketingwithfahad" loading="eager" onerror="this.style.display='none'">
+      <img class="page-hero__img" src="assets/images/vacancy-hero.jpg" alt="Vacancy at Marketing With Fahad" loading="eager" onerror="this.style.display='none'">
       <div class="page-hero__overlay"></div>
       <div class="page-hero__content">
-        <h1>Vacancy at <span>marketingwithfahad</span></h1>
+        <h1>Vacancy at <span>Marketing With Fahad</span></h1>
         <p class="subtitle">Join Dubai's award-winning SEO &amp; digital marketing team. Open roles below.</p>
       </div>
     </section>
