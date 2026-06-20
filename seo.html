@@ -65,9 +65,9 @@ li { margin: 4px 0; }
 
 /* BREADCRUMBS */
 .breadcrumbs {
-  padding: 28px 0 0;
   font-size: 14px;
   color: var(--text-muted);
+  margin-bottom: 18px;
   opacity: 0;
   transform: translateY(-8px);
   animation: fadeSlideDown 0.5s 0.1s forwards;
@@ -77,132 +77,286 @@ li { margin: 4px 0; }
 .breadcrumbs a::after { content: "›"; display: inline-block; margin: 0 8px; color: #bbb; }
 .breadcrumbs span { color: var(--gold); }
 
-/* HERO BANNER */
-.hero-banner {
+/* ===========================
+   HERO (matches master template hero)
+   =========================== */
+.hero {
+  background: #fffdf5;
+  padding: 56px 0 64px;
+  border-bottom: 1px solid var(--gold-border);
   position: relative;
-  width: 100%;
-  min-height: 480px;
-  background: var(--dark);
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
 }
-.hero-banner__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
-.hero-banner__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,26,46,0.85) 0%, rgba(26,26,46,0.4) 100%); }
-.hero-banner__content { position: relative; z-index: 2; width: 100%; padding: 48px 0 56px; }
-.hero-banner h1 {
-  color: var(--white);
-  font-size: clamp(28px, 5vw, 52px);
-  font-weight: 800;
-  margin: 0 0 8px;
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -80px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,166,77,0.09) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 52px;
+  align-items: center;
+}
+.hero__eyebrow {
+  display: inline-block;
+  background: rgba(200,166,77,0.12);
+  color: var(--gold-dark);
+  border: 1px solid rgba(200,166,77,0.4);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
   opacity: 0;
-  transform: translateY(20px);
+  animation: fadeSlideDown 0.5s 0.1s forwards;
+}
+.hero h1 {
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.12;
+  margin: 0 0 18px;
+  opacity: 0;
   animation: fadeSlideUp 0.6s 0.2s forwards;
 }
-.hero-banner h1 .accent { color: var(--gold); }
-
-.hero-trust-badges {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 18px 0 24px;
+.hero h1 .accent { color: var(--gold-dark); }
+.hero__desc {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 0 24px;
+  line-height: 1.8;
   opacity: 0;
-  transform: translateY(12px);
-  animation: fadeSlideUp 0.6s 0.35s forwards;
-  flex-wrap: wrap;
+  animation: fadeSlideUp 0.6s 0.3s forwards;
 }
-.trust-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  background: rgba(255,255,255,0.14);
-  border: 1.5px solid rgba(200,166,77,0.75);
-  border-radius: 40px;
-  padding: 7px 16px 7px 10px;
-  backdrop-filter: blur(8px);
-  transition: background var(--transition), border-color var(--transition);
+.hero__checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.38s forwards;
 }
-.trust-badge:hover { background: rgba(200,166,77,0.22); border-color: var(--gold); }
-.trust-badge__icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--gold);
+.hero__checklist li {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
+  color: var(--text);
+  font-size: 15px;
+  margin: 0;
+}
+.hero__checklist li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
   font-size: 15px;
   flex-shrink: 0;
 }
-.trust-badge__label { color: rgba(255,255,255,0.95); font-weight: 700; font-size: 13px; line-height: 1.2; }
-.trust-badge__sub { color: rgba(255,255,255,0.6); font-size: 11px; font-weight: 400; line-height: 1.2; }
-
-/* Hero Form */
-.hero-form {
-  background: rgba(255,255,255,0.07);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(200,166,77,0.25);
-  border-radius: var(--radius);
-  padding: 28px 28px 20px;
-  max-width: 360px;
+.hero__btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
   opacity: 0;
-  transform: translateX(-16px);
-  animation: fadeSlideRight 0.6s 0.35s forwards;
+  animation: fadeSlideUp 0.6s 0.45s forwards;
 }
-.hero-form__title { color: var(--white); font-size: 18px; font-weight: 700; margin: 0 0 18px; }
-.hero-form .form-item { margin-bottom: 10px; }
-.hero-form input[type="text"],
-.hero-form input[type="email"] {
-  width: 100%;
-  height: 46px;
-  padding: 0 14px;
-  border: 1px solid rgba(245,233,200,0.35);
+
+.hero__proof-strip {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--gold-border);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--gold-border);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.55s forwards;
+}
+.hero__proof-item {
+  background: var(--white);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+.hero__proof-item:hover { background: #f9f9f9; }
+.hero__proof-icon {
+  width: 32px; height: 32px;
   border-radius: 8px;
-  background: rgba(255,255,255,0.12);
-  color: var(--white);
-  font-family: var(--font);
-  font-size: 15px;
-  transition: border-color var(--transition), background var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 4px;
 }
-.hero-form input::placeholder { color: rgba(255,255,255,0.55); }
-.hero-form input:focus { border-color: var(--gold); background: rgba(255,255,255,0.18); }
-.hero-form .btn-submit {
-  width: 100%; height: 48px; margin-top: 6px;
-  background: var(--gold); color: var(--white); border: none; border-radius: 8px;
-  font-family: var(--font); font-size: 15px; font-weight: 700; cursor: pointer;
+.hero__proof-icon.gold  { background: #FAEEDA; color: #854F0B; }
+.hero__proof-icon.blue  { background: #E6F1FB; color: #185FA5; }
+.hero__proof-icon.teal  { background: #E1F5EE; color: #0F6E56; }
+.hero__proof-icon.amber { background: #FAEEDA; color: #BA7517; }
+.hero__proof-item strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+.hero__proof-item > span {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.hero__proof-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 4px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.hero__proof-badge.green { background: #EAF3DE; color: #3B6D11; }
+.hero__proof-badge.blue  { background: #E6F1FB; color: #185FA5; }
+
+.btn-primary {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
   transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
 }
-.hero-form .btn-submit:hover { background: var(--gold-dark); box-shadow: 0 6px 20px var(--gold-shadow); transform: translateY(-1px); }
-.hero-form__terms { font-size: 12px; color: rgba(255,255,255,0.45); text-align: center; margin-top: 10px; }
-.hero-form__terms a { color: rgba(255,255,255,0.55); font-size: 12px; }
-.hero-form__terms a:hover { color: var(--gold); }
-
-/* Mobile form */
-.hero-mobile-form {
-  background: var(--white); border-radius: var(--radius); padding: 24px 20px 18px;
-  margin: 16px 16px 0; box-shadow: 0 4px 24px rgba(0,0,0,0.1); display: none;
+.btn-primary:hover {
+  background: var(--gold-dark);
+  color: var(--white);
+  box-shadow: 0 6px 20px var(--gold-shadow);
+  transform: translateY(-1px);
 }
-.hero-mobile-form__title { color: var(--dark); font-size: 18px; font-weight: 700; margin: 0 0 16px; text-align: center; }
-.hero-mobile-form .form-item { margin-bottom: 10px; }
-.hero-mobile-form input[type="text"],
-.hero-mobile-form input[type="email"] {
-  width: 100%; height: 46px; padding: 0 14px;
-  border: 1px solid #e0e0e0; border-radius: 8px; background: #f8f8f8;
-  font-family: var(--font); font-size: 15px; color: var(--dark);
+.btn-outline {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--gold-dark);
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.btn-outline:hover { background: rgba(200,166,77,0.08); color: var(--gold-dark); }
+
+/* Hero form card (dark, matches master template) */
+.hero-form-card {
+  background: var(--dark);
+  border: 1px solid #1e293b;
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  opacity: 0;
+  animation: fadeSlideRight 0.6s 0.3s forwards;
+}
+.hero-form-card__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.hero-form-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  background: rgba(200,166,77,0.15);
+  color: var(--gold);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.hero-form-card__title {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  display: block;
+  margin: 0 0 2px;
+}
+.hero-form-card__sub {
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+}
+.form-group { margin-bottom: 14px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: var(--white);
+  font-family: var(--font);
   transition: border-color var(--transition);
 }
-.hero-mobile-form input:focus { border-color: var(--gold); background: var(--white); }
-.hero-mobile-form .btn-submit {
-  width: 100%; height: 48px; margin-top: 6px;
-  background: var(--gold); color: var(--white); border: none; border-radius: 8px;
-  font-family: var(--font); font-size: 15px; font-weight: 700; cursor: pointer;
+.form-input::placeholder { color: rgba(255,255,255,0.3); }
+.form-input:focus { border-color: var(--gold); outline: none; }
+.form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+  font-family: var(--font);
   transition: background var(--transition), box-shadow var(--transition);
 }
-.hero-mobile-form .btn-submit:hover { background: var(--gold-dark); }
-.hero-mobile-form__terms { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 10px; }
-.hero-mobile-form__terms a { color: var(--text-muted); font-size: 12px; }
-.hero-mobile-form__img { width: 100%; margin: 0 0 -12px; border-radius: 12px 12px 0 0; overflow: hidden; }
-.hero-mobile-form__img img { width: 100%; display: block; }
+.form-submit:hover { background: var(--gold-dark); box-shadow: 0 6px 20px var(--gold-shadow); }
+.form-note {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  margin: 10px 0 0;
+}
+
+.hero__eyebrow { transform: translateY(-8px); }
+.hero h1, .hero__desc, .hero__checklist, .hero__btns { transform: translateY(16px); }
+.hero-form-card { transform: translateX(16px); }
 
 /* SECTION DIVIDER */
 .section-divider { display: flex; align-items: center; gap: 14px; margin: 0 0 28px; }
@@ -272,36 +426,20 @@ li { margin: 4px 0; }
 
 /* TRACK POSITIONS */
 .seo-track { padding: 56px 0; }
-.seo-track__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.seo-track__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: stretch; }
+.seo-track__text { display: flex; flex-direction: column; }
 .seo-track__text p { font-size: 16px; color: var(--text); }
 .seo-track__text a { color: var(--gold); }
 .seo-track__text a:hover { color: var(--gold-dark); }
-.seo-track__charts { display: flex; flex-direction: column; gap: 20px; }
-.seo-track__chart-img { border-radius: var(--radius); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
-.seo-track__chart-img img { width: 100%; }
-.seo-track__img-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border: 1px solid var(--gold-border); }
-.seo-track__img-wrap img { width: 100%; }
-
-/* Brand progress bars */
-.seo-track__brand-stats {
-  background: var(--dark); border-radius: var(--radius); padding: 28px 24px;
-  display: flex; flex-direction: column; gap: 16px;
+.seo-track__img-wrap {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  border: 1px solid var(--gold-border);
+  height: 100%;
+  display: flex;
 }
-.seo-track__brand-stats-title {
-  color: var(--gold); font-size: 13px; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;
-}
-.brand-stat-bar { display: flex; flex-direction: column; gap: 6px; }
-.brand-stat-bar__label {
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 500;
-}
-.brand-stat-bar__label span { color: var(--gold); font-weight: 700; }
-.brand-stat-bar__track { height: 8px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; }
-.brand-stat-bar__fill {
-  height: 100%; border-radius: 99px;
-  background: linear-gradient(to right, var(--gold-dark), var(--gold));
-}
+.seo-track__img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ADVANTAGES */
 .seo-advantages {
@@ -445,8 +583,10 @@ li { margin: 4px 0; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-form-card { max-width: 480px; }
   .seo-intro__grid, .seo-track__grid, .faq-layout { grid-template-columns: 1fr; gap: 28px; }
-  .seo-track__charts { order: -1; }
+  .seo-track__img-wrap { order: -1; height: 280px; }
   .advantages-grid { grid-template-columns: 1fr 1fr; }
   .enquiry-inner { grid-template-columns: 1fr; }
   .enquiry-side { padding: 36px 28px; }
@@ -456,17 +596,6 @@ li { margin: 4px 0; }
   .process-card:nth-child(even) { direction: ltr; }
   .process-card__img { min-height: 200px; }
   .faq-sidebar { position: static; flex: none; width: 100%; }
-}
-@media (max-width: 767px) {
-  .hero-banner { min-height: 280px; }
-  .hero-form { display: none; }
-  .hero-mobile-form { display: block; }
-  .hero-banner__content { padding: 32px 0 36px; }
-  .hero-trust-badges { gap: 8px; }
-  .trust-badge { font-size: 12px; padding: 6px 12px 6px 8px; }
-}
-@media (min-width: 768px) {
-  .hero-mobile-form { display: none; }
 }
 @media (max-width: 560px) {
   .advantages-grid { grid-template-columns: 1fr; }
@@ -478,10 +607,10 @@ li { margin: 4px 0; }
   .seo-intro__stats { flex-direction: column; }
   .seo-stat { border-right: none; border-bottom: 1px solid var(--gold-border); }
   .seo-stat:last-child { border-bottom: none; }
+  .hero { padding: 40px 0 44px; }
 }
 @media (max-width: 400px) {
   .faq-btn { font-size: 14px; }
-  .hero-mobile-form { margin: 10px 10px 0; }
 }
 </style>
 </head>
@@ -491,83 +620,91 @@ li { margin: 4px 0; }
   <div id="header-placeholder"></div>
   <main class="l-main">
 
-    <!-- Mobile Hero Form -->
-    <div class="hero-mobile-form">
-      <div class="hero-mobile-form__img">
-        <img src="assets/seo-mobile.png" alt="Search Engine Optimization">
-      </div>
-      <div class="hero-mobile-form__title">Get Free Quote</div>
-      <form method="post" action="/order/seo_order/submit">
-        <div class="form-item"><input type="text" name="darvin_seo_order_order[name]" required placeholder="Name*" autocomplete="off"></div>
-        <div class="form-item"><input type="text" name="darvin_seo_order_order[phone]" required maxlength="30" placeholder="Phone*" value="+971" autocomplete="off"></div>
-        <div class="form-item"><input type="email" name="darvin_seo_order_order[email]" maxlength="50" placeholder="Email" autocomplete="off"></div>
-        <button class="btn-submit" type="submit">Send Me a Unique Package</button>
-        <div class="hero-mobile-form__terms"><a href="#" target="_blank">Terms and Conditions Apply</a></div>
-      </form>
-    </div>
+    <!-- ===========================
+         HERO (master-template style, SEO content)
+         =========================== -->
+    <section class="hero">
+      <div class="container">
+        <nav class="breadcrumbs reveal" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="index.html">
+            <meta itemprop="position" content="1"><meta itemprop="name" content="Home"><meta itemprop="item" content="https://www.marketingwithfahad.ae/">Home</a>
+          <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="services.html">
+            <meta itemprop="position" content="2"><meta itemprop="name" content="Services"><meta itemprop="item" content="https://www.marketingwithfahad.ae/services/">Services</a>
+          <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="3"><meta itemprop="name" content="Search Engine Optimization">Search Engine Optimization</span>
+        </nav>
 
-    <!-- Desktop Hero Banner -->
-    <div class="hero-banner">
-      <img class="hero-banner__img" src="assets/seo-desktop.jpeg" alt="Search Engine Optimization">
-      <div class="hero-banner__overlay"></div>
-      <div class="hero-banner__content">
-        <div class="container">
-          <nav class="breadcrumbs" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-            <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="index.html">
-              <meta itemprop="position" content="1"><meta itemprop="name" content="Home"><meta itemprop="item" content="https://www.marketingwithfahad.ae/">Home</a>
-            <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="services.html">
-              <meta itemprop="position" content="2"><meta itemprop="name" content="Services"><meta itemprop="item" content="https://www.marketingwithfahad.ae/services/">Services</a>
-            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-              <meta itemprop="position" content="3"><meta itemprop="name" content="Search Engine Optimization">Search Engine Optimization</span>
-          </nav>
-
-          <h1>Guaranteed <span class="accent">First Position</span> Ranking</h1>
-
-          <div class="hero-trust-badges">
-            <div class="trust-badge">
-              <div class="trust-badge__icon">⭐</div>
-              <div>
-                <div class="trust-badge__label">Clutch Partner</div>
-                <div class="trust-badge__sub">★★★★★ Rated</div>
-              </div>
-            </div>
-            <div class="trust-badge">
-              <div class="trust-badge__icon">🏆</div>
-              <div>
-                <div class="trust-badge__label">500+ Projects</div>
-                <div class="trust-badge__sub">Successfully Delivered</div>
-              </div>
-            </div>
-            <div class="trust-badge">
-              <div class="trust-badge__icon">✅</div>
-              <div>
-                <div class="trust-badge__label">Pay After Rank</div>
-                <div class="trust-badge__sub">Zero Risk Model</div>
-              </div>
-            </div>
-            <div class="trust-badge">
-              <div class="trust-badge__icon">📅</div>
-              <div>
-                <div class="trust-badge__label">17+ Years</div>
-                <div class="trust-badge__sub">Of Experience</div>
-              </div>
+        <div class="hero__grid">
+          <div>
+            <span class="hero__eyebrow">#1 SEO Agency UAE</span>
+            <h1>Guaranteed <span class="accent">First Position</span> Ranking on Google</h1>
+            <p class="hero__desc">We help UAE businesses dominate Google search through proven on-page and off-page SEO strategy — with a Pay After Rank model that puts the risk on us, not you.</p>
+            <ul class="hero__checklist">
+              <li>Pay only after your keywords hit Page 1</li>
+              <li>White-hat technical + content SEO</li>
+              <li>Daily rank tracking &amp; transparent reporting</li>
+            </ul>
+            <div class="hero__btns">
+              <a href="contact.html" class="btn-primary">Get a Custom Proposal</a>
+              <a href="contact.html" class="btn-outline">Get Free SEO Audit</a>
             </div>
           </div>
 
-          <!-- Desktop form -->
-          <div class="hero-form">
-            <div class="hero-form__title">Get Free Quote</div>
+          <div class="hero-form-card">
+            <div class="hero-form-card__header">
+              <div class="hero-form-card__icon" aria-hidden="true">🚀</div>
+              <div>
+                <strong class="hero-form-card__title">Get Free Quote</strong>
+                <span class="hero-form-card__sub">See your unique SEO package</span>
+              </div>
+            </div>
             <form method="post" action="/order/seo_order/submit">
-              <div class="form-item"><input type="text" name="darvin_seo_order_order[name]" required placeholder="Name*" autocomplete="off"></div>
-              <div class="form-item"><input type="text" name="darvin_seo_order_order[phone]" required maxlength="30" placeholder="Phone*" value="+971" autocomplete="off"></div>
-              <div class="form-item"><input type="email" name="darvin_seo_order_order[email]" maxlength="50" placeholder="Email" autocomplete="off"></div>
-              <button class="btn-submit" type="submit">Send Me a Unique Package</button>
-              <div class="hero-form__terms"><a href="/privacy-policy/" target="_blank">Terms and Conditions Apply</a></div>
+              <div class="form-group">
+                <label class="form-label" for="seo-name">Full Name</label>
+                <input class="form-input" type="text" id="seo-name" name="darvin_seo_order_order[name]" required placeholder="Your full name" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="seo-phone">Phone Number</label>
+                <input class="form-input" type="text" id="seo-phone" name="darvin_seo_order_order[phone]" required maxlength="30" placeholder="+971" value="+971" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="seo-email">Email Address</label>
+                <input class="form-input" type="email" id="seo-email" name="darvin_seo_order_order[email]" maxlength="50" placeholder="john@company.com" autocomplete="off">
+              </div>
+              <button type="submit" class="form-submit">Send Me a Unique Package →</button>
+              <p class="form-note">100% Free · No credit card required · Response within 2 hours</p>
             </form>
           </div>
         </div>
+
+        <div class="hero__proof-strip">
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon gold"><i class="ti ti-trophy"></i>🏆</div>
+            <strong>750+</strong>
+            <span>Websites Ranked Page 1</span>
+            <span class="hero__proof-badge green">Growing</span>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon blue"><i class="ti ti-calendar-event"></i>📅</div>
+            <strong>17+ Years</strong>
+            <span>Of SEO Experience</span>
+            <span class="hero__proof-badge blue">Est. 2008</span>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon teal"><i class="ti ti-building"></i>✅</div>
+            <strong>Pay After Rank</strong>
+            <span>Zero Risk Model</span>
+            <span class="hero__proof-badge green">UAE-based</span>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon amber"><i class="ti ti-star"></i>⭐</div>
+            <strong>Clutch Partner</strong>
+            <span>★★★★★ Rated Agency</span>
+            <span class="hero__proof-badge blue">Verified</span>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- SEO Intro -->
     <section class="seo-intro">
@@ -657,34 +794,9 @@ li { margin: 4px 0; }
             <h2 class="section-heading section-heading--left">Track Positions &amp; <span class="accent">Strategy Adjustment</span></h2>
             <p>It takes a long time for a website to get promoted in google with 40 key-phrases, probably between 2 to 3 months. Either your website is on top 100 searches or not, we will provide you a detailed strategy. We analyze your existing keywords first and if necessary we will suggest you new related keywords for your business because this is very important and essential point in your positioning. We have a clear to understand 12 months' work strategy which will be explained to you in details. Apart from that we have a daily reporting system which allows us to know your ranking daily and improvise it wherever its required.</p>
             <p>Choosing the right <a href="https://www.marketingwithfahad.ae/">SEO Company in Dubai</a> is very important to know how and what techniques the company is using for on-page and off-page optimization in order to avoid your website goes through sanction process. We believe in white-hat techniques and you can see every step by step of our work according to our monthly strategy plan from close.</p>
-
-            <div class="seo-track__brand-stats">
-              <div class="seo-track__brand-stats-title">Average Ranking Improvement</div>
-              <div class="brand-stat-bar">
-                <div class="brand-stat-bar__label">Top 3 Keywords <span>82%</span></div>
-                <div class="brand-stat-bar__track"><div class="brand-stat-bar__fill" style="width:82%"></div></div>
-              </div>
-              <div class="brand-stat-bar">
-                <div class="brand-stat-bar__label">Top 5 Keywords <span>91%</span></div>
-                <div class="brand-stat-bar__track"><div class="brand-stat-bar__fill" style="width:91%"></div></div>
-              </div>
-              <div class="brand-stat-bar">
-                <div class="brand-stat-bar__label">Top 10 Keywords <span>97%</span></div>
-                <div class="brand-stat-bar__track"><div class="brand-stat-bar__fill" style="width:97%"></div></div>
-              </div>
-              <div class="brand-stat-bar">
-                <div class="brand-stat-bar__label">Client Satisfaction <span>99%</span></div>
-                <div class="brand-stat-bar__track"><div class="brand-stat-bar__fill" style="width:99%"></div></div>
-              </div>
-            </div>
           </div>
-          <div class="seo-track__charts reveal" style="transition-delay:0.12s">
-            <div class="seo-track__img-wrap">
-              <img src="assets/track-positions.png" alt="Track Positions">
-            </div>
-            <div class="seo-track__chart-img">
-              <img src="assets/seo-text-chart-img.png" alt="SEO Position Chart">
-            </div>
+          <div class="seo-track__img-wrap reveal" style="transition-delay:0.12s">
+            <img src="assets/track-positions.png" alt="Track Positions">
           </div>
         </div>
       </div>
