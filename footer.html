@@ -102,28 +102,40 @@
     align-items: start;
   }
 
-  .l-footer .f-logo-map,
   .l-footer .f-social-col {
     display: flex;
     flex-direction: column;
     min-width: 0;
   }
 
-  /* Logo: full stacked lockup, sized large enough to stay legible */
+  /* Logo + map: side by side, map first (left), logo second (right) */
+  .l-footer .f-logo-map {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  /* Logo: sized to match the map's height so the column stays compact */
   .l-footer .f-logo img {
-    height: 140px;
+    height: 100px;
     width: auto;
     display: block;
-    margin: 0 0 18px 0;
+    margin: 0;
     padding: 0;
+    flex-shrink: 0;
   }
 
   .l-footer .f-map-link {
     display: inline-block;
+    flex-shrink: 0;
   }
 
   .l-footer .f-map-link img {
-    width: 200px;
+    width: 140px;
+    height: 100px;
+    object-fit: cover;
     border-radius: 10px;
     border: 1px solid var(--f-gold-bdr);
     opacity: 0.82;
@@ -201,8 +213,9 @@
     .l-footer .f-top  { gap: 36px; padding: 44px 28px 36px; }
     .l-footer .f-nav  { gap: 0 28px; }
     .l-footer .f-right { gap: 24px; }
-    .l-footer .f-map-link img { width: 170px; }
-    .l-footer .f-logo img { height: 120px; }
+    .l-footer .f-map-link img { width: 120px; height: 90px; }
+    .l-footer .f-logo img { height: 90px; }
+    .l-footer .f-logo-map { gap: 16px; }
   }
 
   /* ══════════════════════════════
@@ -222,8 +235,8 @@
       grid-template-columns: auto 1fr;
       gap: 24px;
     }
-    .l-footer .f-map-link img { width: 100%; max-width: 220px; }
-    .l-footer .f-logo img { height: 110px; }
+    .l-footer .f-map-link img { width: 110px; height: 80px; }
+    .l-footer .f-logo img { height: 80px; }
   }
 
   /* ══════════════════════════════
@@ -238,12 +251,11 @@
     }
 
     .l-footer .f-right { grid-template-columns: 1fr; gap: 20px; }
-    .l-footer .f-map-link img { width: 100%; max-width: 100%; }
     .l-footer .f-whatsapp { width: 100%; justify-content: center; }
 
-    /* Center logo on its own row at this width for a cleaner stack */
-    .l-footer .f-logo { display: flex; justify-content: flex-start; }
-    .l-footer .f-logo img { height: 100px; margin-bottom: 16px; }
+    .l-footer .f-map-link img { width: 90px; height: 70px; }
+    .l-footer .f-logo img { height: 70px; }
+    .l-footer .f-logo-map { gap: 14px; }
   }
 
   /* ══════════════════════════════
@@ -252,7 +264,11 @@
   @media (max-width: 380px) {
     .l-footer .f-social-icons a { width: 36px; height: 36px; }
     .l-footer .f-whatsapp { font-size: 12px; padding: 10px 14px; }
-    .l-footer .f-logo img { height: 84px; }
+
+    /* Too narrow for side-by-side — stack map above logo, map first */
+    .l-footer .f-logo-map { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .l-footer .f-map-link img { width: 100%; max-width: 200px; height: 100px; }
+    .l-footer .f-logo img { height: 60px; }
   }
 </style>
 
@@ -319,17 +335,17 @@
     <div class="f-right">
 
       <div class="f-logo-map">
+        <a href="https://maps.google.com/?q=BeOnTop+Office+701+JLT+Dubai" target="_blank" rel="noopener" class="f-map-link">
+          <img src="/assets/footer-map.png" alt="BeOnTop – Office 701, JLT, Dubai">
+        </a>
         <div class="f-logo">
           <img
             src="/assets/logo-full.png"
             srcset="/assets/logo-full.png 1x, /assets/logo-full@2x.png 2x"
             alt="Marketing with Fahad"
-            width="157" height="140"
+            width="112" height="100"
           >
         </div>
-        <a href="https://maps.google.com/?q=BeOnTop+Office+701+JLT+Dubai" target="_blank" rel="noopener" class="f-map-link">
-          <img src="/assets/footer-map.png" alt="BeOnTop – Office 701, JLT, Dubai">
-        </a>
       </div>
 
       <div class="f-social-col">
