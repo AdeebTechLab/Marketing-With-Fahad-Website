@@ -71,67 +71,317 @@ a { text-decoration: none; color: inherit; }
   padding: 0 24px 72px;
 }
 
+.container { width: 100%; max-width: 1260px; margin: 0 auto; padding: 0 24px; }
+
 /* ── BREADCRUMBS ── */
 .breadcrumbs {
-  padding: 20px 24px 6px;
-  max-width: 1260px;
-  margin: 0 auto;
   font-size: 13px;
   color: var(--text-muted);
-  animation: fadeSlideDown 0.5s ease both;
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: fadeSlideDown 0.5s 0.1s ease forwards;
 }
 .breadcrumbs a {
-  color: var(--gold);
+  color: var(--text-muted);
   transition: color 0.2s;
 }
-.breadcrumbs a:hover { color: var(--gold-dark); }
+.breadcrumbs a:hover { color: var(--gold); }
 .breadcrumbs a::after {
   content: '›';
   margin: 0 7px;
   color: #ccc;
 }
-.breadcrumbs span { color: #aaa; }
+.breadcrumbs span { color: var(--gold); }
 
 @keyframes fadeSlideDown {
   from { opacity: 0; transform: translateY(-12px); }
   to   { opacity: 1; transform: none; }
 }
+@keyframes fadeSlideUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeSlideRight { to { opacity: 1; transform: translateX(0); } }
 
-/* ── PAGE TITLE ── */
-/* FIX #1 — Hero treatment: page title inside a proper hero block */
-.page-title-hero {
-  background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 100%);
-  border-radius: 16px;
-  padding: 48px 52px;
-  margin: 22px 0 36px;
-  animation: fadeSlideDown 0.55s 0.1s ease both;
+/* ===========================
+   HERO (master template style)
+   =========================== */
+.hero {
+  background: #fffdf5;
+  padding: 56px 0 64px;
+  border-bottom: 1px solid var(--gold-border);
   position: relative;
   overflow: hidden;
+  border-radius: 0 0 20px 20px;
 }
-.page-title-hero::before {
+.hero::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--gold) 0%, transparent 55%);
-  opacity: 0.08;
+  top: -60px; right: -80px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,166,77,0.09) 0%, transparent 70%);
   pointer-events: none;
 }
-.page-title-hero h1 {
-  font-size: clamp(28px, 4vw, 46px);
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1.15;
-  position: relative;
-  z-index: 1;
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 52px;
+  align-items: center;
 }
-.page-title-hero h1 span { color: var(--gold); }
-.page-title-hero p {
-  margin-top: 12px;
+.hero__eyebrow {
+  display: inline-block;
+  background: rgba(200,166,77,0.12);
+  color: var(--gold-dark);
+  border: 1px solid rgba(200,166,77,0.4);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeSlideDown 0.5s 0.1s forwards;
+}
+.hero h1 {
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.12;
+  margin: 0 0 18px;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeSlideUp 0.6s 0.2s forwards;
+}
+.hero h1 span { color: var(--gold-dark); }
+.hero__desc {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 0 24px;
+  line-height: 1.8;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeSlideUp 0.6s 0.3s forwards;
+}
+.hero__checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeSlideUp 0.6s 0.38s forwards;
+}
+.hero__checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
   font-size: 15px;
-  color: rgba(255,255,255,0.65);
-  max-width: 560px;
-  position: relative;
-  z-index: 1;
+  margin: 0;
+}
+.hero__checklist li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.hero__btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeSlideUp 0.6s 0.45s forwards;
+}
+
+.hero__proof-strip {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--gold-border);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--gold-border);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.55s forwards;
+}
+.hero__proof-item {
+  background: var(--white);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+.hero__proof-item:hover { background: #f9f9f9; }
+.hero__proof-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.hero__proof-icon.gold  { background: #FAEEDA; color: #854F0B; }
+.hero__proof-icon.blue  { background: #E6F1FB; color: #185FA5; }
+.hero__proof-icon.teal  { background: #E1F5EE; color: #0F6E56; }
+.hero__proof-icon.amber { background: #FAEEDA; color: #BA7517; }
+.hero__proof-item strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+.hero__proof-item > span {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.hero__proof-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 4px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.hero__proof-badge.green { background: #EAF3DE; color: #3B6D11; }
+.hero__proof-badge.blue  { background: #E6F1FB; color: #185FA5; }
+
+.btn-primary {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.btn-primary:hover {
+  background: var(--gold-dark);
+  color: var(--white);
+  box-shadow: 0 6px 20px var(--gold-shadow);
+  transform: translateY(-1px);
+}
+.btn-outline {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--gold-dark);
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.btn-outline:hover { background: rgba(200,166,77,0.08); color: var(--gold-dark); }
+
+/* Hero form card */
+.hero-form-card {
+  background: var(--dark);
+  border: 1px solid #1e293b;
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  opacity: 0;
+  transform: translateX(16px);
+  animation: fadeSlideRight 0.6s 0.3s forwards;
+}
+.hero-form-card__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.hero-form-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  background: rgba(200,166,77,0.15);
+  color: var(--gold);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.hero-form-card__title {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  display: block;
+  margin: 0 0 2px;
+}
+.hero-form-card__sub {
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+}
+.form-group { margin-bottom: 14px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: var(--white);
+  font-family: inherit;
+  transition: border-color 0.25s ease;
+}
+.form-input::placeholder { color: rgba(255,255,255,0.3); }
+.form-input:focus { border-color: var(--gold); outline: none; }
+.form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+  font-family: inherit;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+.form-submit:hover { background: var(--gold-dark); box-shadow: 0 6px 20px var(--gold-shadow); }
+.form-note {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  margin: 10px 0 0;
 }
 
 /* ── SECTION DIVIDER ── */
@@ -139,7 +389,7 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px; /* FIX #3 — reduced from 28px */
+  margin-bottom: 20px;
 }
 .section-divider .dot {
   width: 8px; height: 8px;
@@ -161,60 +411,12 @@ a { text-decoration: none; color: inherit; }
   background: linear-gradient(to right, var(--gold-border), transparent);
 }
 
-/* ── HERO BANNER ── */
-/* FIX #2 — right text box: replace purple gradient with brand navy (#1a1a2e) */
-.hero-banner {
-  border-radius: 20px;
-  overflow: hidden;
-  background: var(--dark); /* FIX #2: solid brand navy instead of purple gradient */
-  display: flex;
-  align-items: stretch;
-  min-height: 220px;
-  margin-bottom: 36px; /* FIX #3 — reduced from 52px */
-  position: relative;
-  box-shadow: 0 8px 40px rgba(26,26,46,0.18);
-}
-.hero-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--gold) 0%, transparent 60%);
-  opacity: 0.07;
-  pointer-events: none;
-}
-.hero-img-side {
-  flex: 0 0 42%;
-  overflow: hidden;
-  position: relative;
-}
-.hero-img-side img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.hero-img-side:hover img { transform: scale(1.04); }
-.hero-text-side {
-  flex: 1;
-  /* FIX #2 — brand navy background, no purple tint */
-  background: var(--dark);
-  padding: 40px 44px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-}
-.hero-text-side p {
-  color: rgba(255,255,255,0.88);
-  font-size: 16px;
-  line-height: 1.85;
-}
-
 /* ── WRITING CARDS ── */
 .writing-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px; /* FIX #3 — tightened gap from 20px */
-  margin-bottom: 36px; /* FIX #3 — reduced from 60px */
+  gap: 18px;
+  margin-bottom: 36px;
 }
 .writing-card {
   border-radius: var(--radius);
@@ -263,7 +465,7 @@ a { text-decoration: none; color: inherit; }
 }
 .writing-card:hover .overlay-icon { transform: scale(1); }
 .writing-card-body {
-  padding: 18px 20px 20px; /* FIX #3 — slightly tighter padding */
+  padding: 18px 20px 20px;
   border-top: 2px solid var(--gold-border);
   transition: border-color 0.3s;
 }
@@ -278,13 +480,13 @@ a { text-decoration: none; color: inherit; }
 .advantages-section {
   background: var(--white);
   border-radius: 20px;
-  padding: 40px 36px 36px; /* FIX #3 — tighter padding */
+  padding: 40px 36px 36px;
   margin-bottom: 16px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.05);
 }
 .advantages-heading {
   text-align: center;
-  margin-bottom: 28px; /* FIX #3 — reduced from 36px */
+  margin-bottom: 28px;
 }
 .advantages-heading .badge {
   display: inline-block;
@@ -314,7 +516,7 @@ a { text-decoration: none; color: inherit; }
 .advantages-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px; /* FIX #3 — tightened from 14px */
+  gap: 12px;
 }
 .adv-item {
   display: flex;
@@ -323,7 +525,7 @@ a { text-decoration: none; color: inherit; }
   background: var(--bg);
   border: 1px solid var(--gold-border);
   border-radius: 12px;
-  padding: 14px 16px; /* FIX #3 — slightly reduced */
+  padding: 14px 16px;
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, background 0.25s;
   cursor: default;
 }
@@ -333,20 +535,28 @@ a { text-decoration: none; color: inherit; }
   border-color: var(--gold);
   background: var(--gold-tint);
 }
+/* Icon wrap now solid gold by default — keeps original icon images on top of a gold badge */
 .adv-icon-wrap {
   width: 46px; height: 46px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: var(--gold-tint);
-  border: 1px solid var(--gold-border);
+  background: var(--gold);
+  border: 1px solid var(--gold-dark);
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.25s, border-color 0.25s;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  box-shadow: 0 3px 10px var(--gold-shadow);
 }
 .adv-item:hover .adv-icon-wrap {
-  background: var(--gold);
-  border-color: var(--gold);
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+  transform: scale(1.06);
 }
-.adv-icon-wrap img { width: 26px; height: 26px; object-fit: contain; }
+.adv-icon-wrap img {
+  width: 24px; height: 24px;
+  object-fit: contain;
+  /* Push icon toward white so it reads clearly against the gold badge */
+  filter: brightness(0) invert(1);
+}
 .adv-label {
   font-size: 13px;
   font-weight: 600;
@@ -356,15 +566,15 @@ a { text-decoration: none; color: inherit; }
 
 /* ── FAQ SECTION ── */
 .faq-section {
-  padding: 56px 24px 72px; /* FIX #3 — reduced top padding from 80px */
+  padding: 56px 24px 72px;
   background: var(--white);
-  margin-top: 20px; /* FIX #3 — reduced from 24px */
+  margin-top: 20px;
 }
 .faq-inner {
   max-width: 1260px;
   margin: 0 auto;
   display: flex;
-  gap: 56px; /* FIX #3 — reduced from 64px */
+  gap: 56px;
   align-items: flex-start;
 }
 .faq-left {
@@ -392,7 +602,6 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 16px;
 }
 .faq-heading span { color: var(--gold); }
-/* FIX #4 — FAQ sub text trimmed (removed repeat of services list) */
 .faq-sub {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.6);
@@ -417,7 +626,7 @@ a { text-decoration: none; color: inherit; }
 }
 .faq-right { flex: 1; }
 .faq-item {
-  margin-bottom: 8px; /* FIX #3 — tightened from 10px */
+  margin-bottom: 8px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(200,166,77,0.18);
   border-radius: var(--radius);
@@ -432,7 +641,7 @@ a { text-decoration: none; color: inherit; }
   width: 100%;
   border: none;
   background: none;
-  padding: 16px 20px; /* FIX #3 — slightly reduced from 18px */
+  padding: 16px 20px;
   font-size: 14px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.88);
@@ -515,25 +724,23 @@ a { text-decoration: none; color: inherit; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-form-card { max-width: 480px; }
   .writing-cards { grid-template-columns: repeat(2, 1fr); }
   .advantages-grid { grid-template-columns: repeat(2, 1fr); }
   .faq-inner { flex-direction: column; gap: 40px; }
   .faq-left { position: static; flex: none; width: 100%; }
 }
 @media (max-width: 640px) {
-  .hero-banner { flex-direction: column; }
-  .hero-img-side { flex: none; height: 200px; }
-  .hero-text-side { padding: 26px 22px; }
   .writing-cards { grid-template-columns: 1fr; }
   .advantages-grid { grid-template-columns: 1fr; }
   .advantages-section { padding: 28px 18px 24px; }
   .faq-section { padding: 44px 20px 56px; }
-  .page-title-hero { padding: 32px 24px; }
+  .hero { padding: 40px 0 44px; }
 }
 @media (max-width: 400px) {
   .faq-btn { font-size: 13px; padding: 13px 16px; }
   .page-wrap { padding: 0 14px 52px; }
-  .breadcrumbs { padding: 16px 14px 4px; }
 }
 </style>
 </head>
@@ -543,49 +750,108 @@ a { text-decoration: none; color: inherit; }
 <div id="header-placeholder"></div>
 
 <main>
-  <!-- BREADCRUMBS -->
-  <nav class="breadcrumbs" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-    <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="/index.html">
-      <meta itemprop="position" content="1">
-      <meta itemprop="name" content="Home">
-      Home</a>
-    <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="/services.html">
-      <meta itemprop="position" content="2">
-      <meta itemprop="name" content="Services">
-      Services</a>
-    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <meta itemprop="position" content="3">
-      <meta itemprop="name" content="Content Writing">
-      Content Writing</span>
-  </nav>
+
+  <!-- ===========================
+       HERO (master-template style, Content Writing content)
+       =========================== -->
+  <section class="hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="/index.html">
+          <meta itemprop="position" content="1">
+          <meta itemprop="name" content="Home">
+          Home</a>
+        <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="/services.html">
+          <meta itemprop="position" content="2">
+          <meta itemprop="name" content="Services">
+          Services</a>
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <meta itemprop="position" content="3">
+          <meta itemprop="name" content="Content Writing">
+          Content Writing</span>
+      </nav>
+
+      <div class="hero__grid">
+        <div>
+          <span class="hero__eyebrow">UAE Content Writing Experts</span>
+          <h1>Distinguished <span>Content Writing</span> That Builds Your Brand</h1>
+          <p class="hero__desc">Repeating and copying content is the worst thing you can do for your brand image. We write unique, SEO-optimized content that says everything there is to say — while staying brief, sharp, and on-brand.</p>
+          <ul class="hero__checklist">
+            <li>100% unique, plagiarism-free content</li>
+            <li>SEO-optimized for keywords &amp; rankings</li>
+            <li>Bilingual English &amp; Arabic writing available</li>
+          </ul>
+          <div class="hero__btns">
+            <a href="contact.html" class="btn-primary">Get a Custom Proposal</a>
+            <a href="contact.html" class="btn-outline">Get Free Content Audit</a>
+          </div>
+        </div>
+
+        <div class="hero-form-card">
+          <div class="hero-form-card__header">
+            <div class="hero-form-card__icon" aria-hidden="true">✍️</div>
+            <div>
+              <strong class="hero-form-card__title">Get Free Content Audit</strong>
+              <span class="hero-form-card__sub">See how your content can perform better</span>
+            </div>
+          </div>
+          <form action="https://formspree.io/f/xwkgpznk" method="POST">
+            <div class="form-group">
+              <label class="form-label" for="cw-name">Full Name</label>
+              <input class="form-input" type="text" id="cw-name" name="fullname" required placeholder="Your full name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cw-email">Email Address</label>
+              <input class="form-input" type="email" id="cw-email" name="email" required placeholder="john@company.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cw-website">Website URL</label>
+              <input class="form-input" type="url" id="cw-website" name="website" placeholder="https://yourwebsite.com">
+            </div>
+            <button type="submit" class="form-submit">Get Free Audit →</button>
+            <p class="form-note">100% Free · No credit card required · Response within 2 hours</p>
+          </form>
+        </div>
+      </div>
+
+      <div class="hero__proof-strip">
+        <div class="hero__proof-item">
+          <div class="hero__proof-icon gold">✍️</div>
+          <strong>100%</strong>
+          <span>Unique, Plagiarism-Free</span>
+          <span class="hero__proof-badge green">Guaranteed</span>
+        </div>
+        <div class="hero__proof-item">
+          <div class="hero__proof-icon blue">🌐</div>
+          <strong>EN + AR</strong>
+          <span>Bilingual Content Writing</span>
+          <span class="hero__proof-badge blue">Available</span>
+        </div>
+        <div class="hero__proof-item">
+          <div class="hero__proof-icon teal">⚡</div>
+          <strong>3–5 Days</strong>
+          <span>Standard Delivery Time</span>
+          <span class="hero__proof-badge green">Fast Turnaround</span>
+        </div>
+        <div class="hero__proof-item">
+          <div class="hero__proof-icon amber">🔍</div>
+          <strong>SEO-Built</strong>
+          <span>Every Piece Optimized</span>
+          <span class="hero__proof-badge blue">Verified</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="page-wrap">
 
-    <!-- FIX #1 — PAGE TITLE: proper hero treatment with dark background -->
-    <div class="page-title-hero">
-      <h1>Distinguished <span>Content Writing</span></h1>
-      <p>Unique, SEO-optimized content that builds your brand and drives results.</p>
-    </div>
-
-    <!-- FIX #2 — HERO BANNER: right text box now uses brand navy (#1a1a2e), no purple -->
-    <div class="hero-banner reveal">
-      <div class="hero-img-side">
-        <img src="assets/writing_img1.jpg" alt="Content Writing Services" loading="lazy">
-      </div>
-      <div class="hero-text-side">
-        <p>Repeating and copying content is the worst thing you can do for your brand image. Be it need for brochure design, menu card design, or flyer design, your content needs to be immaculate, unique and should say everything there is to explain while being brief at the same time.</p>
-      </div>
-    </div>
-
     <!-- WRITING CARDS -->
-    <!-- FIX #3 — section-divider margin-bottom reduced -->
     <div class="section-divider reveal">
       <span class="dot"></span>
       <span class="label">Our Work</span>
       <span class="line"></span>
     </div>
 
-    <!-- FIX #3 — cards gap & margin-bottom tightened -->
     <div class="writing-cards">
       <div class="writing-card reveal" data-img="assets/writing_img1.jpg" role="button" tabindex="0" aria-label="View SEO Copywriting Dubai image">
         <div class="writing-card-thumb">
@@ -673,7 +939,6 @@ a { text-decoration: none; color: inherit; }
       <div class="faq-left reveal">
         <span class="faq-badge">FAQs</span>
         <h2 class="faq-heading">Frequently<br><span>Asked Questions</span></h2>
-        <!-- FIX #4 — trimmed repeated service list from faq-sub -->
         <p class="faq-sub">Everything you need to know about our professional content writing services.</p>
         <a href="contact.html" class="faq-cta">Get Free Content Audit</a>
       </div>
@@ -720,7 +985,6 @@ a { text-decoration: none; color: inherit; }
           <div class="faq-answer" role="region">Yes. We review your existing content, brand guidelines, and tone of voice before writing to ensure all new content feels consistent and aligned with your established brand personality.</div>
         </div>
 
-       
       </div>
     </div>
   </section>
