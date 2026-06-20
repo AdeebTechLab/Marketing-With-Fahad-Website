@@ -329,18 +329,20 @@ button { font-family: var(--font); cursor: pointer; }
   align-self: flex-start;
   font-size: 13.5px;
   font-weight: 600;
-  color: var(--gold);
-  border: 1.5px solid var(--gold-border);
+  color: #fff;
+  border: 1.5px solid var(--gold);
   border-radius: 40px;
   padding: 8px 20px;
   transition: all var(--transition);
-  background: var(--gold-tint);
-}
-.card-link:hover {
   background: var(--gold);
-  color: #fff;
-  border-color: var(--gold);
   box-shadow: 0 4px 14px var(--gold-shadow);
+}
+.card-link svg path { stroke: #fff; }
+.card-link:hover {
+  background: var(--gold-dark);
+  color: #fff;
+  border-color: var(--gold-dark);
+  box-shadow: 0 6px 18px var(--gold-shadow);
 }
 .card-link svg { transition: transform var(--transition); flex-shrink: 0; }
 .card-link:hover svg { transform: translateX(3px); }
