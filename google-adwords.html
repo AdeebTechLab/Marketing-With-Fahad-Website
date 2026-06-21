@@ -418,6 +418,27 @@
     .page-section-dark { padding: 60px 0; background: var(--gold-tint); width: 100vw; margin-left: 50%; transform: translateX(-50%); }
     .page-section-dark .page-wrap-inner { max-width: var(--max); margin: 0 auto; padding: 0 22px; }
 
+    /* ── Icon Circle (white background so icons stay clearly visible) ── */
+    .icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--gold-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .icon-circle img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      margin: 0;
+    }
+
     /* ── Benefits Grid ── */
     .benefits-grid {
       display: grid;
@@ -431,13 +452,16 @@
       border-radius: var(--radius);
       padding: 24px 16px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
       opacity: 0;
       transform: translateY(20px);
     }
     .benefit-card.visible { opacity: 1; transform: translateY(0); }
     .benefit-card:hover { transform: translateY(-5px); box-shadow: 0 8px 28px var(--gold-shadow); border-color: var(--gold); }
-    .benefit-card img { width: 56px; height: 56px; object-fit: contain; margin: 0 auto 14px; }
+    .benefit-card .icon-circle { margin: 0 auto 14px; }
     .benefit-card p { font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.4; }
 
     /* ── Campaign Cards ── */
@@ -567,7 +591,6 @@
     .choose-card.visible { opacity: 1; transform: translateY(0); }
     .choose-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px var(--gold-shadow); border-color: var(--gold); }
     .choose-card-header { display: flex; align-items: center; gap: 14px; }
-    .choose-card-header img { width: 44px; height: 44px; object-fit: contain; }
     .choose-card-header h3 { font-size: 16px; color: var(--dark); margin: 0; }
     .choose-card p { font-size: 14px; color: #666; line-height: 1.65; }
 
@@ -813,11 +836,11 @@
         <div class="sec-divider" data-reveal><div class="sec-divider-dot"></div><span class="sec-divider-label">Why Google Ads</span><div class="sec-divider-line"></div></div>
         <h2 data-reveal>The Power of Google Ads: <span>Why Your Business Can't Ignore It</span></h2>
         <div class="benefits-grid">
-          <div class="benefit-card" data-stagger><img src="assets/benefits-icon-1.png" alt="Capture High-Intent Shoppers"><p>Capture High-Intent Shoppers</p></div>
-          <div class="benefit-card" data-stagger><img src="assets/benefits-icon-2.png" alt="Pay Only When You See Action"><p>Pay Only When You See Action</p></div>
-          <div class="benefit-card" data-stagger><img src="assets/benefits-icon-3.png" alt="Reach the Right People Every Time"><p>Reach the Right People Every Time</p></div>
-          <div class="benefit-card" data-stagger><img src="assets/benefits-icon-4.png" alt="Unlock the Power of Keywords"><p>Unlock the Power of Keywords</p></div>
-          <div class="benefit-card" data-stagger><img src="assets/benefits-icon-5.png" alt="Drive Sales and Maximize ROI"><p>Drive Sales and Maximize ROI</p></div>
+          <div class="benefit-card" data-stagger><div class="icon-circle"><img src="assets/benefits-icon-1.png" alt="Capture High-Intent Shoppers"></div><p>Capture High-Intent Shoppers</p></div>
+          <div class="benefit-card" data-stagger><div class="icon-circle"><img src="assets/benefits-icon-2.png" alt="Pay Only When You See Action"></div><p>Pay Only When You See Action</p></div>
+          <div class="benefit-card" data-stagger><div class="icon-circle"><img src="assets/benefits-icon-3.png" alt="Reach the Right People Every Time"></div><p>Reach the Right People Every Time</p></div>
+          <div class="benefit-card" data-stagger><div class="icon-circle"><img src="assets/benefits-icon-4.png" alt="Unlock the Power of Keywords"></div><p>Unlock the Power of Keywords</p></div>
+          <div class="benefit-card" data-stagger><div class="icon-circle"><img src="assets/benefits-icon-5.png" alt="Drive Sales and Maximize ROI"></div><p>Drive Sales and Maximize ROI</p></div>
         </div>
       </div>
     </div>
@@ -887,12 +910,12 @@
         <div class="sec-divider" data-reveal><div class="sec-divider-dot"></div><span class="sec-divider-label">Premier Partner</span><div class="sec-divider-line"></div></div>
         <h2 data-reveal>Why Choose a <span>Premier Google Partner?</span></h2>
         <div class="choose-grid">
-          <div class="choose-card" data-stagger><div class="choose-card-header"><img src="assets/choose-icon-1.png" alt="Expert Campaign Management"><h3>Expert Campaign Management</h3></div><p>Our Google-certified specialists design and execute campaigns that maximize ROI and deliver measurable results.</p></div>
-          <div class="choose-card" data-stagger><div class="choose-card-header"><img src="assets/choose-icon-2.png" alt="Cutting-Edge Techniques"><h3>Cutting-Edge Techniques</h3></div><p>We use the latest Google Ads technology, ensuring your campaigns benefit from innovative strategies and tools.</p></div>
-          <div class="choose-card" data-stagger><div class="choose-card-header"><img src="assets/choose-icon-3.png" alt="Access to Exclusive Features"><h3>Access to Exclusive Features</h3></div><p>As a Premier Partner, we offer early access to Google's newest features and beta programs, keeping you ahead of the curve.</p></div>
-          <div class="choose-card" data-stagger><div class="choose-card-header"><img src="assets/choose-icon-4.png" alt="Ongoing Campaign Support"><h3>Ongoing Campaign Support</h3></div><p>Our team monitors, optimizes, and supports your campaigns to ensure continuous success.</p></div>
-          <div class="choose-card" data-stagger><div class="choose-card-header"><img src="assets/choose-icon-5.png" alt="Dedicated Strategy"><h3>Dedicated Strategy</h3></div><p>You'll work with a team committed to achieving your unique business goals, offering personalized support every step of the way.</p></div>
-          <div class="choose-card" data-stagger><div class="choose-card-header"><img src="assets/choose-icon-6.png" alt="Proven Success Track Record"><h3>Proven Success Track Record</h3></div><p>Our history of delivering outstanding results makes us a trusted partner for businesses of all sizes.</p></div>
+          <div class="choose-card" data-stagger><div class="choose-card-header"><div class="icon-circle"><img src="assets/choose-icon-1.png" alt="Expert Campaign Management"></div><h3>Expert Campaign Management</h3></div><p>Our Google-certified specialists design and execute campaigns that maximize ROI and deliver measurable results.</p></div>
+          <div class="choose-card" data-stagger><div class="choose-card-header"><div class="icon-circle"><img src="assets/choose-icon-2.png" alt="Cutting-Edge Techniques"></div><h3>Cutting-Edge Techniques</h3></div><p>We use the latest Google Ads technology, ensuring your campaigns benefit from innovative strategies and tools.</p></div>
+          <div class="choose-card" data-stagger><div class="choose-card-header"><div class="icon-circle"><img src="assets/choose-icon-3.png" alt="Access to Exclusive Features"></div><h3>Access to Exclusive Features</h3></div><p>As a Premier Partner, we offer early access to Google's newest features and beta programs, keeping you ahead of the curve.</p></div>
+          <div class="choose-card" data-stagger><div class="choose-card-header"><div class="icon-circle"><img src="assets/choose-icon-4.png" alt="Ongoing Campaign Support"></div><h3>Ongoing Campaign Support</h3></div><p>Our team monitors, optimizes, and supports your campaigns to ensure continuous success.</p></div>
+          <div class="choose-card" data-stagger><div class="choose-card-header"><div class="icon-circle"><img src="assets/choose-icon-5.png" alt="Dedicated Strategy"></div><h3>Dedicated Strategy</h3></div><p>You'll work with a team committed to achieving your unique business goals, offering personalized support every step of the way.</p></div>
+          <div class="choose-card" data-stagger><div class="choose-card-header"><div class="icon-circle"><img src="assets/choose-icon-6.png" alt="Proven Success Track Record"></div><h3>Proven Success Track Record</h3></div><p>Our history of delivering outstanding results makes us a trusted partner for businesses of all sizes.</p></div>
         </div>
       </div>
     </div>
