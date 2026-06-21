@@ -105,12 +105,11 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 .hero {
   position: relative;
   width: 100%;
-  /* FIX #4: replace fixed height: 275px with a ratio matched to the
-     background image so the container's proportions follow the art.
-     Update this ratio to match assets/hero-seo-courses.png's real
-     width/height (e.g. 1920/420) for a pixel-perfect fit. */
-  aspect-ratio: 1270 / 275;
-  max-height: 420px;
+  /* FIX: contain was letterboxing the image down to a small centered
+     block inside a dark box. Back to a fixed responsive height with
+     object-fit: cover so the picture fills the entire banner width
+     edge-to-edge, the way a background image should. */
+  height: 320px;
   overflow: hidden;
   background: var(--dark);
 }
@@ -119,9 +118,10 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
   inset: 0;
   width: 100%;
   height: 100%;
-  /* FIX #4: contain (not cover) so the whole background picture is
-     visible at its natural proportions instead of being cropped */
-  object-fit: contain;
+  /* FIX: cover fills the full hero box with the photo (cropping only
+     the excess at top/bottom or sides as needed) instead of shrinking
+     the image to fit inside with empty bars around it */
+  object-fit: cover;
   object-position: center;
   opacity: .85;
 }
@@ -155,6 +155,13 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 }
 .hero-title em { font-style: normal; color: var(--gold); }
 .hero-mobile { display: none; }
+
+@media (min-width: 1200px) {
+  .hero { height: 380px; }
+}
+@media (max-width: 768px) {
+  .hero { height: 240px; }
+}
 
 @media (max-width: 567px) {
   .hero { display: none; }
@@ -269,10 +276,13 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 
 @media (min-width: 901px) {
   .sidebar {
+    /* FIX: removed max-height + overflow-y: auto — that was clipping the
+       form fields and info rows whenever the sticky box was taller than
+       the viewport. Sticky alone keeps it pinned while scrolling, and the
+       whole card is now always fully visible instead of being cut off. */
     position: sticky;
     top: 24px;
-    max-height: calc(100vh - 48px);
-    overflow-y: auto;
+    align-self: start;
   }
 }
 
