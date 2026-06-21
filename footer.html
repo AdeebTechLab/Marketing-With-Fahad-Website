@@ -108,7 +108,7 @@
     min-width: 0;
   }
 
-  /* Logo + map: side by side, map first (left), logo second (right) */
+  /* Logo + map: side by side, map first (left), logo second (right) on desktop/tablet */
   .l-footer .f-logo-map {
     display: flex;
     flex-direction: row;
@@ -253,6 +253,8 @@
     .l-footer .f-right { grid-template-columns: 1fr; gap: 20px; }
     .l-footer .f-whatsapp { width: 100%; justify-content: center; }
 
+    /* Mobile: logo on the left, map on the right */
+    .l-footer .f-logo-map { flex-direction: row; }
     .l-footer .f-map-link img { width: 90px; height: 70px; }
     .l-footer .f-logo img { height: 70px; }
     .l-footer .f-logo-map { gap: 14px; }
@@ -265,7 +267,7 @@
     .l-footer .f-social-icons a { width: 36px; height: 36px; }
     .l-footer .f-whatsapp { font-size: 12px; padding: 10px 14px; }
 
-    /* Too narrow for side-by-side — stack map above logo, map first */
+    /* Too narrow for side-by-side — stack logo above map, logo first (left/top) */
     .l-footer .f-logo-map { flex-direction: column; align-items: flex-start; gap: 12px; }
     .l-footer .f-map-link img { width: 100%; max-width: 200px; height: 100px; }
     .l-footer .f-logo img { height: 60px; }
@@ -334,9 +336,6 @@
     <div class="f-right">
 
       <div class="f-logo-map">
-        <a href="https://maps.google.com/?q=BeOnTop+Office+701+JLT+Dubai" target="_blank" rel="noopener" class="f-map-link">
-          <img src="/assets/footer-map.png" alt="BeOnTop – Office 701, JLT, Dubai">
-        </a>
         <div class="f-logo">
           <img
             src="/assets/logo-full.png"
@@ -345,6 +344,9 @@
             width="112" height="100"
           >
         </div>
+        <a href="https://maps.google.com/?q=Burj+Khalifa+Dubai" target="_blank" rel="noopener" class="f-map-link">
+          <img src="/assets/footer-map-burjkhalifa.png" alt="Burj Khalifa, Dubai">
+        </a>
       </div>
 
       <div class="f-social-col">
