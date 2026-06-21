@@ -147,7 +147,7 @@ input, select, textarea, button { font-family: var(--font); }
 .reveal.in-view { opacity: 1; transform: none; }
 
 /* ===========================
-   HERO SECTION — matches master template
+   HERO SECTION
    =========================== */
 .hero {
   background: #fffdf5;
@@ -302,7 +302,7 @@ input, select, textarea, button { font-family: var(--font); }
 .hero__proof-badge.green { background: #EAF3DE; color: #3B6D11; }
 .hero__proof-badge.blue  { background: #E6F1FB; color: #185FA5; }
 
-/* Hero form card — dark, matches master */
+/* Hero form card */
 .hero-form-card {
   background: var(--dark);
   border: 1px solid #1e293b;
@@ -453,7 +453,7 @@ input, select, textarea, button { font-family: var(--font); }
 .intro-grid__img:hover img { transform: scale(1.04); }
 
 /* ===========================
-   WHY CHOOSE US — redesigned card style
+   WHY CHOOSE US
    =========================== */
 .why-section {
   background: var(--body-bg);
@@ -491,37 +491,38 @@ input, select, textarea, button { font-family: var(--font); }
   border-color: var(--gold-border);
 }
 .why-card:hover::before { transform: scaleX(1); }
-.why-card__top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 18px;
-}
+
+/* ── ICON: white bg square, gold tint border, image inside ── */
 .why-card__icon {
-  width: 56px; height: 56px;
-  background: var(--gold-tint);
-  border: 1px solid var(--gold-border);
+  width: 64px;
+  height: 64px;
+  background: var(--white);
+  border: 1.5px solid var(--gold-border);
   border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(201,169,110,0.10);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
   flex-shrink: 0;
-  transition: background var(--transition), transform var(--transition);
+}
+.why-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 .why-card:hover .why-card__icon {
-  background: var(--gold);
-  transform: scale(1.06) rotate(-4deg);
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px var(--gold-shadow);
+  transform: scale(1.06) rotate(-3deg);
 }
-.why-card__index {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: var(--gold-border);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 4px 10px;
-  flex-shrink: 0;
-}
+
+/* Remove old top-row layout — icon now sits alone above title */
+.why-card__top { display: none; }
+
 .why-card h3 {
   font-size: 17px;
   font-weight: 700;
@@ -534,39 +535,6 @@ input, select, textarea, button { font-family: var(--font); }
   line-height: 1.7;
   margin: 0;
 }
-.why-card--featured {
-  background: var(--dark);
-  border-color: var(--dark);
-}
-.why-card--featured::before { background: linear-gradient(to right, var(--gold), var(--gold-dark)); transform: scaleX(1); }
-.why-card--featured h3,
-.why-card--featured p { color: rgba(255,255,255,0.92); }
-.why-card--featured p { color: rgba(255,255,255,0.62); }
-.why-card--featured .why-card__icon {
-  background: rgba(201,169,110,0.18);
-  border-color: rgba(201,169,110,0.35);
-}
-.why-card--featured:hover .why-card__icon { background: var(--gold); }
-.why-card--featured .why-card__index {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.12);
-  color: var(--gold);
-}
-.why-card__tag {
-  position: absolute;
-  top: 14px; right: 14px;
-  background: var(--gold);
-  color: var(--white);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 11px;
-  border-radius: 30px;
-  display: none;
-}
-.why-card--featured .why-card__tag { display: inline-block; }
-.why-card--featured .why-card__index { display: none; }
 
 /* ===========================
    CMS SECTION
@@ -665,7 +633,7 @@ input, select, textarea, button { font-family: var(--font); }
 a.portfolio-card__label:hover { color: var(--gold); }
 
 /* ===========================
-   PRICING SECTION — Deep Navy + Gold, all cards same combo
+   PRICING SECTION
    =========================== */
 .pricing-section {
   background: var(--dark);
@@ -1093,9 +1061,7 @@ a.portfolio-card__label:hover { color: var(--gold); }
 
 <div id="header-placeholder"></div>
 
-<!-- ===========================
-     HERO — matches master template
-     =========================== -->
+<!-- HERO -->
 <section class="hero">
   <div class="container">
     <div class="hero__grid">
@@ -1182,9 +1148,7 @@ a.portfolio-card__label:hover { color: var(--gold); }
   </div>
 </section>
 
-<!-- ===========================
-     INTRO
-     =========================== -->
+<!-- INTRO -->
 <section class="intro-section">
   <div class="container">
     <div class="intro-grid">
@@ -1210,9 +1174,7 @@ a.portfolio-card__label:hover { color: var(--gold); }
   </div>
 </section>
 
-<!-- ===========================
-     WHY CHOOSE US — redesigned cards with featured card highlight
-     =========================== -->
+<!-- WHY CHOOSE US -->
 <section class="why-section">
   <div class="container">
     <div class="section-divider section-divider--center reveal">
@@ -1226,55 +1188,61 @@ a.portfolio-card__label:hover { color: var(--gold); }
     <p class="section-subtext section-subtext--center reveal">We don't use templates. Every pixel is crafted specifically for your brand, your audience, and your goals.</p>
 
     <div class="why-grid">
+
+      <!-- Card 1: Custom Design -->
       <div class="why-card reveal">
-        <div class="why-card__top">
-          <div class="why-card__icon" aria-hidden="true">🎨</div>
-          <span class="why-card__index">01</span>
+        <div class="why-card__icon">
+          <img src="assets/icons/icon-custom-design.png" alt="Custom Design icon">
         </div>
         <h3>Custom Design</h3>
         <p>Every website is designed from scratch by our team — unique, on-brand, and built to stand out from your competitors.</p>
       </div>
+
+      <!-- Card 2: UX/UI Excellence -->
       <div class="why-card reveal" style="transition-delay:0.06s">
-        <div class="why-card__top">
-          <div class="why-card__icon" aria-hidden="true">📱</div>
-          <span class="why-card__index">02</span>
+        <div class="why-card__icon">
+          <img src="assets/icons/icon-ux-ui.png" alt="UX/UI Excellence icon">
         </div>
         <h3>UX/UI Excellence</h3>
         <p>Intuitive layouts and well-thought-out structure that guide your visitors toward conversion — on every screen size.</p>
       </div>
+
+      <!-- Card 3: Clean Code -->
       <div class="why-card reveal" style="transition-delay:0.12s">
-        <div class="why-card__top">
-          <div class="why-card__icon" aria-hidden="true">💻</div>
-          <span class="why-card__index">03</span>
+        <div class="why-card__icon">
+          <img src="assets/icons/icon-clean-code.png" alt="Clean Code icon">
         </div>
         <h3>Clean Code</h3>
         <p>Built on PHP, HTML/CSS/JS to the latest standards. Organized, maintainable code that any developer can work with.</p>
       </div>
-      <div class="why-card why-card--featured reveal" style="transition-delay:0.18s">
-        <span class="why-card__tag">Our Edge</span>
-        <div class="why-card__top">
-          <div class="why-card__icon" aria-hidden="true">⚙️</div>
-          <span class="why-card__index">04</span>
+
+      <!-- Card 4: Custom CMS — same style as others, no dark background -->
+      <div class="why-card reveal" style="transition-delay:0.18s">
+        <div class="why-card__icon">
+          <img src="assets/icons/icon-cms.png" alt="Custom CMS icon">
         </div>
         <h3>Custom CMS</h3>
         <p>Our proprietary Marketing with Fahad 6.0 CMS keeps your site SEO-friendly, secure, and easy to manage — without WordPress bloat.</p>
       </div>
+
+      <!-- Card 5: Professional Content -->
       <div class="why-card reveal" style="transition-delay:0.24s">
-        <div class="why-card__top">
-          <div class="why-card__icon" aria-hidden="true">✍️</div>
-          <span class="why-card__index">05</span>
+        <div class="why-card__icon">
+          <img src="assets/icons/icon-content.png" alt="Professional Content icon">
         </div>
         <h3>Professional Content</h3>
         <p>Words drive traffic. We create quality, keyword-rich content that attracts the right customers and improves your rankings.</p>
       </div>
+
+      <!-- Card 6: 24/7 Support -->
       <div class="why-card reveal" style="transition-delay:0.30s">
-        <div class="why-card__top">
-          <div class="why-card__icon" aria-hidden="true">🛟</div>
-          <span class="why-card__index">06</span>
+        <div class="why-card__icon">
+          <img src="assets/icons/icon-support.png" alt="24/7 Support icon">
         </div>
         <h3>24/7 Support</h3>
         <p>A dedicated project manager always on hand — our clients rest easy knowing expert help is never more than a message away.</p>
       </div>
+
     </div>
 
     <div style="text-align:center;margin-top:44px;" class="reveal">
@@ -1283,9 +1251,7 @@ a.portfolio-card__label:hover { color: var(--gold); }
   </div>
 </section>
 
-<!-- ===========================
-     CMS SECTION
-     =========================== -->
+<!-- CMS SECTION -->
 <section class="cms-section">
   <div class="container">
     <div class="section-divider section-divider--center reveal">
@@ -1311,9 +1277,7 @@ a.portfolio-card__label:hover { color: var(--gold); }
   </div>
 </section>
 
-<!-- ===========================
-     PORTFOLIO
-     =========================== -->
+<!-- PORTFOLIO -->
 <section class="portfolio-section">
   <div class="container">
     <div class="section-divider section-divider--center reveal">
@@ -1377,9 +1341,7 @@ a.portfolio-card__label:hover { color: var(--gold); }
   </div>
 </section>
 
-<!-- ===========================
-     PRICING — Deep Navy #0F172A + Gold #C9A96E
-     =========================== -->
+<!-- PRICING -->
 <section class="pricing-section">
   <div class="container">
     <div class="section-divider section-divider--center reveal">
@@ -1393,8 +1355,6 @@ a.portfolio-card__label:hover { color: var(--gold); }
     <p class="section-subtext section-subtext--center reveal">Transparent pricing with no hidden fees. Every package includes custom design, responsive development, and CMS integration.</p>
 
     <div class="pricing-grid">
-
-      <!-- Card 1: Landing Page -->
       <div class="pricing-card reveal">
         <div class="pricing-card__head">
           <div class="pricing-card__plan-icon" aria-hidden="true">🖥️</div>
@@ -1417,7 +1377,6 @@ a.portfolio-card__label:hover { color: var(--gold); }
         </div>
       </div>
 
-      <!-- Card 2: Corporate Website (featured) -->
       <div class="pricing-card pricing-card--featured reveal" style="transition-delay:0.08s">
         <span class="pricing-card__badge">⭐ Most Popular</span>
         <div class="pricing-card__head" style="padding-top:48px;">
@@ -1441,7 +1400,6 @@ a.portfolio-card__label:hover { color: var(--gold); }
         </div>
       </div>
 
-      <!-- Card 3: E-Commerce -->
       <div class="pricing-card reveal" style="transition-delay:0.16s">
         <div class="pricing-card__head">
           <div class="pricing-card__plan-icon" aria-hidden="true">🛒</div>
@@ -1463,14 +1421,11 @@ a.portfolio-card__label:hover { color: var(--gold); }
           <a href="/contact.html" class="btn-primary">Send Enquiry</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ===========================
-     HOSTING
-     =========================== -->
+<!-- HOSTING -->
 <section class="hosting-section">
   <div class="container">
     <div class="section-divider section-divider--center reveal">
@@ -1495,9 +1450,7 @@ a.portfolio-card__label:hover { color: var(--gold); }
   </div>
 </section>
 
-<!-- ===========================
-     FAQ
-     =========================== -->
+<!-- FAQ -->
 <section class="faq-section" aria-labelledby="faq-heading">
   <div class="container">
     <div class="faq-layout">
@@ -1592,9 +1545,7 @@ a.portfolio-card__label:hover { color: var(--gold); }
   </div>
 </section>
 
-<!-- ===========================
-     CTA
-     =========================== -->
+<!-- CTA -->
 <section class="cta-section">
   <div class="container">
     <div class="reveal">
@@ -1617,7 +1568,6 @@ a.portfolio-card__label:hover { color: var(--gold); }
 </div>
 
 <script>
-// ── HEADER / FOOTER ──────────────────────────────────────
 function runScripts(container) {
   container.querySelectorAll('script').forEach(oldScript => {
     const newScript = document.createElement('script');
@@ -1637,7 +1587,6 @@ async function loadPart(url, id) {
 loadPart('header.html', 'header-placeholder');
 loadPart('footer.html', 'footer-placeholder');
 
-// ── SCROLL REVEAL ────────────────────────────────────────
 const revealEls = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1649,7 +1598,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
 
-// ── FAQ ACCORDION ────────────────────────────────────────
 document.querySelectorAll('.faq-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
@@ -1665,7 +1613,6 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
   });
 });
 
-// ── LIGHTBOX (desktop ≥600px only) ───────────────────────
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
