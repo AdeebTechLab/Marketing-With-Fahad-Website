@@ -535,27 +535,26 @@ a { text-decoration: none; color: inherit; }
   border-color: var(--gold);
   background: var(--gold-tint);
 }
-/* Icon wrap now solid gold by default — keeps original icon images on top of a gold badge */
+/* Icon wrap: white background so gold icons stay clearly visible */
 .adv-icon-wrap {
   width: 46px; height: 46px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: var(--gold);
-  border: 1px solid var(--gold-dark);
+  background: var(--white);
+  border: 1px solid var(--gold-border);
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.25s, border-color 0.25s, transform 0.25s;
-  box-shadow: 0 3px 10px var(--gold-shadow);
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }
 .adv-item:hover .adv-icon-wrap {
-  background: var(--gold-dark);
-  border-color: var(--gold-dark);
+  background: var(--white);
+  border-color: var(--gold);
   transform: scale(1.06);
+  box-shadow: 0 4px 14px var(--gold-shadow);
 }
 .adv-icon-wrap img {
   width: 24px; height: 24px;
   object-fit: contain;
-  /* Push icon toward white so it reads clearly against the gold badge */
-  filter: brightness(0) invert(1);
 }
 .adv-label {
   font-size: 13px;
