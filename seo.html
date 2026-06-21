@@ -22,9 +22,6 @@
 </script>
 
 <style>
-/* ===========================
-   DESIGN TOKENS
-   =========================== */
 :root {
   --gold: #c8a64d;
   --gold-dark: #a8842e;
@@ -77,9 +74,7 @@ li { margin: 4px 0; }
 .breadcrumbs a::after { content: "›"; display: inline-block; margin: 0 8px; color: #bbb; }
 .breadcrumbs span { color: var(--gold); }
 
-/* ===========================
-   HERO (matches master template hero)
-   =========================== */
+/* HERO */
 .hero {
   background: #fffdf5;
   padding: 56px 0 64px;
@@ -169,6 +164,7 @@ li { margin: 4px 0; }
   animation: fadeSlideUp 0.6s 0.45s forwards;
 }
 
+/* Proof strip — single emoji icon only */
 .hero__proof-strip {
   margin-top: 40px;
   padding-top: 32px;
@@ -198,13 +194,14 @@ li { margin: 4px 0; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 4px;
+  line-height: 1;
 }
-.hero__proof-icon.gold  { background: #FAEEDA; color: #854F0B; }
-.hero__proof-icon.blue  { background: #E6F1FB; color: #185FA5; }
-.hero__proof-icon.teal  { background: #E1F5EE; color: #0F6E56; }
-.hero__proof-icon.amber { background: #FAEEDA; color: #BA7517; }
+.hero__proof-icon.gold  { background: #FAEEDA; }
+.hero__proof-icon.blue  { background: #E6F1FB; }
+.hero__proof-icon.teal  { background: #E1F5EE; }
+.hero__proof-icon.amber { background: #FAEEDA; }
 .hero__proof-item strong {
   display: block;
   font-size: 22px;
@@ -272,7 +269,7 @@ li { margin: 4px 0; }
 }
 .btn-outline:hover { background: rgba(200,166,77,0.08); color: var(--gold-dark); }
 
-/* Hero form card (dark, matches master template) */
+/* Hero form card */
 .hero-form-card {
   background: var(--dark);
   border: 1px solid #1e293b;
@@ -368,27 +365,38 @@ li { margin: 4px 0; }
 .section-heading .accent { color: var(--gold); }
 .section-heading--left { text-align: left; }
 
-/* SEO INTRO */
-.seo-intro { padding: 40px 0 48px; }
-.seo-intro__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+/* SEO INTRO — no stats, image fills full height */
+.seo-intro { padding: 56px 0; }
+.seo-intro__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: stretch;
+}
+.seo-intro__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .seo-intro__text p { color: var(--text); font-size: 16px; }
-.seo-intro__img-wrap { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: 0 12px 48px rgba(0,0,0,0.12); }
-.seo-intro__img-wrap img { width: 100%; border-radius: var(--radius); }
+.seo-intro__img-wrap {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+  min-height: 380px;
+}
+.seo-intro__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
 .seo-intro__img-wrap::before {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(200,166,77,0.18) 0%, transparent 60%);
   z-index: 1; border-radius: var(--radius);
 }
-
-/* Stats strip */
-.seo-intro__stats {
-  display: flex; gap: 0; margin-top: 28px;
-  border-radius: 12px; overflow: hidden; border: 1px solid var(--gold-border);
-}
-.seo-stat { flex: 1; text-align: center; padding: 18px 12px; border-right: 1px solid var(--gold-border); background: var(--white); }
-.seo-stat:last-child { border-right: none; }
-.seo-stat__num { font-size: 26px; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 4px; }
-.seo-stat__label { font-size: 12px; color: var(--text-muted); font-weight: 500; line-height: 1.3; }
 
 /* PROCESS */
 .seo-process { background: var(--white); padding: 56px 0; position: relative; }
@@ -586,6 +594,7 @@ li { margin: 4px 0; }
   .hero__grid { grid-template-columns: 1fr; gap: 32px; }
   .hero-form-card { max-width: 480px; }
   .seo-intro__grid, .seo-track__grid, .faq-layout { grid-template-columns: 1fr; gap: 28px; }
+  .seo-intro__img-wrap { min-height: 280px; }
   .seo-track__img-wrap { order: -1; height: 280px; }
   .advantages-grid { grid-template-columns: 1fr 1fr; }
   .enquiry-inner { grid-template-columns: 1fr; }
@@ -596,6 +605,7 @@ li { margin: 4px 0; }
   .process-card:nth-child(even) { direction: ltr; }
   .process-card__img { min-height: 200px; }
   .faq-sidebar { position: static; flex: none; width: 100%; }
+  .hero__proof-strip { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
   .advantages-grid { grid-template-columns: 1fr; }
@@ -604,9 +614,6 @@ li { margin: 4px 0; }
   .faq-btn { font-size: 15px; padding: 16px 18px; }
   .enquiry-form-wrap { padding: 24px 18px; }
   .faq-section { padding: 44px 0; }
-  .seo-intro__stats { flex-direction: column; }
-  .seo-stat { border-right: none; border-bottom: 1px solid var(--gold-border); }
-  .seo-stat:last-child { border-bottom: none; }
   .hero { padding: 40px 0 44px; }
 }
 @media (max-width: 400px) {
@@ -620,9 +627,7 @@ li { margin: 4px 0; }
   <div id="header-placeholder"></div>
   <main class="l-main">
 
-    <!-- ===========================
-         HERO (master-template style, SEO content)
-         =========================== -->
+    <!-- HERO -->
     <section class="hero">
       <div class="container">
         <nav class="breadcrumbs reveal" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -677,27 +682,28 @@ li { margin: 4px 0; }
           </div>
         </div>
 
+        <!-- Proof strip — single emoji icon per item, no <i> tags -->
         <div class="hero__proof-strip">
           <div class="hero__proof-item">
-            <div class="hero__proof-icon gold"><i class="ti ti-trophy"></i>🏆</div>
+            <div class="hero__proof-icon gold">🏆</div>
             <strong>750+</strong>
             <span>Websites Ranked Page 1</span>
             <span class="hero__proof-badge green">Growing</span>
           </div>
           <div class="hero__proof-item">
-            <div class="hero__proof-icon blue"><i class="ti ti-calendar-event"></i>📅</div>
+            <div class="hero__proof-icon blue">📅</div>
             <strong>17+ Years</strong>
             <span>Of SEO Experience</span>
             <span class="hero__proof-badge blue">Est. 2008</span>
           </div>
           <div class="hero__proof-item">
-            <div class="hero__proof-icon teal"><i class="ti ti-building"></i>✅</div>
+            <div class="hero__proof-icon teal">✅</div>
             <strong>Pay After Rank</strong>
             <span>Zero Risk Model</span>
             <span class="hero__proof-badge green">UAE-based</span>
           </div>
           <div class="hero__proof-item">
-            <div class="hero__proof-icon amber"><i class="ti ti-star"></i>⭐</div>
+            <div class="hero__proof-icon amber">⭐</div>
             <strong>Clutch Partner</strong>
             <span>★★★★★ Rated Agency</span>
             <span class="hero__proof-badge blue">Verified</span>
@@ -706,7 +712,7 @@ li { margin: 4px 0; }
       </div>
     </section>
 
-    <!-- SEO Intro -->
+    <!-- SEO Intro — no stats strip -->
     <section class="seo-intro">
       <div class="container">
         <div class="section-divider reveal">
@@ -720,25 +726,6 @@ li { margin: 4px 0; }
             <p>Being on top position of Google searches is a challenge for every business. Websites are placed in Google by some certain set of key-words related to their industry. By typing a key-phrase in Google, people will find some list of websites related to that certain key-word. In order for your company to be recognized and found easily, your website needs to be on first page of Google so that the searcher will find you and go through your website by one click.</p>
             <p>The process of bringing your website on first page of Google is called as Search Engine Optimization and choosing the certain suitable key-words is the essential important base of <a href="seo_course.html">organic SEO</a>. There are so many SEO companies who do this job but you need to choose a professional company whom you can entrust your website to bring it on the top searches of Google. Marketing with Fahad is one of those professional companies you are looking for with no doubt.</p>
             <p>Our professional team works diligently to provide you the top position at earliest time depends on your business niche.</p>
-
-            <div class="seo-intro__stats">
-              <div class="seo-stat">
-                <div class="seo-stat__num">11+</div>
-                <div class="seo-stat__label">Years Experience</div>
-              </div>
-              <div class="seo-stat">
-                <div class="seo-stat__num">450+</div>
-                <div class="seo-stat__label">Projects Done</div>
-              </div>
-              <div class="seo-stat">
-                <div class="seo-stat__num">#1</div>
-                <div class="seo-stat__label">Google Rankings</div>
-              </div>
-              <div class="seo-stat">
-                <div class="seo-stat__num">100%</div>
-                <div class="seo-stat__label">White-Hat SEO</div>
-              </div>
-            </div>
           </div>
           <div class="seo-intro__img-wrap reveal" style="transition-delay:0.12s">
             <img src="assets/guaranteed-first-position-ranking.png" alt="Guaranteed First Position Ranking">
@@ -849,7 +836,7 @@ li { margin: 4px 0; }
           </div>
           <div class="advantage-card reveal" style="transition-delay:0.4s">
             <div class="advantage-card__icon">
-              <img src="assets/seo-advantages-6.png" alt="" onerror="this.parentNode.innerHTML='📊'">
+              <img src="assets/create-advantages--1.png" alt="" onerror="this.parentNode.innerHTML='📊'">
             </div>
             <div class="advantage-card__title">Daily Rank Reporting</div>
             <p class="advantage-card__text">We provide a transparent daily rank-tracking dashboard so you can see every keyword move in real time. No guesswork — just clear, measurable results that keep us accountable to you.</p>
@@ -895,7 +882,7 @@ li { margin: 4px 0; }
       </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ -->
     <section class="faq-section" aria-labelledby="faq-heading">
       <div class="container">
         <div class="faq-layout">
@@ -926,7 +913,6 @@ li { margin: 4px 0; }
               <button class="faq-btn" aria-expanded="false" aria-controls="faq5">Do you build WordPress websites too?<span class="faq-icon" aria-hidden="true">+</span></button>
               <div class="faq-content" id="faq5" role="region">Yes. We design and develop fast, SEO-optimized WordPress websites from scratch or redesign existing sites — fully mobile-responsive and built with on-page SEO from day one.</div>
             </div>
-  
           </div>
         </div>
       </div>
@@ -950,14 +936,12 @@ async function loadPart(url, id) {
 loadPart('header.html', 'header-placeholder');
 loadPart('footer.html', 'footer-placeholder');
 
-// Scroll Reveal
 const revealEls = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObserver.unobserve(entry.target); } });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
 
-// FAQ Accordion
 document.querySelectorAll('.faq-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
