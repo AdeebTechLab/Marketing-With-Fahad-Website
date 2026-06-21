@@ -453,7 +453,7 @@ input, select, textarea, button { font-family: var(--font); }
 .intro-grid__img:hover img { transform: scale(1.04); }
 
 /* ===========================
-   WHY CHOOSE US — matches master "process" card style
+   WHY CHOOSE US — redesigned card style
    =========================== */
 .why-section {
   background: var(--body-bg);
@@ -462,14 +462,14 @@ input, select, textarea, button { font-family: var(--font); }
 .why-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 22px;
   margin-top: 36px;
 }
 .why-card {
-  text-align: center;
-  padding: 32px 20px;
+  text-align: left;
+  padding: 30px 26px 28px;
   border-radius: var(--radius);
-  background: var(--surface);
+  background: var(--white);
   border: 1px solid var(--border);
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
   position: relative;
@@ -478,7 +478,7 @@ input, select, textarea, button { font-family: var(--font); }
 .why-card::before {
   content: '';
   position: absolute;
-  bottom: 0; left: 0; right: 0;
+  top: 0; left: 0; right: 0;
   height: 3px;
   background: linear-gradient(to right, var(--gold), var(--gold-dark));
   transform: scaleX(0);
@@ -486,33 +486,87 @@ input, select, textarea, button { font-family: var(--font); }
   transition: transform var(--transition);
 }
 .why-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 32px var(--gold-shadow);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px var(--gold-shadow);
   border-color: var(--gold-border);
 }
 .why-card:hover::before { transform: scaleX(1); }
+.why-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
 .why-card__icon {
-  width: 68px; height: 68px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  margin: 0 auto 20px;
+  width: 56px; height: 56px;
+  background: var(--gold-tint);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 28px;
-  box-shadow: 0 4px 12px var(--gold-shadow);
+  font-size: 26px;
+  flex-shrink: 0;
+  transition: background var(--transition), transform var(--transition);
+}
+.why-card:hover .why-card__icon {
+  background: var(--gold);
+  transform: scale(1.06) rotate(-4deg);
+}
+.why-card__index {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--gold-border);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px;
+  flex-shrink: 0;
 }
 .why-card h3 {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--dark);
   margin: 0 0 10px;
 }
 .why-card p {
   color: var(--text-muted);
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.7;
   margin: 0;
 }
+.why-card--featured {
+  background: var(--dark);
+  border-color: var(--dark);
+}
+.why-card--featured::before { background: linear-gradient(to right, var(--gold), var(--gold-dark)); transform: scaleX(1); }
+.why-card--featured h3,
+.why-card--featured p { color: rgba(255,255,255,0.92); }
+.why-card--featured p { color: rgba(255,255,255,0.62); }
+.why-card--featured .why-card__icon {
+  background: rgba(201,169,110,0.18);
+  border-color: rgba(201,169,110,0.35);
+}
+.why-card--featured:hover .why-card__icon { background: var(--gold); }
+.why-card--featured .why-card__index {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: var(--gold);
+}
+.why-card__tag {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: var(--gold);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 30px;
+  display: none;
+}
+.why-card--featured .why-card__tag { display: inline-block; }
+.why-card--featured .why-card__index { display: none; }
 
 /* ===========================
    CMS SECTION
@@ -1157,7 +1211,7 @@ a.portfolio-card__label:hover { color: var(--gold); }
 </section>
 
 <!-- ===========================
-     WHY CHOOSE US — process card style from master
+     WHY CHOOSE US — redesigned cards with featured card highlight
      =========================== -->
 <section class="why-section">
   <div class="container">
@@ -1173,32 +1227,51 @@ a.portfolio-card__label:hover { color: var(--gold); }
 
     <div class="why-grid">
       <div class="why-card reveal">
-        <div class="why-card__icon" aria-hidden="true">🎨</div>
+        <div class="why-card__top">
+          <div class="why-card__icon" aria-hidden="true">🎨</div>
+          <span class="why-card__index">01</span>
+        </div>
         <h3>Custom Design</h3>
         <p>Every website is designed from scratch by our team — unique, on-brand, and built to stand out from your competitors.</p>
       </div>
       <div class="why-card reveal" style="transition-delay:0.06s">
-        <div class="why-card__icon" aria-hidden="true">📱</div>
+        <div class="why-card__top">
+          <div class="why-card__icon" aria-hidden="true">📱</div>
+          <span class="why-card__index">02</span>
+        </div>
         <h3>UX/UI Excellence</h3>
         <p>Intuitive layouts and well-thought-out structure that guide your visitors toward conversion — on every screen size.</p>
       </div>
       <div class="why-card reveal" style="transition-delay:0.12s">
-        <div class="why-card__icon" aria-hidden="true">💻</div>
+        <div class="why-card__top">
+          <div class="why-card__icon" aria-hidden="true">💻</div>
+          <span class="why-card__index">03</span>
+        </div>
         <h3>Clean Code</h3>
         <p>Built on PHP, HTML/CSS/JS to the latest standards. Organized, maintainable code that any developer can work with.</p>
       </div>
-      <div class="why-card reveal" style="transition-delay:0.18s">
-        <div class="why-card__icon" aria-hidden="true">⚙️</div>
+      <div class="why-card why-card--featured reveal" style="transition-delay:0.18s">
+        <span class="why-card__tag">Our Edge</span>
+        <div class="why-card__top">
+          <div class="why-card__icon" aria-hidden="true">⚙️</div>
+          <span class="why-card__index">04</span>
+        </div>
         <h3>Custom CMS</h3>
         <p>Our proprietary Marketing with Fahad 6.0 CMS keeps your site SEO-friendly, secure, and easy to manage — without WordPress bloat.</p>
       </div>
       <div class="why-card reveal" style="transition-delay:0.24s">
-        <div class="why-card__icon" aria-hidden="true">✍️</div>
+        <div class="why-card__top">
+          <div class="why-card__icon" aria-hidden="true">✍️</div>
+          <span class="why-card__index">05</span>
+        </div>
         <h3>Professional Content</h3>
         <p>Words drive traffic. We create quality, keyword-rich content that attracts the right customers and improves your rankings.</p>
       </div>
       <div class="why-card reveal" style="transition-delay:0.30s">
-        <div class="why-card__icon" aria-hidden="true">🛟</div>
+        <div class="why-card__top">
+          <div class="why-card__icon" aria-hidden="true">🛟</div>
+          <span class="why-card__index">06</span>
+        </div>
         <h3>24/7 Support</h3>
         <p>A dedicated project manager always on hand — our clients rest easy knowing expert help is never more than a message away.</p>
       </div>
