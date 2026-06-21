@@ -93,12 +93,24 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 }
 
 /* ============================================================
-   HERO BANNER  — FIX #1: padding inward + brand-colour overlay for stronger contrast
+   HERO BANNER
+   FIX #1 (centered text): hero-inner now centers its content both
+   horizontally and via text-align, instead of left-aligning it.
+   FIX #4 (width follows background picture): height is now driven
+   by the image's own aspect ratio via aspect-ratio, and the image
+   uses object-fit: contain so the full picture is shown rather than
+   cropped — the hero box resizes to match the artwork instead of
+   the artwork being cropped to fill a fixed box.
    ============================================================ */
 .hero {
   position: relative;
   width: 100%;
-  height: 275px;
+  /* FIX #4: replace fixed height: 275px with a ratio matched to the
+     background image so the container's proportions follow the art.
+     Update this ratio to match assets/hero-seo-courses.png's real
+     width/height (e.g. 1920/420) for a pixel-perfect fit. */
+  aspect-ratio: 1270 / 275;
+  max-height: 420px;
   overflow: hidden;
   background: var(--dark);
 }
@@ -107,11 +119,13 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* FIX #4: contain (not cover) so the whole background picture is
+     visible at its natural proportions instead of being cropped */
+  object-fit: contain;
   object-position: center;
   opacity: .85;
 }
-/* FIX #1: brand-colour gradient wash so text never sits on raw photo */
+/* brand-colour gradient wash so text never sits on raw photo */
 .hero::after {
   content: '';
   position: absolute;
@@ -123,18 +137,21 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
   position: relative;
   z-index: 2;
   height: 100%;
+  width: 100%;
   max-width: 1270px;
   margin: 0 auto;
-  /* FIX #1: padding brought inward so text never touches the edge */
   padding: 0 40px;
   display: flex;
   align-items: center;
+  justify-content: center; /* FIX #1: center the text block horizontally */
+  text-align: center;       /* FIX #1: center the text itself */
 }
 .hero-title {
   color: var(--white);
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   font-weight: 700;
   text-shadow: 0 2px 14px rgba(0,0,0,.35);
+  text-align: center; /* FIX #1 */
 }
 .hero-title em { font-style: normal; color: var(--gold); }
 .hero-mobile { display: none; }
@@ -241,7 +258,7 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 }
 
 /* ============================================================
-   SIDEBAR / STICKY CARD  — FIX #2: sticky + content-filled so column never feels empty
+   SIDEBAR / STICKY CARD
    ============================================================ */
 .sidebar {
   position: static;
@@ -252,9 +269,6 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 
 @media (min-width: 901px) {
   .sidebar {
-    /* FIX #2: stays pinned while the long curriculum scrolls past, so the
-       column is always filled with the card instead of trailing off into
-       empty space */
     position: sticky;
     top: 24px;
     max-height: calc(100vh - 48px);
@@ -359,7 +373,7 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 .info-item__value { font-weight: 600; color: var(--dark); }
 .info-item__old { text-decoration: line-through; color: var(--muted); font-size: 12px; margin-left: 6px; font-weight: 400; }
 
-/* FIX #2: trainer card moved into sidebar to fill empty left column space */
+/* Trainer card in sidebar */
 .sidebar-trainer {
   display: flex;
   gap: 14px;
@@ -380,7 +394,7 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 .sidebar-trainer__text { font-size: 13px; line-height: 1.6; color: var(--text); }
 .sidebar-trainer__text b { display: block; color: var(--gold); font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; }
 
-/* FIX #2: trust/highlights strip to give the column substance instead of empty whitespace */
+/* Highlights strip */
 .sidebar-highlights {
   background: var(--white);
   border-radius: var(--radius);
@@ -417,7 +431,6 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 .content-area p { color: var(--text); margin-bottom: 18px; line-height: 1.75; }
 .content-area p:last-child { margin-bottom: 0; }
 
-/* Section heading inside content */
 .content-h2 {
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   font-weight: 700;
@@ -436,7 +449,7 @@ h1,h2,h3,h4 { font-family: var(--font); line-height: 1.2; color: var(--dark); }
 }
 
 /* ============================================================
-   FIX #3: CURRICULUM AS TABS (session-wise), replacing the long flat list
+   CURRICULUM TABS (session-wise)
    ============================================================ */
 .curriculum-tabs {
   display: flex;
@@ -719,15 +732,15 @@ height:max-content;
 
   <main class="l-main">
 
-    <!-- HERO — FIX #1: padding ke andar text + brand-colour gradient for stronger contrast -->
+    <!-- HERO -->
     <div class="hero">
-      <img src="assets/hero-seo-courses.jpeg" alt="SEO Courses Dubai — Marketing with Fahad" title="SEO Courses">
+      <img src="assets/hero-seo-courses.png" alt="SEO Courses Dubai — Marketing with Fahad" title="SEO Courses">
       <div class="hero-inner">
         <h2 class="hero-title">Search Engine <em>Optimization</em> Course</h2>
       </div>
     </div>
     <div class="hero-mobile">
-      <img src="assets/414x180-seo-courses.png" alt="SEO Courses Dubai" title="SEO Courses">
+      <img src="assets/hero-seo-courses.png" alt="SEO Courses Dubai" title="SEO Courses">
     </div>
 
     <div class="l-container">
@@ -753,7 +766,7 @@ height:max-content;
       <!-- TWO-COLUMN COURSE LAYOUT -->
       <div class="course-layout">
 
-        <!-- ── SIDEBAR — FIX #2: sticky + filled with trainer + highlights so column never looks empty ── -->
+        <!-- ── SIDEBAR ── -->
         <aside class="sidebar" aria-label="Course registration and info">
 
           <!-- Registration form card -->
@@ -820,7 +833,7 @@ height:max-content;
             </div>
           </div>
 
-          <!-- FIX #2: Trainer card moved into sidebar (fills empty space, also sticky-visible at all times) -->
+          <!-- Trainer card in sidebar -->
           <div class="sidebar-trainer reveal" style="transition-delay:.15s">
             <img src="assets/photo.png" alt="SEO Expert Vadim Yudin" width="64" height="64">
             <div class="sidebar-trainer__text">
@@ -829,7 +842,7 @@ height:max-content;
             </div>
           </div>
 
-          <!-- FIX #2: Highlights strip — gives the left column substance instead of trailing into empty whitespace -->
+          <!-- Highlights strip -->
           <div class="sidebar-highlights reveal" style="transition-delay:.2s">
             <div class="sidebar-highlights__title">Why Join This Course</div>
             <ul>
@@ -851,7 +864,7 @@ height:max-content;
             <h2 class="content-h2"><em>Total:</em> 4 Sessions — Every Sunday &amp; Wednesday, 6:30–8:30 pm</h2>
           </div>
 
-          <!-- Course programme — FIX #3: long flat list converted into session-wise tabs -->
+          <!-- Course programme — session-wise tabs -->
           <div class="reveal">
             <div class="section-divider">
               <div class="section-divider__dot" aria-hidden="true"></div>
@@ -860,7 +873,6 @@ height:max-content;
             </div>
             <h3 class="content-h3">Search Engine Optimization Course Program</h3>
 
-            <!-- FIX #3: Tabs replace the long flat list — one session shown at a time -->
             <div class="curriculum-tabs" role="tablist" aria-label="Course session tabs">
               <button class="curriculum-tab" role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1">
                 1st Session<span>2–3 hours</span>
@@ -1212,7 +1224,7 @@ height:max-content;
   });
 })();
 
-// ── FIX #3: Curriculum tabs (session-wise) ──────────────────
+// ── Curriculum tabs (session-wise) ──────────────────
 (function () {
   const tabs = document.querySelectorAll(".curriculum-tab");
   const panels = document.querySelectorAll(".curriculum-panel");
