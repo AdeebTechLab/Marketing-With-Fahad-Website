@@ -151,31 +151,6 @@
   .header__call-text { display: flex; flex-direction: column; }
   .header__call-text span { font-size: 13px; font-weight: 600; color: var(--gold-light); }
 
-  /* ===== DIAL ICON (desktop only) ===== */
-  .header__dial-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--gold-border);
-    border-radius: 6px;
-    transition: background 0.2s, border-color 0.2s;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .header__dial-icon:hover {
-    background: var(--gold-dim);
-    border-color: var(--gold);
-  }
-  .header__dial-icon img {
-    width: 28px;
-    height: 28px;
-    display: block;
-    object-fit: contain;
-  }
-
   /* ===== HAMBURGER BUTTON ===== */
   .menu-mobile__open-btn {
     display: none;
@@ -425,7 +400,6 @@
   @media (max-width: 900px) {
     .header__main-menu { display: none; }
     .header__call { display: none; }
-    .header__dial-icon { display: none; }
     .header__report { display: none; }
     .header__logo { margin-right: 0; }
 
@@ -539,16 +513,6 @@
         <span class="header__call-text">
           Customer Service <span>+971 52 608 6977</span>
         </span>
-      </a>
-
-      <!-- Gold dial icon — desktop only, opens dialer, no number shown -->
-      <a class="header__dial-icon" href="tel:0526086977" aria-label="Call us">
-        <img
-          src="assets/phone-icon.webp"
-          alt="Call"
-          width="28"
-          height="28"
-        >
       </a>
 
       <button class="menu-mobile__open-btn" id="mobileMenuOpen" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
