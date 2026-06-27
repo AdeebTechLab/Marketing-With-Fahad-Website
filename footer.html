@@ -106,6 +106,7 @@
     margin: 0; padding: 0; flex-shrink: 0;
   }
 
+  .l-footer .f-logo a { display: block; line-height: 0; text-decoration: none; }
   .l-footer .f-map-link { display: inline-block; flex-shrink: 0; }
   .l-footer .f-map-link img {
     width: 110px; height: 80px;
@@ -163,13 +164,16 @@
   .f-mobile-dial { display: none; flex-shrink: 0; }
   .f-mobile-dial a {
     display: flex; align-items: center; justify-content: center;
-    gap: 8px;
-    text-decoration: none; background: none; border: none;
-    padding: 0; line-height: 1;
-    transition: opacity 0.2s, transform 0.2s;
+    gap: 10px;
+    text-decoration: none;
+    border: 1.5px solid #C9A96E;
+    border-radius: 12px;
+    padding: 8px 14px 8px 8px;
+    background: rgba(201,169,110,0.06);
+    transition: background 0.2s, transform 0.2s;
   }
-  .f-mobile-dial a:hover { opacity: 0.8; transform: scale(1.05); }
-  .f-mobile-dial a img { width: 80px; height: 80px; display: block; object-fit: contain; flex-shrink: 0; }
+  .f-mobile-dial a:hover { background: rgba(201,169,110,0.14); transform: scale(1.03); }
+  .f-mobile-dial a img { width: 52px; height: 52px; display: block; object-fit: contain; flex-shrink: 0; }
   .f-mobile-dial__label {
     color: #C9A96E;
     font-size: 13px;
@@ -231,25 +235,21 @@
     display: none;
     position: fixed;
     left: 0; right: 0;
+    bottom: 0; top: auto;
     z-index: 2500;
     background: #0F172A;
     border-top: 1px solid rgba(201,169,110,0.3);
-    border-bottom: 1px solid rgba(201,169,110,0.3);
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.35);
-    transform: translateY(-120px);
-    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                bottom 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.3s ease;
-    top: 76px;
-    bottom: auto;
-  }
-  .call-us-bar.is-visible { transform: translateY(0); }
-  .call-us-bar.is-bottom {
-    top: auto; bottom: 0;
-    transform: translateY(0);
-    border-top: 1px solid rgba(201,169,110,0.3);
-    border-bottom: none;
     box-shadow: 0 -6px 24px rgba(0,0,0,0.45);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .call-us-bar.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
   .call-us-bar a {
     display: flex; align-items: center; justify-content: center;
@@ -359,12 +359,14 @@
       <!-- Logo + map + phone icon always in one row -->
       <div class="f-logo-map">
         <div class="f-logo">
-          <img
-            src="/assets/logo-full.webp"
-            srcset="/assets/logo-full.webp 1x, /assets/logo-full@2x.webp 2x"
-            alt="Marketing with Fahad"
-            width="112" height="100"
-          >
+          <a href="/index.html" aria-label="Go to homepage">
+            <img
+              src="/assets/logo-full.webp"
+              srcset="/assets/logo-full.webp 1x, /assets/logo-full@2x.webp 2x"
+              alt="Marketing with Fahad"
+              width="112" height="100"
+            >
+          </a>
         </div>
         <a href="https://maps.google.com/?q=Burj+Khalifa+Dubai" target="_blank" rel="noopener" class="f-map-link">
           <img src="/assets/footer-map-burjkhalifa.webp" alt="Burj Khalifa, Dubai">
@@ -469,31 +471,32 @@
     });
   })();
 
-  /* ── Call Us Bar animation + hide on footer ── */
+  /* ── Call Us Bar: show after first scroll, hide when footer visible ── */
   (function () {
     var bar       = document.getElementById('callUsBar');
     var footer    = document.getElementById('siteFooter');
     var scrollBtn = document.getElementById('scrollToTopBtn');
     if (!bar) return;
 
-    /* Step 1: slide in below header after 400ms */
-    setTimeout(function () {
+    var hasScrolled = false;
+
+    /* Only reveal bar after user scrolls for the first time */
+    function onFirstScroll() {
+      if (hasScrolled) return;
+      hasScrolled = true;
       bar.classList.add('is-visible');
+      window.removeEventListener('scroll', onFirstScroll);
+    }
+    window.addEventListener('scroll', onFirstScroll, { passive: true });
 
-      /* Step 2: migrate to bottom after 1.8s */
-      setTimeout(function () {
-        bar.classList.add('is-bottom');
-      }, 1800);
-    }, 400);
-
-    /* Hide bar when footer is visible, show when footer scrolls out */
+    /* Hide bar when footer enters view, restore when it leaves */
     if (footer && 'IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
           if (e.isIntersecting) {
             bar.style.opacity = '0';
             bar.style.pointerEvents = 'none';
-          } else {
+          } else if (hasScrolled) {
             bar.style.opacity = '1';
             bar.style.pointerEvents = '';
           }
