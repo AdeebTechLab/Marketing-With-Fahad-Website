@@ -163,12 +163,22 @@
   .f-mobile-dial { display: none; flex-shrink: 0; }
   .f-mobile-dial a {
     display: flex; align-items: center; justify-content: center;
+    gap: 8px;
     text-decoration: none; background: none; border: none;
-    padding: 0; line-height: 0; width: 100%; height: 100%;
+    padding: 0; line-height: 1;
     transition: opacity 0.2s, transform 0.2s;
   }
   .f-mobile-dial a:hover { opacity: 0.8; transform: scale(1.05); }
-  .f-mobile-dial a img { width: 80px; height: 80px; display: block; object-fit: contain; }
+  .f-mobile-dial a img { width: 80px; height: 80px; display: block; object-fit: contain; flex-shrink: 0; }
+  .f-mobile-dial__label {
+    color: #C9A96E;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    white-space: nowrap;
+  }
 
   /* ══════════════════════════════
      RESPONSIVE
@@ -186,7 +196,7 @@
     .l-footer .f-top { grid-template-columns: 1fr; padding: 36px 24px 28px; gap: 32px; }
     .l-footer .f-nav { grid-template-columns: repeat(3, auto); gap: 24px 32px; }
     .l-footer .f-right { grid-template-columns: auto 1fr; gap: 24px; }
-    .f-mobile-dial { display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; }
+    .f-mobile-dial { display: flex; align-items: center; justify-content: center; width: auto; height: 80px; }
   }
 
   @media (max-width: 600px) {
@@ -197,8 +207,9 @@
     .l-footer .f-logo-map { gap: 10px; }
     .l-footer .f-map-link img { width: 90px; height: 70px; }
     .l-footer .f-logo img { height: 70px; }
-    .f-mobile-dial { width: 70px; height: 70px; }
+    .f-mobile-dial { width: auto; height: 70px; }
     .f-mobile-dial a img { width: 70px; height: 70px; }
+    .f-mobile-dial__label { font-size: 12px; }
   }
 
   @media (max-width: 380px) {
@@ -207,8 +218,9 @@
     .l-footer .f-logo-map { gap: 8px; }
     .l-footer .f-map-link img { width: 75px; height: 60px; }
     .l-footer .f-logo img { height: 55px; }
-    .f-mobile-dial { width: 60px; height: 60px; }
+    .f-mobile-dial { width: auto; height: 60px; }
     .f-mobile-dial a img { width: 60px; height: 60px; }
+    .f-mobile-dial__label { font-size: 11px; }
   }
 
   /* ══════════════════════════════
@@ -226,7 +238,8 @@
     box-shadow: 0 -4px 20px rgba(0,0,0,0.35);
     transform: translateY(-120px);
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                bottom 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+                bottom 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.3s ease;
     top: 76px;
     bottom: auto;
   }
@@ -356,10 +369,11 @@
         <a href="https://maps.google.com/?q=Burj+Khalifa+Dubai" target="_blank" rel="noopener" class="f-map-link">
           <img src="/assets/footer-map-burjkhalifa.webp" alt="Burj Khalifa, Dubai">
         </a>
-        <!-- Phone dial icon — mobile/tablet only, next to map, same height, no border -->
+        <!-- Phone dial icon + Call Us label — mobile/tablet only, next to map -->
         <div class="f-mobile-dial">
           <a href="tel:+971526086977" aria-label="Call us">
             <img src="/assets/phone-icon.webp" alt="Call">
+            <span class="f-mobile-dial__label">Call Us</span>
           </a>
         </div>
       </div>
@@ -455,9 +469,10 @@
     });
   })();
 
-  /* ── Call Us Bar animation ── */
+  /* ── Call Us Bar animation + hide on footer ── */
   (function () {
     var bar       = document.getElementById('callUsBar');
+    var footer    = document.getElementById('siteFooter');
     var scrollBtn = document.getElementById('scrollToTopBtn');
     if (!bar) return;
 
@@ -470,6 +485,21 @@
         bar.classList.add('is-bottom');
       }, 1800);
     }, 400);
+
+    /* Hide bar when footer is visible, show when footer scrolls out */
+    if (footer && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            bar.style.opacity = '0';
+            bar.style.pointerEvents = 'none';
+          } else {
+            bar.style.opacity = '1';
+            bar.style.pointerEvents = '';
+          }
+        });
+      }, { root: null, threshold: 0 }).observe(footer);
+    }
 
     /* Keep bar above scroll-to-top button when it appears */
     if (scrollBtn) {
