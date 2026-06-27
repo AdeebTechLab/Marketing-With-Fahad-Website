@@ -177,7 +177,14 @@ h1 .accent, h2 .accent, h3 .accent { color: var(--gold); }
 }
 .hero-mobile__title span { color: var(--gold); }
 .hero-mobile__sub { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 22px; font-weight: 500; }
-.hero-mobile__btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-mobile__btns { display: flex; flex-wrap: nowrap; gap: 10px; }
+.hero-mobile__btns .btn-gold,
+.hero-mobile__btns .btn-outline-white {
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  padding: 12px 10px;
+}
 
 /* ============================================================
    HERO DESKTOP
