@@ -104,15 +104,20 @@
   .l-footer .f-logo img {
     height: 80px; width: auto; display: block;
     margin: 0; padding: 0; flex-shrink: 0;
+    border: 1.5px solid var(--f-gold-bdr);
+    border-radius: 10px;
+    opacity: 0.82;
+    transition: opacity 0.2s;
   }
 
   .l-footer .f-logo a { display: block; line-height: 0; text-decoration: none; }
+  .l-footer .f-logo a:hover img { opacity: 1; }
   .l-footer .f-map-link { display: inline-block; flex-shrink: 0; }
   .l-footer .f-map-link img {
     width: 110px; height: 80px;
     object-fit: cover;
     border-radius: 10px;
-    border: 1px solid var(--f-gold-bdr);
+    border: 1.5px solid var(--f-gold-bdr);
     opacity: 0.82;
     transition: opacity 0.2s;
     display: block; margin: 0; padding: 0;
@@ -161,19 +166,20 @@
   /* ══════════════════════════════
      MOBILE PHONE DIAL ICON
   ══════════════════════════════ */
-  .f-mobile-dial { display: none; flex-shrink: 0; }
+  .f-mobile-dial { display: none; flex-shrink: 0; height: 80px; }
   .f-mobile-dial a {
     display: flex; align-items: center; justify-content: center;
     gap: 10px;
     text-decoration: none;
+    height: 100%;
     border: 1.5px solid #C9A96E;
-    border-radius: 12px;
-    padding: 8px 14px 8px 8px;
+    border-radius: 10px;
+    padding: 0 14px 0 10px;
     background: rgba(201,169,110,0.06);
-    transition: background 0.2s, transform 0.2s;
+    transition: background 0.2s, opacity 0.2s;
   }
-  .f-mobile-dial a:hover { background: rgba(201,169,110,0.14); transform: scale(1.03); }
-  .f-mobile-dial a img { width: 52px; height: 52px; display: block; object-fit: contain; flex-shrink: 0; }
+  .f-mobile-dial a:hover { background: rgba(201,169,110,0.14); opacity: 0.9; }
+  .f-mobile-dial a img { width: 46px; height: 46px; display: block; object-fit: contain; flex-shrink: 0; }
   .f-mobile-dial__label {
     color: #C9A96E;
     font-size: 13px;
@@ -193,6 +199,7 @@
     .l-footer .f-right { gap: 24px; }
     .l-footer .f-map-link img { width: 110px; height: 80px; }
     .l-footer .f-logo img { height: 80px; }
+    .l-footer .f-logo-map { align-items: stretch; }
     .l-footer .f-logo-map { gap: 14px; }
   }
 
@@ -200,7 +207,7 @@
     .l-footer .f-top { grid-template-columns: 1fr; padding: 36px 24px 28px; gap: 32px; }
     .l-footer .f-nav { grid-template-columns: repeat(3, auto); gap: 24px 32px; }
     .l-footer .f-right { grid-template-columns: auto 1fr; gap: 24px; }
-    .f-mobile-dial { display: flex; align-items: center; justify-content: center; width: auto; height: 80px; }
+    .f-mobile-dial { display: flex; align-items: center; justify-content: center; width: auto; height: 80px; align-self: stretch; }
   }
 
   @media (max-width: 600px) {
@@ -212,7 +219,7 @@
     .l-footer .f-map-link img { width: 90px; height: 70px; }
     .l-footer .f-logo img { height: 70px; }
     .f-mobile-dial { width: auto; height: 70px; }
-    .f-mobile-dial a img { width: 70px; height: 70px; }
+    .f-mobile-dial a img { width: 40px; height: 40px; }
     .f-mobile-dial__label { font-size: 12px; }
   }
 
@@ -223,7 +230,7 @@
     .l-footer .f-map-link img { width: 75px; height: 60px; }
     .l-footer .f-logo img { height: 55px; }
     .f-mobile-dial { width: auto; height: 60px; }
-    .f-mobile-dial a img { width: 60px; height: 60px; }
+    .f-mobile-dial a img { width: 34px; height: 34px; }
     .f-mobile-dial__label { font-size: 11px; }
   }
 
@@ -373,7 +380,7 @@
         </a>
         <!-- Phone dial icon + Call Us label — mobile/tablet only, next to map -->
         <div class="f-mobile-dial">
-          <a href="tel:0526086977" aria-label="Call us">
+          <a href="tel:+971526086977" aria-label="Call us">
             <img src="/assets/phone-icon.webp" alt="Call">
             <span class="f-mobile-dial__label">Call Us</span>
           </a>
