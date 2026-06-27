@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Company Logo Designing Dubai | Marketing with Fahad</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="We have five professional logo designers and we can create unique logo for your company.">
+<link rel="canonical" href="contact.html">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+<link rel="manifest" crossorigin="use-credentials" href="/assets/favicons/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#fff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon-180x180.png">
+<meta name="msapplication-TileColor" content="#fff">
+<meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
+
+<!-- Tabler Icons (for proof strip icons) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+<style>
+/* ===== VARIABLES ===== */
+:root{
+  --gold:#c8a64d;
+  --gold-dark:#a8842e;
+  --gold-tint:#fdf3d8;
+  --gold-border:#f5e9c8;
+  --gold-shadow:rgba(200,166,77,.3);
+  --dark:#1a1a2e;
+  --white:#fff;
+  --text:#2e2e2e;
+  --text-muted:#666;
+  --radius:16px;
+  --radius-sm:10px;
+  --shadow:0 4px 24px rgba(0,0,0,.08);
+  --shadow-hover:0 10px 40px rgba(0,0,0,.14);
+  --transition:0.25s ease;
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f5f4f0;color:var(--text);line-height:1.7;font-size:17px;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--gold);text-decoration:none;transition:color .2s}
+a:hover{color:var(--gold-dark)}
+p{margin-bottom:1.2em}
+p:last-child{margin-bottom:0}
+
+/* ===== LAYOUT ===== */
+.l-wrapper{flex:1;display:flex;flex-direction:column}
+.l-main{flex:1;padding-bottom:70px}
+.l-container{width:100%;max-width:1270px;margin:0 auto;padding:0 22px}
+
+/* ===== BREADCRUMBS ===== */
+.breadcrumbs{padding:28px 0 6px;font-size:15px;animation:fadeInUp .6s .1s ease both}
+.breadcrumbs a{color:var(--gold)}
+.breadcrumbs a:hover{color:var(--gold-dark);text-decoration:underline}
+.breadcrumbs a::after{content:'›';margin:0 8px;color:#aaa;font-size:13px}
+.breadcrumbs span{color:#888}
+
+/* ═══════════════════════════════════════════
+   HERO — same style as SMM page (file 2)
+═══════════════════════════════════════════ */
+.hero {
+  background: #fffdf5;
+  padding: 72px 0 80px;
+  border-bottom: 1px solid var(--gold-border);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -80px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,0.09) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero__grid {
+  max-width: 1270px;
+  margin: 0 auto;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 52px;
+  align-items: center;
+}
+.hero__eyebrow {
+  display: inline-block;
+  background: rgba(201,169,110,0.12);
+  color: var(--gold-dark);
+  border: 1px solid rgba(201,169,110,0.4);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeSlideDown 0.5s 0.1s forwards;
+}
+.hero h1 {
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.12;
+  margin: 0 0 18px;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.2s forwards;
+}
+.hero h1 .accent { color: var(--gold); }
+.hero__desc {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 0 28px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.3s forwards;
+}
+.hero__btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.38s forwards;
+}
+.btn-primary {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  background: var(--gold-dark);
+  color: var(--white);
+  box-shadow: 0 6px 20px var(--gold-shadow);
+  transform: translateY(-1px);
+}
+.btn-outline {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--gold-dark);
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.btn-outline:hover { background: rgba(201,169,110,0.08); color: var(--gold-dark); }
+
+/* Hero form card — dark */
+.hero-form-card {
+  background: var(--dark);
+  border: 1px solid #1e293b;
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  opacity: 0;
+  animation: fadeSlideRight 0.6s 0.3s forwards;
+}
+.hero-form-card__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.hero-form-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  background: rgba(201,169,110,0.15);
+  color: var(--gold);
+  font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hero-form-card__title {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  display: block;
+  margin: 0 0 2px;
+}
+.hero-form-card__sub { color: rgba(255,255,255,0.4); font-size: 13px; }
+.form-group { margin-bottom: 14px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: var(--white);
+  font-family: inherit;
+  transition: border-color var(--transition);
+}
+.form-input::placeholder { color: rgba(255,255,255,0.3); }
+.form-input:focus { border-color: var(--gold); outline: none; }
+.form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+.form-submit:hover { background: var(--gold-dark); box-shadow: 0 6px 20px var(--gold-shadow); }
+.form-note {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  margin: 10px 0 0;
+}
+
+/* Proof strip */
+.hero__proof-strip {
+  max-width: 1270px;
+  margin: 40px auto 0;
+  padding: 0 22px;
+}
+.hero__proof-strip-inner {
+  padding-top: 32px;
+  border-top: 1px solid var(--gold-border);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 1px;
+  background: var(--gold-border);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.55s forwards;
+}
+.hero__proof-item {
+  background: #fff;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.hero__proof-item:hover { background: #f9f9f9; }
+.hero__proof-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.hero__proof-icon.gold  { background: #FAEEDA; color: #854F0B; }
+.hero__proof-icon.blue  { background: #E6F1FB; color: #185FA5; }
+.hero__proof-icon.teal  { background: #E1F5EE; color: #0F6E56; }
+.hero__proof-icon.amber { background: #FEF3C7; color: #92400E; }
+.hero__proof-item strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+.hero__proof-item > span {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.hero__proof-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 4px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.hero__proof-badge.green { background: #EAF3DE; color: #3B6D11; }
+.hero__proof-badge.blue  { background: #E6F1FB; color: #185FA5; }
+
+/* Hero animations */
+@keyframes fadeSlideDown  { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeSlideUp    { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeSlideRight { to { opacity: 1; transform: translateX(0); } }
+.hero__eyebrow { transform: translateY(-8px); }
+.hero h1, .hero__desc, .hero__btns { transform: translateY(16px); }
+.hero-form-card { transform: translateX(16px); }
+
+/* Hero responsive */
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-form-card { max-width: 480px; }
+  .hero__proof-strip-inner { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 560px) {
+  .hero { padding: 48px 0 52px; }
+}
+@media (max-width: 400px) {
+  .hero h1 { font-size: 26px; }
+}
+
+/* ===== SECTION DIVIDER ===== */
+.section-divider{display:flex;align-items:center;gap:14px;margin:50px 0 32px}
+.section-divider__dot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.section-divider__label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.section-divider__line{flex:1;height:1px;background:linear-gradient(to right,var(--gold-border),transparent)}
+
+/* ===== INTRO CARD ===== */
+.intro-card{background:var(--dark);border-radius:var(--radius);padding:40px 48px;color:#fff;position:relative;overflow:hidden;margin-bottom:50px}
+.intro-card::before,.intro-card::after{content:'';position:absolute;border-radius:50%;pointer-events:none;background:rgba(200,166,77,.06)}
+.intro-card::before{top:-60px;right:-60px;width:260px;height:260px}
+.intro-card::after{bottom:-40px;left:-40px;width:180px;height:180px}
+.intro-card p{color:rgba(255,255,255,.88);font-size:17px;line-height:1.8;position:relative;z-index:1;margin:0}
+.intro-card strong{color:var(--gold)}
+@media(max-width:600px){.intro-card{padding:26px 22px}}
+
+/* ===== FEATURE ROWS ===== */
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px}
+.feature-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
+.feature-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.feature-card__img{position:relative;overflow:hidden;aspect-ratio:16/9}
+.feature-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.feature-card:hover .feature-card__img img{transform:scale(1.06)}
+.feature-card__img::after{content:'🔍';position:absolute;inset:0;background:rgba(26,26,46,.42);display:flex;align-items:center;justify-content:center;font-size:26px;opacity:0;transition:opacity .3s}
+.feature-card:hover .feature-card__img::after{opacity:1}
+.feature-card__body{padding:24px 28px}
+.feature-card__body p{font-size:15.5px;color:#444;line-height:1.8;margin:0}
+.feature-card__body strong{color:var(--dark)}
+@media(max-width:760px){.feature-row{grid-template-columns:1fr}}
+@media(max-width:560px){.feature-card__body{padding:18px}}
+
+/* ===== PROCESS STEPS ===== */
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:10px 0 50px}
+.step-card{background:var(--white);border-radius:var(--radius-sm);padding:24px 20px;text-align:center;box-shadow:var(--shadow);border-top:3px solid var(--gold-border);transition:border-color .2s,transform .2s,box-shadow .2s}
+.step-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.step-card__num{width:44px;height:44px;border-radius:50%;background:var(--gold-tint);color:var(--gold);font-weight:800;font-size:18px;line-height:44px;margin:0 auto 14px;text-align:center}
+.step-card__title{font-weight:700;font-size:15px;color:var(--dark);margin-bottom:8px}
+.step-card__text{font-size:13.5px;color:var(--text-muted);line-height:1.6}
+@media(max-width:900px){.process-steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.process-steps{grid-template-columns:1fr}}
+
+/* ===== WORKS SECTION ===== */
+.works-heading{font-size:clamp(20px,3vw,32px);font-weight:800;color:var(--dark);margin-bottom:8px}
+.gold{color:var(--gold)}
+.works-subheading{font-size:clamp(16px,2.5vw,22px);font-weight:700;color:var(--dark);margin:32px 0 12px}
+.works-description{font-size:15.5px;color:#444;line-height:1.8;max-width:860px;margin-bottom:24px}
+
+.work-item{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px;transition:box-shadow .25s}
+.work-item:hover{box-shadow:var(--shadow-hover)}
+.work-item__img-wrap{position:relative;cursor:pointer;overflow:hidden;background:#f0ede5}
+.work-item__img-wrap img{width:100%;display:block;transition:transform .45s}
+.work-item__img-wrap:hover img{transform:scale(1.04)}
+.work-item__img-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(26,26,46,.38);display:flex;align-items:center;justify-content:center;font-size:28px;opacity:0;transition:opacity .3s}
+.work-item__img-wrap:hover::after{opacity:1}
+.work-item__footer{display:flex;align-items:center;gap:14px;padding:16px 24px;background:var(--gold-tint);border-top:1px solid var(--gold-border)}
+.work-item__footer-label{font-size:14px;color:var(--text-muted)}
+@media(max-width:560px){.work-item__footer{padding:12px 16px;flex-wrap:wrap}}
+
+/* ===== STATS BAR ===== */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gold-border);border-radius:var(--radius);overflow:hidden;margin:0 0 50px}
+.stat-item{background:var(--white);padding:28px 20px;text-align:center}
+.stat-item__num{font-size:clamp(28px,4vw,38px);font-weight:800;color:var(--gold);line-height:1;display:block}
+.stat-item__label{font-size:13px;color:var(--text-muted);margin-top:6px;line-height:1.4;display:block}
+@media(max-width:700px){.stats-bar{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== FAQ ===== */
+.faq-left{position:sticky;top:100px;height:max-content}
+.faq-section{background:linear-gradient(135deg,#faf9f6,#f0ede4);padding:80px 20px;margin-top:30px}
+.faq-inner{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:70px;align-items:start}
+.faq-badge{display:inline-block;background:var(--gold);color:#fff;padding:7px 20px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:22px}
+.faq-heading{font-size:clamp(32px,5vw,56px);line-height:1.1;color:var(--dark);font-weight:800;margin-bottom:20px}
+.faq-subtext{font-size:16.5px;color:#555;line-height:1.8;margin-bottom:32px}
+.faq-cta{display:inline-block;background:var(--gold);color:#fff;padding:16px 36px;border-radius:50px;font-weight:700;font-size:16px;box-shadow:0 6px 24px var(--gold-shadow);transition:background .2s,transform .2s,box-shadow .2s}
+.faq-cta:hover{background:var(--gold-dark);color:#fff;transform:translateY(-2px);box-shadow:0 10px 32px var(--gold-shadow)}
+.faq-list{display:flex;flex-direction:column;gap:14px}
+.faq-item{background:var(--white);border-radius:18px;overflow:hidden;border:1.5px solid var(--gold-border);box-shadow:0 2px 10px rgba(0,0,0,.05);transition:border-color .2s,box-shadow .2s}
+.faq-item.is-open{border-color:var(--gold);box-shadow:0 4px 20px rgba(200,166,77,.12)}
+.faq-btn{width:100%;background:var(--white);border:none;padding:22px;font-size:16.5px;font-weight:600;color:var(--dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;text-align:left;transition:color .2s;font-family:inherit}
+.faq-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.faq-item.is-open .faq-btn{color:var(--gold)}
+.faq-icon{width:38px;height:38px;border-radius:50%;background:var(--gold-tint);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;transition:background .2s,color .2s,transform .3s;user-select:none}
+.faq-item.is-open .faq-icon{background:var(--gold);color:#fff;transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.4,0,.2,1)}
+.faq-answer-inner{padding:0 22px 22px;color:#555;font-size:15.5px;line-height:1.8}
+@media(max-width:900px){
+  .faq-inner{grid-template-columns:1fr;gap:40px}
+  .faq-left{position:static;flex:none;width:100%}
+}
+@media(max-width:400px){.faq-btn{font-size:15px;padding:18px 16px}.faq-icon{width:32px;height:32px;font-size:18px}}
+
+/* ===== LIGHTBOX ===== */
+.lightbox-overlay{display:none;position:fixed;inset:0;background:rgba(10,10,20,.92);z-index:9000;align-items:center;justify-content:center;cursor:pointer}
+.lightbox-overlay.active{display:flex}
+.lightbox-img-wrap{position:relative;max-width:92vw;max-height:88vh;cursor:default}
+.lightbox-img-wrap img{max-width:92vw;max-height:86vh;border-radius:10px;display:block;box-shadow:0 20px 80px rgba(0,0,0,.6)}
+.lightbox-close{position:absolute;top:-20px;right:-20px;width:40px;height:40px;background:var(--gold);color:#fff;border:none;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3);transition:background .2s}
+.lightbox-close:hover{background:var(--gold-dark)}
+@media(max-width:600px){.lightbox-overlay{display:none!important}}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.08s}
+.reveal-delay-2{transition-delay:.16s}
+.reveal-delay-3{transition-delay:.24s}
+.reveal-delay-4{transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body class="inner-page">
+
+<div class="l-wrapper">
+  <div id="header-placeholder"></div>
+
+  <main class="l-main">
+
+    <!-- ═══════════════════════════════════════════
+         HERO — same style as SMM page
+    ═══════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero__grid">
+
+        <!-- Left: text -->
+        <div>
+          <span class="hero__eyebrow">🎨 Dubai's Trusted Design Studio</span>
+          <h1>Professional <span class="accent">Logo Design</span> in Dubai</h1>
+          <p class="hero__desc">Your logo is the face of your brand. We craft unique, memorable logos that speak your identity — delivered with full ownership and source files.</p>
+          <div class="hero__btns">
+            <a href="contact.html" class="btn-primary">Get Free Quote →</a>
+            <a href="#portfolio" class="btn-outline">View Portfolio</a>
+          </div>
+        </div>
+
+        <!-- Right: dark form card -->
+        <div class="hero-form-card">
+          <div class="hero-form-card__header">
+            <div class="hero-form-card__icon" aria-hidden="true">✏️</div>
+            <div>
+              <strong class="hero-form-card__title">Get a Free Logo Quote</strong>
+              <span class="hero-form-card__sub">We reply within 2 hours</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="h-name">Full Name</label>
+            <input class="form-input" type="text" id="h-name" placeholder="Your full name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="h-phone">Phone / WhatsApp</label>
+            <input class="form-input" type="tel" id="h-phone" placeholder="+971">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="h-email">Email Address</label>
+            <input class="form-input" type="email" id="h-email" placeholder="john@company.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="h-service">Service Needed</label>
+            <select class="form-input" id="h-service">
+              <option value="">Select a service...</option>
+              <option>Logo Design</option>
+              <option>Brand Identity</option>
+              <option>Logo + Brand Guidelines</option>
+              <option>Logo Refresh / Redesign</option>
+            </select>
+          </div>
+          <button class="form-submit">Send Me a Free Quote →</button>
+          <p class="form-note">100% Free · No credit card · Reply within 2 hours</p>
+        </div>
+
+      </div>
+
+      <!-- Proof strip -->
+      <div class="hero__proof-strip">
+        <div class="hero__proof-strip-inner">
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon gold"><i class="ti ti-pencil"></i></div>
+            <strong>5+</strong>
+            <span>Expert Designers</span>
+            <span class="hero__proof-badge green"><i class="ti ti-circle-check"></i> In-House</span>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon blue"><i class="ti ti-brand-behance"></i></div>
+            <strong>500+</strong>
+            <span>Logos Created</span>
+            <span class="hero__proof-badge blue"><i class="ti ti-chart-bar"></i> Delivered</span>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon teal"><i class="ti ti-layers-intersect"></i></div>
+            <strong>3</strong>
+            <span>Concepts Delivered</span>
+            <span class="hero__proof-badge green"><i class="ti ti-trending-up"></i> Per Project</span>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-icon amber"><i class="ti ti-shield-check"></i></div>
+            <strong>100%</strong>
+            <span>Ownership Transferred</span>
+            <span class="hero__proof-badge blue"><i class="ti ti-lock"></i> Guaranteed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END HERO -->
+
+    <div class="l-container">
+
+      <!-- BREADCRUMBS -->
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <div itemscope itemtype="https://schema.org/BreadcrumbList">
+          <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="/index.html">
+            <meta itemprop="position" content="1">
+            <meta itemprop="name" content="Home">
+            <meta itemprop="item" content="https://www.marketingwithfahad.ae/">
+            Home</a>
+          <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="/services.html">
+            <meta itemprop="position" content="2">
+            <meta itemprop="name" content="Services">
+            <meta itemprop="item" content="https://www.marketingwithfahad.ae/services/">
+            Services</a>
+          <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="3">
+            <meta itemprop="name" content="Logo Designing">
+            Logo Designing</span>
+        </div>
+      </nav>
+
+      <!-- INTRO CARD -->
+      <div class="intro-card reveal">
+        <p><strong>Company logo</strong> sometimes says everything about you. It has to be simple, yet it should catch the attention of everyone who looks at it. We, at <strong>Marketing with Fahad</strong>, offer you design solutions beyond excellence — your company logo will be the face of your brand, and we will make sure it leaves an imprint on the consciousness of your potential customers.</p>
+      </div>
+
+      <!-- OUR APPROACH -->
+      <div class="section-divider reveal">
+        <div class="section-divider__dot"></div>
+        <span class="section-divider__label">Our Approach</span>
+        <div class="section-divider__line"></div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div class="feature-card reveal-delay-1">
+          <div class="feature-card__img" role="button" tabindex="0" aria-label="View logo design image" data-src="assets/ld_txt1.webp" data-alt="Logo Designing - unique brand identity">
+            <img src="assets/ld_txt1.webp" alt="Logo Designing - unique brand identity" loading="lazy">
+          </div>
+          <div class="feature-card__body">
+            <p>A logo has to be unique, not resembling other icons in the market. It is important to maintain your uniqueness while having all the attributes of a good design. We have already created logos for some of the most successful brands in the local market. We believe in not bombarding our clients with ideas — we interact with the client, get to know their personality, and their business methodologies so we can provide exactly what they want.</p>
+          </div>
+        </div>
+        <div class="feature-card reveal-delay-2">
+          <div class="feature-card__img" role="button" tabindex="0" aria-label="View logo design process image" data-src="assets/ld_txt2.webp" data-alt="Logo Designing process in Dubai">
+            <img src="assets/ld_txt2.webp" alt="Logo Designing process in Dubai" loading="lazy">
+          </div>
+          <div class="feature-card__body">
+            <p>When you sign up with Marketing with Fahad for <strong>Logo Designing in Dubai</strong>, we will arrange a think tank session with you — just to understand and feel what your business is all about. After that, several design ideas will be provided, out of which you will select your logo design — the unique face of your brand.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="section-divider reveal">
+        <div class="section-divider__dot"></div>
+        <span class="section-divider__label">How It Works</span>
+        <div class="section-divider__line"></div>
+      </div>
+
+      <div class="process-steps">
+        <div class="step-card reveal reveal-delay-1">
+          <div class="step-card__num">1</div>
+          <div class="step-card__title">Discovery Session</div>
+          <div class="step-card__text">We sit down with you to understand your brand, values, target audience and vision.</div>
+        </div>
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-card__num">2</div>
+          <div class="step-card__title">Concept Design</div>
+          <div class="step-card__text">Our designers create 3 unique logo concepts tailored specifically for your business.</div>
+        </div>
+        <div class="step-card reveal reveal-delay-3">
+          <div class="step-card__num">3</div>
+          <div class="step-card__title">Revisions</div>
+          <div class="step-card__text">You choose a direction and we refine it with unlimited revisions until perfect.</div>
+        </div>
+        <div class="step-card reveal reveal-delay-4">
+          <div class="step-card__num">4</div>
+          <div class="step-card__title">Final Delivery</div>
+          <div class="step-card__text">Receive full source files — AI, EPS, PNG, SVG, PDF — with complete ownership.</div>
+        </div>
+      </div>
+
+      <!-- PORTFOLIO -->
+      <div class="section-divider reveal" id="portfolio">
+        <div class="section-divider__dot"></div>
+        <span class="section-divider__label">Portfolio</span>
+        <div class="section-divider__line"></div>
+      </div>
+
+      <h2 class="works-heading reveal"><span class="gold">Recent</span> Works</h2>
+
+      <h3 class="works-subheading reveal">Bestington</h3>
+      <p class="works-description reveal">We created three distinct logo concepts for Bestington Real Estate, each exploring a different visual direction — from classic wordmarks to icon-driven marks. The client selected their preferred identity after a thorough review session.</p>
+
+      <div class="work-item reveal">
+        <div class="work-item__img-wrap"
+             role="button" tabindex="0"
+             aria-label="View Bestington logo designs"
+             data-src="assets/logos1.webp"
+             data-alt="Bestington logo concepts by Marketing with Fahad">
+          <img src="assets/logos1.webp"
+               alt="Bestington logo concepts by Marketing with Fahad"
+               loading="lazy">
+        </div>
+        <div class="work-item__footer">
+          <span class="work-item__footer-label">★ The client chose the dark variant</span>
+        </div>
+      </div>
+
+      <h3 class="works-subheading reveal">SDI <span class="gold">Capital</span></h3>
+
+      <div class="work-item reveal">
+        <div class="work-item__img-wrap"
+             role="button" tabindex="0"
+             aria-label="View SDI Capital logo designs"
+             data-src="assets/logos2.webp"
+             data-alt="SDI Capital logo concepts by Marketing with Fahad">
+          <img src="assets/logos2.webp"
+               alt="SDI Capital logo concepts by Marketing with Fahad"
+               loading="lazy">
+        </div>
+        <div class="work-item__footer">
+          <span class="work-item__footer-label">★ The client chose the centre concept</span>
+        </div>
+      </div>
+
+    </div><!-- /.l-container -->
+
+    <!-- FAQ -->
+    <section class="faq-section reveal" aria-label="Frequently Asked Questions">
+      <div class="faq-inner">
+        <div class="faq-left">
+          <span class="faq-badge">FAQs</span>
+          <h2 class="faq-heading">Frequently<br><span class="gold">Asked Questions</span></h2>
+          <p class="faq-subtext">Everything you need to know about our logo design and brand identity services in Dubai.</p>
+          <a href="contact.html" class="faq-cta">Get Free Quote</a>
+        </div>
+
+        <div class="faq-list" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a1">
+              How many logo concepts will I receive?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a1" role="region">
+              <div class="faq-answer-inner">We provide 3 unique logo concepts to start. You select one direction and we refine it through unlimited revisions until you are completely satisfied.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a2">
+              How long does logo design take?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a2" role="region">
+              <div class="faq-answer-inner">Initial concepts are delivered within 3–5 business days. Final approved files are ready within 7–10 business days from the start of the project.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a3">
+              What file formats will I receive?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a3" role="region">
+              <div class="faq-answer-inner">You receive all source files including AI, EPS, and PSD, plus ready-to-use exports in PNG, JPG, SVG, and PDF — for print, digital, and web use.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a4">
+              Do you offer full brand identity packages?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a4" role="region">
+              <div class="faq-answer-inner">Yes. Beyond the logo, we can create complete brand guidelines covering colour palettes, typography, logo usage rules, brand voice, and all supporting collateral.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-a5">
+              Will my logo be unique — will you reuse it for anyone else?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a5" role="region">
+              <div class="faq-answer-inner">Every logo is custom-designed exclusively for your business. We never resell or reuse designs. Full ownership transfers to you upon final payment.</div>
+            </div>
+          </div>
+        </div><!-- /.faq-list -->
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+  <div class="lightbox-img-wrap">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">✕</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* Scroll Reveal */
+var reveals=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    });
+  },{threshold:0.07,rootMargin:'0px 0px -36px 0px'});
+  reveals.forEach(function(el){obs.observe(el);});
+}else{
+  reveals.forEach(function(el){el.classList.add('visible');});
+}
+
+/* Lightbox */
+var overlay=document.getElementById('lightbox');
+var lbImg=document.getElementById('lightboxImg');
+
+function openLb(src,alt){
+  if(window.innerWidth<=600)return;
+  lbImg.src=src;lbImg.alt=alt||'';
+  overlay.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){
+  overlay.classList.remove('active');
+  document.body.style.overflow='';
+  lbImg.src='';
+}
+
+document.querySelectorAll('[data-src]').forEach(function(el){
+  function act(){openLb(el.dataset.src,el.dataset.alt);}
+  el.addEventListener('click',act);
+  el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+});
+
+document.getElementById('lightboxClose').addEventListener('click',closeLb);
+overlay.addEventListener('click',function(e){if(e.target===overlay)closeLb();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('active'))closeLb();});
+
+function runScripts(container){
+  container.querySelectorAll('script').forEach(function(oldScript){
+    var newScript=document.createElement('script');
+    if(oldScript.src){newScript.src=oldScript.src;}
+    else{newScript.textContent=oldScript.textContent;}
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  fetch("header.html")
+    .then(function(r){return r.text();})
+    .then(function(data){
+      var el=document.getElementById("header-placeholder");
+      el.innerHTML=data;runScripts(el);
+    });
+  fetch("footer.html")
+    .then(function(r){return r.text();})
+    .then(function(data){
+      var el=document.getElementById("footer-placeholder");
+      el.innerHTML=data;runScripts(el);
+    });
+});
+
+/* FAQ Accordion */
+document.querySelectorAll('.faq-item').forEach(function(item){
+  var btn=item.querySelector('.faq-btn');
+  var answer=item.querySelector('.faq-answer');
+  var icon=item.querySelector('.faq-icon');
+  btn.addEventListener('click',function(){
+    var isOpen=item.classList.contains('is-open');
+    document.querySelectorAll('.faq-item').forEach(function(i){
+      i.classList.remove('is-open');
+      i.querySelector('.faq-answer').style.maxHeight='';
+      i.querySelector('.faq-btn').setAttribute('aria-expanded','false');
+      i.querySelector('.faq-icon').textContent='+';
+    });
+    if(!isOpen){
+      item.classList.add('is-open');
+      answer.style.maxHeight=answer.scrollHeight+'px';
+      btn.setAttribute('aria-expanded','true');
+      icon.textContent='×';
+    }
+  });
+});
+
+})();
+</script>
+</body>
+</html>

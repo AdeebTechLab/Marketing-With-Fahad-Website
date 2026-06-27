@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>SEO Ranks | SEO Position on Top-10 | Marketing with Fahad</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Dominating the market for SEO, Marketing with Fahad provides dedication to all clients to insure their website is always reaching the first page.">
+<link rel="canonical" href="contact.html">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/favicon-dark-bg.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/assets/favicon-light-bg.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180x180.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<meta name="theme-color" content="#141414">
+<meta name="yandex-verification" content="52f389f433da9518">
+<meta name="facebook-domain-verification" content="8qigqn26sxuz2ur1z0msw98cpc6aea">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2L3QCKM0EJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2L3QCKM0EJ');</script>
+<style>
+/* ── RESET ────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f4f0;color:#2e2e2e;line-height:1.65;-webkit-text-size-adjust:100%;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:#c8a64d;text-decoration:none;transition:color .2s}
+a:hover{color:#a8842e}
+ul,ol{list-style:none}
+button{font-family:inherit;cursor:pointer}
+
+/* ── TOKENS ───────────────────────────────────────────────── */
+:root{
+  --gold:#c8a64d;
+  --gold-dark:#a8842e;
+  --gold-light:#fdf3d8;
+  --gold-border:#f5e9c8;
+  --gold-shadow:rgba(200,166,77,.3);
+  --dark:#1a1a2e;
+  --white:#fff;
+  --bg:#f5f4f0;
+  --text:#2e2e2e;
+  --muted:#6b6b6b;
+  --radius:16px;
+  --green:#13d186;
+  --blue:#5c7daa;
+  /* FIX #2 — distinct mid-range colour so it no longer blends with the
+     gold card header. Amber/orange reads clearly against the gold-light
+     header background. */
+  --amber:#e07b25;
+}
+
+/* ── LAYOUT ───────────────────────────────────────────────── */
+.l-wrapper{display:flex;flex-direction:column;min-height:100vh}
+.l-main{flex:1;padding-bottom:60px}
+.l-container{width:100%;max-width:1270px;margin:0 auto;padding:0 22px}
+
+/* ── HERO BANNER ──────────────────────────────────────────── */
+.hero-banner{
+  width:100%;
+  overflow:hidden;
+  position:relative;
+  background:#1a1a2e;
+  max-height:300px;
+}
+.hero-banner img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  object-position:center;
+  opacity:.85;
+  display:block;
+}
+.hero-banner-mobile{display:none}
+@media(max-width:567px){
+  .hero-banner{display:none}
+  .hero-banner-mobile{
+    display:block;width:100%;
+    overflow:hidden;
+    background:#1a1a2e;
+    position:relative;
+  }
+  .hero-banner-mobile img{
+    width:100%;height:180px;
+    object-fit:cover;
+    object-position:center;
+    opacity:.85;
+  }
+}
+
+/* ── BREADCRUMBS ──────────────────────────────────────────── */
+.breadcrumbs{padding:28px 0 6px;font-size:14px;opacity:0;animation:fadeIn .6s .1s ease forwards}
+.breadcrumbs a{color:var(--muted);transition:color .2s}
+.breadcrumbs a:hover{color:var(--gold)}
+.breadcrumbs a::after{content:"›";margin:0 8px;color:#ccc}
+.breadcrumbs span{color:var(--gold);font-weight:600}
+
+/* ── PAGE TITLE ───────────────────────────────────────────── */
+.page-title{opacity:0;animation:fadeUp .7s .2s ease forwards;margin-bottom:36px}
+.page-title h1{font-size:clamp(24px,4vw,42px);font-weight:700;color:var(--dark);line-height:1.2}
+.page-title h1 span{color:var(--gold)}
+
+/* ── SECTION DIVIDER ──────────────────────────────────────── */
+.sec-divider{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.sec-divider__dot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.sec-divider__label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.sec-divider__line{flex:1;height:1px;background:linear-gradient(to right,var(--gold-border),transparent)}
+
+/* ── RANK LEGEND ──────────────────────────────────────────── */
+.rank-legend{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:20px;padding:12px 18px;background:var(--white);border:1px solid var(--gold-border);border-radius:12px}
+.rank-legend__title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-right:4px}
+.rank-legend__item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text)}
+.rank-legend__dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.rank-legend__dot--green{background:var(--green);box-shadow:0 2px 8px rgba(19,209,134,.3)}
+/* FIX #2 — legend dot for the 4-6 range now uses the distinct amber
+   colour instead of gold, matching the badges in the cards below */
+.rank-legend__dot--gold{background:var(--amber);box-shadow:0 2px 8px rgba(224,123,37,.3)}
+.rank-legend__dot--blue{background:var(--blue);box-shadow:0 2px 8px rgba(92,125,170,.3)}
+@media(max-width:560px){.rank-legend{gap:12px}}
+
+/* ── SEO RANKS GRID ───────────────────────────────────────── */
+.ranks-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+  justify-content:center;
+  /* FIX #1 — without this, grid rows stretch every card in the row to
+     match the tallest card, leaving a big empty gap under cards that
+     have fewer keyword rows (e.g. quicklease.ae). align-items:start lets
+     each card hug its own content height instead. */
+  align-items:start;
+}
+/* Keep sensible max columns on large screens */
+@media(min-width:901px){.ranks-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.ranks-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.ranks-grid{grid-template-columns:1fr}}
+
+/* ── RANK CARD ────────────────────────────────────────────── */
+/* FIX #3 — the staggered reveal previously animated both opacity and
+   transform on the whole card. While a card was mid-fade its tan header
+   rendered visibly lighter than fully-revealed cards above it, making
+   row-2 headers look inconsistent. Headers now stay fully opaque at all
+   times; only the slide-up motion remains. */
+.rank-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gold-border);overflow:hidden;transition:transform .25s,box-shadow .25s;opacity:1;transform:translateY(24px)}
+.rank-card.visible{transform:none;transition:transform .5s ease,box-shadow .25s,border-color .2s}
+.rank-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--gold-shadow);border-color:var(--gold)}
+
+/* FIX #3 — explicit, single source of truth for the header tan shade so
+   every card header (row 1, row 2, row 3...) renders identically */
+.rank-card__header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  background-color:var(--gold-light);
+  border-bottom:1px solid var(--gold-border);
+  gap:10px;
+  min-height:52px;
+}
+.rank-card__site{font-weight:700;font-size:14px;color:var(--dark);word-break:break-all;line-height:1.35}
+.rank-card__loc{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--gold-dark);background:var(--white);border:1px solid var(--gold-border);border-radius:20px;padding:3px 10px;white-space:nowrap;flex-shrink:0}
+.rank-card__loc svg{width:14px;height:14px;flex-shrink:0}
+
+.rank-card__table{padding:0 0 8px}
+.rank-row{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:12px;border-bottom:1px solid #f5f2ec;transition:background .15s}
+.rank-row:last-child{border-bottom:none}
+.rank-row:hover{background:var(--gold-light)}
+.rank-row--head{background:#f8f5ee;padding:8px 20px}
+.rank-row--head span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.rank-row__keyword{font-size:14px;color:var(--text);flex:1;line-height:1.4}
+.rank-row__pos{width:36px;height:36px;min-width:36px;border-radius:50%;background:var(--gold);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px var(--gold-shadow)}
+
+/* FIX #2 — Position colour coding: 1-3 green, 4-6 amber (distinct from
+   the gold card header), 7-10 blue */
+.rank-row__pos[data-pos="1"],.rank-row__pos[data-pos="2"],.rank-row__pos[data-pos="3"]{background:var(--green);box-shadow:0 2px 8px rgba(19,209,134,.3)}
+.rank-row__pos[data-pos="4"],.rank-row__pos[data-pos="5"],.rank-row__pos[data-pos="6"]{background:var(--amber);box-shadow:0 2px 8px rgba(224,123,37,.3)}
+.rank-row__pos[data-pos="7"],.rank-row__pos[data-pos="8"],.rank-row__pos[data-pos="9"],.rank-row__pos[data-pos="10"]{background:var(--blue);box-shadow:0 2px 8px rgba(92,125,170,.3)}
+
+/* ── STATS BANNER ─────────────────────────────────────────── */
+.stats-banner{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:44px;opacity:0;animation:fadeUp .7s .35s ease forwards}
+@media(max-width:900px){.stats-banner{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.stats-banner{grid-template-columns:repeat(2,1fr)}}
+.stat-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gold-border);padding:22px 20px;text-align:center;transition:box-shadow .2s,border-color .2s}
+.stat-card:hover{border-color:var(--gold);box-shadow:0 6px 20px var(--gold-shadow)}
+.stat-card__num{font-size:clamp(26px,4vw,38px);font-weight:700;color:var(--gold);line-height:1}
+.stat-card__label{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.4}
+
+/* ── FAQ SECTION ──────────────────────────────────────────── */
+.faq-section{padding:80px 0;background:var(--white);border-top:1px solid var(--gold-border)}
+.faq-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:flex-start}
+.faq-inner > div:first-child{position:sticky;top:100px;height:max-content}
+@media(max-width:900px){
+  .faq-inner{grid-template-columns:1fr;gap:36px}
+  .faq-inner > div:first-child{position:static}
+}
+
+.faq-label{display:inline-block;background:var(--gold);color:#fff;padding:7px 20px;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.faq-heading{font-size:clamp(30px,4vw,50px);font-weight:700;line-height:1.12;color:var(--dark);margin-bottom:18px}
+.faq-heading span{color:var(--gold)}
+.faq-desc{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:32px}
+.faq-cta{display:inline-block;background:var(--gold);color:#fff;padding:15px 34px;border-radius:50px;font-size:15px;font-weight:700;box-shadow:0 6px 20px var(--gold-shadow);transition:background .2s,box-shadow .2s}
+.faq-cta:hover{background:var(--gold-dark);box-shadow:0 8px 28px var(--gold-shadow);color:#fff}
+
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--white);border-radius:14px;border:1px solid var(--gold-border);overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.faq-item.open{border-color:var(--gold);box-shadow:0 6px 24px rgba(200,166,77,.1)}
+.faq-btn{width:100%;border:none;background:transparent;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;font-size:16px;font-weight:600;color:var(--dark);line-height:1.4;transition:color .2s}
+.faq-item.open .faq-btn{color:var(--gold)}
+@media(max-width:400px){.faq-btn{font-size:14px;padding:16px}}
+.faq-icon{width:36px;height:36px;border-radius:50%;background:var(--gold-light);color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;line-height:1;transition:background .2s,color .2s,transform .3s}
+.faq-item.open .faq-icon{background:var(--gold);color:#fff;transform:rotate(45deg)}
+.faq-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-content-inner{padding:0 22px 20px;font-size:15px;color:var(--muted);line-height:1.75}
+@media(max-width:400px){.faq-content-inner{padding:0 16px 16px}}
+
+/* ── SCROLL REVEAL ────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── ANIMATIONS ───────────────────────────────────────────── */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rank-card,.reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="l-wrapper">
+  <div id="header-placeholder"></div>
+
+  <!-- HERO BANNER -->
+  <div class="hero-banner" aria-hidden="true">
+    <img src="assets/our-sero-rank-hero.webp" alt="Our SEO Ranks hero">
+  </div>
+  <div class="hero-banner-mobile" aria-hidden="true">
+    <img src="assets/our-sero-rank-hero-mobile.webp" alt="Our SEO Ranks">
+  </div>
+
+  <main class="l-main">
+    <div class="l-container">
+
+      <!-- BREADCRUMBS -->
+      <nav class="breadcrumbs" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="/index.html">
+          <meta itemprop="position" content="1"><meta itemprop="name" content="Home"><meta itemprop="item" content="https://www.marketingwithfahad.ae/">Home</a>
+        <a itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" href="portfolio.html">
+          <meta itemprop="position" content="2"><meta itemprop="name" content="Portfolio"><meta itemprop="item" content="https://www.marketingwithfahad.ae/portfolio/">Portfolio</a>
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <meta itemprop="position" content="3"><meta itemprop="name" content="Our SEO Ranks">Our SEO Ranks</span>
+      </nav>
+
+      <!-- PAGE TITLE -->
+      <div class="page-title">
+        <h1>Our <span>SEO Ranks</span></h1>
+      </div>
+
+      <!-- STATS BANNER -->
+      <div class="stats-banner" aria-label="Key statistics">
+        <div class="stat-card"><div class="stat-card__num">13+</div><div class="stat-card__label">Clients on Page 1</div></div>
+        <div class="stat-card"><div class="stat-card__num">#1</div><div class="stat-card__label">Rankings Achieved</div></div>
+        <div class="stat-card"><div class="stat-card__num">UAE</div><div class="stat-card__label">Primary Market</div></div>
+        <div class="stat-card"><div class="stat-card__num">60+</div><div class="stat-card__label">Keywords Tracked</div></div>
+      </div>
+
+      <!-- SECTION DIVIDER -->
+      <div class="sec-divider reveal">
+        <span class="sec-divider__dot" aria-hidden="true"></span>
+        <span class="sec-divider__label">Verified Results</span>
+        <span class="sec-divider__line" aria-hidden="true"></span>
+      </div>
+
+      <!-- RANK COLOUR LEGEND -->
+      <div class="rank-legend reveal" aria-label="Position colour legend">
+        <span class="rank-legend__title">Position Key:</span>
+        <span class="rank-legend__item">
+          <span class="rank-legend__dot rank-legend__dot--green">1</span>
+          Positions 1–3
+        </span>
+        <span class="rank-legend__item">
+          <span class="rank-legend__dot rank-legend__dot--gold">4</span>
+          Positions 4–6
+        </span>
+        <span class="rank-legend__item">
+          <span class="rank-legend__dot rank-legend__dot--blue">7</span>
+          Positions 7–10
+        </span>
+      </div>
+
+      <!-- RANKS GRID -->
+      <div class="ranks-grid" id="ranksGrid">
+
+        <!-- mkrentacar.com -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">mkrentacar.com</span>
+            <span class="rank-card__loc">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>
+              UAE
+            </span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">سيارات فخمة للايجار في دبي</span><span class="rank-row__pos" data-pos="10">10</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">تأجير سيارات دبي فخمة</span><span class="rank-row__pos" data-pos="8">8</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">تأجير سيارات فاخرة في دبي</span><span class="rank-row__pos" data-pos="7">7</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">تأجير سيارات فارهة في دبي</span><span class="rank-row__pos" data-pos="5">5</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">سيارات فارهة للايجار</span><span class="rank-row__pos" data-pos="9">9</span></div>
+          </div>
+        </div>
+
+        <!-- thedriver.ae -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">thedriver.ae</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">driver supply</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">hire a driver in dubai</span><span class="rank-row__pos" data-pos="2">2</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">driver dubai</span><span class="rank-row__pos" data-pos="2">2</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">private chauffeur dubai</span><span class="rank-row__pos" data-pos="3">3</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">personal driver</span><span class="rank-row__pos" data-pos="3">3</span></div>
+          </div>
+        </div>
+
+        <!-- elegantmoment.ae -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">elegantmoment.ae</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">wedding planners in dubai</span><span class="rank-row__pos" data-pos="10">10</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">wedding planners dubai</span><span class="rank-row__pos" data-pos="5">5</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">wedding planner uae</span><span class="rank-row__pos" data-pos="5">5</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">birthday planner dubai</span><span class="rank-row__pos" data-pos="2">2</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">party planners dubai</span><span class="rank-row__pos" data-pos="4">4</span></div>
+          </div>
+        </div>
+
+        <!-- imperialae.com -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">imperialae.com</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">decoration company</span><span class="rank-row__pos" data-pos="3">3</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">3d floor</span><span class="rank-row__pos" data-pos="7">7</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">3d floors dubai</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">3d flooring dubai</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">3d floor dubai</span><span class="rank-row__pos" data-pos="1">1</span></div>
+          </div>
+        </div>
+
+        <!-- payperkay.ae -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">payperkay.ae</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">dubai car lease</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">car lease in dubai</span><span class="rank-row__pos" data-pos="2">2</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">lease a car in abu dhabi</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">cars for lease in dubai</span><span class="rank-row__pos" data-pos="2">2</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">dubai car leasing</span><span class="rank-row__pos" data-pos="1">1</span></div>
+          </div>
+        </div>
+
+        <!-- sunergysolar.ae -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">sunergysolar.ae</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">solar company in dubai</span><span class="rank-row__pos" data-pos="2">2</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">solar installer in gcc</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">solar solutions in uae</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">solar equipment in dubai</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">solar inverters in uae</span><span class="rank-row__pos" data-pos="1">1</span></div>
+          </div>
+        </div>
+
+        <!-- triburg.com -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">triburg.com</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">cold storage in dubai</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">cold storage warehouse in dubai</span><span class="rank-row__pos" data-pos="3">3</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">cold storage for rent in dubai</span><span class="rank-row__pos" data-pos="9">9</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">warehouse storage dubai</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">co-packing dubai</span><span class="rank-row__pos" data-pos="1">1</span></div>
+          </div>
+        </div>
+
+        <!-- violetstudio.ae -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">violetstudio.ae</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">wedding photographer uae</span><span class="rank-row__pos" data-pos="9">9</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">female wedding photographer uae</span><span class="rank-row__pos" data-pos="2">2</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">female videographer dubai</span><span class="rank-row__pos" data-pos="5">5</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">bridal photographer abu dhabi</span><span class="rank-row__pos" data-pos="7">7</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">bridal photographer uae</span><span class="rank-row__pos" data-pos="9">9</span></div>
+          </div>
+        </div>
+
+        <!-- speedydrive.ae -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">speedydrive.ae</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">car rental</span><span class="rank-row__pos" data-pos="4">4</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">rent a car dubai</span><span class="rank-row__pos" data-pos="7">7</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">car rental dubai</span><span class="rank-row__pos" data-pos="4">4</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">monthly car rental dubai</span><span class="rank-row__pos" data-pos="2">2</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">cheap rent a car in dubai</span><span class="rank-row__pos" data-pos="3">3</span></div>
+          </div>
+        </div>
+
+        <!-- alfarisgroup.com -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">alfarisgroup.com</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">crane company in dubai</span><span class="rank-row__pos" data-pos="1">1</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">crane hire dubai</span><span class="rank-row__pos" data-pos="3">3</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">crane rental dubai</span><span class="rank-row__pos" data-pos="3">3</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">Heavy lifting uae</span><span class="rank-row__pos" data-pos="6">6</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">forklifts rental in dubai</span><span class="rank-row__pos" data-pos="1">1</span></div>
+          </div>
+        </div>
+
+        <!-- battery.ae -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">battery.ae</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">car battery dubai</span><span class="rank-row__pos" data-pos="5">5</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">battery dubai</span><span class="rank-row__pos" data-pos="3">3</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">battery replacement dubai</span><span class="rank-row__pos" data-pos="6">6</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">car battery uae</span><span class="rank-row__pos" data-pos="5">5</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">car battery installation dubai</span><span class="rank-row__pos" data-pos="3">3</span></div>
+          </div>
+        </div>
+
+        <!-- quicklease.ae -->
+        <div class="rank-card">
+          <div class="rank-card__header">
+            <span class="rank-card__site">quicklease.ae</span>
+            <span class="rank-card__loc"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.349 8c0-.52.088-1.018.245-1.485L.84 4.456A7.856 7.856 0 000 8c0 1.274.302 2.475.838 3.542l2.754-2.063A4.64 4.64 0 013.349 8z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 3.273A4.8 4.8 0 0111.2 4.327L13.581 2a8.257 8.257 0 00-5.395-2C4.951 0 2.171 1.81.839 4.456l2.755 2.059C4.23 4.629 6.04 3.273 8.186 3.273z" fill="#EA4335"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.186 12.727c-2.147 0-3.957-1.356-4.592-3.242L.84 11.544C2.171 14.19 4.951 16 8.186 16c1.997 0 3.903-.694 5.334-1.994l-2.615-1.978c-.738.455-1.668.7-2.719.7z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8c0-.473-.075-.982-.186-1.455H8.186v3.091h4.39a3.603 3.603 0 01-1.671 2.392l2.615 1.978C15.023 12.641 16 10.607 16 8z" fill="#4285F4"/></svg>UAE</span>
+          </div>
+          <div class="rank-card__table">
+            <div class="rank-row rank-row--head"><span>Keyword</span><span>Pos.</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">cheap car leasing dubai</span><span class="rank-row__pos" data-pos="9">9</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">cheap car rental dubai</span><span class="rank-row__pos" data-pos="3">3</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">rent a car</span><span class="rank-row__pos" data-pos="7">7</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">rent cheap car</span><span class="rank-row__pos" data-pos="6">6</span></div>
+            <div class="rank-row"><span class="rank-row__keyword">rent a cheap car</span><span class="rank-row__pos" data-pos="5">5</span></div>
+          </div>
+        </div>
+
+
+      </div><!-- /ranks-grid -->
+
+    </div><!-- /l-container -->
+  </main>
+
+  <!-- ── FAQ SECTION ─────────────────────────────────────────── -->
+  <section class="faq-section reveal" aria-labelledby="faq-heading">
+    <div class="l-container">
+      <div class="faq-inner">
+        <div>
+          <span class="faq-label">FAQs</span>
+          <h2 class="faq-heading" id="faq-heading">Frequently<br><span>Asked Questions</span></h2>
+          <p class="faq-desc">Questions about our SEO ranking results and how we achieve them for clients across UAE.</p>
+          <a href="/contact.html" class="faq-cta">Get Free SEO Audit</a>
+        </div>
+        <div class="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              Are these ranking results real and verified?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content" role="region">
+              <div class="faq-content-inner">Yes. Every ranking result shown is from real client campaigns. We use Google Search Console and third-party rank tracking tools to verify and document all keyword positions.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              How long did it take to achieve these rankings?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content" role="region">
+              <div class="faq-content-inner">Most Page 1 rankings shown were achieved within 4–9 months. Highly competitive keywords in sectors like real estate and healthcare can take 9–12 months.</div>
+            </div>
+          </div>
+           <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              What tools do you use to track rankings?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content" role="region">
+              <div class="faq-content-inner">We use Google Search Console, SEMrush, and Ahrefs, verified with manual SERP checks for accuracy.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">Why do some keywords rank higher than others?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content" role="region">
+              <div class="faq-content-inner">Ranking depends on keyword competition and search intent. We target the best opportunities first, then build toward harder terms.</div>
+            </div>
+          </div>
+             <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              Do you guarantee a top 10 ranking?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content" role="region">
+              <div class="faq-content-inner">No agency can guarantee exact rankings since Google controls its algorithm. We guarantee a transparent, results-driven strategy aimed at the best achievable position.
+
+
+</div>
+            </div>
+          </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+</div><!-- /l-wrapper -->
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ── HEADER / FOOTER ───────────────────────────────────────
+  function runScripts(container) {
+    container.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  }
+
+  async function loadPart(url, id) {
+    try {
+      const r = await fetch(url);
+      const el = document.getElementById(id);
+      if (el) { el.innerHTML = await r.text(); runScripts(el); }
+    } catch(e) {}
+  }
+  loadPart('header.html', 'header-placeholder');
+  loadPart('footer.html', 'footer-placeholder');
+
+  // ── STAGGERED CARD REVEAL ─────────────────────────────────
+  const cards = document.querySelectorAll('.rank-card');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const idx  = parseInt(card.dataset.idx || 0);
+          card.style.transitionDelay = (idx * 0.08) + 's';
+          card.classList.add('visible');
+          io.unobserve(card);
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach((card, i) => { card.dataset.idx = i; io.observe(card); });
+  } else {
+    cards.forEach(c => c.classList.add('visible'));
+  }
+
+  // ── GENERIC SCROLL REVEAL ─────────────────────────────────
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const rv = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); rv.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => rv.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+
+  // ── FAQ ACCORDION ─────────────────────────────────────────
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item    = btn.closest('.faq-item');
+      const content = btn.nextElementSibling;
+      const isOpen  = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-btn').setAttribute('aria-expanded','false');
+        o.querySelector('.faq-content').style.maxHeight = '0';
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

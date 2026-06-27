@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Web Design Dubai | Custom Web Development Company | Marketing with Fahad</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Unique web design and development in Dubai on the Marketing with Fahad's content management system with UX/UI, expert content, and full technical support 24/7.">
+<link rel="canonical" href="contact.html">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/favicon-dark-bg.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/assets/favicon-light-bg.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180x180.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<meta name="theme-color" content="#141414">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+<style>
+/* ===========================
+   DESIGN TOKENS
+   =========================== */
+:root {
+  --gold: #C9A96E;
+  --gold-dark: #a8842e;
+  --gold-tint: #fdf3d8;
+  --gold-border: #f5e9c8;
+  --gold-shadow: rgba(201,169,110,0.3);
+  --dark: #0F172A;
+  --body-bg: #f5f4f0;
+  --white: #ffffff;
+  --text: #2e2e2e;
+  --text-muted: #64748b;
+  --surface: #fafaf8;
+  --border: #ede8de;
+  --radius: 16px;
+  --transition: 0.25s ease;
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ===========================
+   RESET & BASE
+   =========================== */
+*, *::before, *::after { box-sizing: border-box; outline: none; }
+html {
+  scroll-behavior: smooth;
+  /* FIX: prevent horizontal scroll at root */
+  overflow-x: hidden;
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--body-bg);
+  /* FIX: use hidden instead of clip — clip breaks on mobile Safari */
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--gold); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--gold-dark); }
+p { margin: 0 0 1em; }
+h1,h2,h3 { font-family: var(--font); font-weight: 700; line-height: 1.2; margin: 0 0 0.75em; color: var(--dark); }
+ul,ol { margin: 0 0 1em; padding-left: 1.4em; }
+li { margin: 4px 0; }
+input, select, textarea, button { font-family: var(--font); }
+
+/* ===========================
+   LAYOUT
+   =========================== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+/* FIX: every section clips its own decorative overflows */
+section {
+  overflow-x: hidden;
+}
+
+/* ===========================
+   SECTION DIVIDER
+   =========================== */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 24px;
+}
+.section-divider__dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+.section-divider__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.section-divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-border), transparent);
+  /* FIX: prevent line from expanding beyond container */
+  min-width: 0;
+}
+.section-divider--center { justify-content: center; }
+.section-divider--center .section-divider__line:first-of-type {
+  background: linear-gradient(to left, var(--gold-border), transparent);
+}
+
+/* Section badge */
+.badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 30px;
+  margin-bottom: 18px;
+}
+
+/* Section headings */
+.section-heading {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  color: var(--dark);
+  margin: 0 0 0.5em;
+}
+.section-heading .accent { color: var(--gold); }
+.section-heading--center { text-align: center; }
+.section-subtext {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: 560px;
+  margin: 0 0 48px;
+}
+.section-subtext--center { text-align: center; margin-left: auto; margin-right: auto; }
+
+/* ===========================
+   SCROLL REVEAL
+   =========================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.in-view { opacity: 1; transform: none; }
+
+/* ===========================
+   HERO SECTION
+   =========================== */
+.hero {
+  background: #fffdf5;
+  padding: 72px 0 80px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  /* FIX: clip decorative circle within hero */
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -80px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,0.09) 0%, transparent 70%);
+  pointer-events: none;
+  /* FIX: ensure it never causes scrollbar */
+  max-width: 100vw;
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 52px;
+  align-items: center;
+}
+.hero__eyebrow {
+  display: inline-block;
+  background: rgba(201,169,110,0.12);
+  color: var(--gold-dark);
+  border: 1px solid rgba(201,169,110,0.4);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeSlideDown 0.5s 0.1s forwards;
+}
+.hero h1 {
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.12;
+  margin: 0 0 18px;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.2s forwards;
+}
+.hero h1 .accent { color: var(--gold); }
+.hero__desc {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 0 24px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.3s forwards;
+}
+.hero__checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.38s forwards;
+}
+.hero__checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-size: 15px;
+  margin: 0;
+}
+.hero__checklist li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.hero__btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.45s forwards;
+}
+
+/* Hero proof strip */
+.hero__proof-strip {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--gold-border);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--gold-border);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s 0.55s forwards;
+  /* FIX: prevent strip from overflowing container */
+  width: 100%;
+}
+.hero__proof-item {
+  background: #ffffff;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.15s ease;
+  /* FIX: allow wrapping content */
+  min-width: 0;
+}
+.hero__proof-item:hover { background: #f9f9f9; }
+.hero__proof-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+.hero__proof-icon.gold  { background: #FAEEDA; color: #854F0B; }
+.hero__proof-icon.blue  { background: #E6F1FB; color: #185FA5; }
+.hero__proof-icon.teal  { background: #E1F5EE; color: #0F6E56; }
+.hero__proof-icon.amber { background: #FAEEDA; color: #BA7517; }
+.hero__proof-item strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  /* FIX: prevent overflow of large numbers */
+  word-break: break-word;
+}
+.hero__proof-item > span {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.hero__proof-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 4px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  /* FIX: prevent badge overflow */
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.hero__proof-badge.green { background: #EAF3DE; color: #3B6D11; }
+.hero__proof-badge.blue  { background: #E6F1FB; color: #185FA5; }
+
+/* Hero form card */
+.hero-form-card {
+  background: var(--dark);
+  border: 1px solid #1e293b;
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  opacity: 0;
+  animation: fadeSlideRight 0.6s 0.3s forwards;
+  /* FIX: prevent card overflow on narrow screens */
+  min-width: 0;
+  width: 100%;
+}
+.hero-form-card__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.hero-form-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  background: rgba(201,169,110,0.15);
+  color: var(--gold);
+  font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hero-form-card__title {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  display: block;
+  margin: 0 0 2px;
+}
+.hero-form-card__sub {
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+}
+.form-group { margin-bottom: 14px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: var(--white);
+  transition: border-color var(--transition);
+  /* FIX: prevent input from overflowing its container */
+  box-sizing: border-box;
+}
+.form-input::placeholder { color: rgba(255,255,255,0.3); }
+.form-input:focus { border-color: var(--gold); outline: none; }
+.form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background var(--transition), box-shadow var(--transition);
+  box-sizing: border-box;
+}
+.form-submit:hover {
+  background: var(--gold-dark);
+  box-shadow: 0 6px 20px var(--gold-shadow);
+}
+.form-note {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  margin: 10px 0 0;
+}
+
+/* ===========================
+   BUTTONS
+   =========================== */
+.btn-primary {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+  /* FIX: prevent button from breaking layout */
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.btn-primary:hover {
+  background: var(--gold-dark);
+  color: var(--white);
+  box-shadow: 0 6px 20px var(--gold-shadow);
+  transform: translateY(-1px);
+}
+.btn-outline {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--gold-dark);
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.btn-outline:hover { background: rgba(201,169,110,0.08); color: var(--gold-dark); }
+.btn-center { display: block; width: fit-content; margin: 0 auto; }
+
+/* ===========================
+   INTRO SECTION
+   =========================== */
+.intro-section {
+  background: var(--white);
+  padding: 72px 0;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 64px;
+  align-items: start;
+}
+.intro-grid__img {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+.intro-grid__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.intro-grid__img:hover img { transform: scale(1.04); }
+
+/* ===========================
+   WHY CHOOSE US
+   =========================== */
+.why-section {
+  background: var(--body-bg);
+  padding: 80px 0;
+  overflow: hidden;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 36px;
+}
+.why-card {
+  text-align: left;
+  padding: 30px 26px 28px;
+  border-radius: var(--radius);
+  background: var(--white);
+  border: 1px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+  /* FIX: ensure cards don't overflow grid */
+  min-width: 0;
+}
+.why-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--gold-dark));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+.why-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px var(--gold-shadow);
+  border-color: var(--gold-border);
+}
+.why-card:hover::before { transform: scaleX(1); }
+
+.why-card__icon {
+  width: 64px;
+  height: 64px;
+  background: var(--white);
+  border: 1.5px solid var(--gold-border);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(201,169,110,0.10);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  flex-shrink: 0;
+}
+.why-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.why-card:hover .why-card__icon {
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px var(--gold-shadow);
+  transform: scale(1.06) rotate(-3deg);
+}
+
+.why-card__top { display: none; }
+
+.why-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 10px;
+}
+.why-card p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===========================
+   CMS SECTION
+   =========================== */
+.cms-section {
+  background: var(--white);
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+.cms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 48px;
+}
+.cms-img-stack {
+  position: relative;
+  /* FIX: give enough bottom space for the absolutely positioned decor image */
+  padding-bottom: 40px;
+}
+.cms-img-stack__main {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  position: relative;
+  z-index: 1;
+}
+.cms-img-stack__decor {
+  position: absolute;
+  bottom: 0;
+  /* FIX: keep decor inside bounds — was -24px right which caused overflow */
+  right: -12px;
+  width: 50%;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border: 4px solid var(--white);
+  z-index: 2;
+}
+
+/* ===========================
+   PORTFOLIO SECTION
+   =========================== */
+.portfolio-section {
+  background: var(--body-bg);
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.portfolio-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+  /* FIX: ensure card stays in grid cell */
+  min-width: 0;
+}
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.13);
+}
+.portfolio-card__img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+}
+.portfolio-card__img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.portfolio-card:hover .portfolio-card__img-wrap img { transform: scale(1.06); }
+.portfolio-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(15,23,42,0.75));
+  opacity: 0;
+  transition: opacity var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+.portfolio-card:hover .portfolio-card__overlay { opacity: 1; }
+.portfolio-card__zoom {
+  width: 52px; height: 52px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white);
+  font-size: 1.4rem;
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+}
+.portfolio-card:hover .portfolio-card__zoom { transform: scale(1); }
+.portfolio-card__label {
+  display: block;
+  padding: 14px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+a.portfolio-card__label:hover { color: var(--gold); }
+
+/* ===========================
+   PRICING SECTION
+   =========================== */
+.pricing-section {
+  background: var(--dark);
+  padding: 80px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.pricing-section .section-divider__label { color: var(--gold); }
+.pricing-section .section-divider__dot { background: var(--gold); }
+.pricing-section .section-divider__line { background: linear-gradient(to right, rgba(201,169,110,0.3), transparent); min-width: 0; }
+.pricing-section .section-divider--center .section-divider__line:first-of-type {
+  background: linear-gradient(to left, rgba(201,169,110,0.3), transparent);
+}
+.pricing-section .section-heading { color: var(--white); }
+.pricing-section .section-heading .accent { color: var(--gold); }
+.pricing-section .section-subtext { color: rgba(255,255,255,0.5); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+.pricing-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  /* FIX: prevent overflow inside grid */
+  min-width: 0;
+}
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--gold-dark));
+}
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(201,169,110,0.2);
+  border-color: var(--gold);
+}
+.pricing-card--featured {
+  border-color: var(--gold);
+  background: rgba(201,169,110,0.08);
+  box-shadow: 0 8px 32px rgba(201,169,110,0.15);
+}
+.pricing-card__badge {
+  display: none;
+}
+.pricing-card--featured .pricing-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--gold);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 0 0 12px 12px;
+  width: fit-content;
+  margin: 0 auto 0;
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.pricing-card__head {
+  padding: 36px 28px 0;
+  text-align: center;
+}
+.pricing-card__plan-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: rgba(201,169,110,0.12);
+  border: 1px solid rgba(201,169,110,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  margin: 0 auto 16px;
+}
+.pricing-card__title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  margin: 0 0 6px;
+  text-align: center;
+}
+.pricing-card__title a { color: var(--white); }
+.pricing-card__title a:hover { color: var(--gold); }
+.pricing-card__price-box {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  margin-top: 18px;
+  color: rgba(255,255,255,0.6);
+  font-size: 13px;
+}
+.pricing-card__price-new {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1.1;
+  margin: 4px 0 2px;
+  letter-spacing: -0.5px;
+}
+.pricing-card__price-old {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  text-decoration: line-through;
+}
+.pricing-card__list {
+  padding: 24px 28px 0;
+  flex: 1;
+  list-style: none;
+  margin: 0;
+}
+.pricing-card__list li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.55;
+}
+.pricing-card__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+.pricing-card__foot {
+  padding: 24px 28px;
+}
+.pricing-card__foot .btn-primary {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ===========================
+   HOSTING SECTION
+   =========================== */
+.hosting-section {
+  background: var(--surface);
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+.hosting-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+  margin-top: 40px;
+}
+.hosting-grid img {
+  max-width: 380px;
+  /* FIX: prevent image from causing overflow */
+  width: 100%;
+}
+
+/* ===========================
+   FAQ SECTION
+   =========================== */
+.faq-section {
+  padding: 80px 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+.faq-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+  gap: 64px;
+  align-items: start;
+}
+.faq-sidebar {
+  position: sticky;
+  top: 32px;
+}
+.faq-sidebar h2 {
+  font-size: clamp(32px, 4.5vw, 50px);
+  line-height: 1.1;
+  font-weight: 800;
+  margin: 0 0 18px;
+}
+.faq-sidebar h2 .accent { color: var(--gold); }
+.faq-sidebar p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin: 0 0 28px;
+}
+.faq-contact-card {
+  margin-top: 28px;
+  background: var(--gold-tint);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  padding: 20px;
+}
+.faq-contact-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+.faq-contact-card a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+.faq-cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--white);
+  padding: 15px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 4px 16px var(--gold-shadow);
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.faq-cta:hover {
+  background: var(--gold-dark);
+  color: var(--white);
+  box-shadow: 0 8px 24px var(--gold-shadow);
+  transform: translateY(-2px);
+}
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item {
+  background: var(--white);
+  border-radius: 14px;
+  border: 1.5px solid var(--gold-border);
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.faq-item.open {
+  border-color: var(--gold);
+  box-shadow: 0 4px 18px rgba(201,169,110,0.1);
+}
+.faq-btn {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--dark);
+  padding: 20px 20px;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  transition: color var(--transition);
+  /* FIX: prevent button text from overflowing */
+  box-sizing: border-box;
+}
+.faq-item.open .faq-btn { color: var(--gold); }
+.faq-icon {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--gold-tint);
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  font-weight: 400;
+  flex-shrink: 0;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+  line-height: 1;
+}
+.faq-item.open .faq-icon {
+  background: var(--gold);
+  color: var(--white);
+  transform: rotate(45deg);
+}
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  transition: max-height 0.38s ease, padding var(--transition);
+}
+.faq-item.open .faq-content {
+  max-height: 400px;
+  padding: 0 20px 20px;
+}
+
+/* ===========================
+   CTA SECTION
+   =========================== */
+.cta-section {
+  padding: 80px 0;
+  text-align: center;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+.cta-section h2 {
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--dark);
+  margin: 0 0 14px;
+}
+.cta-section h2 .accent { color: var(--gold); }
+.cta-section p {
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-dark {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--dark);
+  border: 2px solid var(--dark);
+  transition: background var(--transition), color var(--transition);
+  white-space: nowrap;
+}
+.btn-dark:hover { background: var(--dark); color: var(--white); }
+
+/* ===========================
+   LIGHTBOX
+   =========================== */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.88);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lightbox.active { display: flex; }
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+}
+.lightbox__close {
+  position: absolute;
+  top: 18px; right: 22px;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 32px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--transition);
+  line-height: 1;
+  font-weight: 300;
+}
+.lightbox__close:hover { opacity: 1; }
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+@keyframes fadeSlideDown { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeSlideUp   { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeSlideRight{ to { opacity: 1; transform: translateX(0); } }
+
+.hero__eyebrow { transform: translateY(-8px); }
+.hero h1, .hero__desc, .hero__checklist, .hero__btns { transform: translateY(16px); }
+.hero-form-card { transform: translateX(16px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ===========================
+   RESPONSIVE — TABLET (≤ 1024px)
+   =========================== */
+@media (max-width: 1024px) {
+  .hero__grid {
+    grid-template-columns: 1fr 360px;
+    gap: 36px;
+  }
+}
+
+/* ===========================
+   RESPONSIVE — MOBILE-LANDSCAPE / TABLET (≤ 900px)
+   =========================== */
+@media (max-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  /* FIX: form card full width but capped sensibly */
+  .hero-form-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  /* FIX: 4-col proof strip → 2-col */
+  .hero__proof-strip {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 32px;
+    padding-top: 0;
+    border-top: none;
+  }
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .intro-grid__img {
+    max-height: 280px;
+  }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .cms-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  /* FIX: give decor image more room on mobile so it doesn't clip */
+  .cms-img-stack {
+    margin-bottom: 60px;
+    padding-bottom: 50px;
+  }
+  .cms-img-stack__decor {
+    right: 0;
+    bottom: -10px;
+    width: 48%;
+  }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hosting-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .hosting-grid img {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .faq-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .faq-sidebar { position: static; }
+}
+
+/* ===========================
+   RESPONSIVE — MOBILE (≤ 640px)
+   =========================== */
+@media (max-width: 640px) {
+  /* FIX: increase container padding on small screens */
+  .container {
+    padding: 0 16px;
+  }
+  .why-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .hero {
+    padding: 40px 0 48px;
+  }
+  .hero h1 {
+    font-size: clamp(24px, 7vw, 34px);
+  }
+  /* FIX: proof strip 1-col on very small screens to prevent overflow */
+  .hero__proof-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* FIX: stacked buttons take full width on mobile */
+  .hero__btns {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero__btns .btn-primary,
+  .hero__btns .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+  .cta-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+  .why-section,
+  .cms-section,
+  .portfolio-section,
+  .pricing-section,
+  .hosting-section,
+  .faq-section,
+  .cta-section {
+    padding: 52px 0;
+  }
+  .intro-section {
+    padding: 52px 0;
+  }
+  /* FIX: smaller section headings on mobile */
+  .section-heading {
+    font-size: clamp(22px, 6vw, 28px);
+  }
+  .section-subtext {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  /* FIX: CMS decorative image less aggressive on mobile */
+  .cms-img-stack__decor {
+    display: none;
+  }
+  .cms-img-stack {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  /* FIX: FAQ button text wrapping */
+  .faq-btn {
+    font-size: 14px;
+    padding: 16px;
+  }
+  /* FIX: hero form card padding */
+  .hero-form-card {
+    padding: 24px 18px;
+  }
+  /* FIX: pricing cards full width comfortable */
+  .pricing-grid {
+    max-width: 100%;
+  }
+}
+
+/* ===========================
+   RESPONSIVE — VERY SMALL (≤ 400px)
+   =========================== */
+@media (max-width: 400px) {
+  .container {
+    padding: 0 14px;
+  }
+  .faq-btn { font-size: 13px; padding: 14px; gap: 8px; }
+  .hero h1 { font-size: 23px; }
+  /* FIX: proof strip single column on tiny screens */
+  .hero__proof-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero__proof-item {
+    padding: 14px 12px;
+  }
+  .hero__proof-item strong {
+    font-size: 18px;
+  }
+  .hero__proof-badge {
+    display: none;
+  }
+  .btn-primary, .btn-outline, .btn-dark {
+    font-size: 14px;
+    padding: 0 20px;
+    height: 46px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__grid">
+      <div>
+        <span class="hero__eyebrow">Web Design &amp; Development Dubai</span>
+        <h1>Custom Web Design<br>Built for <span class="accent">Performance &amp; Growth</span></h1>
+        <p class="hero__desc">Marketing with Fahad — international web design company in Dubai. Custom websites, e-commerce, and landing pages crafted with clean code, UX/UI expertise, and 24/7 support.</p>
+        <ul class="hero__checklist">
+          <li>100% custom design — no templates, ever</li>
+          <li>Built on our own SEO-ready CMS platform</li>
+          <li>Mobile-first, fast-loading &amp; fully responsive</li>
+        </ul>
+        <div class="hero__btns">
+          <a href="/contact.html" class="btn-primary">Get a Free Quote</a>
+          <a href="/contact.html" class="btn-outline">View Portfolio</a>
+        </div>
+      </div>
+
+      <div class="hero-form-card">
+        <div class="hero-form-card__header">
+          <div class="hero-form-card__icon" aria-hidden="true">🌐</div>
+          <div>
+            <strong class="hero-form-card__title">Get Free Web Design Quote</strong>
+            <span class="hero-form-card__sub">Tell us about your project</span>
+          </div>
+        </div>
+        <form action="https://formspree.io/f/xwkgpznk" method="POST">
+          <div class="form-group">
+            <label class="form-label" for="hero-name">Full Name</label>
+            <input class="form-input" type="text" id="hero-name" name="fullname" required placeholder="Your full name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="hero-phone">Phone</label>
+            <input class="form-input" type="tel" id="hero-phone" name="phone" placeholder="+971">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="hero-email">Email Address</label>
+            <input class="form-input" type="email" id="hero-email" name="email" required placeholder="john@company.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="hero-service">Project Type</label>
+            <select class="form-input" id="hero-service" name="service">
+              <option value="">Select project type...</option>
+              <option>Landing Page</option>
+              <option>Corporate Website</option>
+              <option>E-Commerce Store</option>
+              <option>Website Redesign</option>
+              <option>Mobile App</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Send Me a Unique Package →</button>
+          <p class="form-note">100% Free · No credit card · Reply within 2 hours</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Proof strip -->
+    <div class="hero__proof-strip reveal">
+      <div class="hero__proof-item">
+        <div class="hero__proof-icon gold"><i class="ti ti-layout-2"></i></div>
+        <strong>200+</strong>
+        <span>Websites Delivered</span>
+        <span class="hero__proof-badge green"><i class="ti ti-trending-up"></i> Growing</span>
+      </div>
+      <div class="hero__proof-item">
+        <div class="hero__proof-icon blue"><i class="ti ti-calendar-event"></i></div>
+        <strong>17 Years</strong>
+        <span>In Business Since 2008</span>
+        <span class="hero__proof-badge blue"><i class="ti ti-circle-check"></i> Est. 2008</span>
+      </div>
+      <div class="hero__proof-item">
+        <div class="hero__proof-icon teal"><i class="ti ti-users"></i></div>
+        <strong>20+</strong>
+        <span>Designers &amp; Developers</span>
+        <span class="hero__proof-badge green"><i class="ti ti-building"></i> In-house</span>
+      </div>
+      <div class="hero__proof-item">
+        <div class="hero__proof-icon amber"><i class="ti ti-star"></i></div>
+        <strong>4.8 Rating</strong>
+        <span>120+ Verified Reviews</span>
+        <span class="hero__proof-badge blue"><i class="ti ti-shield-check"></i> Verified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-section">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="reveal">
+        <div class="section-divider">
+          <span class="section-divider__dot"></span>
+          <span class="section-divider__label">About Us</span>
+          <span class="section-divider__line"></span>
+        </div>
+        <h2 class="section-heading">Custom Web Design and <span class="accent">Development</span></h2>
+        <p>Marketing with Fahad is an international web design company in Dubai with more than fifty professional web designers, front end and back end developers. Our office is located in Jumeirah Lakes Towers, Cluster T. We focus on exceptional <strong>custom website design and development, logo design, corporate identity, mobile app development</strong> for our customers based in Dubai and across the UAE.</p>
+        <p>We specialize in crafting <strong>highly responsive websites, <a href="https://www.marketingwithfahad.ae/services/web-design/e-commerce-website-design-development/">e-commerce</a>, <a href="https://www.marketingwithfahad.ae/services/web-design/landing-page-design/">landing pages</a></strong> with any sophisticated design, structure, and functionality as per your needs.</p>
+        <p>Our custom-developed content management system (CMS) "Marketing with Fahad 6.0" enables us to design and develop websites that meet search engines' requirements. The websites we create offer seamless user experience and protect against all external threats.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;">
+          <a href="/contact.html" class="btn-primary">Start Your Project</a>
+          <a href="/contact.html" class="btn-outline">Get Free Consultation</a>
+        </div>
+      </div>
+      <div class="intro-grid__img reveal" style="transition-delay:0.1s">
+        <img src="assets/web-design-department.webp" alt="Web design team at Marketing with Fahad Dubai">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-section">
+  <div class="container">
+    <div class="section-divider section-divider--center reveal">
+      <span class="section-divider__line"></span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__label">Why Choose Us</span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__line" style="background:linear-gradient(to left,var(--gold-border),transparent)"></span>
+    </div>
+    <h2 class="section-heading section-heading--center reveal">Why Choose Our <span class="accent">Custom Web Design</span> Service?</h2>
+    <p class="section-subtext section-subtext--center reveal">We don't use templates. Every pixel is crafted specifically for your brand, your audience, and your goals.</p>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-card__icon">
+          <img src="assets/create-advantages--1.webp" alt="Custom Design icon">
+        </div>
+        <h3>Custom Design</h3>
+        <p>Every website is designed from scratch by our team — unique, on-brand, and built to stand out from your competitors.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.06s">
+        <div class="why-card__icon">
+          <img src="assets/create-advantages--2.webp" alt="UX/UI Excellence icon">
+        </div>
+        <h3>UX/UI Excellence</h3>
+        <p>Intuitive layouts and well-thought-out structure that guide your visitors toward conversion — on every screen size.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.12s">
+        <div class="why-card__icon">
+          <img src="assets/create-advantages--3.webp" alt="Clean Code icon">
+        </div>
+        <h3>Clean Code</h3>
+        <p>Built on PHP, HTML/CSS/JS to the latest standards. Organized, maintainable code that any developer can work with.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.18s">
+        <div class="why-card__icon">
+          <img src="assets/create-advantages--4.webp" alt="Custom CMS icon">
+        </div>
+        <h3>Custom CMS</h3>
+        <p>Our proprietary Marketing with Fahad 6.0 CMS keeps your site SEO-friendly, secure, and easy to manage — without WordPress bloat.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.24s">
+        <div class="why-card__icon">
+          <img src="assets/create-advantages--5.webp" alt="Professional Content icon">
+        </div>
+        <h3>Professional Content</h3>
+        <p>Words drive traffic. We create quality, keyword-rich content that attracts the right customers and improves your rankings.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.30s">
+        <div class="why-card__icon">
+          <img src="assets/create-advantages--6.webp" alt="24/7 Support icon">
+        </div>
+        <h3>24/7 Support</h3>
+        <p>A dedicated project manager always on hand — our clients rest easy knowing expert help is never more than a message away.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:44px;" class="reveal">
+      <a href="/contact.html" class="btn-primary">Send Enquiry</a>
+    </div>
+  </div>
+</section>
+
+<!-- CMS SECTION -->
+<section class="cms-section">
+  <div class="container">
+    <div class="section-divider section-divider--center reveal">
+      <span class="section-divider__line"></span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__label">Our Platform</span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__line" style="background:linear-gradient(to left,var(--gold-border),transparent)"></span>
+    </div>
+    <h2 class="section-heading section-heading--center reveal">Marketing with Fahad <span class="accent">CMS 6.0</span></h2>
+    <p class="section-subtext section-subtext--center reveal">We don't use WordPress, Joomla, or Drupal. Our own platform is faster, more secure, and built for search engine performance from the ground up.</p>
+
+    <div class="cms-grid">
+      <div class="cms-img-stack reveal">
+        <img class="cms-img-stack__main" src="assets/cms-img-1.webp" alt="Marketing with Fahad CMS dashboard">
+        <img class="cms-img-stack__decor" src="assets/cms-img-3.webp" alt="CMS detail view">
+      </div>
+      <div class="reveal" style="transition-delay:0.1s">
+        <p>With our custom-developed CMS — Marketing with Fahad 6.0 — our developers can embed and customize any feature within the website. Not only will the end product be unique, but thanks to the optimized code, any developer will be able to make changes to the design and content in the future.</p>
+        <img src="assets/cms-img-2.webp" alt="CMS interface screenshot" style="border-radius:var(--radius);box-shadow:0 8px 28px rgba(0,0,0,0.1);margin-top:20px;width:100%;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-section">
+  <div class="container">
+    <div class="section-divider section-divider--center reveal">
+      <span class="section-divider__line"></span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__label">Portfolio</span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__line" style="background:linear-gradient(to left,var(--gold-border),transparent)"></span>
+    </div>
+    <h2 class="section-heading section-heading--center reveal">Our <span class="accent">Portfolio</span></h2>
+    <p class="section-subtext section-subtext--center reveal">A selection of websites we have designed and developed for clients across the UAE and internationally.</p>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card reveal" data-lightbox="assets/create-portfolio-1.webp">
+        <div class="portfolio-card__img-wrap">
+          <img src="assets/create-portfolio-1.webp" alt="Website Design for Seven Yachts">
+          <div class="portfolio-card__overlay"><div class="portfolio-card__zoom">⊕</div></div>
+        </div>
+        <a class="portfolio-card__label" href="/portfolio/our-websites/web-development-and-promotion-for-seven-yachts/">Website Design &amp; Development for Seven Yachts</a>
+      </div>
+      <div class="portfolio-card reveal" style="transition-delay:0.06s" data-lightbox="assets/create-portfolio-2.webp">
+        <div class="portfolio-card__img-wrap">
+          <img src="assets/create-portfolio-2.webp" alt="Landing Page Design for Kardan Coach">
+          <div class="portfolio-card__overlay"><div class="portfolio-card__zoom">⊕</div></div>
+        </div>
+        <span class="portfolio-card__label">Landing Page Design for Kardan Coach</span>
+      </div>
+      <div class="portfolio-card reveal" style="transition-delay:0.12s" data-lightbox="assets/create-portfolio-3.webp">
+        <div class="portfolio-card__img-wrap">
+          <img src="assets/create-portfolio-3.webp" alt="Web Design and SEO for Anir">
+          <div class="portfolio-card__overlay"><div class="portfolio-card__zoom">⊕</div></div>
+        </div>
+        <a class="portfolio-card__label" href="/portfolio/our-websites/new-website-and-seo-services-for-anir/">Website Design and SEO for Anir</a>
+      </div>
+      <div class="portfolio-card reveal" style="transition-delay:0.18s" data-lightbox="assets/create-portfolio-4.webp">
+        <div class="portfolio-card__img-wrap">
+          <img src="assets/create-portfolio-4.webp" alt="Web Design for Al-Emad">
+          <div class="portfolio-card__overlay"><div class="portfolio-card__zoom">⊕</div></div>
+        </div>
+        <a class="portfolio-card__label" href="/portfolio/our-websites/new-website-and-seo-services-for-al-emad-cars/">Web Design and Development for Al-Emad</a>
+      </div>
+      <div class="portfolio-card reveal" style="transition-delay:0.24s" data-lightbox="assets/create-portfolio-5.webp">
+        <div class="portfolio-card__img-wrap">
+          <img src="assets/create-portfolio-5.webp" alt="Web Design for UCCI Sushi Restaurant">
+          <div class="portfolio-card__overlay"><div class="portfolio-card__zoom">⊕</div></div>
+        </div>
+        <a class="portfolio-card__label" href="/portfolio/our-websites/new-website-and-seo-services-for-ucci-sushi-restaurant/">Web Design and SEO for UCCI Sushi Restaurant</a>
+      </div>
+      <div class="portfolio-card reveal" style="transition-delay:0.30s" data-lightbox="assets/create-portfolio-6.webp">
+        <div class="portfolio-card__img-wrap">
+          <img src="assets/create-portfolio-6.webp" alt="Custom Web Design for Arabian Info Tech">
+          <div class="portfolio-card__overlay"><div class="portfolio-card__zoom">⊕</div></div>
+        </div>
+        <a class="portfolio-card__label" href="/portfolio/our-websites/website-and-seo-for-arabian-infotech/">Custom Web Design for Arabian Info Tech</a>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:44px;" class="reveal">
+      <a href="/contact.html" class="btn-primary">Send Enquiry</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="container">
+    <div class="section-divider section-divider--center reveal">
+      <span class="section-divider__line"></span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__label">Pricing</span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__line"></span>
+    </div>
+    <h2 class="section-heading section-heading--center reveal">Web Design Dubai <span class="accent">Pricing</span></h2>
+    <p class="section-subtext section-subtext--center reveal">Transparent pricing with no hidden fees. Every package includes custom design, responsive development, and CMS integration.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pricing-card__head">
+          <div class="pricing-card__plan-icon" aria-hidden="true">🖥️</div>
+          <p class="pricing-card__title">
+            <a href="https://www.marketingwithfahad.ae/services/web-design/landing-page-design/">Custom Landing Page</a>
+          </p>
+          <div class="pricing-card__price-box">
+            Starting from
+            <span class="pricing-card__price-new">AED 3,800</span>
+            <span class="pricing-card__price-old">AED 9,500</span>
+          </div>
+        </div>
+        <ul class="pricing-card__list">
+          <li>Unique creative design in Photoshop or Figma — no templates</li>
+          <li>Fully responsive front end development</li>
+          <li>CMS integration for enquiries &amp; lead capture</li>
+        </ul>
+        <div class="pricing-card__foot">
+          <a href="/contact.html" class="btn-primary">Send Enquiry</a>
+        </div>
+      </div>
+
+      <div class="pricing-card pricing-card--featured reveal" style="transition-delay:0.08s">
+        <span class="pricing-card__badge">⭐ Most Popular</span>
+        <div class="pricing-card__head" style="padding-top:48px;">
+          <div class="pricing-card__plan-icon" aria-hidden="true">🏢</div>
+          <p class="pricing-card__title">
+            <a href="https://www.marketingwithfahad.ae/services/web-design/corporate-web-design/">Custom Corporate Website</a>
+          </p>
+          <div class="pricing-card__price-box">
+            Starting from
+            <span class="pricing-card__price-new">AED 10,000</span>
+            <span class="pricing-card__price-old">AED 25,000</span>
+          </div>
+        </div>
+        <ul class="pricing-card__list">
+          <li>Unique design drawn in Photoshop or Figma</li>
+          <li>Responsive design &amp; full front end development</li>
+          <li>Custom CMS with complete corporate functionality</li>
+        </ul>
+        <div class="pricing-card__foot">
+          <a href="/contact.html" class="btn-primary">Send Enquiry</a>
+        </div>
+      </div>
+
+      <div class="pricing-card reveal" style="transition-delay:0.16s">
+        <div class="pricing-card__head">
+          <div class="pricing-card__plan-icon" aria-hidden="true">🛒</div>
+          <p class="pricing-card__title">
+            <a href="https://www.marketingwithfahad.ae/services/web-design/e-commerce-website-design-development/">Custom E-Commerce Website</a>
+          </p>
+          <div class="pricing-card__price-box">
+            Starting from
+            <span class="pricing-card__price-new">AED 22,000</span>
+            <span class="pricing-card__price-old">AED 55,000</span>
+          </div>
+        </div>
+        <ul class="pricing-card__list">
+          <li>Brand new bespoke design in Photoshop or Figma</li>
+          <li>Fully responsive front end development</li>
+          <li>Custom CMS with full e-commerce functionality</li>
+        </ul>
+        <div class="pricing-card__foot">
+          <a href="/contact.html" class="btn-primary">Send Enquiry</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOSTING -->
+<section class="hosting-section">
+  <div class="container">
+    <div class="section-divider section-divider--center reveal">
+      <span class="section-divider__line"></span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__label">Infrastructure</span>
+      <span class="section-divider__dot"></span>
+      <span class="section-divider__line" style="background:linear-gradient(to left,var(--gold-border),transparent)"></span>
+    </div>
+    <h2 class="section-heading section-heading--center reveal">Web Hosting <span class="accent">We Use</span></h2>
+
+    <div class="hosting-grid">
+      <div class="reveal">
+        <p>Our web design Dubai company is very careful in choosing a <a href="https://www.marketingwithfahad.ae/services/web-design/web-hosting/">web hosting</a>. The success of SEO Dubai services directly depends on the speed of the web server and the connection speed. Cheap American companies cannot cope with these tasks.</p>
+        <p>The best option is a private VPS on Digital Ocean or Amazon. Data centers must be located in Europe. The connection speed between Dubai and Europe is high. The websites load pretty quickly. You can also use European or Russian shared hosting — suitable for small websites.</p>
+        <p>To make the website load speed even faster, you can connect Cloudflare. This service has data centers scattered all over the world. It caches the data and delivers it from the nearest location.</p>
+      </div>
+      <div class="reveal" style="transition-delay:0.1s">
+        <img src="assets/web-design-dubai-hosting.webp" alt="Web Design Dubai Hosting infrastructure">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" aria-labelledby="faq-heading">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="faq-sidebar reveal">
+        <span class="badge">FAQs</span>
+        <h2 id="faq-heading">Frequently<br><span class="accent">Asked Questions</span></h2>
+        <p>Answers to common questions about our web design process, timelines, platforms, and what makes a high-performing business website.</p>
+        <a href="contact.html" class="faq-cta">Get Free Consultation</a>
+        <div class="faq-contact-card">
+          <p>Prefer to talk directly? Reach us on WhatsApp or email — we reply within 2 hours.</p>
+          <a href="https://api.whatsapp.com/send?phone=971564166421" target="_blank" rel="noopener">
+            <span>💬</span> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="faq-list reveal" style="transition-delay:0.1s">
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="faq1">
+            Do you build WordPress websites?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" id="faq1" role="region">
+            Yes. We design and develop custom WordPress websites built for speed, SEO, and conversions. We also build WooCommerce e-commerce stores and custom theme solutions.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="faq2">
+            How long does a website project take?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" id="faq2" role="region">
+            A standard business website takes 3–6 weeks from brief to launch. Larger e-commerce or custom projects take 6–12 weeks depending on the number of pages, features, and revision rounds.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="faq3">
+            Will my website be mobile-friendly?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" id="faq3" role="region">
+            Yes. Every website we build is mobile-first — designed and tested across all screen sizes including mobile phones, tablets, laptops, and large desktop monitors.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="faq4">
+            Is SEO included in the web design package?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" id="faq4" role="region">
+            Yes. All websites include on-page SEO foundations — proper heading structure, meta tags, schema markup, fast loading speed, clean URL structure, and Google Analytics setup.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="faq5">
+            Can you redesign my existing website?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" id="faq5" role="region">
+            Absolutely. We audit your current site, identify what is working, and redesign it with improved speed, user experience, mobile responsiveness, and conversion rate optimization.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="faq6">
+            How much does a website cost?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" id="faq6" role="region">
+            Business website packages start from AED 3,800. E-commerce and custom projects are priced based on scope. Contact us for a detailed quote tailored to your specific requirements.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="faq7">
+            Do you provide website maintenance after launch?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" id="faq7" role="region">
+            Yes. We offer monthly maintenance packages covering security updates, backups, speed monitoring, and minor content changes to keep your site running at peak performance.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="faq8">
+            Will I be able to update the website myself?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" id="faq8" role="region">
+            Yes. We build user-friendly websites on our CMS and provide training so you can confidently update pages, add blog posts, change images, and manage content without technical knowledge.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="reveal">
+      <h2>Ready to Build a Website That <span class="accent">Actually Converts?</span></h2>
+      <p>Get a free, no-obligation quote and discover how a custom-built website can grow your business online.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn-primary">Get Your Free Quote</a>
+        <a href="our-team.html" class="btn-dark">Meet the Full Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Close image viewer">×</button>
+  <img class="lightbox__img" id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+function runScripts(container) {
+  container.querySelectorAll('script').forEach(oldScript => {
+    const newScript = document.createElement('script');
+    if (oldScript.src) { newScript.src = oldScript.src; }
+    else { newScript.textContent = oldScript.textContent; }
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
+async function loadPart(url, id) {
+  try {
+    const r = await fetch(url);
+    const el = document.getElementById(id);
+    if (el) { el.innerHTML = await r.text(); runScripts(el); }
+  } catch(e) {}
+}
+loadPart('header.html', 'header-placeholder');
+loadPart('footer.html', 'footer-placeholder');
+
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+
+function openLightbox(src, alt) {
+  if (window.innerWidth < 600) return;
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || '';
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  lightboxImg.src = '';
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.portfolio-card[data-lightbox]').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') return;
+    const img = card.querySelector('img');
+    openLightbox(card.dataset.lightbox, img ? img.alt : '');
+  });
+});
+if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+if (lightbox) lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
