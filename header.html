@@ -39,6 +39,11 @@
     display: block;
   }
 
+  /* ===== BRAND NAME (mobile only) ===== */
+  .header__brand-name {
+    display: none;
+  }
+
   /* ===== DESKTOP NAV ===== */
   .header__main-menu { flex: 1; }
   .main-menu { position: relative; }
@@ -416,22 +421,49 @@
     .header__call { padding: 8px 10px; }
     .header__call i { font-size: 20px; }
   }
+
   @media (max-width: 900px) {
     .header__main-menu { display: none; }
     .header__call { display: none; }
     .header__dial-icon { display: none; }
-    .menu-mobile__open-btn { display: flex; }
-    .header__report { font-size: 12px; padding: 7px 10px; }
-    .header__logo img { height: 46px; }
-  }
-  @media (max-width: 480px) {
     .header__report { display: none; }
-    .header__container { gap: 12px; padding: 0 16px; }
-    .header__logo img { height: 40px; }
+    .header__logo { margin-right: 0; }
+
+    /* Brand name visible on mobile, fills center space */
+    .header__brand-name {
+      display: block;
+      flex: 1;
+      text-align: center;
+      color: var(--gold-light);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 8px;
+    }
+
+    /* Menu button pushed to the far right */
+    .menu-mobile__open-btn {
+      display: flex;
+      margin-left: auto;
+    }
+
+    .header__logo img { height: 46px; }
+    .header__container { gap: 0; }
   }
+
+  @media (max-width: 480px) {
+    .header__container { gap: 0; padding: 0 16px; }
+    .header__logo img { height: 40px; }
+    .header__brand-name { font-size: 13px; }
+  }
+
   @media (max-width: 360px) {
     .header__logo img { height: 36px; }
-    .header__container { gap: 8px; padding: 0 12px; }
+    .header__container { gap: 0; padding: 0 12px; }
+    .header__brand-name { font-size: 12px; }
   }
 </style>
 
@@ -449,6 +481,9 @@
           width="48" height="56"
         >
       </a>
+
+      <!-- Brand name — visible on mobile only, sits between logo and menu btn -->
+      <span class="header__brand-name">Marketing with Fahad</span>
 
       <!-- Desktop nav -->
       <div class="header__main-menu">
