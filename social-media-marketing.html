@@ -1030,6 +1030,16 @@ p:last-child { margin-bottom: 0; }
   .whatsapp-fixed-btn { display: none !important; }
   .scroll-top-btn { display: flex; }
 }
+
+/* === FIX #1: Fade-in / FOUC glitch — cap animation timing & respect reduced motion === */
+*, *::before, *::after {
+  animation-delay: 0s !important;
+  animation-duration: .25s !important;
+  transition-duration: .25s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 </head>
 

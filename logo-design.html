@@ -452,6 +452,16 @@ p:last-child{margin-bottom:0}
 }
 
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* === FIX #1: Fade-in / FOUC glitch — cap animation timing & respect reduced motion === */
+*, *::before, *::after {
+  animation-delay: 0s !important;
+  animation-duration: .25s !important;
+  transition-duration: .25s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 </head>
 <body class="inner-page">

@@ -712,7 +712,17 @@
       .benefits-grid { grid-template-columns: 1fr; }
       .hero__proof-strip { grid-template-columns: 1fr; }
     }
-  </style>
+  
+/* === FIX #1: Fade-in / FOUC glitch — cap animation timing & respect reduced motion === */
+*, *::before, *::after {
+  animation-delay: 0s !important;
+  animation-duration: .25s !important;
+  transition-duration: .25s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
 </head>
 
 <body>

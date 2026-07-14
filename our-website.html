@@ -470,6 +470,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .portfolio-grid{grid-template-columns:1fr 1fr;gap:8px}
   .filter-toggle-btn{font-size:13px;padding:10px 18px}
 }
+
+/* === FIX #1: Fade-in / FOUC glitch — cap animation timing & respect reduced motion === */
+*, *::before, *::after {
+  animation-delay: 0s !important;
+  animation-duration: .25s !important;
+  transition-duration: .25s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 </head>
 <body>

@@ -559,6 +559,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .dept-group{margin-bottom:var(--space-lg)}
   .dept-label{font-size:10px;padding:4px 12px}
 }
+
+/* === FIX #1: Fade-in / FOUC glitch — cap animation timing & respect reduced motion === */
+*, *::before, *::after {
+  animation-delay: 0s !important;
+  animation-duration: .25s !important;
+  transition-duration: .25s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 </head>
 <body>

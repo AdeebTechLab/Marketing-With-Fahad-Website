@@ -941,6 +941,16 @@ h1 .accent, h2 .accent, h3 .accent { color: var(--gold); }
   .faq-left h2 { font-size: 1.8rem; }
   .case-card__badge { font-size: 9px; padding: 4px 10px; }
 }
+
+/* === FIX #1: Fade-in / FOUC glitch — cap animation timing & respect reduced motion === */
+*, *::before, *::after {
+  animation-delay: 0s !important;
+  animation-duration: .25s !important;
+  transition-duration: .25s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 </head>
 

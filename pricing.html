@@ -371,6 +371,16 @@ height:max-content;
 @media(max-width:400px){
   .faq-btn{font-size:13px;padding:16px 16px}
 }
+
+/* === FIX #1: Fade-in / FOUC glitch — cap animation timing & respect reduced motion === */
+*, *::before, *::after {
+  animation-delay: 0s !important;
+  animation-duration: .25s !important;
+  transition-duration: .25s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 </head>
 <body>
@@ -425,14 +435,6 @@ height:max-content;
   </div>
 </section>
 
-<!-- DIVIDER -->
-<div class="divider-block container">
-  <div class="divider-line rev"></div>
-  <div class="divider-dot"></div>
-  <span class="divider-label">What We Assess</span>
-  <div class="divider-dot"></div>
-  <div class="divider-line"></div>
-</div>
 
 <!-- WHAT'S INCLUDED -->
 <!-- FIX #3: section background now var(--bg) — starts alternating rhythm -->
@@ -488,14 +490,6 @@ height:max-content;
   </div>
 </section>
 
-<!-- DIVIDER -->
-<div class="divider-block container">
-  <div class="divider-line rev"></div>
-  <div class="divider-dot"></div>
-  <span class="divider-label">Pricing Tiers</span>
-  <div class="divider-dot"></div>
-  <div class="divider-line"></div>
-</div>
 
 <!-- PRICING TIERS -->
 <!-- FIX #2: changed from .section to .tiers.section with reduced padding (56px vs 88px) -->
@@ -549,14 +543,6 @@ height:max-content;
   </div>
 </section>
 
-<!-- DIVIDER -->
-<div class="divider-block container">
-  <div class="divider-line rev"></div>
-  <div class="divider-dot"></div>
-  <span class="divider-label">Long-Term Value</span>
-  <div class="divider-dot"></div>
-  <div class="divider-line"></div>
-</div>
 
 <!-- ROI -->
 <!-- FIX #3: background now var(--bg) [was var(--white)] -->
@@ -582,14 +568,6 @@ height:max-content;
   </div>
 </section>
 
-<!-- DIVIDER -->
-<div class="divider-block container">
-  <div class="divider-line rev"></div>
-  <div class="divider-dot"></div>
-  <span class="divider-label">Our Difference</span>
-  <div class="divider-dot"></div>
-  <div class="divider-line"></div>
-</div>
 
 <!-- WHY US -->
 <!-- FIX #3: background now var(--white) [was var(--bg)] -->
@@ -625,14 +603,6 @@ height:max-content;
   </div>
 </section>
 
-<!-- DIVIDER -->
-<div class="divider-block container">
-  <div class="divider-line rev"></div>
-  <div class="divider-dot"></div>
-  <span class="divider-label">FAQs</span>
-  <div class="divider-dot"></div>
-  <div class="divider-line"></div>
-</div>
 
 <!-- FAQ -->
 <!-- FIX #3: background now var(--bg) [was var(--white)] -->
